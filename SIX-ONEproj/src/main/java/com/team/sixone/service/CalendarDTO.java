@@ -9,6 +9,10 @@ public class CalendarDTO {
 	private String routineNo;
 	private String playNo;
 	
+	
+	
+	
+	
 	public CalendarDTO(String calendarNo, String startDate, String endDate, String id, String routineNo,
 			String playNo) {
 		this.calendarNo = calendarNo;

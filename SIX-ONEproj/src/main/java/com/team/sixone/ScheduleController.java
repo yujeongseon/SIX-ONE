@@ -1,5 +1,7 @@
 package com.team.sixone;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.json.simple.JSONArray;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.sixone.service.CalendarDTO;
 import com.team.sixone.service.impl.CalendarDAO;
 import com.team.sixone.service.impl.CalendarServiceImpl;
 
@@ -29,7 +32,8 @@ public class ScheduleController {
 	@ResponseBody
 	public String readCalendar() {
 		
-		calendarDAO.selectList();
+		List<CalendarDTO> list = calendarDAO.selectList();
+		
 		
 		
 		JSONObject obj = new JSONObject();

@@ -127,6 +127,13 @@
                           <input class="form-control" type="text" name="edit-title" id="edit-title" required="required" />
                       </div>
                     </div>
+                    
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label" for="edit-count">운동횟수</label>
+                      <div class="col-sm-10">
+                          <input class="form-control" type="text" name="edit-count" id="edit-count" />
+                      </div>
+                    </div>
 
                     <div class="form-group">
                       <label class="col-sm-2 control-label" for="edit-start">시작</label>
@@ -220,7 +227,7 @@
                   <div class="row">
 					<div class="schedule text-left animate-box">
 						<div class="col-md-12 ">
-						<span style="font-size:30px;" id="infoTitle">sssssssss</span>
+						<span style="font-size:30px;" id="infoTitle"></span>
 							<div class="routine" >
 								<div class="col-md-1 week">
 									<div>월요일</div>
@@ -373,7 +380,9 @@
 		$(this).modal('hide');
 		
 	});
-	
+	$(window).scroll(function(){
+		clearTimeout(timer);
+	})
 	
 	
 	</script>
