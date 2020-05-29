@@ -7,7 +7,9 @@
 <%
 	String[] images = (String[]) request.getAttribute("images");
 %>
+
 <script>
+
 //이미지 올리기전 확인
 function setThumbnail(event) { 
 	var reader = new FileReader(); 
@@ -32,7 +34,7 @@ function setThumbnail(event) {
 
 	<!-- Modal -->
 	<div class="modal fade" id="wirteModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
+		aria-labelledby="myModalLabel" aria-hidden="true" >
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -155,14 +157,10 @@ jQuery(document).ready(function($) {
 						$(window)
 								.scroll(
 										function() {
+									
 											//스크롤 따라오는 좌측메뉴 $(window).scrollTop()+30'px' 넣으면 왠진 모르겟는데 애가 미쳐돌아감
-											if (($(window).scrollTop() + 500 < ($(
-													document).height() - $(
-													window).height()))
-													&& $('.follow').is(
-															":visible")) {
-												$('.follow')
-														.attr(
+											if (($(window).scrollTop() + 500 < ($(document).height() - $(window).height()))
+													&& $('.follow').is(":visible")) {$('.follow').attr(
 																'style',
 																('padding-top :'
 																		+ ($(

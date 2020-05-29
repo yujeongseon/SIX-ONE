@@ -63,7 +63,7 @@ public class TimelLineCont {
 	
 		
 		
-		return "/blog.tiles";
+		return "/Map.tiles";
 	}
 
 

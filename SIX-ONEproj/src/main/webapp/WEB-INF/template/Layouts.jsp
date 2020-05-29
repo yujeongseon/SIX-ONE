@@ -43,7 +43,7 @@
 					<div class="row">
 
 						<div class="col-md-2">
-							<div id="colorlib-logo"><a href="<c:url value='/'/>">SIX-ONE</a></div>
+							<div id="colorlib-logo"><a style="font-size: 1.0em" href="<c:url value='/'/>">SIX-ONE</a></div>
 						</div>
 						<div class="col-md-10 text-right menu-1">
 							<ul >
@@ -61,7 +61,7 @@
 								<li id="nav-schedule"><a href="<c:url value='/schedule.do'/>">스케쥴</a></li>
 								<li id="nav-timeline"><a href="<c:url value='/TimeLine.do'/>">타임라인</a></li>
 								<li id="nav-freeboard"><a href="<c:url value='/freeboard.do'/>">게시판</a></li>
-								<li><a href="blog.html">Blog</a></li>
+								<li id="nav-blog"><a href="<c:url value='/blog.do'/>">Blog</a></li>
 								<li><a href="#" data-toggle="modal" data-target="#myModal" id="MyMenu">마이</a></li>
 							</ul>
 						</div>
