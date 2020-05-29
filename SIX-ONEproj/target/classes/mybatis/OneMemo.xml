@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 매퍼파일의 완전한 경로 : xml생략 -->
+<mapper namespace="mybatis.OneMemo">
+	
+	<select id="memoIsLogin" parameterType="java.util.Map" resultType="int">
+		select count(*) from member where id=#{id} and pwd=#{pwd}
+	</select>
+	
+	<select id="isLoginJson" parameterType="com.kosmo.onememo.MemberDTO" resultType="com.kosmo.onememo.MemberDTO">
+		select * from member where id=#{id} and pwd=#{pwd}
+	</select>
+	
+	
+	<select id="memoselectList" parameterType="java.util.Map" resultType="oneMemoDTO">
+		select * from
+		(select T.*, rownum R from(select o.*,name,(select count(*) from memocomment where no=o.no) as commentcount 
+		from member m join onememo o on m.id = o.id 
+		<if test="searchWord != null">
+			where ${searchColumn} like '%' || #{searchWord} || '%' 
+		</if>
+		order by no desc) T)
+		where R between #{start} and #{end}
+	</select>
+	
+	<select id="memoGetTotalRecord" parameterType="java.util.Map" resultType="int">
+		select count(*) from onememo
+		<if test="searchWord != null">
+			where ${searchColumn} like '%' || #{searchWord} || '%' 
+		</if>
+	</select>
+	
+	<insert id="memoInsert" parameterType="java.util.Map">
+		insert into onememo(no,title,content,id) values(seq_onememo.nextval,#{title},#{content},#{id})
+	</insert>
+	
+	<select id="memoSelectOne" parameterType="java.util.Map" resultType="oneMemoDTO">
+		select o.*,name from member m join onememo o on m.id = o.id where no=#{no}
+	</select>
+	
+	<update id="memoUpdate" parameterType="java.util.Map" >
+		update onememo set title=#{title}, content=#{content} where no=#{no}
+	</update>
+	
+	<delete id="memoDelete" parameterType="java.util.Map">
+		delete onememo where no=#{no}
+	</delete>
+	
+	
+	
+	
+	
+</mapper>

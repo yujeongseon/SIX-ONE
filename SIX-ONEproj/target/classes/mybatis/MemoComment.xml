@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 매퍼파일의 완전한 경로 : xml생략 -->
+<mapper namespace="mybatis.MemoComment">
+	
+	<!-- 결과를 Map에 담으면 키값이 칼럼 명(대문자)이 됨 -->	
+	<insert id="commentInsert" parameterType="java.util.Map" >
+		insert into memocomment values(seq_memocomment.nextval,#{linecomment},default,#{no},#{id})
+	</insert>
+	
+	<select id="commentSelectList" parameterType="java.util.Map" resultType="java.util.Map">
+		select m.*,name from memocomment m join member me on m.id=me.id where m.no=#{no} order by cno desc
+	</select>
+	
+	<update id="commentUpdate" parameterType="java.util.Map" >
+		update memocomment set linecomment = #{linecomment} where cno = #{cno}
+	</update>
+	
+	<delete id="commentDelete" parameterType="java.util.Map">
+		delete memocomment where cno=#{cno}
+	</delete>
+	
+	<delete id="commentDeleteByNo" parameterType="java.util.Map" >
+		delete memocomment where no=#{no}
+	</delete>
+	
+</mapper>
