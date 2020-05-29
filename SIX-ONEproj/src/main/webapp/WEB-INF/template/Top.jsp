@@ -27,8 +27,6 @@
 	<link rel="stylesheet" href="<c:url value='/resources/css/animate.css' />">
 	<!-- Icomoon Icon Fonts-->
 	<link rel="stylesheet" href="<c:url value='/resources/css/icomoon.css' />">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.css' />">
 
 	<!-- Magnific Popup -->
 	<link rel="stylesheet" href="<c:url value='/resources/css/magnific-popup.css' />">
@@ -53,7 +51,7 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 	
-	<style>
+<style>
 	/*
 	모달창 중앙 뜨기 건들 ㄴㄴ
 	*/
@@ -86,27 +84,21 @@
 <script>
 
 $(function(){
-		// $('#myModal').modal("hide"); //모달 닫혔을때
-		//$('#myModal').modal("show");//모달 열렸을때
+	//768
+	$('#myModal').on('show.bs.modal', function () {
+		if($(window).width() <= 768){
+		$('body').removeClass('overflow offcanvas');
+			//$('a').removeClass('colorlib-nav-toggle');
+		}
 		
-		$('#MyMenu').on('click',function(){
-			console.log('마이메뉴클릭');
-			$('#colorlib-offcanvas').hide();
-		});
-		
-		
-		
-		
-		
-		
-		/*
-		$('.js-colorlib-nav-toggle').on('click',function(){
-			console.log('열림');
-		});
-		*/
-		
+	});
 	
-	
+	$('#myModal').on('hidden.bs.modal', function () {
+		if($(window).width() <= 768){
+		$('body').addClass('overflow offcanvas');
+			
+		}
+	});
 	
 	
 			
@@ -121,10 +113,7 @@ $(function(){
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"aria-label="Close">
-					<span aria-hidden="true" id="x">&times;</span>
-				</button>
-			
+				
 			</div>
 			<div class="modal-body">
 			<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
@@ -168,11 +157,10 @@ $(function(){
 							<i class="fa fa-google"></i>
 						</a>
 					</div>
-					<div class="txt1 text-center">
+					<div class="txt1 text-center" style="padding-top: 40px;">
 						<span>회원가입</span>
 						</div>
 			</div>
-			
 		</div>
 	</div>
 </div>
