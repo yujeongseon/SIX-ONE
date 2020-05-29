@@ -92,7 +92,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 		<!-- 로그인창 스크립트 -->
 <script src="<c:url value='/resources/LoginCSS/vendor/animsition/js/animsition.min.js'/>"></script>
-<script src="<c:url value='/resources/LoginCSS/vendor/bootstrap/js/popper.js'/>"></script>
 <script src="<c:url value='/resources/LoginCSS/vendor/select2/select2.min.js'/>"></script>
 <script src="<c:url value='/resources/LoginCSS/vendor/daterangepicker/moment.min.js'/>" ></script>
 <script src="<c:url value='/resources/LoginCSS/vendor/daterangepicker/daterangepicker.js'/>"></script>
@@ -101,7 +100,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!-- 로그인창 스크립트 -->
 
 
-
+<script src="<c:url value='/resources/LoginCSS/vendor/bootstrap/js/popper.js'/>"></script>
 
 
 	</body>
