@@ -7,25 +7,25 @@
 	
 	<!-- 나중에 이거 추가해야함 -->
 	  
-	<!-- <bean id="datasource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="maven" />
+	<bean id="datasource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="sixone" />
 		<property name="resourceRef">
 			<value>true</value>
 		</property>
-	</bean> -->
+	</bean>
 	
 	
 	<!-- 1]SqlSessionFactory -->
-	<!-- <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		데이타소스:데이타베이스 연결정보
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 데이타소스:데이타베이스 연결정보 -->
 		<property name="dataSource" ref="datasource" />
-		환경설정 파일 위치 설정
+		<!-- 환경설정 파일 위치 설정 -->
 		<property name="configLocation"	value="classpath:mybatis/configuration.xml" />
 	</bean>
-	2]SqlSessionTemplate
+	<!-- 2]SqlSessionTemplate -->
 	<bean id="template" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
-	</bean> -->
+	</bean>
 	
 		
 </beans>
