@@ -35,11 +35,12 @@
 		});
 	
 	$(function(){
+		
 		 //3]AJAX사용-JSON데이타로 응답받기       
 		$('#rr').click(function(){
 			$.ajax({
 				url:"<c:url value='/Ajax/AjaxJson.do'/>",
-				data:{id:'rr'},//안줘도 돌아감 게시판구분용으로
+				data:{id:'rr'},//안줘도 돌아감 게시판구분용으로  window.onload 백그라운드 진행
 				dataType:'json',
 				success:function(data){
 					var option="";
@@ -47,7 +48,10 @@
 						option+="<h2>"+value+"</h2>";
 					});
 					$('#hell').html(option);
-					
+					$('#1num').css("background-color", 'white');
+					$('#2num').css("background-color", 'black');
+					$('#3num').css("background-color", 'white');
+						
 				}
 			});
 			
@@ -157,9 +161,9 @@ a:link {
 				<div class="row">
 					<div class="col-md-12">
 					<ul class="nav nav-pills">
-					<li style="background-color: black; border-style:solid; ; "><a href="<c:url value='/freeboard.do?id=fr'/>">자유게시판</a></li>
-					<li style="background-color: white;border-style: groove; "><a id="rr" href="#">루틴 공유</a></li>
-					<li style="background-color: white;border-style: solid;"><a id="an" href="<c:url value='/freeboard.do?id=an'/>">익명게시판</a></li>
+					<li id="1num" style="background-color: black; border-style:solid; "><a href="<c:url value='/freeboard.do?id=fr'/>">자유게시판</a></li>
+					<li id="2num" style="background-color: white;border-style: groove; "><a id="rr" href="#">루틴 공유</a></li>
+					<li id="3num" style="background-color: white;border-style: solid;"><a id="an" href="<c:url value='/freeboard.do?id=an'/>">익명게시판</a></li>
 					</ul>
 						<table id="hell" class="table table-bordered table-hover text-center" style="color:black; font-family:sans-serif;" id="tab">
 						<thead >			
