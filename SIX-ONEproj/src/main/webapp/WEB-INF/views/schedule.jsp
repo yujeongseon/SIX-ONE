@@ -9,17 +9,10 @@
 	<link href='<c:url value="/resources/calendar/bootstrap_datetimepicker.min.css"/>' rel='stylesheet'/>
 	
 	<style>
-
-
-
- 
-
    #external-events {
-    
-    
     padding: 0 10px;
     border: 1px solid #ccc;
-    background: #ccc;
+    background: #1a252f;
     text-align: left;
   } 
 
@@ -27,6 +20,7 @@
     font-size: 30px;
     margin-top: 0;
     padding-top: 1em;
+    color: white;
   }
 
   #external-events .fc-event {
@@ -355,6 +349,7 @@
 	<script src="<c:url value="/resources/calendar/main.js"/>"></script>
 	
 	<script>
+	var a = $(window).width();
 	$('.fc-event').on('mouseover',function(){
 		var title = $(this).html();
 		var callFunction = function(){
