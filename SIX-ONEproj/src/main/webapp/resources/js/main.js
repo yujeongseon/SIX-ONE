@@ -56,9 +56,9 @@
 		$('#colorlib-offcanvas').append(clone2);
 
 		$('#colorlib-offcanvas .has-dropdown').addClass('offcanvas-has-dropdown');
-		$('#colorlib-offcanvas')
-			.find('li')
-			.removeClass('has-dropdown');
+		//$('#colorlib-offcanvas')
+			//.find('li')
+			//.removeClass('has-dropdown');
 
 		// Hover dropdown menu on mobile
 		// $('.offcanvas-has-dropdown').mouseenter(function(){
