@@ -356,7 +356,7 @@
 	<script src="<c:url value="/resources/calendar/main.js"/>"></script>
 	
 	<script>
-	var a = $(window).width();
+	var timer;
 	$('.fc-event').on('mouseover',function(){
 		var title = $(this).html();
 		var callFunction = function(){

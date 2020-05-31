@@ -1,6 +1,7 @@
 package com.team.sixone;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -8,8 +9,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team.sixone.service.CalendarDTO;
 import com.team.sixone.service.impl.CalendarDAO;
 import com.team.sixone.service.impl.CalendarServiceImpl;
@@ -34,25 +38,32 @@ public class ScheduleController {
 		
 		List<CalendarDTO> list = calendarDAO.selectList();
 		
-		
-		
-		JSONObject obj = new JSONObject();
-		obj.put("_id", 1);
-		obj.put("title", "test");
-		obj.put("start", "2020-05-27");
-		obj.put("end", "2020-05-29");
-		obj.put("description", "팔굽혀펴기100회");
-		obj.put("type", "하체");
-		obj.put("username", "kim");
-		obj.put("backgroundColor", "#D25565");
-		obj.put("textColor", "#ffffff");
-		obj.put("allDay", true);
-		
-		
-		
-		
-		return obj.toJSONString();
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonStr = null;
+		try {
+			jsonStr = mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		return jsonStr;
 	}
+	
+	@RequestMapping(value="/schedule.update")
+	@ResponseBody
+	public String updateCalendar(@RequestParam Map map) {
+		int result = calendarDAO.update(map);
+		return String.valueOf(result);
+	}
+	
+	@RequestMapping(value="/schedule.delete")
+	@ResponseBody
+	public String deleteCalendar(@RequestParam Map map) {
+		int result = calendarDAO.delete(map);
+		return String.valueOf(result);
+	}
+	
+	
 	
 	
 	

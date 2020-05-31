@@ -20,7 +20,11 @@ public class CalendarDAO implements CalendarService {
 
 	@Override
 	public List<CalendarDTO> selectList() {
-		return sqlMapper.selectList("calendarSelectList");
+		List<CalendarDTO> list = sqlMapper.selectList("calendarSelectListRoutine");
+		List<CalendarDTO> list2 = sqlMapper.selectList("calendarSelectList");
+		list.addAll(list2);
+		
+		return list;
 	}
 
 	@Override
@@ -37,14 +41,12 @@ public class CalendarDAO implements CalendarService {
 
 	@Override
 	public int update(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlMapper.update("calendarUpdate", map);
 	}
 
 	@Override
 	public int delete(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlMapper.delete("calendarDelete",map);
 	}
 	
 	

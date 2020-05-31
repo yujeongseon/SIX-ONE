@@ -30,11 +30,6 @@ var editEvent = function (event) {
             return false;
         }
 
-       
-
-
-        
-
         event.title = editTitle.val();
         event.start = editStart.val();
         event.end = moment(editEnd).format('YYYY-MM-DD');
@@ -76,13 +71,13 @@ $('#deleteEvent').unbind();
 $('#deleteEvent').on('click', function () {
     event.remove();
     eventModal.modal('hide');
-
+    var calendarNo = event.extendedProps.calendarNo;
     //삭제시
     $.ajax({
         type: "get",
-        url: "",
+        url: "/sixone/schedule.delete",
         data: {
-            //...
+        	"calendarNo":calendarNo
         },
         success: function (response) {
             alert('삭제되었습니다.');
