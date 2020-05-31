@@ -24,6 +24,12 @@ function setThumbnail(event) {
 	reader.readAsDataURL(event.target.files[0]);
 }
 
+
+function isSaved(event){
+	 console.log(document.getElementsByName("saveRadio")[0].value);
+
+}
+
 </script>
 <!--  본문 -->
 <div class="col-md-3 col-md-offset-2 trainers-entry follow"
@@ -31,6 +37,7 @@ function setThumbnail(event) {
 	<!-- Button trigger modal -->
 	<button type="button" class="btn btn-primary " data-toggle="modal"
 		data-target="#wirteModal">글 작성하기</button>
+		
 
 	<!-- Modal -->
 	<div class="modal fade" id="wirteModal" tabindex="-1" role="dialog"
@@ -46,27 +53,33 @@ function setThumbnail(event) {
 				</div>
 				<div class="modal-body">
 					<!-- 글작성 폼 -->
+					
 					<div class="form-group">
+					<form action="<c:url value='/upload.do'/>" enctype="multipart/form-data" method="POST">
 						<div id="image_container"></div>
 						<label for="exampleInputFile">사진 업로드</label> <input type="file"
-							id="image" accept="image/*" onchange="setThumbnail(event);">
+							id="image" name="" onchange="setThumbnail(event);">
 						<p class="help-block">이미지 파일만 업로드 가능합니다</p>
-					</div>
-					<form>
+					
+					
 						<div class="form-group">
 							<label for="exampleInputEmail1">내용</label>
 							<textarea class="form-control" id="inscontent" rows="4">내용 입력</textarea>
 						</div>
-					</form>
+					
 					<div class="checkbox">
-					<label> <input type="checkbox"> 내용 임시 저장하기
+					<label> <input type="checkbox" name="saveRadio"> 내용 임시 저장하기
 					</label>
 				</div>
-					<!-- 글작성 폼 끝 -->
-				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default">작성하기</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal">취소하기</button>
+					<input type="submit" class="btn btn-default"/>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="isSaved();">취소하기</button>
+				</div>
+					<!-- 글작성 폼 끝 -->
+					</form>
+				</div>
+				
+				
 				</div>
 				
 			</div>

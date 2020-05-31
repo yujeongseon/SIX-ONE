@@ -31,12 +31,30 @@ public class DAO {
 
 	}
 	
-	
+	public int uploadtest(String saveDirectory, String filename) {
+		String sql = "insert into test values(5, '"+saveDirectory+"/"+filename+"')";
+		System.out.println(saveDirectory);
+		System.out.println(filename);
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			int upd =psmt.executeUpdate();
+			System.out.println("영향받은 행수 : " + upd);
+			
+			psmt.close();
+			conn.close();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return 9;
+	}
 	
 	public String[] test() {
 	
-///asd
-	String[] images = null;
+	String[] images = new String[1];
 	String cntSql = "SELECT COUNT(*) FROM test"; // 배열 선언함
 	String sql = "SELECT * FROM test ORDER BY no asc"; // 사진긁어옴
 	
@@ -53,13 +71,16 @@ public class DAO {
 		rs = psmt.executeQuery();
 	
 		System.out.println(columnCount);
-		images = new String[columnCount]; 
+		if(columnCount != 0)
+			images = new String[columnCount]; 
 		
 		while (rs.next()) {
 			images[i] = rs.getString(2);
 			System.out.println(images[i]);
 			i++;
 		}
+		if(images.length == 0)
+			images[0] = "https://item.kakaocdn.net/do/9c5d673c91e8f1080c2602931c81f178f43ad912ad8dd55b04db6a64cddaf76d";
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
