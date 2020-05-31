@@ -29,7 +29,6 @@ public class CalendarDAO implements CalendarService {
 
 	@Override
 	public CalendarDTO selectOne(Map map) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
