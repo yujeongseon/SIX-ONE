@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 			
 			
 			//타임라인에 뿌려줄 데이터 넣어두기
-			
+			System.out.println( "/Health.tiles");
 			
 			return "/Health.tiles";
 		}

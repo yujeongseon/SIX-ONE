@@ -9,7 +9,7 @@ public class ScheduleController {
 	@RequestMapping("/schedule.do")
 	public String schedule() {
 		
-		
+		System.out.println("/schedule.tiles");
 		
 		return "/schedule.tiles";
 	}
