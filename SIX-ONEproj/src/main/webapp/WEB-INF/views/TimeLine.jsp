@@ -58,7 +58,7 @@ function isSaved(event){
 					<form action="<c:url value='/upload.do'/>" enctype="multipart/form-data" method="POST">
 						<div id="image_container"></div>
 						<label for="exampleInputFile">사진 업로드</label> <input type="file"
-							id="image" name="" onchange="setThumbnail(event);">
+							id="image" name="image" onchange="setThumbnail(event);">
 						<p class="help-block">이미지 파일만 업로드 가능합니다</p>
 					
 					
@@ -102,6 +102,7 @@ function isSaved(event){
 		</div>
 	</form>
 	<p style="color: gray;">실시간 인기 검색어</p>
+
 </div>
 
 

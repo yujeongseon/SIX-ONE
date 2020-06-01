@@ -52,6 +52,25 @@ public class TimelLineCont {
 		
 		return "/TimeLine.tiles";
 	}
+	@RequestMapping(value = "/TimeLine.do", method = RequestMethod.POST)
+	public String TimeLine2(Locale locale, Model model, HttpServletRequest req) {
+		
+		
+		DAO dao = new DAO(req.getSession().getServletContext());
+		
+		
+		model.addAttribute("aaa", "resources/images/black.jpg");
+		model.addAttribute("bbb", "resources/images/classes-1.jpg");
+		String[] images = dao.test();
+		
+		req.setAttribute("images", images);
+		System.out.println("기존2");
+		
+		///======================================
+		
+		return "/TimeLine.tiles";
+	}
+	
 	
 	@RequestMapping(value = "/exercise.do", method = RequestMethod.GET)
 	public String exec(Locale locale, Model model) {

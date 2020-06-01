@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+		<img src="Upload/saa.jpg">
+		<img src = "resources/images/img_bg_1.jpg">
 	
 		<aside id="colorlib-hero">
 			<div class="flexslider">

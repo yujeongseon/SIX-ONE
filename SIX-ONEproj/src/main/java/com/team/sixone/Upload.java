@@ -40,32 +40,21 @@ public class Upload {
 		StringBuffer buffer = new StringBuffer();
 		try{
 			mr = new MultipartRequest(req, saveDirectory, maxPostSize, encoding, policy);
-			
-			// 4] 기타 폼의 하위 요소(파라미터)받기
-			// MultipartRequest 객체로 받는다.
-			// 이 객체가 request 를 가로채기 때문에 일반적인 request 객체로 파라미터 못받음 (중요!)
-			name = mr.getParameter("image");
-			title = mr.getParameter("title");
-			System.out.println(name + "왼네임 오타이틀" + title);
-			
-			
+			System.out.println("파일오리지널명 : "+mr.getOriginalFileName("image"));
 			//얘는 카루셀할때
 //			String[] inters = mr.getParameterValues("image");
 //			for(String inter : inters){
 //				buffer.append(inter);
 //			}
-			
-			
 			//업로드한 파일 이름 받기
+			File file = mr.getFile("image");
+			
+			
 			String filename = mr.getFilesystemName("image");
 			System.out.println("파일명 : " + filename);
 			//파일 경로
-			String realFolder = req.getRealPath("Upload");
-			System.out.println("파일경로 : "  +realFolder);
 			DAO dao = new DAO(req.getSession().getServletContext());
-			
 			dao.uploadtest(saveDirectory, filename);
-			
 			String image = mr.getParameter("image");
 			buffer.append(image);
 		}
