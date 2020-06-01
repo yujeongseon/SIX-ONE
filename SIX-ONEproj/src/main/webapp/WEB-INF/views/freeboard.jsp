@@ -51,10 +51,8 @@
 					$('#1num').css("background-color", 'white');
 					$('#2num').css("background-color", 'black');
 					$('#3num').css("background-color", 'white');
-						
 				}
 			});
-			
 		});
 		
 	});
