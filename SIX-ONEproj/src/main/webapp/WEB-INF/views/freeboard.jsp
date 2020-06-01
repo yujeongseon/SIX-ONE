@@ -167,199 +167,37 @@ a:link {
 								<th class="col-md-1 text-center">조회수</th>
 								<th class="col-md-1 text-center">추천</th>
 							</tr>
-								
-										<tr class="hoo">
-											<td><span class="blink" style="font-family: Fantasy">HOT</span></td>
-												<td class="text-left"><a class="aa" href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자
-														루틴 추천해준다</a></td>
-												<td>다짐하자</td>
-												<td>20-05-15</td>
-												<td>27</td>
-												<td>5</td>
-											</tr>
-											
+									<c:if test="${empty list}" var="isEmpty">
+										<tr>
+											<td colspan="6">등록된 게시물이 없습니다.</td>
+										</tr>
+									</c:if>
+									<tr class="hoo">
+										<td><span class="blink" style="font-family: Fantasy">HOT</span></td>
+										<td class="text-left"><a class="aa"
+											href="<c:url value='#'/>">초보자 루틴 추천해준다</a></td>
+										<td>다짐하자</td>
+										<td>20-05-15</td>
+										<td>27</td>
+										<td>5</td>
+									</tr>
+									<c:if test="${not isEmpty}">
+										<c:forEach items="${list}" var="item" varStatus="loop">
 											<tr class="hoo">
-												<td><span class="blink" style="font-family: Fantasy">HOT</span></td>
-												<td class="text-left"><a class="aa"
-													href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">프로틴 가성비 TOP 10</a></td>
-												<td>프로틴중독자</td>
-												<td>20-05-10</td>
-												<td>88</td>
-												<td>45</td>
+												<td>${item.board_no}</td>
+												<td class="text-left">
+												<a class="aa" href='<c:url value="/ReplyBBS/BBS/View.bbs?no=${item.board_no}"/>'>${item.title}</a>
+												</td>
+												<td>${item.name}</td>
+												<td>${item.create_at}</td>
+												<td>${item.visitcount}</td>
+												<td>0</td>
 											</tr>
-									<tr class="hoo">
-										<td>1</td>
-										<td class="text-left"><a class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									<tr class="hoo">
-										<td>2</td>
-										<td class="text-left"><a class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									<tr class="hoo">
-										<td>3</td>
-										<td class="text-left"><a  class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">오늘밤도 치킨이지</a></td>
-										<td>치킨먹자</td>
-										<td>20-05-18</td>
-										<td>30</td>
-										<td>1</td>
-									</tr>
-									<tr class="hoo">
-										<td>4</td>
-										<td class="text-left"><a  class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									<tr class="hoo">
-										<td>5</td>
-										<td class="text-left"><a class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									<tr class="hoo">
-										<td>6</td>
-										<td class="text-left"><a  class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									<tr class="hoo">
-										<td>7</td>
-										<td class="text-left"><a  class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									<tr class="hoo">
-										<td>7</td>
-										<td class="text-left"><a  class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									<tr class="hoo">
-										<td>7</td>
-										<td class="text-left"><a  class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									<tr class="hoo">
-										<td>7</td>
-										<td class="text-left"><a  class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									<tr class="hoo">
-										<td>7</td>
-										<td class="text-left"><a  class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									<tr class="hoo">
-										<td>7</td>
-										<td class="text-left"><a  class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									<tr class="hoo">
-										<td>7</td>
-										<td class="text-left"><a  class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									<tr class="hoo">
-										<td>7</td>
-										<td class="text-left"><a  class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									<tr class="hoo">
-										<td>7</td>
-										<td class="text-left"><a  class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									<tr class="hoo">
-										<td>7</td>
-										<td class="text-left"><a  class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									<tr class="hoo">
-										<td>7</td>
-										<td class="text-left"><a  class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									<tr class="hoo">
-										<td>7</td>
-										<td class="text-left"><a  class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									<tr class="hoo">
-										<td>7</td>
-										<td class="text-left"><a  class="aa"
-											href="<c:url value='/DataRoom/View.work?no=${item.no}&nowPage=${nowPage}'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-									
-									</thead>
+										</c:forEach>
+									</c:if>
+
+
+								</thead>
 						</table>
 						<ul class="nav nav-pills">
 					<li class="active" style="background-color: white"><a href="<c:url value='/freeboard.do?id=dd'/>">자유게시판</a></li>
@@ -368,14 +206,33 @@ a:link {
 					<li style="float: right"><a href="<c:url value='/Dataroom/Write.jsp?id=${session.id}'/>" class="btn btn-success">글쓰기</a></li>
 				</ul>
 					</div>
-				
+				<div class="row">
+					<div class="col-md-12 text-center">${pagingString}</div>
+				</div>
 				</div>
 				
-			<div class="row">
-					<div style="font-size: 20px; font-style: oblique;" class="col-md-12 text-center">1 | 2 | 3 | 4 | 5</div>
-				</div>
+			
 			</div>
-			<div class="col-md-1"></div>
+			<!-- 검색용 UI -->
+	<div class="row">
+		<div class="text-center">
+			<form class="form-inline" method="post"
+				action="<c:url value='/ReplyBBS/BBS/List.bbs'/>">
+				<div class="form-group">
+					<select name="searchColumn" class="form-control">
+						<option value="title">제목</option>
+						<option value="name">작성자</option>
+						<option value="content">내용</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" name="searchWord" class="form-control" />
+				</div>
+				<button type="submit" class="btn btn-primary">검색</button>
+
+			</form>
+		</div>
+	</div>
 			</div>
 			
 		<!-- 카루셀 -->

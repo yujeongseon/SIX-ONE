@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 
+
 public class BoardDAO {
 
 	//[멤버변수]
@@ -31,14 +32,26 @@ public class BoardDAO {
 		//[생성자]
 		public BoardDAO(ServletContext context) {
 			//커넥션 풀 사용하기
+			System.out.println("좀 떠라");
 			try {
 				Context ctx=new InitialContext();
-			DataSource source =(DataSource)ctx.lookup(context.getInitParameter("JNDI_ROOT")+"/jdbc/sixone");
+			DataSource source =(DataSource)ctx.lookup("java:comp/env/sixone");
 			conn =  source.getConnection();
-			} catch(Exception e) {
+			} catch(SQLException|NamingException e) {
 				e.printStackTrace();
 			}
-		}//DAO
+			/*try {
+				
+				//드라이버 로딩]
+				Class.forName(context.getInitParameter("ORACLE_DRIVER"));
+				//데이타베이스 연결]
+				conn = DriverManager.getConnection(context.getInitParameter("ORACLE_URL"),"JSP","JSP");
+				
+			}
+			catch(ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}*/
+		}//////////DAO
 		
 		
 		public void close() {
@@ -49,27 +62,6 @@ public class BoardDAO {
 			}catch(SQLException e) {e.printStackTrace();}
 		}//////////close
 		
-		
-		
-		//총 레코드 수 얻기용]
-		public int getTotalRowCount(Map map) {
-			
-			int totalRowCount=0;
-			String sql="SELECT COUNT(*) FROM board b JOIN member m ON m.id=b.id ";
-			//검색시 아래 쿼리문 연결
-			if(map.get("keyword")!=null) {
-				sql+=" WHERE "+map.get("columnName")+" LIKE '%"+map.get("keyword")+"%' ";
-			}	
-			try {
-				psmt = conn.prepareStatement(sql);
-				rs = psmt.executeQuery();
-				rs.next();
-				totalRowCount = rs.getInt(1);
-			} 
-			catch (SQLException e) {e.printStackTrace();}
-			
-			return totalRowCount;	
-		}//getTotalRowCount	
 		
 		
 		public List<BoardDTO> selectList(Map map){
@@ -87,7 +79,7 @@ public class BoardDAO {
 			if(map.get("keyword")!=null) {
 				sql+=" WHERE "+map.get("columnName")+" LIKE '%"+map.get("keyword")+"%' ";
 			}		
-			sql+=" ORDER BY no DESC) T) WHERE R BETWEEN ? AND ?";
+			sql+=" ORDER BY board_no DESC) T) WHERE R BETWEEN ? AND ?";
 			
 			
 			try {
@@ -114,6 +106,31 @@ public class BoardDAO {
 			
 			return list;
 		}//////////selectList()
+		
+		
+		//총 레코드 수 얻기용]
+		public int getTotalRowCount(Map map) {
+			
+			int totalRowCount=0;
+			String sql="SELECT COUNT(*) FROM board b JOIN member m ON m.id=b.id ";
+			//검색시 아래 쿼리문 연결
+			if(map.get("keyword")!=null) {
+				sql+=" WHERE "+map.get("columnName")+" LIKE '%"+map.get("keyword")+"%' ";
+			}	
+			try {
+				psmt = conn.prepareStatement(sql);
+				rs = psmt.executeQuery();
+				rs.next();
+				totalRowCount = rs.getInt(1);
+			} 
+			catch (SQLException e) {e.printStackTrace();}
+			
+			return totalRowCount;	
+			
+		}//getTotalRowCount	
+		
+		
+		
 		
 		
 		

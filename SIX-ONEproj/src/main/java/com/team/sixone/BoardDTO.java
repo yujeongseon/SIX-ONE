@@ -14,6 +14,23 @@ public class BoardDTO {
 	
 	private String name;
 
+	public BoardDTO() {}
+	public BoardDTO(String board_no, String title, String content, Date create_at, String image_name, String category,
+			String id, String name,String visitcount) {
+		
+		this.board_no = board_no;
+		this.title = title;
+		this.content = content;
+		this.create_at = create_at;
+		this.image_name = image_name;
+		this.category = category;
+		this.id = id;
+		this.name = name;
+		this.visitcount = visitcount;
+	}
+
+	
+	
 	public String getBoard_no() {
 		return board_no;
 	}
@@ -87,21 +104,7 @@ public class BoardDTO {
 		this.visitcount = visitcount;
 	}
 
-	public BoardDTO(String board_no, String title, String content, Date create_at, String image_name, String category,
-			String id, String name,String visitcount) {
-		
-		this.board_no = board_no;
-		this.title = title;
-		this.content = content;
-		this.create_at = create_at;
-		this.image_name = image_name;
-		this.category = category;
-		this.id = id;
-		this.name = name;
-		this.visitcount = visitcount;
-	}
-
-	public BoardDTO() {}
+	
 	
 	
 	
