@@ -73,7 +73,7 @@
  </div>
 
 
-
+<!-- 
 <div class="row" style="padding-left: 15px;" >
 	<div class="schedule text-center animate-box">
 		<div class="col-md-8 col-sm-12 col-md-offset-3 col-xs-offset-3 slider-text" >
@@ -108,31 +108,97 @@
 	</div>
 	</div>
 </div>
+ -->
+ 
+ <div class="animate-box" style="margin: 30px auto auto auto; width: 70%;">
+ <ul class="nav nav-tabs" style="margin-bottom: -30px;">
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#qwe" id="myinformation">내정보</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#asd">쪽지함 <span class="badge badge-primary"  style="color: white;">8</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#zxc">뭐넣지</a>
+  </li>
 
-<div class="animate-box" style="margin: 30px auto auto auto; width: 70%;">
-<div class="panel panel-primary">
+</ul>
+<div class="tab-content">
+  <div class="tab-pane fade" id="qwe">
+   	<div class="animate-box" style="margin: 30px auto auto auto; width: 100%;">
+<div class="panel panel-danger">
   <div class="panel-body">
-    <span style="color: black;" class="glyphicon glyphicon-user">김길동님의최근정보현황</span>
+    <span style="color: black;" class="glyphicon glyphicon-user"> 김길동님의최근정보현황</span>
   </div>
   <div class="panel-footer">
-  <span style="color: black;" class="glyphicon glyphicon-scale">김길동님의현재상태-<span class="label label-danger">비만</span></span> 
+  <span style="color: black;" class="glyphicon glyphicon-scale"> 김길동님의현재상태-<span style="color: black; font-weight: bold;">신장:17xcm  </span>
+  <span>&nbsp;몸무게:<span style="font-weight: bold;">64kg</span></span>
+  <span>&nbsp;BMI:<span id="bmiResult" style="font-weight: bold;"></span><span style="font-weight: bold;">kg/m2</span></span>
+  <span>&nbsp;체지방률:<span id="fatResult" style="font-weight: bold;"></span><span style="font-weight: bold;">%</span></span>
+  <span>&nbsp;비만도:<span id="ratioResult" style="font-weight: bold;"></span><span style="font-weight: bold;">%</span></span>
+  <span>&nbsp;기초대사량:<span id="kcalResult" style="font-weight: bold;"></span></span><span style="font-weight: bold;">KCAL</span></span>
+  
+ 
    </div>
    <div class="panel-footer">
-  <span style="color: black; padding-bottom: 25px;" class="glyphicon glyphicon-ok">김길동님의목표구독자:500명</span>
+  <span style="color: black; padding-bottom: 25px;" class="glyphicon glyphicon-ok"> 김길동님의000:xxx</span>
   <!-- 목표 대비 퍼센트 계산법 - (현재구독자수÷목표구독자수) * 100 -->
   <div class="progress">
   <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 39.4%;">
-    현재구독자197명(39.4%)
+   	ㅋㅋ(39.4%)
   </div>
 </div>
    </div>
 </div>
 </div>
+  </div>
+  
+  <div class="tab-pane fade" id="asd">
+    <div class="animate-box" style="margin: 30px auto auto auto; width: 100%;">
+<div class="panel panel-danger">
+  <div class="panel-body">
+    <span style="color: black;" class="glyphicon glyphicon-envelope"> 김길동님의쪽지함</span>
+  </div>
+  <div class="panel-footer">
+  <span style="color: black;" class="glyphicon glyphicon-bed"> 받은쪽지목록<span class="label label-success">2</span></span> 
+   </div>
+   <div class="panel-footer">
+  <span style="color: black;" class="glyphicon glyphicon-send"> 보낸쪽지목록<span class="label label-info">4</span></span> 
+   </div>
+   <div class="panel-footer">
+  <span style="color: black;" class="glyphicon glyphicon-trash"> 휴지통</span> 
+   </div>
+</div>
+</div>
+  </div>
+  
+  <div class="tab-pane fade" id="zxc">
+    <div class="animate-box" style="margin: 30px auto auto auto; width: 100%;">
+<div class="panel panel-danger">
+  <div class="panel-body">
+    <span style="color: black;" class="glyphicon glyphicon-user"> 김길동님의최근정보현황</span>
+  </div>
+  <div class="panel-footer">
+  <span style="color: black;" class="glyphicon glyphicon-scale"> 김길동님의현재상태-<span class="label label-danger">비만</span></span> 
+   </div>
+</div>
+</div>
+  </div>
+  
+  
+</div>
+</div>
+
+
+
+
+ 
 
 
 
 
 
+<!--  
 <div class="container">
 			<div class="row">
 
@@ -203,9 +269,10 @@
 				</div>
 				
 
-			</div> <!--row-->
+			</div> row
 
-		</div> <!--container-->
+		</div> container
+		
 
 		<div class="container">
 			<div class="row">
@@ -214,15 +281,18 @@
 				</div>
 			</div>	
 		</div>
-		
-		
-		
-		
+		-->
+		<img src="/SIX-ONEproj/src/main/webapp/resources/images/tw.jpg" alt="..."/>
 		
 
 <script>
-		var weight = 65;
-		var heightCM = 168;
+$(function(){
+	$("#myinformation").trigger("click");
+});
+
+
+		var weight = 64;
+		var heightCM = 172;
 		var age = 24;
 		var heightM = heightCM * 0.01;
 		
@@ -240,7 +310,8 @@
 		
 		//남성 체지방량kg = (1.10 x 본인체중kg) - (128 x (본인체중kg ÷ 본인키cm))
 		//여성 체지방량kg = (1.07 x 본인체중kg) - (128 x (본인체중kg ÷ 본인키cm))
-		var fatResult = (1.10 * weight) - (128 * (weight / heightCM)).toFixed(3);
+		var fatResult = (1.10 * weight) - (128 * (weight / heightCM));
+		fatResult = fatResult.toFixed(2);
 		//var fatResult = (1.07 * weight) - (128 * (weight / heightCM)).toFixed(2);   // 여자
 		$('#fatResult').html(fatResult);
 
