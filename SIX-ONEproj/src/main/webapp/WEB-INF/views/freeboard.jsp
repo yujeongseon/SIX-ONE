@@ -209,8 +209,6 @@ a:link {
 				</div>
 				</div>
 				
-			
-			</div>
 			<!-- 검색용 UI -->
 	<div class="row">
 		<div class="text-center">
@@ -231,6 +229,8 @@ a:link {
 			</form>
 		</div>
 	</div>
+			</div>
+			
 			</div>
 			
 		<!-- 카루셀 -->
