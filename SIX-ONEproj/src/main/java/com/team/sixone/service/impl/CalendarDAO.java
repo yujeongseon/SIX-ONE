@@ -34,8 +34,7 @@ public class CalendarDAO implements CalendarService {
 
 	@Override
 	public int insert(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlMapper.insert("calendarInsert",map);
 	}
 
 	@Override
@@ -46,6 +45,12 @@ public class CalendarDAO implements CalendarService {
 	@Override
 	public int delete(Map map) {
 		return sqlMapper.delete("calendarDelete",map);
+	}
+
+	@Override
+	public int updateOne(Map map) {
+		sqlMapper.update("calendarUpdateOneExe",map);
+		return sqlMapper.update("calendarUpdateOne",map);
 	}
 	
 	

@@ -58,7 +58,10 @@
  	background-color:#69caf7;
  	border:#69caf7;
  }
+  .error{
+  	color: red;
   
+  }
 
 </style>
 	<aside id="colorlib-hero">
@@ -84,7 +87,7 @@
 	<div class="colorlib-classes">
 		<div class="container">
 			<div class="row">
-			
+				<!-- 내가 구독한 운동 -->
 				<div class="col-md-12">
 					<div>
 						<div id='external-events' >
@@ -110,6 +113,7 @@
 			</div>
 		</div>	
 	</div>
+	<!-- 달력 클릭시 나오는 모달 -->
 	<div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
       <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -124,7 +128,15 @@
                     <div class="form-group">
                       <label class="col-sm-2 control-label" for="edit-title">운동명</label>
                       <div class="col-sm-10">
-                          <input class="form-control" type="text" name="edit-title" id="edit-title" required="required" />
+                          <!-- <input class="form-control" type="text" name="edit-title" id="edit-title" required="required" /> -->
+                          <select class="form-control" name="edit-title" id="edit-title" required="required">
+                          	<option value="" >운동을 선택하세요</option>
+                          	<c:forEach items="${exerciseList}" var="item">
+                                <option value="${item.exerciseName}" >${item.exerciseName}</option>
+                                
+                           	</c:forEach>
+                           	<option value="add" >운동 추가하기</option>
+                          </select>
                       </div>
                     </div>
                     
@@ -218,7 +230,7 @@
 	</div>
 	
 	
-	
+	<!-- 구독한 루틴 모달 -->
 	<div class="modal fade" tabindex="-1" role="dialog" id="eventModal2">
       <div class="modal-dialog" role="document" style="width:70%">
           <div class="modal-content" >
@@ -335,7 +347,56 @@
       </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 	
-	
+	<!-- 운동 추가하는 모달 -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="exerciseModal">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                          aria-hidden="true">&times;</span></button>
+                  <h4 class="exemodal-title">운동추가</h4>
+              </div>
+              <div class="modal-body">
+                  <div class="form-horizontal">
+
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label" for="exe-name">운동명</label>
+                      <div class="col-sm-10">
+                          <input class="form-control" type="text" name="exe-name" id="exe-name" />
+                          <span class="error" id="exe-name-error"></span>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label" for="exe-part">운동부위</label>
+                      <div class="col-sm-10">
+                          <input class="form-control" type="text" name="exe-part" id="exe-part" />
+                          <span class="error" id="exe-part-error"></span>
+                      </div>
+                    </div>
+
+                    
+                    <div class="form-group">
+                            <label class="col-sm-2 control-label" for="exe-desc">설명</label>
+                        <div class="col-sm-10">
+                            <textarea rows="4" cols="50" class="form-control" name="exe-desc" id="exe-desc"></textarea>
+                            <span class="error" id="exe-desc-error"></span>
+                        </div>
+                    </div>
+                </div>
+              <div class="modal-footer modalBtnContainer-addEvent">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                  <button type="button" class="btn btn-primary" id="save-exe">저장</button>
+              </div>
+              <div class="modal-footer modalBtnContainer-modifyEvent">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                  <button type="button" class="btn btn-danger" id="deleteEvent">삭제</button>
+                  <button type="button" class="btn btn-primary" id="updateEvent">저장</button>
+              </div>
+            </div>
+          </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 	
 	
 	
@@ -382,7 +443,112 @@
 	});
 	$(window).scroll(function(){
 		clearTimeout(timer);
-	})
+	});
+	
+	$("#edit-title").change(function(){
+		if($(this).val() == 'add'){
+			$('#exerciseModal').modal('show');
+			$(this).val("").prop("selected", true);
+		}
+	});
+	
+	$("#save-exe").click(function(){
+		var exerciseName = $('#exe-name').val();
+		var exercisePartials = $('#exe-part').val();
+		var exerciseMotions = $('#exe-desc').val();
+		
+		
+		if(exerciseName == ''){
+			$('#exe-name-error').html('운동명을 입력하세요');
+			return;
+		}
+		else{
+			$('#exe-name-error').html('');
+		}
+		
+		if(exercisePartials == ''){
+			$('#exe-part-error').html('운동 부위를 입력하세요');
+			return;
+		}
+		else{
+			$('#exe-part-error').html('');
+		}
+		
+		if(exerciseMotions == ''){
+			$('#exe-desc-error').html('운동에 대한 설명을 입력하세요');
+			return;
+		}
+		else{
+			$('#exe-desc-error').html('');
+		}
+		
+		
+		$.ajax({
+	          type: "get",
+	          url: "/sixone/exercise.insert",
+	          data: {
+	            "exerciseName":exerciseName,"exercisePartials":exercisePartials,"exerciseMotions":exerciseMotions
+	          },
+	          success: function (response) {
+        	  	if(response == 1){
+        	  		$('#exerciseModal').modal('hide');
+          			alert('새로운 운동이 등록되었습니다');
+          			$.ajax({
+          		        type: "get",
+          		        url: "/sixone/exercise.read",
+          		        data: {
+          		          
+          		        },
+          		        dataType:'json',
+          		        success: addOption_,
+          		        error:function(request,error){
+          						console.log('상태코드:',request.status);
+          						console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
+          						console.log('에러:',error);
+          					
+          					}
+          		      });
+	          	}
+	          },
+	          error:function(request,error){
+					console.log('상태코드:',request.status);
+					console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
+					console.log('에러:',error);
+				
+				}
+	        });
+		
+	
+	});
+	
+	$.ajax({
+        type: "get",
+        url: "/sixone/exercise.read",
+        data: {
+          
+        },
+        dataType:'json',
+        success: addOption_,
+        error:function(request,error){
+				console.log('상태코드:',request.status);
+				console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
+				console.log('에러:',error);
+			
+			}
+      });
+	
+	
+	function addOption_(exerciseList) {
+    	var htmlString = '<option value="" >운동을 선택하세요</option>';
+    	$.each(exerciseList,function(index,element){
+    		htmlString	+= '<option value="'+element.exerciseName+'" >'+element.exerciseName+'</option>';
+    	});
+   		htmlString += '<option value="add" >운동 추가하기</option>';
+    	$('#edit-title').html(htmlString)
+	  		
+    }
+	
+	
 	
 	
 	</script>

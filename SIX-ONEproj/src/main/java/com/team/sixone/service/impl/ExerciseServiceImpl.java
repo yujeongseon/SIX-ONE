@@ -7,23 +7,23 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.team.sixone.service.CalendarDTO;
-import com.team.sixone.service.CalendarService;
+import com.team.sixone.service.ExerciseDTO;
+import com.team.sixone.service.ExerciseService;
 
-@Service("calendarService")
-public class CalendarServiceImpl implements CalendarService {
+@Service("exerciseService")
+public class ExerciseServiceImpl implements ExerciseService {
 
-	@Resource(name="calendarDAO")
-	private CalendarDAO dao;
-
+	@Resource(name="exerciseDAO")
+	private ExerciseDAO dao;
+	
 	
 	@Override
-	public List<CalendarDTO> selectList() {
+	public List<ExerciseDTO> selectList() {
 		return dao.selectList();
 	}
 
 	@Override
-	public CalendarDTO selectOne(Map map) {
+	public ExerciseDTO selectOne(Map map) {
 		return dao.selectOne(map);
 	}
 
@@ -42,14 +42,6 @@ public class CalendarServiceImpl implements CalendarService {
 		return dao.delete(map);
 	}
 
-	@Override
-	public int updateOne(Map map) {
-		return dao.updateOne(map);
-	}
-
-	
-	
-	
 	
 	
 	

@@ -18,8 +18,29 @@
 	
 	<delete id="calendarDelete" parameterType="java.util.Map">
 		delete calendar where calendar_no=#{calendarNo}
-	
 	</delete>
+	
+	<insert id="calendarInsert" parameterType="java.util.Map">
+	insert all 
+	into play_exe values(SEQ_PLAY_EXE.nextval,#{count},sysdate,#{username},(select exercise_no from exercise where exercise_name = #{title})) 
+	into calendar values(SEQ_CALENDAR.nextval,#{start},#{end},'전신',#{backgroundColor},#{username},null,SEQ_PLAY_EXE.currval) select * from dual
+	</insert>
+	
+	<update id="calendarUpdateOne" parameterType="java.util.Map">
+		update calendar set start_date=#{start}, end_date=#{end},type='전신',background_color=#{backgroundColor} where calendar_no=#{calendarNo}
+	
+	</update>
+	
+	<update id="calendarUpdateOneExe" parameterType="java.util.Map">
+		UPDATE play_exe e
+   		SET e.count = #{count} , e.exercise_no = (select exercise_no from exercise where exercise_name = #{title})
+ 		WHERE EXISTS (SELECT 0 FROM calendar c WHERE c.play_no = e.play_no and c.calendar_no=#{calendarNo})
+	</update>
+	
+	
+	
+	
+	
 	
 	
 	

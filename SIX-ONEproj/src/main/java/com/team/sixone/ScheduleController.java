@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team.sixone.service.CalendarDTO;
+import com.team.sixone.service.ExerciseDTO;
 import com.team.sixone.service.impl.CalendarServiceImpl;
+import com.team.sixone.service.impl.ExerciseServiceImpl;
 
 
 @Controller
@@ -22,9 +25,15 @@ public class ScheduleController {
 	@Resource(name="calendarService")
 	private CalendarServiceImpl calendarDAO;
 	
+	@Resource(name="exerciseService")
+	private ExerciseServiceImpl exerciseDAO;
+	
 	
 	@RequestMapping("/schedule.do")
-	public String schedule() {
+	public String schedule(Model model) {
+		
+		//List<ExerciseDTO> list = exerciseDAO.selectList();
+		//model.addAttribute("exerciseList", list);
 		
 		return "/schedule.tiles";
 	}
@@ -60,7 +69,28 @@ public class ScheduleController {
 		return String.valueOf(result);
 	}
 	
+	@RequestMapping(value="/schedule.insert")
+	@ResponseBody
+	public String insertCalendar(@RequestParam Map map) {
+		int result = calendarDAO.insert(map);
+		
+		return String.valueOf(result);
+	}
 	
+	@RequestMapping(value="/schedule.updateOne")
+	@ResponseBody
+	public String updateOneCalendar(@RequestParam Map map) {
+		int result = 0;
+		
+		if(map.get("playNo") != null){
+			result = calendarDAO.updateOne(map);
+		}
+		else {
+			
+		}
+		
+		return String.valueOf(result);
+	}
 	
 	
 	

@@ -70,6 +70,7 @@
     select: function(selectionInfo){
       
       addEvent(selectionInfo,calendar);
+      
     },
     // 이벤트 클릭시
     eventClick: function(info){
@@ -130,6 +131,7 @@
 	        }
 	      });
     }
+    
     
   });
   calendar.render();
