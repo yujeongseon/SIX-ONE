@@ -49,13 +49,13 @@
 	style="width: 100%; height: 100px;" />
 
 <div class="map_wrap">
-    <div id="map" style="width:100%;height:800px;position:relative;overflow:hidden;"></div>
+    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
     <div id="menu_wrap" class="bg_white">
         <div class="option">
             <div>
                 <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="가산동 헬스" id="keyword" size="10"> 
+                    찾을 지역 : <input type="text" value="가산동" id="keyword" size="10"> 
                     <button type="submit">검색하기</button> 
                 </form>
             </div>
@@ -91,7 +91,7 @@ searchPlaces();
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
 
-    var keyword = document.getElementById('keyword').value;
+    var keyword = document.getElementById('keyword').value+'헬스';
 
     if (!keyword.replace(/^\s+|\s+$/g, '')) {
         alert('키워드를 입력해주세요!');
@@ -289,4 +289,3 @@ function removeAllChildNods(el) {
     }
 }
 </script>
-</body>
