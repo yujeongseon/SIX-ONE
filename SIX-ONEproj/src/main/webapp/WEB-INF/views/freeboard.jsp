@@ -195,8 +195,6 @@ a:link {
 											</tr>
 										</c:forEach>
 									</c:if>
-
-
 								</thead>
 						</table>
 						<ul class="nav nav-pills">
@@ -217,7 +215,7 @@ a:link {
 	<div class="row">
 		<div class="text-center">
 			<form class="form-inline" method="post"
-				action="<c:url value='/ReplyBBS/BBS/List.bbs'/>">
+				action="<c:url value='freeboard.do'/>">
 				<div class="form-group">
 					<select name="searchColumn" class="form-control">
 						<option value="title">제목</option>
@@ -226,7 +224,7 @@ a:link {
 					</select>
 				</div>
 				<div class="form-group">
-					<input type="text" name="searchWord" class="form-control" />
+					<input type="text" name="searchWord" class="form-control"/>
 				</div>
 				<button type="submit" class="btn btn-primary">검색</button>
 

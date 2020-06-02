@@ -114,8 +114,8 @@ public class BoardDAO {
 			int totalRowCount=0;
 			String sql="SELECT COUNT(*) FROM board b JOIN member m ON m.id=b.id ";
 			//검색시 아래 쿼리문 연결
-			if(map.get("keyword")!=null) {
-				sql+=" WHERE "+map.get("columnName")+" LIKE '%"+map.get("keyword")+"%' ";
+			if(map.get("searchWord")!=null) {
+				sql+=" WHERE "+map.get("searchColumn")+" LIKE '%"+map.get("searchWord")+"%' ";
 			}	
 			try {
 				psmt = conn.prepareStatement(sql);

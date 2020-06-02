@@ -59,7 +59,7 @@ public class BoardController {
 			
 			List<BoardDTO> list= dao.selectList(map);
 			
-			String pagingString= PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,req.getContextPath()+ "/freeboard?");
+			String pagingString= PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,req.getContextPath()+ "/freeboard.do?");
 					
 			//데이타 저장]
 			model.addAttribute("list", list);
