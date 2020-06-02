@@ -32,7 +32,7 @@ public class DAO {
 	}
 	
 	public int uploadtest(String saveDirectory, String filename) {
-		String sql = "insert into test values(5, '"+saveDirectory+"/"+filename+"')";
+		String sql = "insert into test values(5, '"+saveDirectory+""+filename+"')";
 		System.out.println(saveDirectory);
 		System.out.println(filename);
 		
@@ -52,6 +52,47 @@ public class DAO {
 		return 9;
 	}
 	
+	public String[] SearchTest() {
+		 //라이크 사용
+
+		String[] images = new String[1];
+		String cntSql = "SELECT COUNT(*) FROM test WHERE src LIKE '%ja%'"; // 배열 선언함
+		String sql = "SELECT * FROM TEST WHERE src LIKE '%ja%'"; // 사진긁어옴
+		
+		int i = 0;
+		try {
+			psmt = conn.prepareStatement(cntSql);
+			rs = psmt.executeQuery();
+			rs.next();
+			int columnCount = rs.getInt(1);
+			psmt.close();
+			
+			
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+		
+			System.out.println(columnCount);
+			if(columnCount != 0)
+				images = new String[columnCount]; 
+			
+			while (rs.next()) {
+				images[i] = rs.getString(2);
+				System.out.println(images[i]);
+				i++;
+			}
+			psmt.close();
+			conn.close();
+			
+			if(images.length == 0)
+				images[0] = "https://item.kakaocdn.net/do/9c5d673c91e8f1080c2602931c81f178f43ad912ad8dd55b04db6a64cddaf76d";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		
+		return images;
+		
+	}	
 	public String[] test() {
 	
 	String[] images = new String[1];
@@ -79,11 +120,16 @@ public class DAO {
 			System.out.println(images[i]);
 			i++;
 		}
+		psmt.close();
+		conn.close();
+		
 		if(images.length == 0)
 			images[0] = "https://item.kakaocdn.net/do/9c5d673c91e8f1080c2602931c81f178f43ad912ad8dd55b04db6a64cddaf76d";
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
+
+	
 	return images;
 	}
 

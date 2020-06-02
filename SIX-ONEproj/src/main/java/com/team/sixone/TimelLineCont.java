@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -36,10 +37,8 @@ public class TimelLineCont {
 	
 	@RequestMapping(value = "/TimeLine.do", method = RequestMethod.GET)
 	public String TimeLine(Locale locale, Model model, HttpServletRequest req) {
-		
-		
+		/*
 		DAO dao = new DAO(req.getSession().getServletContext());
-		
 		
 		model.addAttribute("aaa", "resources/images/black.jpg");
 		model.addAttribute("bbb", "resources/images/classes-1.jpg");
@@ -47,29 +46,16 @@ public class TimelLineCont {
 		
 		req.setAttribute("images", images);
 		System.out.println("기존2");
-		
-		///======================================
-		
+		*/
 		return "/TimeLine.tiles";
 	}
+	
 	@RequestMapping(value = "/TimeLine.do", method = RequestMethod.POST)
-	public String TimeLine2(Locale locale, Model model, HttpServletRequest req) {
-		
-		
-		DAO dao = new DAO(req.getSession().getServletContext());
-		
-		
-		model.addAttribute("aaa", "resources/images/black.jpg");
-		model.addAttribute("bbb", "resources/images/classes-1.jpg");
-		String[] images = dao.test();
-		
-		req.setAttribute("images", images);
-		System.out.println("기존2");
-		
-		///======================================
+	public String TimeLinePOST(Locale locale, Model model, HttpServletRequest req) {
 		
 		return "/TimeLine.tiles";
 	}
+	
 	
 	
 	@RequestMapping(value = "/exercise.do", method = RequestMethod.GET)
@@ -79,15 +65,22 @@ public class TimelLineCont {
 	
 	@RequestMapping(value = "/blog.do", method = RequestMethod.GET)
 	public String blog(Locale locale, Model model) {
-		return "/Map.tiles";
+		return "/SSS.tiles";
 	}
 	@RequestMapping(value="/upload.do", method=RequestMethod.POST)
-	public String upload(Locale locale, Model model, HttpServletRequest req, 
+	public void upload(Locale locale, Model model, HttpServletRequest req, 
 			 HttpServletResponse resp) throws ServletException, IOException {
 		Upload upload_ = new Upload();
 		
 		upload_.upload(req, resp, req.getSession().getServletContext());
-		return "/home.tiles";
+		
+		
+
+		resp.sendRedirect("/sixone/TimeLine.do");
+
+
+		
+		//return "/TimeLine.tiles:for";
 	}
 
 

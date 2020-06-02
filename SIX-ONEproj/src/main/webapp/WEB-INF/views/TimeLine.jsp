@@ -1,3 +1,4 @@
+<%@page import="com.team.sixone.DAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -5,12 +6,20 @@
 <img src="resources/images/black.jpg"
 	style="width: 100%; height: 100px;" />
 <%
-	String[] images = (String[]) request.getAttribute("images");
+DAO dao = new DAO(request.getSession().getServletContext());
+String[] images;
+if(request.getParameter("search")!=null){
+	//뭔가 검색했을때
+	images = dao.SearchTest();
+}else{
+	images = dao.test();
+}
+	
 %>
 
 <script>
 
-//이미지 올리기전 확인
+//이미지 올리기전 미리보기
 function setThumbnail(event) { 
 	var reader = new FileReader(); 
 	
@@ -25,8 +34,13 @@ function setThumbnail(event) {
 }
 
 
-function isSaved(event){
-	 console.log(document.getElementsByName("saveRadio")[0].value);
+function isSaved(event){ //세이브 체크박스
+	 if($("input:checkbox[name='saveRadio']").is(":checked")){
+		 console.log('체크');
+	 }else{
+			document.querySelector("#image_container").innerHTML = "";
+			$("#imgform")[0].reset();
+	 }
 
 }
 
@@ -55,7 +69,7 @@ function isSaved(event){
 					<!-- 글작성 폼 -->
 					
 					<div class="form-group">
-					<form action="<c:url value='/upload.do'/>" enctype="multipart/form-data" method="POST">
+					<form action="<c:url value='/upload.do'/>" enctype="multipart/form-data" method="POST" id="imgform">
 						<div id="image_container"></div>
 						<label for="exampleInputFile">사진 업로드</label> <input type="file"
 							id="image" name="image" onchange="setThumbnail(event);">
@@ -64,11 +78,11 @@ function isSaved(event){
 					
 						<div class="form-group">
 							<label for="exampleInputEmail1">내용</label>
-							<textarea class="form-control" id="inscontent" rows="4">내용 입력</textarea>
+							<textarea class="form-control" id="inscontent" rows="4" placeholder="내용 입력"></textarea>
 						</div>
 					
 					<div class="checkbox">
-					<label> <input type="checkbox" name="saveRadio"> 내용 임시 저장하기
+					<label> <input type="checkbox" name="saveRadio" checked="checked"> 내용 임시 저장하기
 					</label>
 				</div>
 				<div class="modal-footer">
@@ -91,17 +105,16 @@ function isSaved(event){
 
 
 
-	<form class="form-inline" style="padding-top: 5px">
+	<form class="form-inline" style="padding-top: 5px" method="GET">
 		<div class="form-group">
-			<label class="sr-only" for="searchtxt">검색하기</label> <input
-				type="text" class="form-control" id="searchtxt" placeholder="검색..."
-				style="width: 85%; height: 33px;"> <img id="searchbtn"
-				src="resources/images/icon_search.png"
-				style="width: 10%; height: 20px; padding-left: 5px;"></img>
+			<label class="sr-only" for="searchtxt">검색하기</label> 
+			<input type="text" class="form-control" id="searchtxt" placeholder="검색..." name="search" style="width: 85%; height: 33px;"/> 
+			
+			<input type="submit" value="" style="width:27px; height:27px; padding-left:5px; background-image:url(resources/images/icon_search.png);background-size:27px 27px; background-color:white"></input>
 
 		</div>
 	</form>
-	<p style="color: gray;">실시간 인기 검색어</p>
+	<p style="color: gray;">실시간 인기 검색어 </p>
 
 </div>
 

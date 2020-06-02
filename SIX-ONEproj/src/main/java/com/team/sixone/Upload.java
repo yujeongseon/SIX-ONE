@@ -25,7 +25,9 @@ public class Upload {
 
 		// 2] MultipartRequest 객체 생성자의 인자들을 각각 변수로 만들어주는 작업
 		// 2-1] 업로드할 서버의 물리적 디렉토리를 얻어옴
-		String saveDirectory = application.getRealPath("/Upload");
+	//	String saveDirectory = application.getRealPath("/Upload");
+		
+		String saveDirectory ="C:\\Users\\kosmo_09\\git\\SIX-ONE__\\SIX-ONEproj\\src\\main\\webapp\\resources\\images\\TLImg";//강제주소주입
 		System.out.println(saveDirectory);
 		int maxPostSize = 1024 * 500; // 500Kb
 		String encoding = "UTF-8";
@@ -54,7 +56,10 @@ public class Upload {
 			System.out.println("파일명 : " + filename);
 			//파일 경로
 			DAO dao = new DAO(req.getSession().getServletContext());
-			dao.uploadtest(saveDirectory, filename);
+			
+			String AAAADir = "resources/images/TLImg/"; //강제주입한 주소 테스트
+			dao.uploadtest(AAAADir, filename);
+			
 			String image = mr.getParameter("image");
 			buffer.append(image);
 		}
