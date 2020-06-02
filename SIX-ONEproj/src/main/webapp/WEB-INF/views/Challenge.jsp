@@ -36,7 +36,7 @@
 						<div class="col-md-10 col-md-offset-1 text-center animate-box">
 							<div class="about-wrap">
 								<div class="heading-2">
-									<h2>실내, 야외, 헬스장 등 어디에서든지 운동할수 있습니다.</h2>
+									<h2>실내, 야외, 헬스장 등 어디에서든지 운동할수 있습니다.s</h2>
 								</div>
 								<p>집에서도 간단히 즐길수 있는 운동, 산책하듯이 즐길수 있는 운동, 가까운 헬스장을 안내해 드립니다.</p>
 								<p>어쩌저쩌고</p>
