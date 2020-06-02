@@ -52,7 +52,7 @@
 									<a href="<c:url value='/exercise.do'/>">운동</a>
 									<ul class="dropdown">
 										<li><a href="<c:url value='/exercise.do'/>">운동</a></li>
-										<li><a href="#">운동1</a></li>
+										<li><a href="<c:url value='/challenge.do'/>">챌린지</a></li>
 										<li><a href="#">Muscle Classes</a></li>
 										<li><a href="#">Fitness Classes</a></li>
 										<li><a href="#">Body Building</a></li>
