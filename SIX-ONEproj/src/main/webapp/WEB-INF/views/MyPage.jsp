@@ -64,10 +64,10 @@
 		
 		
 
-<div class="row" >
+<div class="row animate-box">
   <div class="col-md-8 col-sm-12 col-md-offset-2 slider-text">
    <div class="slider-text-inner text-center">
-      <img  style=" margin: 0 auto;" src="https://s.pstatic.net/static/www/img/2018/sp_search.svg" alt="...">
+      <img  class=img-circle style=" margin: 0 auto;  height: 150px; width: 150px; margin-top: 50px;" src="resources/images/tw.jpg" alt="...">
   </div>
   	</div>
  </div>
@@ -131,24 +131,99 @@
     <span style="color: black;" class="glyphicon glyphicon-user"> 김길동님의최근정보현황</span>
   </div>
   <div class="panel-footer">
-  <span style="color: black;" class="glyphicon glyphicon-scale"> 김길동님의현재상태-<span style="color: black; font-weight: bold;">신장:17xcm  </span>
-  <span>&nbsp;몸무게:<span style="font-weight: bold;">64kg</span></span>
-  <span>&nbsp;BMI:<span id="bmiResult" style="font-weight: bold;"></span><span style="font-weight: bold;">kg/m2</span></span>
-  <span>&nbsp;체지방률:<span id="fatResult" style="font-weight: bold;"></span><span style="font-weight: bold;">%</span></span>
-  <span>&nbsp;비만도:<span id="ratioResult" style="font-weight: bold;"></span><span style="font-weight: bold;">%</span></span>
-  <span>&nbsp;기초대사량:<span id="kcalResult" style="font-weight: bold;"></span></span><span style="font-weight: bold;">KCAL</span></span>
+  <span style="color: black;" class="glyphicon glyphicon-scale"> 김길동님의현재몸무게-<span id ="weight" >63</span>kg</span>  
+  <button type="button" class="btn btn-success btn-xs" id="kgup">▲</button>
+  <button type="button" class="btn btn-success" id="kgdown">▼</button>
+  <button type="button" class="btn btn-primary glyphicon glyphicon-pencil">확인</button>
+
   
  
    </div>
    <div class="panel-footer">
-  <span style="color: black; padding-bottom: 25px;" class="glyphicon glyphicon-ok"> 김길동님의000:xxx</span>
-  <!-- 목표 대비 퍼센트 계산법 - (현재구독자수÷목표구독자수) * 100 -->
-  <div class="progress">
-  <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 39.4%;">
-   	ㅋㅋ(39.4%)
+  <span style="color: black;" class="glyphicon glyphicon-scale" id="target"> 김길동님의BMI-</span>
+	<div class="progress" style="margin-top: 10px;">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="25" style="width: 25%; ">
+   	저체중(0~18.4)
   </div>
-</div>
+  <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="25" style="width: 25%; ">
+   	정상(18.5~24.8)
+  </div>
+  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="25" style="width: 25%; ">
+   	과체중(24.9~29.8)
+  </div>
+  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="25" style="width: 25%; ">
+   	과체중
+  </div>
+</div> <!-- progress -->
+  
+ 
    </div>
+   <div class="panel-footer">
+  <span style="color: black; padding-bottom: 25px;" class="glyphicon glyphicon-ok" id="calor"> 김길동님의체지방률-</span>
+ 		<div class="progress" style="margin-top: 10px;">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%; ">
+   	저체중(0~18.5)
+  </div>
+  <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%; ">
+   	표준(18.6~22.9)
+  </div>
+  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%; ">
+   	과체중(23~24.9)
+  </div>
+  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%; ">
+   	중도비만(25~29.9)
+  </div>
+  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%; ">
+   	고도비만
+  </div>
+</div> <!-- progress -->
+	
+   </div>
+   
+   
+   <div class="panel-footer">
+  <span style="color: black; padding-bottom: 25px;" class="glyphicon glyphicon-ok" id="calor"> 김길동님의비만도-</span>
+ 		<div class="progress" style="margin-top: 10px;">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%; ">
+   	체중미달(94이하)
+  </div>
+  <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%; ">
+   	정상(95~119)
+  </div>
+  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%; ">
+   	경도비만(120~129)
+  </div>
+  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%; ">
+   	중도비만(130~149)
+  </div>
+  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%; ">
+   	고도비만(150이상)
+  </div>
+</div> <!-- progress -->
+   </div>
+   
+   <div class="panel-footer">
+  <span style="color: black; padding-bottom: 25px;" class="glyphicon glyphicon-ok" id="calor" > 김길동님의기초대사량-</span>
+ 		<div class="progress" style="margin-top: 10px;">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%; ">
+   	체중미달(94이하)
+  </div>
+  <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%; ">
+   	정상(95~119)
+  </div>
+  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%; ">
+   	경도비만(120~129)
+  </div>
+  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%; ">
+   	중도비만(130~149)
+  </div>
+  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%; ">
+   	고도비만(150이상)
+  </div>
+</div> <!-- progress -->
+   </div>
+   
+   
 </div>
 </div>
   </div>
@@ -166,7 +241,7 @@
   <span style="color: black;" class="glyphicon glyphicon-send"> 보낸쪽지목록<span class="label label-info">4</span></span> 
    </div>
    <div class="panel-footer">
-  <span style="color: black;" class="glyphicon glyphicon-trash"> 휴지통</span> 
+  <span style="color: black;" class="glyphicon glyphicon-trash"> 휴지통<span class="label label-danger">4</span></span> 
    </div>
 </div>
 </div>
@@ -179,7 +254,7 @@
     <span style="color: black;" class="glyphicon glyphicon-user"> 김길동님의최근정보현황</span>
   </div>
   <div class="panel-footer">
-  <span style="color: black;" class="glyphicon glyphicon-scale"> 김길동님의현재상태-<span class="label label-danger">비만</span></span> 
+  <span style="color: black;" class="glyphicon glyphicon-scale"> 김길동님의현재몸무게-<span class="label label-danger">62kg</span></span> 
    </div>
 </div>
 </div>
@@ -191,10 +266,7 @@
 
 
 
-
- 
-
-
+<img src="resources/images/BMI.PNG" />
 
 
 
@@ -281,26 +353,66 @@
 				</div>
 			</div>	
 		</div>
-		-->
-		<img src="/SIX-ONEproj/src/main/webapp/resources/images/tw.jpg" alt="..."/>
+	-->
 		
 
 <script>
+	
+
 $(function(){
+	
 	$("#myinformation").trigger("click");
+	
+	
+	$('#kgup').on('click',function(){
+		var weight = $('#weight').html();
+		var Intweight = parseFloat(weight);
+		$('#weight').html(Intweight + 0.5);
+	});
+		
+
+	$('#kgdown').on('click',function(){
+		var weight = $('#weight').html();
+		var Intweight = parseFloat(weight);
+		$('#weight').html(Intweight - 0.5);
+	});
+	
 });
+		
+var weight = $('#weight').html();
+var Intweight = parseFloat(weight);
 
 
-		var weight = 64;
+		var weight = Intweight;
 		var heightCM = 172;
 		var age = 24;
 		var heightM = heightCM * 0.01;
 		
 
-		
+
 		// BMI 지수 = 체중 ÷ (키 x 키)
 		var bmiResult = (weight / (heightM * heightM)).toFixed(2);
-		$('#bmiResult').html(bmiResult);
+		bmiResult = parseFloat(bmiResult);
+		var bmiResult = bmiResult.toFixed(2);
+		if(bmiResult <= 18.5) {
+			$('#target').after('<span class="label label-success" id="bmi"><span id="bmiResult" style="font-weight: bold;"></span> kg/m2</span>');
+			$('#bmiResult').html(bmiResult);
+		}
+		else if(bmiResult <= 24.8) {
+			$('#target').after('<span class="label label-primary" id="bmi"><span id="bmiResult" style="font-weight: bold;"></span> kg/m2</span>');
+			$('#bmiResult').html(bmiResult);
+		}
+		else if(bmiResult <= 29.8) {
+			$('#target').after('<span class="label label-warning" id="bmi"><span id="bmiResult" style="font-weight: bold;"></span> kg/m2</span>');
+			$('#bmiResult').html(bmiResult);
+		}
+		else {
+			$('#target').after('<span class="label label-danger" id="bmi"><span id="bmiResult" style="font-weight: bold;"></span> kg/m2</span>');
+			$('#bmiResult').html(bmiResult);
+		}
+		
+		
+		
 
 		// 18.5 미만	저체중
 		// 18.6 ~ 22.9	표준
@@ -310,11 +422,28 @@ $(function(){
 		
 		//남성 체지방량kg = (1.10 x 본인체중kg) - (128 x (본인체중kg ÷ 본인키cm))
 		//여성 체지방량kg = (1.07 x 본인체중kg) - (128 x (본인체중kg ÷ 본인키cm))
-		var fatResult = (1.10 * weight) - (128 * (weight / heightCM));
-		fatResult = fatResult.toFixed(2);
 		//var fatResult = (1.07 * weight) - (128 * (weight / heightCM)).toFixed(2);   // 여자
-		$('#fatResult').html(fatResult);
-
+		var fatResult = (1.10 * weight) - (128 * (weight / heightCM));  //남자
+		fatResult = parseFloat(fatResult);
+		var fatResult = fatResult.toFixed(2);
+		if(fatResult <= 18.5) {
+			$('#calor').after('<span class="label label-success" id="bmi"><span id="fatResult" style="font-weight: bold;"></span> kg/m2</span>');
+			$('#fatResult').html(fatResult);
+		}
+		else if(fatResult <= 24.8) {
+			$('#calor').after('<span class="label label-primary" id="bmi"><span id="fatResult" style="font-weight: bold;"></span> kg/m2</span>');
+			$('#fatResult').html(fatResult);
+		}
+		else if(fatResult <= 29.8) {
+			$('#calor').after('<span class="label label-warning" id="bmi"><span id="fatResult" style="font-weight: bold;"></span> kg/m2</span>');
+			$('#fatResult').html(fatResult);
+		}
+		else {
+			$('#calor').after('<span class="label label-danger" id="bmi"><span id="bmiResult" style="font-weight: bold;"></span> kg/m2</span>');
+			$('#fatResult').html(fatResult);
+		}
+		
+		
 		// 17.0 이하	저체중	20.0 이하	저체중
 		// 17.1 ~ 22.9	표준	20.1 ~ 26.9	표준
 		// 23.0 ~ 27.9	과체중	27.0 ~ 32.9	과체중
@@ -327,9 +456,11 @@ $(function(){
 		//표준체중(남) = (신장 - 100) * 0.9
 		//표준체중(여) = (신장 - 105) * 0.9
 		//비만도 = (실제체중 / 표준체중) * 100
-		var ratioResult = ((weight / ((heightCM - 100) * 0.9)) * 100).toFixed(2);
+		var ratioResult = ((weight / ((heightCM - 100) * 0.9)) * 100).toFixed(2); //남자
 		//var ratioResult = ((weight / ((heightCM - 105) * 0.9)) * 100).toFixed(2); // 여자
-		$('#ratioResult').html(ratioResult);
+		ratioResult = parseFloat(ratioResult);
+		
+		
 
 		// 90 ~ 110%	저체중
 		// 110 ~ 119 %	표준
@@ -340,7 +471,7 @@ $(function(){
 		//기초대사량
 		//남자 = 66.47+(13.75 x 체중)+(5 x 키) - (6.76 x 나이)
 		//여자 = 655.1+(9.56 x 체중)+(1.85 x 키) - (4.68 x 나이)
-		var kcalResult = (66.47 +(13.75 * weight) + (5 * heightCM) - (6.76 * age)).toFixed(2);
+		var kcalResult = (66.47 +(13.75 * weight) + (5 * heightCM) - (6.76 * age)).toFixed(2);//남자
 		//var kcalResult = (655.1 +(9.56 * weight) + (1.85 * heightCM) - (4.68 * age)).toFixed(2); //여자
 		$('#kcalResult').html(kcalResult);
 
