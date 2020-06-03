@@ -37,7 +37,7 @@ public class BoardDAO {
 				Context ctx=new InitialContext();
 			DataSource source =(DataSource)ctx.lookup("java:comp/env/sixone");
 			conn =  source.getConnection();
-			} catch(SQLException|NamingException e) {
+			} catch(Exception e) {
 				e.printStackTrace();
 			}
 			/*try {
@@ -76,8 +76,8 @@ public class BoardDAO {
 			*/
 			//페이징 적용-구간쿼리로 변경
 			String sql="SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT b.*,name FROM board b JOIN member m ON b.id=m.id ";
-			if(map.get("keyword")!=null) {
-				sql+=" WHERE "+map.get("columnName")+" LIKE '%"+map.get("keyword")+"%' ";
+			if(map.get("searchWord")!=null) {
+				sql+=" WHERE "+map.get("searchColumn")+" LIKE '%"+map.get("searchWord")+"%' ";
 			}		
 			sql+=" ORDER BY board_no DESC) T) WHERE R BETWEEN ? AND ?";
 			

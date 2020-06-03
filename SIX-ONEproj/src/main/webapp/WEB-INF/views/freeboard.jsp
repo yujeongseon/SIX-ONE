@@ -142,7 +142,7 @@ a:link {
 			<div class="col-md-10">
 			<div id="header_box">
 					<div class="bbs_title">
-						<p>글적용되는곳</p>
+						<p>${sessionScope.id} 아이디 확인 걍 씀</p>
 					</div>
 					<div class="desc">글적는곳</div>
 					<div class="side">사이드 적는곳</div>
@@ -172,6 +172,8 @@ a:link {
 											<td colspan="6">등록된 게시물이 없습니다.</td>
 										</tr>
 									</c:if>
+									
+									<c:if test="${not isEmpty}">
 									<tr class="hoo">
 										<td><span class="blink" style="font-family: Fantasy">HOT</span></td>
 										<td class="text-left"><a class="aa"
@@ -181,7 +183,6 @@ a:link {
 										<td>27</td>
 										<td>5</td>
 									</tr>
-									<c:if test="${not isEmpty}">
 										<c:forEach items="${list}" var="item" varStatus="loop">
 											<tr class="hoo">
 												<td>${item.board_no}</td>
@@ -201,7 +202,12 @@ a:link {
 					<li class="active" style="background-color: white"><a href="<c:url value='/freeboard.do?id=dd'/>">자유게시판</a></li>
 					<li style="background-color: white"><a href="<c:url value='/freeboard.do?id=ru'/>">루틴 공유</a></li>
 					<li style="background-color: white"><a href="<c:url value='/freeboard.do?id=an'/>">익명게시판</a></li>
-					<li style="float: right"><a href="<c:url value='/Dataroom/Write.jsp?id=${session.id}'/>" class="btn btn-success">글쓰기</a></li>
+					<c:if test="${empty id}" var="aa">
+					<li style="float: right"><a href="<c:url value='/Dataroom/Write.jsp?id=${session.id}'/>" class="btn btn-danger">글쓰기</a></li>
+					</c:if>
+					<c:if test="${!aa}">
+					<li style="float: right"><a href="<c:url value='/write.do'/>" class="btn btn-success">글쓰기</a></li>
+					</c:if>
 				</ul>
 					</div>
 				<div class="row">
@@ -213,7 +219,7 @@ a:link {
 	<div class="row">
 		<div class="text-center">
 			<form class="form-inline" method="post"
-				action="<c:url value='freeboard.do'/>">
+				action="<c:url value='/freeboard.do'/>">
 				<div class="form-group">
 					<select name="searchColumn" class="form-control">
 						<option value="title">제목</option>
@@ -224,7 +230,7 @@ a:link {
 				<div class="form-group">
 					<input type="text" name="searchWord" class="form-control"/>
 				</div>
-				<button type="submit" class="btn btn-primary">검색</button>
+				<button type="submit" class="btn btn-success">검색</button>
 
 			</form>
 		</div>
@@ -289,28 +295,7 @@ a:link {
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
 	</div>
 	
-	<!-- jQuery -->
-	<script src="<c:url value='/resources/js/jquery.min.js' />"></script>
-	<!-- jQuery Easing -->
-	<script src="<c:url value='/resources/js/jquery.easing.1.3.js' />"></script>
-	<!-- Bootstrap -->
-	<script src="<c:url value='/resources/js/bootstrap.min.js' />"></script>
-	<!-- Waypoints -->
-	<script src="<c:url value='/resources/js/jquery.waypoints.min.js' />"></script>
-	<!-- Stellar Parallax -->
-	<script src="<c:url value='/resources/js/jquery.stellar.min.js' />"></script>
-	<!-- Flexslider -->
-	<script src="<c:url value='/resources/js/jquery.flexslider-min.js' />"></script>
-	<!-- Owl carousel -->
-	<script src="<c:url value='/resources/js/owl.carousel.min.js' />"></script>
-	<!-- Magnific Popup -->
-	<script src="<c:url value='/resources/js/jquery.magnific-popup.min.js' />"></script>
-	<script src="<c:url value='/resources/js/magnific-popup-options.js' />"></script>
-	<!-- Counters -->
-	<script src="<c:url value='/resources/js/jquery.countTo.js' />"></script>
-	<!-- Main -->
-	<script src="<c:url value='/resources/js/main.js' />"></script>
-
+	
 	</body>
 </html>
 

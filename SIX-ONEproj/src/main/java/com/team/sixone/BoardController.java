@@ -37,9 +37,9 @@ public class BoardController {
 		public String list(
 				//@ModelAttribute("id") String id, //로그인 해야만 현 메소드로 들어오게 하기 위한 인자
 				@RequestParam Map map,//검색어 받기
-				Model model,
 				@RequestParam(required = false,defaultValue = "1") int nowPage,
-				HttpServletRequest req//컨텍스트 루트 얻기용
+				HttpServletRequest req,//컨텍스트 루트 얻기용
+				Model model
 				) {
 			BoardDAO dao = new BoardDAO(null);
 			
@@ -56,7 +56,7 @@ public class BoardController {
 			//페이징을 위한 로직 끝]	
 			map.put("start", start);
 			map.put("end", end);
-			
+
 			List<BoardDTO> list= dao.selectList(map);
 			
 			String pagingString= PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,req.getContextPath()+ "/freeboard.do?");
@@ -82,5 +82,13 @@ public class BoardController {
 		System.out.println(json.toJSONString()); //되는지 확인
 		return json.toJSONString();
 	}///////////ajaxJson
+	
+	@RequestMapping("/write.do")
+	public String write(@RequestParam Map map,
+			@RequestParam(required = false,defaultValue = "1") int nowPage) {
+		return "/Write.tiles";
+	}
+	
+	
 
 }

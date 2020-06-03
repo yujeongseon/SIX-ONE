@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-	
+	<c:set var="id" value="idmin" scope="session"/>
 		<aside id="colorlib-hero">
 			<div class="flexslider">
 				<ul class="slides">
