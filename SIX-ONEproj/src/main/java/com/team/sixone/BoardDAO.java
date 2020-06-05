@@ -174,16 +174,16 @@ public class BoardDAO {
 		}//getTotalRowCount	
 		
 		//글쓰기
-		public int write(Map map) {///글쓰기
+		public int write(BoardDTO dto) {///글쓰기
 			int affected = 0;
-			String sql="INSERT INTO board VALUES(SEQ_BOARD.nextval,?,?,sysdate,?,?,?,'0')";
+			String sql="INSERT INTO board VALUES(45,?,?,sysdate,?,?,?,'0')";
 			try {
 				psmt = conn.prepareStatement(sql);
-				psmt.setString(1, map.get("title").toString());
-				psmt.setString(2, map.get("content").toString());
-				psmt.setString(3, map.get("fileup").toString());//사진명
-				psmt.setString(4,map.get("category").toString());//카테고리
-				psmt.setString(5, map.get("id").toString());
+				psmt.setString(1, dto.getTitle());
+				psmt.setString(2, dto.getContent());
+				psmt.setString(3, dto.getImage_name());//사진명
+				psmt.setString(4,dto.getCategory());//카테고리
+				psmt.setString(5, dto.getId());
 				affected=psmt.executeUpdate();	
 			} catch (Exception e) {e.printStackTrace();}
 			return affected;

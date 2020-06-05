@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
 
 @Controller
 public class BoardController {
@@ -110,38 +112,21 @@ public class BoardController {
 	}
 	
 	
-	@RequestMapping(value="/WriteOK.do",method = RequestMethod.POST)
-	//커맨드 객체 사용
-	public String upload(UploadCommand cmd,HttpServletRequest req,@RequestParam Map map) {//throws IllegalStateException, IOException
-		BoardDAO dao = new BoardDAO(req.getServletContext());
-		//1]서버의 물리적 경로 얻기
-		
-		//String phisicalPath=req.getServletContext().getRealPath("/resources/uploadimage");
-		int successorfail;
-		//MultipartFile upload= cmd.getUpload();
-		
-		//2]File객체 생성	
-		//2-1] 파일 중복시 이름 변경
-		//String renameFile=FileUpDownUtils.getNewFileName(phisicalPath, map.get("upload").toString());
-		//File file = new File(phisicalPath+File.separator+renameFile);
-		//3]업로드 처리		
-		//upload.transferTo(file);
-//		4]리퀘스트 영역에 데이타 저장
-//		req.setAttribute("writer", req.getParameter("writer"));
-//		req.setAttribute("title", req.getParameter("title"));
-//		업로드된 파일과 관련된 정보]
-//		req.setAttribute("real",renameFile);
-//		req.setAttribute("original",upload.getOriginalFilename());
-//		req.setAttribute("type",upload.getContentType());
-//		req.setAttribute("size",(int)Math.ceil(upload.getSize()/1024.0));
-		
-		successorfail=dao.write(map);
-		
-		if(successorfail==0) System.out.println("실패");
-		else System.out.println("성공");
-		
-		return "/freeboard.tiles";
-	}
+//	@RequestMapping(value="/WriteOK.do",method = RequestMethod.POST)
+//	//커맨드 객체 사용
+//	public String upload(HttpServletRequest req,@RequestParam Map map,MultipartRequest meq) {//throws IllegalStateException, IOException
+//		BoardDAO dao = new BoardDAO(req.getServletContext());
+//		
+//		int successorfail;
+//		System.out.println(meq.getFile("title"));
+//		
+//		successorfail=dao.write(map);
+//		
+//		if(successorfail==0) System.out.println("실패");
+//		else System.out.println("성공");
+//		
+//		return "/freeboard.tiles";
+//	}
 	
 	//목록으로 이동]
 	@RequestMapping("/FileUpDown/List.do")
