@@ -40,9 +40,9 @@ public class ScheduleController {
 	
 	@RequestMapping(value="/schedule.read",produces = "text/html; charset=UTF-8")
 	@ResponseBody
-	public String readCalendar() {
+	public String readCalendar(@RequestParam Map map) {
 		
-		List<CalendarDTO> list = calendarDAO.selectList();
+		List<CalendarDTO> list = calendarDAO.selectList(map);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonStr = null;
@@ -51,14 +51,13 @@ public class ScheduleController {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-
 		return jsonStr;
 	}
 	
 	@RequestMapping(value="/schedule.update")
 	@ResponseBody
 	public String updateCalendar(@RequestParam Map map) {
-		int result = calendarDAO.update(map);
+		int result = 1;
 		return String.valueOf(result);
 	}
 	
@@ -72,7 +71,7 @@ public class ScheduleController {
 	@RequestMapping(value="/schedule.insert")
 	@ResponseBody
 	public String insertCalendar(@RequestParam Map map) {
-		int result = calendarDAO.insert(map);
+		int result = 1;
 		
 		return String.valueOf(result);
 	}
@@ -83,7 +82,7 @@ public class ScheduleController {
 		int result = 0;
 		
 		if(map.get("playNo") != null){
-			result = calendarDAO.updateOne(map);
+			result = 1;
 		}
 		else {
 			

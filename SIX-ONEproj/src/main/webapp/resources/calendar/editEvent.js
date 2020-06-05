@@ -82,13 +82,14 @@ $('#deleteEvent').unbind();
 $('#deleteEvent').on('click', function () {
     event.remove();
     eventModal.modal('hide');
-    var calendarNo = event.extendedProps.calendarNo;
+    var playNo = event.id;
+    console.log(playNo);
     //삭제시
     $.ajax({
         type: "get",
         url: "/sixone/schedule.delete",
         data: {
-        	"calendarNo":calendarNo
+        	"playNo":playNo
         },
         success: function (response) {
             alert('삭제되었습니다.');

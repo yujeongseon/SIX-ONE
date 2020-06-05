@@ -19,11 +19,9 @@ public class CalendarDAO implements CalendarService {
 	
 
 	@Override
-	public List<CalendarDTO> selectList() {
-		List<CalendarDTO> list = sqlMapper.selectList("calendarSelectListRoutine");
-		List<CalendarDTO> list2 = sqlMapper.selectList("calendarSelectList");
-		list.addAll(list2);
-		
+	public List<CalendarDTO> selectList(Map map) {
+		map.put("id", "kim");
+		List<CalendarDTO> list = sqlMapper.selectList("calendarSelectList",map);
 		return list;
 	}
 

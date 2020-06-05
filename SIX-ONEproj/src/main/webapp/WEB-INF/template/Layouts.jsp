@@ -53,8 +53,8 @@
 									<ul class="dropdown">
 										<li><a href="<c:url value='/exercise.do'/>">운동</a></li>
 										<li><a href="<c:url value='/challenge.do'/>">챌린지</a></li>
-										<li><a href="#">Muscle Classes</a></li>
-										<li><a href="#">Fitness Classes</a></li>
+										<li><a href="<c:url value='/protein.do'/>">보충제</a></li>
+										<li><a href="<c:url value='/food.do'/>">식단</a></li>
 										<li><a href="#">Body Building</a></li>
 									</ul>
 								</li>

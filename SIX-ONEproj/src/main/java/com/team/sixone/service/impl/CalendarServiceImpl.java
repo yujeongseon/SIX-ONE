@@ -18,8 +18,8 @@ public class CalendarServiceImpl implements CalendarService {
 
 	
 	@Override
-	public List<CalendarDTO> selectList() {
-		return dao.selectList();
+	public List<CalendarDTO> selectList(Map map) {
+		return dao.selectList(map);
 	}
 
 	@Override

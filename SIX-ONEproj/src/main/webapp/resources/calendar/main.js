@@ -67,11 +67,9 @@
     
     ,
     // 선택시
-    select: function(selectionInfo){
-      
-      addEvent(selectionInfo,calendar);
-      
-    },
+    //select: function(selectionInfo){
+      //addEvent(selectionInfo,calendar);
+    //},
     // 이벤트 클릭시
     eventClick: function(info){
 
@@ -82,23 +80,30 @@
     eventDrop: function(eventDropInfo){
     	var start = moment(eventDropInfo.event.start).format('YYYY-MM-DD');
     	var end = moment(eventDropInfo.event.end-1).format('YYYY-MM-DD');
-    	var calendarNo = eventDropInfo.event.extendedProps.calendarNo;
-      $.ajax({
-        type: "get",
-        url: "/sixone/schedule.update",
-        data: {
-          "calendarNo":calendarNo,"start":start,"end":end
-        },
-        success: function (response) {
-        	if(response == 1){
-        		alert('일정이 변경되었습니다');
-        	}
-        }
-      });
+    	// 루틴이면 일정 변경 가능
+    	if(eventDropInfo.event.extendedProps.routineNo != null){
+	      $.ajax({
+	        type: "get",
+	        url: "/sixone/schedule.update",
+	        data: {
+	          "calendarNo":calendarNo,"start":start,"end":end
+	        },
+	        success: function (response) {
+	        	if(response == 1){
+	        		alert('일정이 변경되었습니다');
+	        	}
+	        }
+	      });
+    	}
+    	else{
+			// 운동은 일정 변경 불가능
+	    	alert('일정을 변경할 수 없습니다');
+	    	eventDropInfo.revert()
+    	}
+    	
     },
     // 이벤트 가져올때
     eventReceive:function(info){
-    	
         info.event.setEnd(moment(info.event.start).add(7,'days').format('YYYY-MM-DD'));
       },
     drop: function(){
@@ -115,10 +120,11 @@
     },
     // 이벤트 리사이즈
     eventResize: function(eventResizeInfo){
-		var start = moment(eventResizeInfo.event.start).format('YYYY-MM-DD');
-		var end = moment(eventResizeInfo.event.end-1).format('YYYY-MM-DD');
-		var calendarNo = eventResizeInfo.event.extendedProps.calendarNo;
-		$.ajax({
+    	var start = moment(eventResizeInfo.event.start).format('YYYY-MM-DD');
+    	var end = moment(eventResizeInfo.event.end-1).format('YYYY-MM-DD');
+    	// 루틴이면 일정 변경 가능
+    	if(eventResizeInfo.event.extendedProps.routineNo != null){
+	      $.ajax({
 	        type: "get",
 	        url: "/sixone/schedule.update",
 	        data: {
@@ -130,6 +136,13 @@
 	        	}
 	        }
 	      });
+    	}
+    	else{
+			// 운동은 일정 변경 불가능
+	    	alert('일정을 변경할 수 없습니다');
+	    	eventResizeInfo.revert()
+    	}
+    	
     }
     
     

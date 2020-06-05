@@ -6,7 +6,7 @@ import java.util.Map;
 public interface CalendarService {
 
 	//목록 불러오기
-	List<CalendarDTO> selectList();
+	List<CalendarDTO> selectList(Map map);
 	
 	//하나 불러오기
 	CalendarDTO selectOne(Map map);
