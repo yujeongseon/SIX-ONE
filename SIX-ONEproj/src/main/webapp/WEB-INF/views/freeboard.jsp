@@ -187,7 +187,7 @@ a:link {
 											<tr class="hoo">
 												<td>${item.board_no}</td>
 												<td class="text-left">
-												<a class="aa" href='<c:url value="/ReplyBBS/BBS/View.bbs?no=${item.board_no}"/>'>${item.title}</a>
+												<a class="aa" href='<c:url value="/view.do?no=${item.board_no}&nowPage=${nowPage}"/>'>${item.title}</a>
 												</td>
 												<td>${item.name}</td>
 												<td>${item.create_at}</td>

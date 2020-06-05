@@ -9,6 +9,8 @@ import java.net.URLEncoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
 public class FileUpDownUtils {
 
 	// [파일 이름 중복 체크용 메소드]
@@ -93,7 +95,11 @@ public class FileUpDownUtils {
 			response.setContentType("application/octet-stream");
 			// 4-2]다운로드시 프로그래스바를 표시하기 위한
 			// 컨텐츠 길이 설정
-			response.setContentLengthLong(length);
+			
+			
+			//response.setContentLengthLong(length);
+			
+			
 			// 4-3] 응답헤더명: Content-Disposition
 			// 응답헤더명에 따른 값:attachment;filename=파일명
 			// setHeader(응답헤더명,헤더값)으로 추가

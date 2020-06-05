@@ -16,17 +16,16 @@
 	
 	<div class="row">
 		<div class="col-md-12">
-			<form class="form-horizontal" method="post"
-				action="<c:url value='/writeok.do'/>">
+			<form class="form-horizontal" method="post" encType="multipart/form-data"
+				action="<c:url value='/WriteOK.do'/>">
 				<div class="form-group">
 				<label class="col-sm-2 control-label">카테고리</label>
 				<div class="col-sm-2">
 				<select name="category" class="form-control">
-						<option value="title">카테</option>
-						<option value="name">고리</option>
-						<option value="content">무엇</option>
-						<option value="content">으로</option>
-						<option value="content">할까</option>
+						<option value="루틴">루틴</option>
+						<option value="자유">자유</option>
+						<option value="질문">질문</option>
+						
 					</select>
 					</div>
 					</div>
@@ -43,7 +42,7 @@
 					<input type="file" name="upload"/>
 				</div>
 				</div>
-
+						<input type="hidden" name="id" value="${sessionScope.id}" >
 				<div class="form-group">
 					<label class="col-sm-2 control-label">내용</label>
 					<!-- 중첩 컬럼 사용 -->

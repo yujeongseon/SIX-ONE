@@ -23,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 
+
+
+
 public class BoardDAO {
 
 	//[멤버변수]
@@ -107,6 +110,47 @@ public class BoardDAO {
 			return list;
 		}//////////selectList()
 		
+		public int Count(int count,String no) {
+			int affected=0;
+			
+			String sql="UPDATE board SET visitcount=? WHERE board_no=?";
+			try {
+				psmt=conn.prepareStatement(sql);
+				psmt.setInt(1, count);
+				psmt.setString(2, no);
+				
+				affected=psmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return affected;
+		}
+		
+		public BoardDTO selectone(String no) {
+			BoardDTO dto=null;
+			String sql="SELECT * FROM board WHERE board_no=?";
+			try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, no);
+				rs= psmt.executeQuery();
+				if(rs.next()) {
+					dto = new BoardDTO();
+					dto.setBoard_no(rs.getString(1));
+					dto.setId(rs.getString(7));
+					dto.setTitle(rs.getString(2));
+					dto.setContent(rs.getString(3));
+					dto.setImage_name(rs.getString(5));
+					int count= rs.getInt(8);
+					count++;
+					Count(count, no);
+					dto.setVisitcount(rs.getString(8));
+					dto.setCreate_at(rs.getDate(4));
+				}
+			} catch (Exception e) {e.printStackTrace();}
+			return dto;
+		}///////////selectOne
+	
+		
 		
 		//총 레코드 수 얻기용]
 		public int getTotalRowCount(Map map) {
@@ -128,6 +172,37 @@ public class BoardDAO {
 			return totalRowCount;	
 			
 		}//getTotalRowCount	
+		
+		//글쓰기
+		public int write(Map map) {///글쓰기
+			int affected = 0;
+			String sql="INSERT INTO board VALUES(SEQ_BOARD.nextval,?,?,sysdate,?,?,?,'0')";
+			try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, map.get("title").toString());
+				psmt.setString(2, map.get("content").toString());
+				psmt.setString(3, map.get("fileup").toString());//사진명
+				psmt.setString(4,map.get("category").toString());//카테고리
+				psmt.setString(5, map.get("id").toString());
+				affected=psmt.executeUpdate();	
+			} catch (Exception e) {e.printStackTrace();}
+			return affected;
+		}//////////글쓰기
+		
+		public int update(Map map) {///글쓰기
+			int affected = 0;
+			String sql="INSERT INTO board VALUES(SEQ_BOARD.nextval,?,?,sysdate,?,?,?,'0')";
+			try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, map.get("title").toString());
+				psmt.setString(2, map.get("content").toString());
+				psmt.setString(3, map.get("fileup").toString());//사진명
+				psmt.setString(4,map.get("category").toString());//카테고리
+				psmt.setString(5, map.get("id").toString());
+				affected=psmt.executeUpdate();	
+			} catch (SQLException e) {e.printStackTrace();}
+			return affected;
+		}//////////글쓰기
 		
 		
 		

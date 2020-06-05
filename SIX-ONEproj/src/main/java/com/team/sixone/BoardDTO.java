@@ -11,7 +11,6 @@ public class BoardDTO {
 	private String category;
 	private String id;
 	private String visitcount;
-	
 	private String name;
 
 	public BoardDTO() {}
