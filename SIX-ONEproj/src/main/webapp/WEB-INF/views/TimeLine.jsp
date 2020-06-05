@@ -186,9 +186,11 @@ console.log(content);
 						$(window).resize(function() {
 							if ($(window).width() < 1091 && followFlag) {
 								//	$('.follow *').remove();
+								$('.follow').attr('style', 'width:0px');
 								$('.follow *').hide();
 								followFlag = false;
 							} else if ($(window).width() > 1091 && !followFlag) {
+								$('.follow').attr('style', 'width:100%');
 								$('.follow *').show();
 								//$('.follow').append('<img src="${aaa }" style="width: 100%; height: 500px;" /><p style="color: black;">대충 따라오는 메뉴</p>');
 								followFlag = true;
