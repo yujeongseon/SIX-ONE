@@ -37,28 +37,37 @@ public class Upload {
 		// 3] MultipartRequest 객체 생성
 		MultipartRequest mr = null;
 
-		String name = null;
-		String title = null;
+		
 		StringBuffer buffer = new StringBuffer();
 		try{
 			mr = new MultipartRequest(req, saveDirectory, maxPostSize, encoding, policy);
 			System.out.println("파일오리지널명 : "+mr.getOriginalFileName("image"));
-			//얘는 카루셀할때
+			
+			
+			
+		
+//얘는 카루셀할때
 //			String[] inters = mr.getParameterValues("image");
 //			for(String inter : inters){
 //				buffer.append(inter);
 //			}
-			//업로드한 파일 이름 받기
-			File file = mr.getFile("image");
+			String content = mr.getParameter("inscontent").replace("\r\n", "</br>");
+			String id = mr.getParameter("id");
 			
-			
+			//얘는정상작동
 			String filename = mr.getFilesystemName("image");
+			
+			
+			
+			System.out.println("inscontent"+ content);
+			System.out.println("id"+ id);
 			System.out.println("파일명 : " + filename);
 			//파일 경로
 			DAO dao = new DAO(req.getSession().getServletContext());
 			
 			String AAAADir = "resources/images/TLImg/"; //강제주입한 주소 테스트
-			dao.uploadtest(AAAADir, filename);
+			
+			dao.uploadtest(AAAADir, filename, content, id);
 			
 			String image = mr.getParameter("image");
 			buffer.append(image);

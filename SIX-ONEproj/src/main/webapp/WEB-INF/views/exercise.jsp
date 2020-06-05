@@ -125,8 +125,8 @@
 
 			<div class="col-md-3 col-sm-3 animate-box">
 		
-				<div class="trainers-entry" data-toggle="modal" data-target="#mapModal" >
-					<div class="trainer-img" style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)"></div>
+				<div class="trainers-entry" id="health" data-toggle="modal" data-target="#mapModal">
+					<div class="trainer-img" id="healthimg" style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)"></div>
 					<div class="desc">
 						<h3>가까운 헬스장 찾기</h3>
 						<span>현재 위치를 바탕으로 </br>가까운 헬스장을 찾습니다</span>
@@ -151,10 +151,15 @@
 				</div>
 				<div class="modal-body">
 					
+					
+					
 					<div class="map_wrap">
-    <div class="col-md-10 col-md-offset-2"id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+				
+    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
-    <div id="menu_wrap" class="bg_white col-md-2" style="opacity:0.9">
+   
+</div>
+ <div id="menu_wrap" class="bg_white col-md-2" style="opacity:0.9">
         <div class="option">
             <div>
                 <form onsubmit="searchPlaces(); return false;">
@@ -167,7 +172,6 @@
         <ul id="placesList"></ul>
         <div id="pagination"></div>
     </div>
-</div>
 
 <script>
 
@@ -178,6 +182,27 @@ $("#mapModal").on('shown.bs.modal', function() {
 	setTimeout(function(){ map.relayout(); }, 0);
 	});
 
+
+var health = document.getElementById('health');
+var healthimg = document.getElementById('healthimg');
+
+health.addEventListener('mouseover', function() {
+	healthimg.innerHTML = '<div style="height:50%;background-color:#F0F0F0">'+
+	'<span style="color:red;">　위치 기반</span><img src="resources/images/marker_.png"></div>'
+	+' <div style="height:50%;background-color:gray;"><span style="color:red;">　지도 검색</span><img src="resources/images/mapimg.png"></div></div>';
+	
+            });	
+            //  list.getElementsByClassName("child")[0].innerHTML = count;
+health.addEventListener('mouseout', function() {
+	healthimg.innerHTML = '<div class="trainer-img" id="healthimg" style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)"></div>';
+            });	
+
+
+
+/*
+ * 
+ <div class="col-md-3 col-sm-3 animate-box"><div class="trainers-entry" id="health" data-toggle="modal" data-target="#mapModal"><div class="trainer-img" style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)"></div><div class="desc"><h3>가까운 헬스장 찾기</h3><span>현재 위치를 바탕으로 </br>가까운 헬스장을 찾습니다</span></div></div></div>
+ */
 // 마커를 담을 배열입니다
 var markers = [];
 
@@ -261,7 +286,7 @@ function displayPlaces(places) {
 
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
-        bounds.extend(placePosition);
+        //bounds.extend(placePosition);
 
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
@@ -270,7 +295,6 @@ function displayPlaces(places) {
             kakao.maps.event.addListener(marker, 'mouseover', function() {
             	//  map.setCenter(marker.position);
                 displayInfowindow(marker, title);
-                map.panTo(new kakao.maps.LatLng(places[i].y, places[i].x));
             
             });
 
@@ -281,7 +305,8 @@ function displayPlaces(places) {
             itemEl.onmouseover =  function () {
             	//map.setCenter(marker.position);
                 displayInfowindow(marker, title);
-                map.panTo(new kakao.maps.LatLng(places[i].y, places[i].x));
+                console.log('아이템마우스오버' + title);
+                map.panTo(places[i]);
               
             };
 

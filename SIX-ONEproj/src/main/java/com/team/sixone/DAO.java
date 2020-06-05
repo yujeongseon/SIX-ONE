@@ -1,10 +1,13 @@
 package com.team.sixone;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -31,8 +34,10 @@ public class DAO {
 
 	}
 	
-	public int uploadtest(String saveDirectory, String filename) {
-		String sql = "insert into test values(5, '"+saveDirectory+""+filename+"')";
+	public int uploadtest(String saveDirectory, String filename, String content, String id) {
+		int no = (int)(Math.random()*10000);
+		System.out.println("번호 "  + no);
+		String sql = "insert into timeline values("+no+",'"+content+"', '"+saveDirectory+filename+"', sysdate, '"+id+"')";
 		System.out.println(saveDirectory);
 		System.out.println(filename);
 		
@@ -56,6 +61,9 @@ public class DAO {
 		 //라이크 사용
 
 		String[] images = new String[1];
+		String[] ids = new String[1];
+		String[] content = new String[1];
+		Date[] date = new Date[1];
 		String cntSql = "SELECT COUNT(*) FROM test WHERE src LIKE '%ja%'"; // 배열 선언함
 		String sql = "SELECT * FROM TEST WHERE src LIKE '%ja%'"; // 사진긁어옴
 		
@@ -72,12 +80,19 @@ public class DAO {
 			rs = psmt.executeQuery();
 		
 			System.out.println(columnCount);
-			if(columnCount != 0)
+			if(columnCount != 0) {
 				images = new String[columnCount]; 
-			
+				ids = new String[columnCount];
+				content = new String[columnCount];
+				date = new Date[columnCount];}
 			while (rs.next()) {
 				images[i] = rs.getString(2);
+				ids[i] = rs.getString(2);
+				content[i] = rs.getString(2);
+				date[i] = rs.getDate(2);
 				System.out.println(images[i]);
+				
+				
 				i++;
 			}
 			psmt.close();
@@ -93,11 +108,15 @@ public class DAO {
 		return images;
 		
 	}	
-	public String[] test() {
+	public Map timelines() {
 	
-	String[] images = new String[1];
-	String cntSql = "SELECT COUNT(*) FROM test"; // 배열 선언함
-	String sql = "SELECT * FROM test ORDER BY no asc"; // 사진긁어옴
+		Map map = new HashMap();
+		String[] images = new String[1];
+		String[] ids = new String[1];
+		Date[] created_at = new Date[1];
+		String[] content = new String[1];
+	String cntSql = "SELECT COUNT(*) FROM timeline where id='가라아이디'"; // 배열 선언함
+	String sql = "SELECT * FROM timeline WHERE id='가라아이디' ORDER BY timeline_no asc"; // 사진긁어옴
 	
 	int i = 0;
 	try {
@@ -105,6 +124,7 @@ public class DAO {
 		rs = psmt.executeQuery();
 		rs.next();
 		int columnCount = rs.getInt(1);
+	
 		psmt.close();
 		
 		
@@ -112,11 +132,19 @@ public class DAO {
 		rs = psmt.executeQuery();
 	
 		System.out.println(columnCount);
-		if(columnCount != 0)
+		if(columnCount != 0) {
 			images = new String[columnCount]; 
+			ids = new String[columnCount]; 
+			content = new String[columnCount]; 
+			created_at = new Date[columnCount];
+			
+		}
 		
 		while (rs.next()) {
-			images[i] = rs.getString(2);
+			content[i] = rs.getString(2);
+			ids[i] = rs.getString(5);
+			created_at[i] = rs.getDate(4);
+			images[i] = rs.getString(3);
 			System.out.println(images[i]);
 			i++;
 		}
@@ -128,9 +156,13 @@ public class DAO {
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
+	map.put("images", images);
+	map.put("ids", ids);
+	map.put("content", content);
+	map.put("date", created_at);
 
 	
-	return images;
+	return map;
 	}
 
 }

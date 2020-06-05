@@ -65,7 +65,7 @@ public class TimelLineCont {
 	
 	@RequestMapping(value = "/blog.do", method = RequestMethod.GET)
 	public String blog(Locale locale, Model model) {
-		return "/SSS.tiles";
+		return "/ex.tiles";
 	}
 	@RequestMapping(value="/upload.do", method=RequestMethod.POST)
 	public void upload(Locale locale, Model model, HttpServletRequest req, 
