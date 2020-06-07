@@ -101,6 +101,32 @@ $(function(){
 		}
 	});
 	
+	$('#LoginButton').click(function(){
+		$.ajax({
+			url:"<c:url value='/Login.do'/>",
+			type:'get',
+			dataType:'text',
+			data:$('#frm').serialize(),
+			success:function(data){
+				console.log(data);
+				//$('#msg').html(data);
+				var msg = data;
+				if(msg == "로그인 성공"){
+					window.location.href = "<c:url value='/home.do'/>";
+				}
+				else{
+					$('#msg').html(data);
+				}
+				
+			},
+			error:function(data){
+				console.log('에러:',data.responseText);
+			}
+		});
+		
+	});
+	
+	
 	
 			
 			
@@ -112,34 +138,39 @@ $(function(){
 	<!-- 모달 시작 -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
+	
 		<div class="modal-content">
+		
 			<div class="modal-header">
-				
 			</div>
+			
 			<div class="modal-body">
-			<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+			<form  id="frm">
+			<div class="form-group wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
 						<span class="label-input100">아이디</span>
-						<input class="input100" type="text" name="username" id = "id"placeholder="아이디를 입력하세요">
+						<input class="input100" type="text" name="id" id = "id"placeholder="아이디를 입력하세요">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 					
-			<div class="wrap-input100 validate-input" data-validate="Password is required">
+			<div class="form-group wrap-input100 validate-input" data-validate="Password is required">
 						<span class="label-input100">비밀번호</span>
-						<input class="input100" type="password" name="pass" id="pass" placeholder="비밀번호를 입력하세요">
+						<input class="input100" type="password" name="password" id="pass" placeholder="비밀번호를 입력하세요">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					
+					
 				<div class="text-right p-t-8 p-b-31">
+					<span id="msg" style=" color: red; width: 10%;"></span>
 					<a href="#" style="color: black; text-decoration:underline;">아이디 / 비밀번호 찾기</a>
 				</div>
 				
 				<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn"><a herf="<c:url value='/Login.do'/>" style="color: White;" >Login</a></button>
+							<button type="button"class="login100-form-btn" id="LoginButton">Login</button>
 						</div>
 					</div>
-					
+					</form>
 					<div class="txt1 text-center p-t-54 p-b-20">
 						<span>
 							SNS로그인
@@ -158,6 +189,7 @@ $(function(){
 							<i class="fa fa-google"></i>
 						</a>
 					</div>
+					
 					<div class="txt1 text-center" style="padding-top: 40px;">
 						<span>회원가입</span>
 						</div>

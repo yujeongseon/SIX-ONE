@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <style>
 table {
@@ -22,7 +23,31 @@ th {
 td {
 	background-color: #e3f2fd;
 }
+.modal-dialog{ 
+overflow-y: initial !important;
+}
+
+.modal-body{ 
+height: 100%; overflow-y: auto; 
+}
+
+#ui-id-2{
+height: 350%;
+}
+
+
+
+
 </style>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$( function() {
+    $( "#accordion" ).accordion({
+      collapsible: true
+    });
+  } );
+</script>
 <aside id="colorlib-hero">
 	<div class="flexslider">
 		<ul class="slides">
@@ -86,7 +111,7 @@ td {
 <div class="col-md-10 col-md-offset-1">
 	<div class="col-md-3">
 		<div class="row animate-box" style="margin: auto auto auto auto; height: 10%; width: 70%;">
-	<div class="slider-text" style="margin-top: 40px;">
+	<div class="slider-text" style="margin-top: 60px;">
 		<div class="row">
 			<div class="thumbnail">
 				<img class=img-circle
@@ -94,12 +119,11 @@ td {
 					src="resources/images/정연.jpg" alt="resources/images/profile.jpg"
 					onerror="this.src='resources/images/profile.jpg'">
 				<div class="caption">
-					<h3 style="text-align: center;">김길동</h3>
+				<c:forEach items="${list}" var="item" varStatus="loop">
+					<h3 style="text-align: center;">${item.name}</h3>
+					</c:forEach>
 					<hr style="color: black;">
-					<p>
-					<a href="#" class="btn btn-primary" role="button"style="position: relative; left: 20px; top: 5px;">Button</a>
-					 <a href="#" class="btn btn-default" role="button" style="position: relative; left: 25px; top: 5px;">Button</a>
-						</p>
+						
 					</div>
 				</div>
 			</div>
@@ -120,20 +144,34 @@ td {
 			<div class="animate-box" style="margin: 30px auto auto auto; width: 100%;">
 				<div class="panel panel-danger">
 					<div class="panel-body">
-						<span style="color: black;" class="glyphicon glyphicon-user">김길동님의최근정보현황</span>
+					<c:forEach items="${list}" var="item" varStatus="loop">
+						<span style="color: black;" class="glyphicon glyphicon-user"> ${item.name}의최근정보현황</span>
+						</c:forEach>
 					</div>
-					<div class="panel-footer">
-						
-						<span style="color: black;" class="glyphicon glyphicon-scale"> 김길동님의현재몸무게-<span id ="weight" >63</span>kg</span>
-						
-							<div class="col-md-offset-1">
-							<input type="image" id="kgup" src="resources/images/UpButton.jpg"style="width: 31px; height: 30px; position: relative; bottom: -12px;">
-							<input type="image" id="kgdown" src="resources/images/DownButton.jpg" style="width: 31px; position: relative; bottom: -12px;">
-						<button type="button" class="btn btn-danger"style="position: relative; bottom: -3px;">저장</button>
-						</div>
+					
+					<div class="panel-footer" >
+					<c:forEach items="${list}" var="item" varStatus="loop">
+							<span style="color: black;" class="glyphicon glyphicon-scale"> ${item.name}님의현재몸무게-<span id ="weight" >		
+							<fmt:formatNumber value="${item.weight}" pattern="0.5"/></span>kg</span>
+							<button id="kgup" style="color: black;">▲</button>
+							<button id="kgdown" style="color: black;">▼</button>	
+							<form style="width: 30px;" action="<c:url value='/weightUpdate.do'/>">
+							<input type="hidden" name="weight" value="${item.weight}" id="weightid"/>
+							<input type="hidden" name="userid" value="${item.id}"/>
+							<button type="submit" class="btn btn-warning">수정</button>
+							</form>
+							
+							</c:forEach>
 					</div><!--  -->
+					
+					
+					
+					
+					
 					<div class="panel-footer">
-						<span style="color: black;" class="glyphicon glyphicon-heart" id="target"> 김길동님의BMI-</span>
+					<c:forEach items="${list}" var="item" varStatus="loop">
+						<span style="color: black;" class="glyphicon glyphicon-heart" id="target"> ${item.name }님의BMI-</span>
+						</c:forEach>
 						<div class="progress" style="margin-top: 10px;">
 							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" 
 							aria-valuemax="25" style="width: 25%;">저체중(0~18.4)</div>
@@ -145,7 +183,9 @@ td {
 						<!-- progress -->
 					</div>
 					<div class="panel-footer">
-						<span style="color: black;" class="glyphicon glyphicon-cutlery" id="calor"> 김길동님의체지방률-</span>
+					<c:forEach items="${list}" var="item" varStatus="loop">
+						<span style="color: black;" class="glyphicon glyphicon-cutlery" id="calor"> ${item.name}님의체지방률-</span>
+						</c:forEach>
 						<div class="progress" style="margin-top: 10px;">
 							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%;">저체중(0~18.5)</div>
 							<div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%;">표준(18.6~22.9)</div>
@@ -158,7 +198,9 @@ td {
 
 
 					<div class="panel-footer">
-						<span style="color: black;" class="glyphicon glyphicon-ok" id="Beman"> 김길동님의비만도-</span>
+					<c:forEach items="${list}" var="item" varStatus="loop">
+						<span style="color: black;" class="glyphicon glyphicon-ok" id="Beman"> ${item.name}님의비만도-</span>
+						</c:forEach>
 						<div class="progress" style="margin-top: 10px;">
 							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%;">체중미달(94이하)</div>
 							<div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="20" style="width: 20%;">정상(95~119)</div>
@@ -170,8 +212,9 @@ td {
 					</div>
 
 					<div class="panel-footer">
-						<span style="color: black;" class="glyphicon glyphicon-ok" id="daesalyang"> 김길동님의기초대사량-</span>
-
+					<c:forEach items="${list}" var="item" varStatus="loop">
+						<span style="color: black;" class="glyphicon glyphicon-ok" id="daesalyang"> ${item.name}님의기초대사량-</span>
+					</c:forEach>
 						<table style="margin-top: 13px;">
 							<tr>
 								<th colspan="2">남성</th>
@@ -214,18 +257,18 @@ td {
 			<div class="animate-box" style="margin: 30px auto auto auto; width: 100%;">
 				<div class="panel panel-danger">
 					<div class="panel-body">
-						<span style="color: black;" class="glyphicon glyphicon-envelope">김길동님의쪽지함</span>
+					<c:forEach items="${list}" var="item" varStatus="loop">
+						<span style="color: black;" class="glyphicon glyphicon-envelope"> ${item.name}님의쪽지함</span>
+						</c:forEach>
 					</div>
 					<div class="panel-footer">
-						<span style="color: black;" class="glyphicon glyphicon-bed">받은쪽지목록<span class="label label-success">2</span>
+						<span style="color: black;" class="glyphicon glyphicon-bed">
+						<a href="#" style="color: black; font-size: 1.0em" data-toggle="modal" data-target="#mailModal"> 받은쪽지목록</a><span class="label label-success">2</span>
 						</span>
 					</div>
 					<div class="panel-footer">
-						<span style="color: black;" class="glyphicon glyphicon-send">보낸쪽지목록<span class="label label-info">4</span>
-						</span>
-					</div>
-					<div class="panel-footer">
-						<span style="color: black;" class="glyphicon glyphicon-trash">휴지통<span class="label label-danger">4</span>
+						<span style="color: black;" class="glyphicon glyphicon-send">
+						 <a href="#" style="color: black; font-size: 1.0em" data-toggle="modal" data-target="#mymailModal"> 보낸쪽지목록</a><span class="label label-info">4</span>
 						</span>
 					</div>
 				</div>
@@ -253,8 +296,133 @@ td {
 	</div>
 </div>
 </div>
+</div>
 
 
+
+		
+		<!-- 모달 영역 -->
+		<div class="modal fade" id="mailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">김길동님의 쪽지함</h4>
+					</div>
+					<div class="modal-body">
+					<!-- 
+					<div class="panel panel-default">
+						  <div class="panel-heading">안녕하세요 김길동님<a href="#" style="color: black;"><div class="glyphicon glyphicon-ok"></div></a></div>
+						  <div class="panel-body">
+						    <p><div class="media">
+				  <div class="media-left media-middle">
+				    
+				      <img style="margin: 0 auto; height: 150px; width: 150px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
+				    <span style="color: black;">leexae0729<span>님</span></span>
+				    <span style="color: black;">2020-06-06</span>
+				  </div>
+				  <div class="media-body">
+				    <h4 class="media-heading">오늘밤 외로워요..저랑 같이 등근육 조질까요?^^</h4>
+				  </div>
+					</div></p>
+						  </div>
+						  <table class="table">
+						  </table>
+						</div> 
+						 -->
+				<div id="accordion">
+				
+				<h3 style="margin: auto auto auto auto;">안녕하세요 김길동님</h3>
+				<div style="width: 100%;">
+				   <img class=img-circle style="height: 150px; width: 150px; display: inline-block;" onerror="this.src='resources/images/profile.jpg'" class="media-object" src="resources/images/정연.jpg" alt="...">
+					<div style="margin-top: 20px;">
+						안녕하시닞요dlfjwlasdkfsdhfsdhflsdhdsfsdf
+						sdfjklsdfjhkosldfhsdlfhdsfsfldsfhs
+					</div>
+				</div>
+				
+				<h3>안녕하세요 김길동님</h3>
+				<div style="width: 100%;">
+				   <img class=img-circle style="height: 150px; width: 150px; display: inline-block;" onerror="this.src='resources/images/profile.jpg'" class="media-object" src="resources/images/정연.jpg" alt="...">
+					<div style="margin-top: 20px;">
+						안녕하시닞요dlfjwlasdkfsdhfsdhflsdhdsfsdf
+						sdfjklsdfjhkosldfhsdlfhdsfsfldsfhs
+					</div>
+				</div>
+				
+				<h3>안녕하세요 김길동님</h3>
+				<div style="width: 100%;">
+				   <img class=img-circle style="height: 150px; width: 150px; display: inline-block;" onerror="this.src='resources/images/profile.jpg'" class="media-object" src="resources/images/정연.jpg" alt="...">
+					<div style="margin-top: 20px;">
+						안녕하시닞요dlfjwlasdkfsdhfsdhflsdhdsfsdf
+						sdfjklsdfjhkosldfhsdlfhdsfsfldsfhs
+					</div>
+				</div>
+				<h3>안녕하세요 김길동님</h3>
+				<div style="width: 100%;">
+				   <img class=img-circle style="height: 150px; width: 150px; display: inline-block;" onerror="this.src='resources/images/profile.jpg'" class="media-object" src="resources/images/정연.jpg" alt="...">
+					<div style="margin-top: 20px;">
+						안녕하시닞요dlfjwlasdkfsdhfsdhflsdhdsfsdf
+						sdfjklsdfjhkosldfhsdlfhdsfsfldsfhs
+					</div>
+				</div>
+				<h3>안녕하세요 김길동님</h3>
+				<div style="width: 100%;">
+				   <img class=img-circle style="height: 150px; width: 150px; display: inline-block;" onerror="this.src='resources/images/profile.jpg'" class="media-object" src="resources/images/정연.jpg" alt="...">
+					<div style="margin-top: 20px;">
+						안녕하시닞요dlfjwlasdkfsdhfsdhflsdhdsfsdf
+						sdfjklsdfjhkosldfhsdlfhdsfsfldsfhs
+					</div>
+				</div>
+				
+				</div>	<!-- 아코디언 끝 -->	
+						
+						
+						
+  				
+						
+					</div> <!-- 모달 바디 -->
+					
+				</div>
+			</div>
+		</div>
+
+
+
+<div class="modal fade" id="mymailModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">김길동님의 보낸 쪽지 목록</h4>
+			</div>
+			<div class="modal-body">
+			<div class="col-md-12">
+		 
+			<table>
+				<tr><th style="width: 80px; height:20px;">아이디</th><th style="width: 100px;">제목</th><th style="width: 200px;">내용</th><th>날짜</th><th>확인</th></tr>
+				<tr><td>이길동</td><td>안녕하세요</td><td>잘지니셨나요ㄹ</td><td>2020-06-07</td><td>o</td></tr>
+				<tr><td>박길동</td><td>길동아</td><td>잘지니셨ㄴㅇ</td><td>2020-06-07</td><td>o</td></tr>
+				<tr><td>가길동</td><td>뭐하요요</td><td>잘지니셨나ㅇㄴㄹ</td><td>2020-06-07</td><td>o</td></tr>
+			</table>
+			
+					
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary">확인</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 
 <script>
@@ -262,20 +430,28 @@ td {
 
 $(function(){
 	
+	 
+	
+	$(document).ready(function () { $('head').append('<style type="text/css">.modal .modal-body {max-height: ' + ($('body').height() * .4) + 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>'); });
+
+	
 	$("#myinformation").trigger("click");
 	
 	
 	$('#kgup').on('click',function(){
 		var weight = $('#weight').html();
 		var Intweight = parseFloat(weight);
-		$('#weight').html(Intweight + 0.5);
+		var aa = $('#weight').html(Intweight + 0.5);
+		$('#weightid').val(Intweight + 0.5);
+		
 	});
 		
 
 	$('#kgdown').on('click',function(){
 		var weight = $('#weight').html();
 		var Intweight = parseFloat(weight);
-		$('#weight').html(Intweight - 0.5);
+		var aa = $('#weight').html(Intweight - 0.5);
+		$('#weightid').val(Intweight - 0.5);
 	});
 	
 });
