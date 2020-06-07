@@ -51,8 +51,16 @@
    background: #DF691A;
  }
  .fc-content{
- 	font-size:23px;
+ 	font-size:15px;
  	color:white;
+ 	padding: 5px;
+ }
+ .fc-body .fc-event{
+ 	border : none; 
+ 	border-radius: 0;
+ }
+ .fc-day-grid-event{
+ 	margin: 0;
  }
  .btn-primary{
  	background-color:#69caf7;
@@ -62,6 +70,17 @@
   	color: red;
   
   }
+ tr:first-child > td > .fc-day-grid-event {
+    margin-top: 0px;
+}
+  
+ #uesKcal {
+	text-align: left;
+	color: red;
+ 
+ }
+  
+  
 
 </style>
 	<aside id="colorlib-hero">
@@ -93,11 +112,11 @@
 						<div id='external-events' >
 							<h4>내가 구독한 운동</h4>
 							<div id='external-events-list' >
-								<div class='fc-event'>여름을 위한 팔운동 루틴</div>
-								<div class='fc-event'>초콜릿 복근을 위한 복근운동</div>
-								<div class='fc-event'>내가 구독한 운동</div>
-								<div class='fc-event'>내가 구독한 운동</div>
-								<div class='fc-event'>내가 구독한 운동</div>
+								<c:forEach items="${subList }" var="item">
+									<div class='fc-event'>${item.routineName }
+									<input type="hidden" value="${item.routineNo }"/>
+									</div>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
@@ -142,46 +161,28 @@
                     
                     <div class="form-group">
                       <label class="col-sm-2 control-label" for="edit-count">운동횟수</label>
-                      <div class="col-sm-10">
+                      <div class="col-sm-4">
                           <input class="form-control" type="text" name="edit-count" id="edit-count" />
+                      </div>
+                      <label class="col-sm-2 control-label" for="edit-setcount">세트수</label>
+                      <div class="col-sm-4">
+                          <input class="form-control" type="text" name="edit-setcount" id="edit-setcount" />
                       </div>
                     </div>
 
                     <div class="form-group">
-                      <label class="col-sm-2 control-label" for="edit-start">시작</label>
+                      <label class="col-sm-2 control-label" for="edit-start">날짜</label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text" name="edit-start" id="edit-start" />
                         </div>
                     </div>
-                    <div class="form-group">
-                      
-                        <label class="col-sm-2 control-label" for="edit-end">끝</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" type="text" name="edit-end" id="edit-end" />
-                        </div>
-                    </div>
                     
-                    <div class="form-group">
+                   
+                   <div class="form-group">
                         
-                            <label class="col-sm-2 control-label" for="edit-color">운동종류</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" name="color" id="edit-color">
-                                <option value="#D25565" style="color:#D25565;">상체</option>
-                                <option value="#9775fa" style="color:#9775fa;">하체</option>
-                                <option value="#ffa94d" style="color:#ffa94d;">전신</option>
-                                <option value="#74c0fc" style="color:#74c0fc;">유산소</option>
-                                <option value="#a9e34b" style="color:#a9e34b;">기타</option>
-                            </select>
-                        </div>
+                         <label id="uesKcal" class="col-sm-12 control-label" >사용한 칼로리 900kcal</label>
                     </div>
-                    <div class="form-group">
-                        
-                            <label class="col-sm-2 control-label" for="edit-desc">설명</label>
-                        <div class="col-sm-10">
-                            <textarea rows="4" cols="50" class="form-control" name="edit-desc"
-                                id="edit-desc"></textarea>
-                        </div>
-                    </div>
+                   
                 </div>
               <div class="modal-footer modalBtnContainer-addEvent">
                   <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -242,7 +243,7 @@
 						<span style="font-size:30px;" id="infoTitle"></span>
 							<div class="routine" >
 								<div class="col-md-1 week">
-									<div>월요일</div>
+									<div>1일차</div>
 									<div class="entry-forth">
 										<p class="icon"><span><i class="flaticon-arm"></i></span></p>
 										<p class="time"><span>10회/3세트</span></p>
@@ -256,7 +257,7 @@
 								</div>
 			
 								<div class="col-md-1 week">
-									<div>화요일</div>
+									<div>2일차</div>
 									<div class="entry-forth">
 										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
 										<p class="time"><span>10회/3세트</span></p>
@@ -270,7 +271,7 @@
 								</div>
 			
 								<div class="col-md-1 week">
-									<div>수요일</div>
+									<div>3일차</div>
 									<div class="entry-forth">
 										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
 										<p class="time"><span>10회/3세트</span></p>
@@ -284,7 +285,7 @@
 								</div>
 			
 								<div class="col-md-1 week">
-									<div>목요일</div>
+									<div>4일차</div>
 									<div class="entry-forth">
 										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
 										<p class="time"><span>10회/3세트</span></p>
@@ -298,7 +299,7 @@
 								</div>
 			
 								<div class="col-md-1 week">
-									<div>금요일</div>
+									<div>5일차</div>
 									<div class="entry-forth">
 										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
 										<p class="time"><span>10회/3세트</span></p>
@@ -312,7 +313,7 @@
 								</div>
 			
 								<div class="col-md-1 week">
-									<div>토요일</div>
+									<div>6일차</div>
 									<div class="entry-forth">
 										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
 										<p class="time"><span>10회/3세트</span></p>
@@ -326,7 +327,7 @@
 								</div>
 			
 								<div class="col-md-1 week">
-									<div>일요일</div>
+									<div>7일차</div>
 									<div class="entry-forth">
 										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
 										<p class="time"><span>10회/3세트</span></p>
@@ -370,7 +371,14 @@
                     <div class="form-group">
                       <label class="col-sm-2 control-label" for="exe-part">운동부위</label>
                       <div class="col-sm-10">
-                          <input class="form-control" type="text" name="exe-part" id="exe-part" />
+                          <select class="form-control" id="exe-part">
+                            <option value="" style="color: black">운동부위를 선택하세요</option>
+                          	<option value="상체" style="color: #d92027">상체</option>
+                          	<option value="하체" style="color: #ff9234">하체</option>
+                          	<option value="전신" style="color: #ffcd3c">전신</option>
+                          	<option value="유산소" style="color: #35d0ba">유산소</option>
+                          	<option value="기타" style="color: #10375c">기타</option>
+                          </select>
                           <span class="error" id="exe-part-error"></span>
                       </div>
                     </div>
@@ -384,14 +392,10 @@
                         </div>
                     </div>
                 </div>
-              <div class="modal-footer modalBtnContainer-addEvent">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                  <button type="button" class="btn btn-primary" id="save-exe">저장</button>
-              </div>
-              <div class="modal-footer modalBtnContainer-modifyEvent">
+              <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                  <button type="button" class="btn btn-danger" id="deleteEvent">삭제</button>
-                  <button type="button" class="btn btn-primary" id="updateEvent">저장</button>
+                  <button type="button" class="btn btn-danger" id="delete-exe">삭제</button>
+                  <button type="button" class="btn btn-primary" id="save-exe">저장</button>
               </div>
             </div>
           </div><!-- /.modal-content -->
@@ -420,7 +424,39 @@
 	var timer;
 	$('.fc-event').on('mouseover',function(){
 		var title = $(this).html();
+		var routineNo = $(this).children().first().val();
 		var callFunction = function(){
+		
+		// 마우스 오버시
+		$.ajax({
+	        type: "get",
+	        url: "/sixone/routine.read",
+	        data: {
+	        	'routineNo':routineNo
+	        },
+	        dataType:'json',
+	        success: function(response){
+	        	console.log(response);
+	        	
+	        	
+	        	
+	        },
+	        error:function(request,error){
+					console.log('상태코드:',request.status);
+					console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
+					console.log('에러:',error);
+			}
+      	}); 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			$('#infoTitle').html(title);
 			
@@ -454,7 +490,7 @@
 	
 	$("#save-exe").click(function(){
 		var exerciseName = $('#exe-name').val();
-		var exercisePartials = $('#exe-part').val();
+		var exercisePartials = $('#exe-part option:selected').val();
 		var exerciseMotions = $('#exe-desc').val();
 		
 		

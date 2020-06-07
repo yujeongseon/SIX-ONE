@@ -17,6 +17,8 @@
 		<!-- <typeAlias alias="oneMemoDTO" type="com.kosmo.onememo.service.OneMemoDTO"/> -->
 		<typeAlias alias="calendarDTO" type="com.team.sixone.service.CalendarDTO"/>
 		<typeAlias alias="exerciseDTO" type="com.team.sixone.service.ExerciseDTO"/>
+		<typeAlias alias="subscribeDTO" type="com.team.sixone.service.SubscribeDTO"/>
+		<typeAlias alias="routineDTO" type="com.team.sixone.service.RoutineDTO"/>
 		
 		<!-- memoCommentDTO 는 결과 Map 에 저장하기때문에 빈 등록 필요 없음 -->
 	</typeAliases>
@@ -28,6 +30,9 @@
 	<mappers>
 		<mapper resource="mybatis/calendar.xml" />
 		<mapper resource="mybatis/exercise.xml" />
+		<mapper resource="mybatis/subscribe.xml" />
+		<mapper resource="mybatis/routine.xml" />
+		
 		
 	</mappers>
 </configuration>

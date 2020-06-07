@@ -3,10 +3,9 @@ var eventModal = $('#eventModal');
 var modalTitle = $('.modal-title');
 var editTitle = $('#edit-title');
 var editCount = $('#edit-count');
+var editSetCount = $('#edit-setcount');
 var editStart = $('#edit-start');
-var editEnd = $('#edit-end');
 var editColor = $('#edit-color');
-var editDesc = $('#edit-desc');
 
 var addBtnContainer = $('.modalBtnContainer-addEvent');
 var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
@@ -24,9 +23,8 @@ var addEvent = function (info,calendar) {
     
     editTitle.val('');
     editStart.val(start);
-    editEnd.val(end);
-    editDesc.val('');
     editCount.val('');
+    editSetCount.val('');
     addBtnContainer.show();
     modifyBtnContainer.hide();
     eventModal.modal('show');
@@ -42,10 +40,8 @@ var addEvent = function (info,calendar) {
         var eventData = {
             title: editTitle.val(),
             count: editCount.val(),
+            setCount: editSetCount.val(),
             start: editStart.val(),
-            end: moment(editEnd.val()).add(1,'days').format('YYYY-MM-DD'),
-            description: editDesc.val(),
-            username: 'userId',
             backgroundColor: editColor.val()
         };
         if (eventData.start > eventData.end) {
@@ -67,24 +63,22 @@ var addEvent = function (info,calendar) {
             data: {
             	'title': editTitle.val(),
                 'count': editCount.val(),
+                'setCount' : editSetCount.val(),
                 'start': editStart.val(),
-                'end': editEnd.val(),
-                'description': editDesc.val(),
-                'username': 'kim',
                 'backgroundColor': editColor.val()
             },
             success: function (response) {
                 //DB연동시 중복이벤트 방지를 위한
                 //$('#calendar').fullCalendar('removeEvents');
                 //$('#calendar').fullCalendar('refetchEvents');
-            	
+            	calendar.refetchEvents();
             	
             	
             }
         });
         
         //calendar.addEvent(eventData);
-        calendar.refetchEvents();
+        //calendar.refetchEvents();
         //eventModal.find('input, textarea').val('');
         eventModal.modal('hide');
        
