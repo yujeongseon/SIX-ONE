@@ -739,7 +739,7 @@ h1, h2, h3, h4, h5, h6, figure {
         -ms-text-fill-color: transparent;
         -o-text-fill-color: transparent;
 }
-.routine .week div:first-child{
+.routine .week .routine-header{
   border-bottom: grey solid 1.3px;
   font-weight: bold;
   font-size: 20px;

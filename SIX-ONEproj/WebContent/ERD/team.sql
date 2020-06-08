@@ -8,6 +8,7 @@ DROP TABLE play_exe CASCADE CONSTRAINTS;
 DROP TABLE rou_exe CASCADE CONSTRAINTS;
 DROP TABLE exercise CASCADE CONSTRAINTS;
 DROP TABLE note CASCADE CONSTRAINTS;
+DROP TABLE sub_calendar CASCADE CONSTRAINTS;
 DROP TABLE subscribe CASCADE CONSTRAINTS;
 DROP TABLE routine CASCADE CONSTRAINTS;
 DROP TABLE timeilne_like CASCADE CONSTRAINTS;
@@ -83,7 +84,6 @@ CREATE TABLE exercise
 	exercise_name nvarchar2(20),
 	exercise_partials nvarchar2(20),
 	exercise_motions nvarchar2(100),
-	exercise_backgroundcolor varchar2(20),
 	PRIMARY KEY (exercise_no)
 );
 
@@ -157,16 +157,26 @@ CREATE TABLE rou_exe
 	exercise_no number NOT NULL,
 	routine_no number NOT NULL,
 	goal_count number,
-	goal_set number DEFAULT 0
+	goal_set number DEFAULT 0,
+	routine_days number
 );
 
 
 CREATE TABLE subscribe
 (
+	subscribe_no number NOT NULL,
 	routine_no number NOT NULL,
 	id varchar2(20) NOT NULL,
-	start_date date DEFAULT null,
-	end_date date DEFAULT null
+	PRIMARY KEY (subscribe_no)
+);
+
+
+CREATE TABLE sub_calendar
+(
+	sub_calendar_no number NOT NULL,
+	start_date date DEFAULT SYSDATE,
+	subscribe_no number NOT NULL,
+	PRIMARY KEY (sub_calendar_no)
 );
 
 
@@ -294,6 +304,12 @@ ALTER TABLE rou_exe
 ALTER TABLE subscribe
 	ADD FOREIGN KEY (routine_no)
 	REFERENCES routine (routine_no)
+;
+
+
+ALTER TABLE sub_calendar
+	ADD FOREIGN KEY (subscribe_no)
+	REFERENCES subscribe (subscribe_no)
 ;
 
 

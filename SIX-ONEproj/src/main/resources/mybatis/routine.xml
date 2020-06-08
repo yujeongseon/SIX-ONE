@@ -4,7 +4,7 @@
 <mapper namespace="mybatis.routine">
 	
 	<select id="routineSelectList" parameterType="java.util.Map" resultType="routineDTO">
-		select ro.routine_no, routine_name, id, goal_count, goal_set, exercise_name 
+		select ro.routine_no, routine_name, id, goal_count, goal_set, exercise_name, routine_days 
 		from routine ro join rou_exe r on ro.routine_no = r.routine_no 
 			join exercise e on r.exercise_no = e.exercise_no 
 		where ro.routine_no = #{routineNo}

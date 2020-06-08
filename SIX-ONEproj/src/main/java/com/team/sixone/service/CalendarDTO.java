@@ -10,7 +10,6 @@ public class CalendarDTO {
 	private String title;
 	private String exercisePartials;
 	private String routineNo;
-	private String backgroundColor;
 	
 	
 	
@@ -61,12 +60,6 @@ public class CalendarDTO {
 	}
 	public void setRoutineNo(String routineNo) {
 		this.routineNo = routineNo;
-	}
-	public String getBackgroundColor() {
-		return backgroundColor;
-	}
-	public void setBackgroundColor(String backgroundColor) {
-		this.backgroundColor = backgroundColor;
 	}
 	
 	

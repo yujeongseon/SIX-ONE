@@ -4,7 +4,7 @@
 <mapper namespace="mybatis.subscribe">
 	
 	<select id="subscribeSelectList" parameterType="java.util.Map" resultType="subscribeDTO">
-		select s.routine_no, routine_name 
+		select subscribe_no, s.routine_no, routine_name 
 		from subscribe s join routine r on s.routine_no = r.routine_no  
 		where s.id=#{id}
 	</select>

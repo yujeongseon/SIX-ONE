@@ -31,6 +31,11 @@ public class CalendarServiceImpl implements CalendarService {
 	public int insert(Map map) {
 		return dao.insert(map);
 	}
+	
+	public int insertCalendarRoutine(Map map) {
+		return dao.insertCalendarRoutine(map);
+	}
+	
 
 	@Override
 	public int update(Map map) {

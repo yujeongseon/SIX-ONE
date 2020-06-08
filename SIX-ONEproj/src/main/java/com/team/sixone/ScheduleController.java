@@ -110,6 +110,16 @@ public class ScheduleController {
 		return String.valueOf(result);
 	}
 	
+	@RequestMapping(value="/schedule.insertRoutine")
+	@ResponseBody
+	public String insertCalendarRoutine(@RequestParam Map map) {
+		int result = calendarDAO.insertCalendarRoutine(map);
+		
+		return String.valueOf(result);
+	}
+	
+	
+	
 	@RequestMapping(value="/schedule.updateOne")
 	@ResponseBody
 	public String updateOneCalendar(@RequestParam Map map) {

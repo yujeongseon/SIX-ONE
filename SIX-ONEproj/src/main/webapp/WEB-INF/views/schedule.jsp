@@ -61,6 +61,7 @@
  }
  .fc-day-grid-event{
  	margin: 0;
+ 	margin-top: 1px;
  }
  .btn-primary{
  	background-color:#69caf7;
@@ -115,6 +116,7 @@
 								<c:forEach items="${subList }" var="item">
 									<div class='fc-event'>${item.routineName }
 									<input type="hidden" value="${item.routineNo }"/>
+									<input type="hidden" value="${item.subscribeNo }"/>
 									</div>
 								</c:forEach>
 							</div>
@@ -241,103 +243,55 @@
 					<div class="schedule text-left animate-box">
 						<div class="col-md-12 ">
 						<span style="font-size:30px;" id="infoTitle"></span>
+						<button style="float: right;"onclick="javascript:cancelSubscribe()">구독취소</button>
 							<div class="routine" >
 								<div class="col-md-1 week">
-									<div>1일차</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-arm"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
+									<div class="routine-header">1일차</div>
+									<div id="routine-1day">
+										
+									</div>	
+								</div>
+			
+								<div class="col-md-1 week">
+									<div class="routine-header">2일차</div>
+									<div id="routine-2day">
+										
 									</div>
 								</div>
 			
 								<div class="col-md-1 week">
-									<div>2일차</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
+									<div class="routine-header">3일차</div>
+									<div id="routine-3day">
+										
+									</div>	
+								</div>
+			
+								<div class="col-md-1 week">
+									<div class="routine-header">4일차</div>
+									<div id="routine-4day">
+										
 									</div>
 								</div>
 			
 								<div class="col-md-1 week">
-									<div>3일차</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
+									<div class="routine-header">5일차</div>
+									<div id="routine-5day">
+										
 									</div>
 								</div>
 			
 								<div class="col-md-1 week">
-									<div>4일차</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
+									<div class="routine-header">6일차</div>
+									<div id="routine-6day">
+										
 									</div>
 								</div>
 			
 								<div class="col-md-1 week">
-									<div>5일차</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
-								</div>
-			
-								<div class="col-md-1 week">
-									<div>6일차</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
-								</div>
-			
-								<div class="col-md-1 week">
-									<div>7일차</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
+									<div class="routine-header">7일차</div>
+									<div id="routine-7day">
+										
+									</div>	
 								</div>
 							</div>
 						</div>
@@ -427,35 +381,74 @@
 		var routineNo = $(this).children().first().val();
 		var callFunction = function(){
 		
-		// 마우스 오버시
-		$.ajax({
-	        type: "get",
-	        url: "/sixone/routine.read",
-	        data: {
-	        	'routineNo':routineNo
-	        },
-	        dataType:'json',
-	        success: function(response){
-	        	console.log(response);
-	        	
-	        	
-	        	
-	        },
-	        error:function(request,error){
-					console.log('상태코드:',request.status);
-					console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
-					console.log('에러:',error);
-			}
-      	}); 
+			//값 초기화
+			$('#routine-1day').html('');
+			$('#routine-2day').html('');
+			$('#routine-3day').html('');
+			$('#routine-4day').html('');
+			$('#routine-5day').html('');
+			$('#routine-6day').html('');
+			$('#routine-7day').html('');
 			
 			
-			
-			
-			
-			
-			
-			
-			
+			// 마우스 오버시
+			$.ajax({
+		        type: "get",
+		        url: "/sixone/routine.read",
+		        data: {
+		        	'routineNo':routineNo
+		        },
+		        dataType:'json',
+		        success: function(response){
+		        	response.forEach(el => {
+		        		
+		        		var query = '<div class="entry-forth">';
+			        	query += '<p class="icon"><span><i class="flaticon-arm"></i></span></p>';
+			        	query += '<p class="time"><span>'+el.goalCount+'회/'+el.goalSet+'세트</span></p>';
+			        	query += '<p class="trainer"><span>'+el.exerciseName+'</span></p>';
+			        	query += '</div>';
+		        		switch(el['routineDays']){
+		        			case '1':
+		        				$('#routine-1day').html($('#routine-1day').html()+query);
+		        				break;
+		        			case '2':
+		        				$('#routine-2day').html($('#routine-2day').html()+query);
+		        				break;
+		        			case '3':
+		        				$('#routine-3day').html($('#routine-3day').html()+query);
+		        				break;
+		        			case '4':
+		        				$('#routine-4day').html($('#routine-4day').html()+query);
+		        				break;
+		        			case '5':
+		        				$('#routine-5day').html($('#routine-5day').html()+query);
+		        				break;
+		        			case '6':
+		        				$('#routine-6day').html($('#routine-6day').html()+query);
+		        				break;
+		        			case '7':
+		        				$('#routine-7day').html($('#routine-7day').html()+query);
+		        				break;
+		        		
+		        		}
+		        		
+		        	})
+		        	
+		        	/* var query = '<div class="entry-forth">';
+		        	query += '<p class="icon"><span><i class="flaticon-arm"></i></span></p>';
+		        	query += '<p class="time"><span>'+response[0].goalCount+'회/'+response[0].goalSet+'세트</span></p>';
+		        	query += '<p class="trainer"><span>'+response[0].exerciseName+'</span></p>';
+		        	query += '</div>'; */
+						
+		        	
+		        },
+		        error:function(request,error){
+						console.log('상태코드:',request.status);
+						console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
+						console.log('에러:',error);
+				}
+	      	}); 
+				
 			
 			
 			$('#infoTitle').html(title);
@@ -584,6 +577,11 @@
 	  		
     }
 	
+	function cancelSubscribe(){
+		confirm('정말로 취소하시겠습니까?');
+		$('#eventModal2').modal('show');
+		
+	}
 	
 	
 	

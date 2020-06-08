@@ -26,7 +26,6 @@ public class RoutineController {
 	public String routineList(@RequestParam Map map) {
 		
 		List<RoutineDTO> list = routineDAO.selectList(map);
-
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonStr = null;
 		try {
@@ -34,7 +33,6 @@ public class RoutineController {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		
 		return jsonStr;
 	
 	}

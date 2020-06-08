@@ -44,6 +44,7 @@
     droppable: true, // this allows things to be dropped onto the calendar
     selectable: true,
     allDayDefault :true,
+    eventDurationEditable: false,
     events:function(fetchInfo, successCallback, failureCallback){
     	
         $.ajax({
@@ -69,8 +70,11 @@
 					case '유산소':
 						el.backgroundColor = '#35d0ba';
 						break;
-					default:
+					case '기타':
 						el.backgroundColor = '#10375c';
+						break;
+					default:
+						el.backgroundColor = '#337ab7';
         		  }
         	  })
         	  successCallback(response);
@@ -93,7 +97,86 @@
     },
     // 이벤트 클릭시
     eventClick: function(info){
-      editEvent(info.event,calendar);
+    	
+    	if(info.event.extendedProps.routineNo == null){ //추가한 운동이면
+    		editEvent(info.event,calendar);
+    	}
+    	else{ //추가한 루틴이면
+    		//모달창 초기화
+    		$('#routine-1day').html('');
+			$('#routine-2day').html('');
+			$('#routine-3day').html('');
+			$('#routine-4day').html('');
+			$('#routine-5day').html('');
+			$('#routine-6day').html('');
+			$('#routine-7day').html('');
+			
+			//루틴번호 받기
+			var routineNo = info.event.extendedProps.routineNo;
+			
+			//ajax 로 루틴 받기
+			$.ajax({
+		        type: "get",
+		        url: "/sixone/routine.read",
+		        data: {
+		        	'routineNo':routineNo
+		        },
+		        dataType:'json',
+		        success: function(response){
+		        	response.forEach(el => {
+		        		
+		        		var query = '<div class="entry-forth">';
+			        	query += '<p class="icon"><span><i class="flaticon-arm"></i></span></p>';
+			        	query += '<p class="time"><span>'+el.goalCount+'회/'+el.goalSet+'세트</span></p>';
+			        	query += '<p class="trainer"><span>'+el.exerciseName+'</span></p>';
+			        	query += '</div>';
+		        		switch(el['routineDays']){
+		        			case '1':
+		        				$('#routine-1day').html($('#routine-1day').html()+query);
+		        				break;
+		        			case '2':
+		        				$('#routine-2day').html($('#routine-2day').html()+query);
+		        				break;
+		        			case '3':
+		        				$('#routine-3day').html($('#routine-3day').html()+query);
+		        				break;
+		        			case '4':
+		        				$('#routine-4day').html($('#routine-4day').html()+query);
+		        				break;
+		        			case '5':
+		        				$('#routine-5day').html($('#routine-5day').html()+query);
+		        				break;
+		        			case '6':
+		        				$('#routine-6day').html($('#routine-6day').html()+query);
+		        				break;
+		        			case '7':
+		        				$('#routine-7day').html($('#routine-7day').html()+query);
+		        				break;
+		        		
+		        		}
+		        		
+		        	})
+		        	
+		        	/* var query = '<div class="entry-forth">';
+		        	query += '<p class="icon"><span><i class="flaticon-arm"></i></span></p>';
+		        	query += '<p class="time"><span>'+response[0].goalCount+'회/'+response[0].goalSet+'세트</span></p>';
+		        	query += '<p class="trainer"><span>'+response[0].exerciseName+'</span></p>';
+		        	query += '</div>'; */
+						
+		        	
+		        },
+		        error:function(request,error){
+						console.log('상태코드:',request.status);
+						console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
+						console.log('에러:',error);
+				}
+	      	});
+			
+			$('#infoTitle').html(info.event.title);
+			$('#eventModal2').modal('show');
+    		
+    		
+    	}
 
     },
     // 이벤트 드랍시
@@ -114,46 +197,20 @@
 		});
     	
     },
-    // 이벤트 가져올때
+    // 이벤트 가져올때 루틴 사이즈 늘려주는곳
     eventReceive:function(info){
-    	//여기서 루틴 ajax 요청
         info.event.setEnd(moment(info.event.start).add(7,'days').format('YYYY-MM-DD'));
-    	console.log(info.event);
-    	$.ajax({
-            type: "get",
-            url: "/sixone/scheduleRoutine.read",
-            data: {
-            	"routine":"routine"
-            },
-            success: function (response) {
-            	
-            	var jsonObj = JSON.parse(response);
-            	console.log(jsonObj);
-            	
-            	for (var i in jsonObj){
-            		console.log(jsonObj[i])
-            		jsonObj[i].start = '2020-06-06';
-            	}
-            	
-            	var jsonStr = JSON.stringify(jsonObj);
-
-            	
-            	
-            	info.event = jsonStr;
-            	
-            	
-            	
-            	
-            	console.log(info.event)
-            }
-          });
     },
-    drop: function(){
+    // 드랍시 실제로 루틴 저장
+    drop: function(dropInfo){
+    	var start = dropInfo.dateStr
+    	var subscribeNo = dropInfo.draggedEl.children[1].value
       $.ajax({
         type: "get",
-        url: "",
+        url: "/sixone/schedule.insertRoutine",
         data: {
-          //...
+          'subscribeNo':subscribeNo,
+          'start':start
         },
         success: function (response) {
           alert('루틴이 추가되었습니다');
@@ -161,31 +218,31 @@
       });
     },
     // 이벤트 리사이즈
-    eventResize: function(eventResizeInfo){
-    	var start = moment(eventResizeInfo.event.start).format('YYYY-MM-DD');
-    	var end = moment(eventResizeInfo.event.end-1).format('YYYY-MM-DD');
-    	// 루틴이면 일정 변경 가능
-    	if(eventResizeInfo.event.extendedProps.routineNo != null){
-	      $.ajax({
-	        type: "get",
-	        url: "/sixone/schedule.update",
-	        data: {
-	          "calendarNo":calendarNo,"start":start,"end":end
-	        },
-	        success: function (response) {
-	        	if(response == 1){
-	        		alert('일정이 변경되었습니다');
-	        	}
-	        }
-	      });
-    	}
-    	else{
-			// 운동은 일정 변경 불가능
-	    	alert('일정을 변경할 수 없습니다');
-	    	eventResizeInfo.revert()
-    	}
-    	
-    }
+//    eventResize: function(eventResizeInfo){
+//    	var start = moment(eventResizeInfo.event.start).format('YYYY-MM-DD');
+//    	var end = moment(eventResizeInfo.event.end-1).format('YYYY-MM-DD');
+//    	// 루틴이면 일정 변경 가능
+//    	if(eventResizeInfo.event.extendedProps.routineNo != null){
+//	      $.ajax({
+//	        type: "get",
+//	        url: "/sixone/schedule.update",
+//	        data: {
+//	          "calendarNo":calendarNo,"start":start,"end":end
+//	        },
+//	        success: function (response) {
+//	        	if(response == 1){
+//	        		alert('일정이 변경되었습니다');
+//	        	}
+//	        }
+//	      });
+//    	}
+//    	else{
+//			// 운동은 일정 변경 불가능
+//	    	alert('일정을 변경할 수 없습니다');
+//	    	eventResizeInfo.revert()
+//    	}
+//    	
+//    }
     
     
   });

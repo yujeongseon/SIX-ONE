@@ -8,7 +8,15 @@ public class RoutineDTO {
 	private String goalCount;
 	private String goalSet;
 	private String exerciseName;
+	private String routineDays;
 	
+	
+	public String getRoutineDays() {
+		return routineDays;
+	}
+	public void setRoutineDays(String routineDays) {
+		this.routineDays = routineDays;
+	}
 	public String getRoutineNo() {
 		return routineNo;
 	}

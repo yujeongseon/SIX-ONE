@@ -4,17 +4,17 @@
 <mapper namespace="mybatis.calendar">
 	
 	<select id="calendarSelectList" parameterType="java.util.Map" resultType="calendarDTO">
-	select play_no as id, count, play_at as "start",play_at+1 as "end" ,set_count, exercise_name as title, exercise_partials
-	from play_exe p join exercise e on p.exercise_no = e.exercise_no
-	where id = #{id}
+		select play_no as id, count, play_at as "start",play_at+1 as "end" ,set_count, exercise_name as title, exercise_partials
+		from play_exe p join exercise e on p.exercise_no = e.exercise_no
+		where id = #{id}
 	</select>
 	
 	 <select id="calendarSelectRoutine" parameterType="java.util.Map" resultType="calendarDTO">
- 	select goal_count as count, start_date as "start", end_date as "end" ,goal_set as set_count,exercise_name as title, exercise_partials
-	from subscribe s join routine r on s.routine_no = r.routine_no 
-	join rou_exe ro on r.routine_no = ro.routine_no
-	join exercise e on e.exercise_no = ro.exercise_no    
-	where r.id = #{id}
+ 		select s.subscribe_no id, start_date as "start", start_date+7 as "end", routine_name title, s.routine_no 
+ 		from subscribe s join sub_calendar sc on s.subscribe_no = sc.subscribe_no 
+ 			join routine r on s.routine_no = r.routine_no 
+ 		where s.id = #{id}
+
  	</select>
 	
 	
@@ -29,6 +29,13 @@
 	<insert id="calendarInsert" parameterType="java.util.Map">
 		insert into play_exe values(SEQ_PLAY_EXE.NEXTVAL, #{count}, #{setCount}, #{start}, #{id}, (select exercise_no from exercise where exercise_name = #{title}))
 	</insert>
+	
+	<insert id="insertCalendarRoutine" parameterType="java.util.Map">
+		insert into sub_calendar values(SEQ_SUB_CALENDAR.nextval, #{start}, #{subscribeNo})
+	</insert>
+	
+	
+	
 	
 	<update id="calendarUpdateOne" parameterType="java.util.Map">
 		update play_exe 
