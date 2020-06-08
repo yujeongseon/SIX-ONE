@@ -9,7 +9,9 @@
 		where s.id=#{id}
 	</select>
 	
-	
+	<delete id="subscribeDelete" parameterType="java.util.Map">
+		delete subscribe where subscribe_no = #{subscribeNo}
+	</delete>
 	
 	
 	

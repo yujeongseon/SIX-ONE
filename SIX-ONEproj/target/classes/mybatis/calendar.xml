@@ -22,8 +22,17 @@
 		update play_exe set play_at=#{start} where play_no=#{playNo}
 	</update>
 	
+	<update id="updateCalendarRoutine" parameterType="java.util.Map">
+		update sub_calendar set start_date=#{start} where sub_calendar_no=#{subCalendarNo}
+	</update>
+	
+	
 	<delete id="calendarDelete" parameterType="java.util.Map">
 		delete play_exe where play_no=#{playNo}
+	</delete>
+	
+	<delete id="deleteCalendarRoutine" parameterType="java.util.Map">
+		delete sub_calendar where subscribe_no = #{subscribeNo}
 	</delete>
 	
 	<insert id="calendarInsert" parameterType="java.util.Map">

@@ -47,10 +47,19 @@ public class CalendarDAO implements CalendarService {
 	public int update(Map map) {
 		return sqlMapper.update("calendarUpdate", map);
 	}
+	
+	public int updateCalendarRoutine(Map map) {
+		return sqlMapper.insert("updateCalendarRoutine",map);
+	}
+	
 
 	@Override
 	public int delete(Map map) {
 		return sqlMapper.delete("calendarDelete",map);
+	}
+	
+	public int deleteCalendarRoutine(Map map) {
+		return sqlMapper.delete("deleteCalendarRoutine",map);
 	}
 
 	@Override

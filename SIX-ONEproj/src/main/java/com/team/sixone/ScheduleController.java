@@ -95,6 +95,13 @@ public class ScheduleController {
 		return String.valueOf(result);
 	}
 	
+	@RequestMapping(value="/schedule.updateRoutine")
+	@ResponseBody
+	public String updateCalendarRoutine(@RequestParam Map map) {
+		int result = calendarDAO.updateCalendarRoutine(map);
+		return String.valueOf(result);
+	}
+	
 	@RequestMapping(value="/schedule.delete")
 	@ResponseBody
 	public String deleteCalendar(@RequestParam Map map) {

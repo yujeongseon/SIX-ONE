@@ -173,6 +173,8 @@
 	      	});
 			
 			$('#infoTitle').html(info.event.title);
+			$('#cancel_btn').hide();
+			$('#delete_btn').show();
 			$('#eventModal2').modal('show');
     		
     		
@@ -182,19 +184,40 @@
     // 이벤트 드랍시
     eventDrop: function(eventDropInfo){
 		var start = moment(eventDropInfo.event.start).format('YYYY-MM-DD');
-		$.ajax({
-			type : "get",
-			url : "/sixone/schedule.update",
-			data : {
-				"playNo" : eventDropInfo.event.id,
-				"start" : start
-			},
-			success : function(response) {
-				if (response == 1) {
-					alert('일정이 변경되었습니다');
+		var routineNo = eventDropInfo.event.extendedProps.routineNo;
+		var subCalendarNo = eventDropInfo.event.id;
+		if(routineNo == null){ // 운동이면
+			$.ajax({
+				type : "get",
+				url : "/sixone/schedule.update",
+				data : {
+					"playNo" : eventDropInfo.event.id,
+					"start" : start
+				},
+				success : function(response) {
+					if (response == 1) {
+						alert('일정이 변경되었습니다');
+					}
 				}
-			}
-		});
+			});
+		}
+		else{ // 루틴이면
+			$.ajax({
+				type : "get",
+				url : "/sixone/schedule.updateRoutine",
+				data : {
+					"subCalendarNo" : subCalendarNo,
+					"start" : start
+				},
+				success : function(response) {
+					if (response == 1) {
+						alert('일정이 변경되었습니다');
+					}
+				}
+			});
+			
+		}
+		
     	
     },
     // 이벤트 가져올때 루틴 사이즈 늘려주는곳

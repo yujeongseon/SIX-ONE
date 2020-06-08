@@ -243,7 +243,9 @@
 					<div class="schedule text-left animate-box">
 						<div class="col-md-12 ">
 						<span style="font-size:30px;" id="infoTitle"></span>
-						<button style="float: right;"onclick="javascript:cancelSubscribe()">구독취소</button>
+						<button id="cancel_btn" style="float: right;"onclick="javascript:cancelSubscribe()">구독취소</button>
+						<button id="delete_btn" style="float: right; display: none;"onclick="javascript:deleteSubscribe()">삭제</button>
+						<input type="hidden" />	
 							<div class="routine" >
 								<div class="col-md-1 week">
 									<div class="routine-header">1일차</div>
@@ -379,6 +381,7 @@
 	$('.fc-event').on('mouseover',function(){
 		var title = $(this).html();
 		var routineNo = $(this).children().first().val();
+		var subscribeNo = $(this).children().eq(1).val();
 		var callFunction = function(){
 		
 			//값 초기화
@@ -389,7 +392,7 @@
 			$('#routine-5day').html('');
 			$('#routine-6day').html('');
 			$('#routine-7day').html('');
-			
+			$('#cancel_btn').val(subscribeNo);
 			
 			// 마우스 오버시
 			$.ajax({
@@ -452,6 +455,8 @@
 			
 			
 			$('#infoTitle').html(title);
+			$('#cancel_btn').show();
+			$('#delete_btn').hide();
 			
 			$('#eventModal2').modal('show');
 			
@@ -467,7 +472,7 @@
     });
 	
 	$('#eventModal2').on('click',function(){
-		$(this).modal('hide');
+		//$(this).modal('hide');
 		
 	});
 	$(window).scroll(function(){
@@ -578,8 +583,29 @@
     }
 	
 	function cancelSubscribe(){
-		confirm('정말로 취소하시겠습니까?');
-		$('#eventModal2').modal('show');
+		subscribeNo = $('#cancel_btn').val()
+		if(confirm('달력에 추가된 루틴도 모두 지워집니다\r\n정말로 취소하시겠습니까?')){
+			
+			$.ajax({
+		        type: "get",
+		        url: "/sixone/subscribe.cancel",
+		        data: {
+		        	'subscribeNo':subscribeNo
+		        },
+		        success: function (response) {
+		            alert('구독이 취소되었습니다');
+		            location.replace("<c:url value='/schedule.do'/>");
+		        },
+		        error:function(request,error){
+						console.log('상태코드:',request.status);
+						console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
+						console.log('에러:',error);
+					
+					}
+		      });
+			
+		}
+		
 		
 	}
 	

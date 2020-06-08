@@ -41,10 +41,18 @@ public class CalendarServiceImpl implements CalendarService {
 	public int update(Map map) {
 		return dao.update(map);
 	}
+	
+	public int updateCalendarRoutine(Map map) {
+		return dao.updateCalendarRoutine(map);
+	}
 
 	@Override
 	public int delete(Map map) {
 		return dao.delete(map);
+	}
+	
+	public int deleteCalendarRoutine(Map map) {
+		return dao.deleteCalendarRoutine(map);
 	}
 
 	@Override

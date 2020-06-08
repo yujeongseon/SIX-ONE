@@ -46,8 +46,7 @@ public class SubscribeDAO implements SubscribeService {
 
 	@Override
 	public int delete(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlMapper.delete("subscribeDelete", map);
 	}
 	
 
