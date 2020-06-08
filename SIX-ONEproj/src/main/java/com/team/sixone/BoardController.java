@@ -4,10 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Vector;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.team.sixone.BoardDAO;
 
@@ -36,8 +39,6 @@ public class BoardController {
 		private int pageSize=3;
 		
 		private int blockPage=3;
-		
-		
 		
 	//글 불러오기 페이징]
 		@RequestMapping("/freeboard.do")
@@ -112,21 +113,23 @@ public class BoardController {
 	}
 	
 	
-//	@RequestMapping(value="/WriteOK.do",method = RequestMethod.POST)
-//	//커맨드 객체 사용
-//	public String upload(HttpServletRequest req,@RequestParam Map map,MultipartRequest meq) {//throws IllegalStateException, IOException
-//		BoardDAO dao = new BoardDAO(req.getServletContext());
-//		
-//		int successorfail;
-//		System.out.println(meq.getFile("title"));
-//		
-//		successorfail=dao.write(map);
-//		
-//		if(successorfail==0) System.out.println("실패");
-//		else System.out.println("성공");
-//		
-//		return "/freeboard.tiles";
-//	}
+	
+	@RequestMapping(value="/WriteOK.do", method=RequestMethod.POST)
+	public void upload(Locale locale, Model model, HttpServletRequest req, 
+			 HttpServletResponse resp) throws ServletException, IOException {
+		WriteTB dao = new WriteTB();
+		
+		
+		dao.upload(req, resp, req.getSession().getServletContext());
+		
+		
+
+		resp.sendRedirect("/sixone/freeboard.do");
+
+
+		
+		//return "/TimeLine.tiles:for";
+	}
 	
 	//목록으로 이동]
 	@RequestMapping("/FileUpDown/List.do")
