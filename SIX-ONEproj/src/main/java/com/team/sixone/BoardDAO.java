@@ -21,11 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-
-
-
-
-
 public class BoardDAO {
 
 	//[멤버변수]
@@ -94,13 +89,13 @@ public class BoardDAO {
 				while(rs.next()) {
 					BoardDTO dto = new BoardDTO();
 					dto.setContent(rs.getString(3));
-					dto.setId(rs.getString(7));
+					dto.setId(rs.getString(8));
 					dto.setBoard_no(rs.getString(1));
 					dto.setCreate_at(rs.getDate(4));
 					dto.setTitle(rs.getString(2));
 					dto.setCategory(rs.getString(6));
 					dto.setImage_name(rs.getString(5));
-					dto.setVisitcount(rs.getString(8));
+					dto.setCount(rs.getString(7));
 					dto.setName(rs.getString(9));				
 					list.add(dto);
 				}
@@ -113,7 +108,7 @@ public class BoardDAO {
 		public int Count(int count,String no) {
 			int affected=0;
 			
-			String sql="UPDATE board SET visitcount=? WHERE board_no=?";
+			String sql="UPDATE board SET count=? WHERE board_no=?";
 			try {
 				psmt=conn.prepareStatement(sql);
 				psmt.setInt(1, count);
@@ -127,24 +122,46 @@ public class BoardDAO {
 		}
 		
 		public BoardDTO selectone(String no) {
-			BoardDTO dto=null;
+			BoardDTO dto=new BoardDTO();
+			String sql="SELECT * FROM board b INNER JOIN member m ON b.id=m.id WHERE board_no=?";
+			try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, no);
+				rs= psmt.executeQuery();
+				if(rs.next()) {
+					
+					dto.setBoard_no(rs.getString(1));
+					dto.setId(rs.getString(8));
+					dto.setTitle(rs.getString(2));
+					dto.setContent(rs.getString(3));
+					dto.setImage_name(rs.getString(5));
+					dto.setCategory(rs.getString(6));
+					int count= rs.getInt(7);
+					count++;
+					Count(count, no);
+					dto.setCount(rs.getString(7));
+					dto.setCreate_at(rs.getDate(4));
+					dto.setName(rs.getString(11));
+				}
+			} catch (Exception e) {e.printStackTrace();}
+			return dto;
+		}///////////selectOne
+		public BoardDTO updateone(String no) {
+			BoardDTO dto=new BoardDTO();
 			String sql="SELECT * FROM board WHERE board_no=?";
 			try {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, no);
 				rs= psmt.executeQuery();
 				if(rs.next()) {
-					dto = new BoardDTO();
 					dto.setBoard_no(rs.getString(1));
-					dto.setId(rs.getString(7));
+					//dto.setId(rs.getString(8));
 					dto.setTitle(rs.getString(2));
 					dto.setContent(rs.getString(3));
 					dto.setImage_name(rs.getString(5));
-					int count= rs.getInt(8);
-					count++;
-					Count(count, no);
-					dto.setVisitcount(rs.getString(8));
-					dto.setCreate_at(rs.getDate(4));
+					dto.setCategory(rs.getString(6));
+					//dto.setCreate_at(rs.getDate(4));
+					//dto.setName(rs.getString(11));
 				}
 			} catch (Exception e) {e.printStackTrace();}
 			return dto;
@@ -176,7 +193,7 @@ public class BoardDAO {
 		//글쓰기
 		public int write(String category, String title, String filename, String content, String id) {///글쓰기
 			int affected = 0;
-			String sql="INSERT INTO board VALUES(45,?,?,sysdate,?,?,?,'0')";
+			String sql="INSERT INTO board VALUES(SEQ_board.nextval,?,?,sysdate,?,?,'0',?)";
 			try {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, title);
@@ -185,34 +202,60 @@ public class BoardDAO {
 				psmt.setString(4,category);//카테고리
 				psmt.setString(5, id);
 				affected=psmt.executeUpdate();	
+				System.out.println("쿼리까지함");
 			} catch (Exception e) {e.printStackTrace();}
 			return affected;
 		}//////////글쓰기
 		
-		public int update(Map map) {///글쓰기
+		public int update(String category, String title, String filename, String content,String no) {///수정
 			int affected = 0;
-			String sql="INSERT INTO board VALUES(SEQ_BOARD.nextval,?,?,sysdate,?,?,?,'0')";
+			String sql="UPDATE board SET category=?,title=?,image_name=?,content=? where board_no=?";
 			try {
 				psmt = conn.prepareStatement(sql);
-				psmt.setString(1, map.get("title").toString());
-				psmt.setString(2, map.get("content").toString());
-				psmt.setString(3, map.get("fileup").toString());//사진명
-				psmt.setString(4,map.get("category").toString());//카테고리
-				psmt.setString(5, map.get("id").toString());
+				psmt.setString(2, title);
+				psmt.setString(4, content);
+				psmt.setString(3, filename);//사진명
+				psmt.setString(1,category);//카테고리
+				psmt.setString(5, no);
 				affected=psmt.executeUpdate();	
-			} catch (SQLException e) {e.printStackTrace();}
+				System.out.println("수정함함");
+			} catch (Exception e) {e.printStackTrace();}
 			return affected;
 		}//////////글쓰기
 		
+		public int delete(String no) {
+			int affected=0;
+			String sql="DELETE FROM board WHERE board_no=?";
+			try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, no);
+				rs= psmt.executeQuery();
+				affected=psmt.executeUpdate();
+			} catch (Exception e) {e.printStackTrace();}
+			
+			
+			return affected;
+		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
+		public BoardDTO toupdate(String no) {
+			BoardDTO dto=new BoardDTO();
+			String sql="SELECT * FROM board WHERE board_no=?";
+			try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, no);
+				rs= psmt.executeQuery();
+				if(rs.next()) {
+					
+					dto.setBoard_no(rs.getString(1));
+					dto.setId(rs.getString(8));
+					dto.setTitle(rs.getString(2));
+					dto.setContent(rs.getString(3));
+					dto.setImage_name(rs.getString(5));
+					dto.setCategory(rs.getString(6));
+				}
+			} catch (Exception e) {e.printStackTrace();}
+			return dto;
+		}///////////selectOne
 		
 	
 }

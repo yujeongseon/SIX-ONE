@@ -191,7 +191,7 @@ a:link {
 												</td>
 												<td>${item.name}</td>
 												<td>${item.create_at}</td>
-												<td>${item.visitcount}</td>
+												<td>${item.count}</td>
 												<td>0</td>
 											</tr>
 										</c:forEach>

@@ -10,12 +10,12 @@ public class BoardDTO {
 	private String image_name;
 	private String category;
 	private String id;
-	private String visitcount;
+	private String count;
 	private String name;
 
 	public BoardDTO() {}
 	public BoardDTO(String board_no, String title, String content, Date create_at, String image_name, String category,
-			String id, String name,String visitcount) {
+			String id, String name,String count) {
 		
 		this.board_no = board_no;
 		this.title = title;
@@ -25,7 +25,7 @@ public class BoardDTO {
 		this.category = category;
 		this.id = id;
 		this.name = name;
-		this.visitcount = visitcount;
+		this.count = count;
 	}
 
 	
@@ -95,12 +95,12 @@ public class BoardDTO {
 	}
 	
 
-	public String getVisitcount() {
-		return visitcount;
+	public String getcount() {
+		return count;
 	}
 
-	public void setVisitcount(String visitcount) {
-		this.visitcount = visitcount;
+	public void setCount(String count) {
+		this.count = count;
 	}
 
 	

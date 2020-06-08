@@ -55,9 +55,10 @@ public class WriteTB {
 			String id = mr.getParameter("id");
 			String title = mr.getParameter("title");
 			String category = mr.getParameter("category");
+			String no = mr.getParameter("no");
 			//얘는정상작동
 			String filename = mr.getFilesystemName("upload");
-			
+			String WorU = mr.getParameter("WorU");
 			
 			
 			System.out.println("inscontent"+ content);
@@ -68,8 +69,11 @@ public class WriteTB {
 			BoardDAO dao = new BoardDAO(req.getSession().getServletContext());
 			
 			//String AAAADir = "resources/uploadimage/"; //강제주입한 주소 테스트
+			if(WorU.equals("W")) 
+				dao.write(category,title, filename, content, id);
+			else 
+				dao.update(category,title, filename, content,no);
 			
-			dao.write(category,title, filename, content, id);
 			
 			String image = mr.getParameter("upload");
 			buffer.append(image);

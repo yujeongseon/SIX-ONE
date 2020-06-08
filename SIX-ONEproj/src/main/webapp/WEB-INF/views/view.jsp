@@ -96,8 +96,8 @@
 					<div class="side">사이드 적는곳</div>
 				</div>
 
-				<div class="row">
-			<div class="col-md-offset-2 col-md-8">
+				
+			<div>
 			
 				<table class="table table-bordered table-striped">
 					<tr>
@@ -110,11 +110,11 @@
 					</tr>
 					<tr>
 						<th class="text-center">작성자</th>
-						<td>${record.id}</td>
+						<td>${record.name}</td>
 					</tr>
 					<tr>
 						<th class="text-center">조회수</th>
-						<td>${record.visitcount}</td>
+						<td>${record.count}</td>
 					</tr>
 					
 					<tr>
@@ -128,30 +128,150 @@
 						<td colspan="2">${record.content}</td>
 					</tr>				
 				</table>
-			</div>		
+				
+			
 		</div>
 				
 			<!-- 검색용 UI -->
-	<div class="row">
-			<div class="col-md-offset-2 col-md-8">
-				<ul id="pillMenu" class="nav nav-pills center-block" style="width:200px;margin-bottom:10px">
+	
+			<div>
+				<ul id="pillMenu" class="nav nav-pills" style="margin-bottom:10px">
+				<li><a href="<c:url value='/freeboard.do?nowPage=${param.nowPage}'/>" class="btn btn-success" >목록</a></li>
 				<c:choose>
 				<c:when test="${sessionScope.id == record.id}">
-					<li><a href="<c:url value='/Update.do?nowPage=${param.nowPage}&title=${record.title}&content=${record.content}&no=${record.board_no}'/>" class="btn btn-success">수정</a></li>
-					<li><a href="<c:url value='/DataRoom/Delete.work?nowPage=${param.nowPage}&no=${record.board_no}'/>" class="btn btn-success">삭제</a></li>
+					<li style="float: right"><a href="<c:url value='/Update.do?nowPage=${param.nowPage}&&no=${record.board_no}'/>" class="btn btn-success">수정</a></li>
+					<li style="float: right"><a href="<c:url value='/delete.do?nowPage=${param.nowPage}&no=${record.board_no}'/>" class="btn btn-success">삭제</a></li>
 				</c:when>
 				<c:when test="${sessionScope.id eq 'admin'}">
-					<li><a href="<c:url value='/Update.do?nowPage=${param.nowPage}&title=${record.title}&content=${record.content}&no=${record.board_no}'/>" class="btn btn-success">수정</a></li>
-					<li><a href="<c:url value='/DataRoom/Delete.work?nowPage=${param.nowPage}&no=${record.board_no}'/>" class="btn btn-success">삭제</a></li>
+					<li style="float: right"><a href="<c:url value='/Update.do?nowPage=${param.nowPage}&no=${record.board_no}'/>" class="btn btn-success">수정</a></li>
+					<li style="float: right"><a href="<c:url value='/delete.do?nowPage=${param.nowPage}&no=${record.board_no}'/>" class="btn btn-success">삭제</a></li>
 				</c:when>
-				
 				</c:choose>
-					<li><a href="<c:url value='/freeboard.do?nowPage=${param.nowPage}'/>" class="btn btn-success" >목록</a></li>
+					
 				</ul>
 			</div>
-		</div>
-			</div>
+		
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          루틴 보기
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+       <div class="row">
+					<div class="schedule text-center animate-box">
+						<div class="col-md-12">
+							<div class="routine" >
+								<div class="col-md-1 week">
+									<div>월요일</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-arm"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>팔굽혀펴기</span></p>
+									</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>턱걸이</span></p>
+									</div>
+								</div>
 			
+								<div class="col-md-1 week">
+									<div>화요일</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>팔굽혀펴기</span></p>
+									</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>턱걸이</span></p>
+									</div>
+								</div>
+			
+								<div class="col-md-1 week">
+									<div>수요일</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>팔굽혀펴기</span></p>
+									</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>턱걸이</span></p>
+									</div>
+								</div>
+			
+								<div class="col-md-1 week">
+									<div>목요일</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>팔굽혀펴기</span></p>
+									</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>턱걸이</span></p>
+									</div>
+								</div>
+			
+								<div class="col-md-1 week">
+									<div>금요일</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>팔굽혀펴기</span></p>
+									</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>턱걸이</span></p>
+									</div>
+								</div>
+			
+								<div class="col-md-1 week">
+									<div>토요일</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>팔굽혀펴기</span></p>
+									</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>턱걸이</span></p>
+									</div>
+								</div>
+			
+								<div class="col-md-1 week">
+									<div>일요일</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>팔굽혀펴기</span></p>
+									</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>턱걸이</span></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+      </div>
+    </div>
+  </div>
+</div>
+			</div>
 			</div>
 			
 		<!-- 카루셀 -->

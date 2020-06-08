@@ -10,21 +10,21 @@
 					<div class="bbs_title">
 						<p>${sessionScope.id} 아이디 확인 걍 씀</p>
 					</div>
-					<div class="desc">글적는곳</div>
-					<div class="side">사이드 적는곳</div>
+					<div class="desc">수정하자</div>
+					<div class="side">글수정해 적는곳</div>
 				</div>
 	<div class="row">
 		<div class="col-md-12">
 			<form class="form-horizontal" method="post" encType="multipart/form-data"
-				action="<c:url value='/WriteOK.do'/>">
+				action="<c:url value='/UpdateOK.do'/>">
 				<div class="form-group">
 				<label class="col-sm-2 control-label">카테고리</label>
 				<div class="col-sm-2">
 				<select name="category" class="form-control">
-						<option value="free">자유게시판</option>
-						<option value="nobody">익명게시판</option>
+						<option value="free"<c:if test="${record.category=='free'}">selected</c:if>>자유게시판</option>
+						<option value="nobody"<c:if test="${record.category=='nobody'}">selected</c:if>>익명게시판</option>
 						<c:if test="${sessionScope.id eq 'admin'}">
-						<option value="notice">공지</option>
+						<option value="notice"<c:if test="${record.category=='notice'}">selected</c:if>>공지</option>
 						</c:if>
 					</select>
 					</div>
@@ -33,17 +33,18 @@
 					<label class="col-sm-2 control-label">제목</label>
 					<div class="col-sm-4">
 						<input type="text" class="form-control" name="title"
-							placeholder="제목을 입력하세요">
+							placeholder="제목을 입력하세요" value="${record.title}">
 					</div>
 				</div>
 				<div class="form-group">
 				<label class="col-sm-2 control-label">파일첨부</label>
 				<div class="col-sm-4">
-					<input type="file" name="upload"/>
+					<input type="file" name="upload" value="${record.image_name}">
 				</div>
 				</div>
-						<input type="hidden" name="id" value="${sessionScope.id}" >
-						<input type="hidden" name="WorU" value="W">
+				<input type="hidden" name="id" value="${sessionScope.id}" >
+				<input type="hidden" name="no" value="${record.board_no}" >
+				<input type="hidden" name="WorU" value="U">
 				<div class="form-group">
 					<label class="col-sm-2 control-label">내용</label>
 					<!-- 중첩 컬럼 사용 -->
@@ -51,7 +52,7 @@
 						<div class="row">
 							<div class="col-sm-8">
 								<textarea class="form-control" name="content" rows="5"
-									placeholder="내용 입력하세요"></textarea>
+									placeholder="내용 입력하세요">${record.content}</textarea>
 							</div>
 						</div>
 					</div>
@@ -59,7 +60,7 @@
 
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-success">등록</button>
+						<button type="submit" class="btn btn-success">수정</button>
 					</div>
 				</div>
 			</form>
