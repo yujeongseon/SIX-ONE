@@ -94,7 +94,7 @@
 
 			<div class="col-md-3 col-sm-3 animate-box">
 				<!--칼로리 계산기랑 연결-->
-				<a href="http://u-health.dobong.go.kr/hcal/nutrition.asp">
+				<a href="#">
 					<div class="trainers-entry">
 						<div class="trainer-img" style="background-image: url(https://cdn.pixabay.com/photo/2016/04/15/17/20/bread-and-butter-1331452_960_720.jpg)"></div>
 						<div class="desc">
