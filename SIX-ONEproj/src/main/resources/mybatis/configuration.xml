@@ -7,9 +7,20 @@
 
 <configuration>
 	
+	<!-- db와 카멜케이스 연동되게 -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	
+	
 	<!-- 자바빈 별칭 -->
 	<typeAliases>
 		<!-- <typeAlias alias="oneMemoDTO" type="com.kosmo.onememo.service.OneMemoDTO"/> -->
+		<typeAlias alias="calendarDTO" type="com.team.sixone.service.CalendarDTO"/>
+		<typeAlias alias="exerciseDTO" type="com.team.sixone.service.ExerciseDTO"/>
+		<typeAlias alias="subscribeDTO" type="com.team.sixone.service.SubscribeDTO"/>
+		<typeAlias alias="routineDTO" type="com.team.sixone.service.RoutineDTO"/>
+		
 		<!-- memoCommentDTO 는 결과 Map 에 저장하기때문에 빈 등록 필요 없음 -->
 	</typeAliases>
 	
@@ -18,7 +29,11 @@
 	
 	<!-- 매퍼파일 정보 설정 -->
 	<mappers>
-		<!-- <mapper resource="mybatis/OneMemo.xml" /> -->
+		<mapper resource="mybatis/calendar.xml" />
+		<mapper resource="mybatis/exercise.xml" />
+		<mapper resource="mybatis/subscribe.xml" />
+		<mapper resource="mybatis/routine.xml" />
+		
 		
 	</mappers>
 </configuration>

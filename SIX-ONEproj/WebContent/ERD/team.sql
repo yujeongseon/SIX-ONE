@@ -8,6 +8,7 @@ DROP TABLE play_exe CASCADE CONSTRAINTS;
 DROP TABLE rou_exe CASCADE CONSTRAINTS;
 DROP TABLE exercise CASCADE CONSTRAINTS;
 DROP TABLE note CASCADE CONSTRAINTS;
+DROP TABLE sub_calendar CASCADE CONSTRAINTS;
 DROP TABLE subscribe CASCADE CONSTRAINTS;
 DROP TABLE routine CASCADE CONSTRAINTS;
 DROP TABLE timeilne_like CASCADE CONSTRAINTS;
@@ -33,13 +34,29 @@ DROP SEQUENCE SEQ_TIMELINE_COMMENTS;
 
 /* Create Sequences */
 
-CREATE SEQUENCE SEQ_BOARD;
-CREATE SEQUENCE SEQ_EXERCISE;
-CREATE SEQUENCE SEQ_NOTE;
-CREATE SEQUENCE SEQ_PROTEIN;
-CREATE SEQUENCE SEQ_ROUTINE;
-CREATE SEQUENCE SEQ_TIMELINE;
-CREATE SEQUENCE SEQ_TIMELINE_COMMENTS;
+CREATE SEQUENCE SEQ_BOARD
+nocache
+nocycle
+;
+CREATE SEQUENCE SEQ_EXERCISE
+nocache
+nocycle;
+CREATE SEQUENCE SEQ_NOTE
+nocache
+nocycle;
+CREATE SEQUENCE SEQ_PROTEIN
+nocache
+nocycle;
+CREATE SEQUENCE SEQ_ROUTINE
+nocache
+nocycle;
+CREATE SEQUENCE SEQ_TIMELINE
+nocache
+nocycle;
+CREATE SEQUENCE SEQ_TIMELINE_COMMENTS
+nocache
+nocycle;
+
 
 
 
@@ -163,10 +180,19 @@ CREATE TABLE rou_exe
 
 CREATE TABLE subscribe
 (
+	subscribe_no number NOT NULL,
 	routine_no number NOT NULL,
 	id varchar2(20) NOT NULL,
-	start_date date DEFAULT null,
-	end_date date DEFAULT null
+	PRIMARY KEY (subscribe_no)
+);
+
+
+CREATE TABLE sub_calendar
+(
+	sub_calendar_no number NOT NULL,
+	start_date date DEFAULT SYSDATE,
+	subscribe_no number NOT NULL,
+	PRIMARY KEY (sub_calendar_no)
 );
 
 
@@ -294,6 +320,12 @@ ALTER TABLE rou_exe
 ALTER TABLE subscribe
 	ADD FOREIGN KEY (routine_no)
 	REFERENCES routine (routine_no)
+;
+
+
+ALTER TABLE sub_calendar
+	ADD FOREIGN KEY (subscribe_no)
+	REFERENCES subscribe (subscribe_no)
 ;
 
 

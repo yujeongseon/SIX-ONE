@@ -43,7 +43,7 @@
 					<div class="row">
 
 						<div class="col-md-2">
-							<div id="colorlib-logo"><a href="<c:url value='/'/>">SIX-ONE</a></div>
+							<div id="colorlib-logo" ><a style="font-size:30px;"href="<c:url value='/'/>">SIX-ONE</a></div>
 						</div>
 						<div class="col-md-10 text-right menu-1">
 							<ul >
@@ -52,9 +52,9 @@
 									<a href="<c:url value='/exercise.do'/>">운동</a>
 									<ul class="dropdown">
 										<li><a href="<c:url value='/exercise.do'/>">운동</a></li>
-										<li><a href="#">운동1</a></li>
-										<li><a href="#">Muscle Classes</a></li>
-										<li><a href="#">Fitness Classes</a></li>
+										<li><a href="<c:url value='/challenge.do'/>">챌린지</a></li>
+										<li><a href="<c:url value='/protein.do'/>">보충제</a></li>
+										<li><a href="<c:url value='/food.do'/>">식단</a></li>
 										<li><a href="#">Body Building</a></li>
 									</ul>
 								</li>

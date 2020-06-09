@@ -1,6 +1,9 @@
 //SELECT 색 변경
-$('#edit-color').change(function () {
-    $(this).css('color', $(this).val());
+//$('#exe-part').css('color','#d92027');
+
+
+$('#exe-part').change(function () {
+    $(this).css('color', $('#exe-part option:selected').css('color'));
 });
 
 
