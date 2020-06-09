@@ -10,9 +10,16 @@ public class CalendarDTO {
 	private String title;
 	private String exercisePartials;
 	private String routineNo;
+	private String subCalendarNo;
 	
 	
 	
+	public String getSubCalendarNo() {
+		return subCalendarNo;
+	}
+	public void setSubCalendarNo(String subCalendarNo) {
+		this.subCalendarNo = subCalendarNo;
+	}
 	public String getId() {
 		return id;
 	}

@@ -392,6 +392,7 @@
 			$('#routine-5day').html('');
 			$('#routine-6day').html('');
 			$('#routine-7day').html('');
+			
 			$('#cancel_btn').val(subscribeNo);
 			
 			// 마우스 오버시
@@ -582,6 +583,7 @@
 	  		
     }
 	
+	// 구독취소
 	function cancelSubscribe(){
 		subscribeNo = $('#cancel_btn').val()
 		if(confirm('달력에 추가된 루틴도 모두 지워집니다\r\n정말로 취소하시겠습니까?')){
@@ -608,6 +610,45 @@
 		
 		
 	}
+	
+	// 구독삭제
+	function deleteSubscribe(){
+		subCalendarNo = $('#delete_btn').val()
+		
+		
+		if(confirm('이 루틴을 달력에서 제거하시겠습니까?')){
+			
+			$.ajax({
+		        type: "get",
+		        url: "/sixone//schedule.deleteRoutine",
+		        data: {
+		        	'subCalendarNo':subCalendarNo
+		        },
+		        success: function (response) {
+		            alert('삭제되었습니다');
+		            calendar.refetchEvents();
+		            $('#eventModal2').modal('hide');
+		        },
+		        error:function(request,error){
+						console.log('상태코드:',request.status);
+						console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
+						console.log('에러:',error);
+					
+					}
+		      });
+			
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

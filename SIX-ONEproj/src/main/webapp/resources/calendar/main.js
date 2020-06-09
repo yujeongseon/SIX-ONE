@@ -111,9 +111,13 @@
 			$('#routine-6day').html('');
 			$('#routine-7day').html('');
 			
+			//구독번호 받기
+			var subCalendarNo = info.event.extendedProps.subCalendarNo;
+			$('#delete_btn').val(subCalendarNo);
+			
 			//루틴번호 받기
 			var routineNo = info.event.extendedProps.routineNo;
-			
+			console.log(info.event.extendedProps);
 			//ajax 로 루틴 받기
 			$.ajax({
 		        type: "get",
@@ -185,7 +189,7 @@
     eventDrop: function(eventDropInfo){
 		var start = moment(eventDropInfo.event.start).format('YYYY-MM-DD');
 		var routineNo = eventDropInfo.event.extendedProps.routineNo;
-		var subCalendarNo = eventDropInfo.event.id;
+		var subCalendarNo = eventDropInfo.event.extendedProps.subCalendarNo;
 		if(routineNo == null){ // 운동이면
 			$.ajax({
 				type : "get",
@@ -222,7 +226,10 @@
     },
     // 이벤트 가져올때 루틴 사이즈 늘려주는곳
     eventReceive:function(info){
-        info.event.setEnd(moment(info.event.start).add(7,'days').format('YYYY-MM-DD'));
+        //info.event.setEnd(moment(info.event.start).add(7,'days').format('YYYY-MM-DD'));
+    	//중복 이벤트 지우기
+    	info.event.remove();
+    	
     },
     // 드랍시 실제로 루틴 저장
     drop: function(dropInfo){
@@ -237,6 +244,8 @@
         },
         success: function (response) {
           alert('루틴이 추가되었습니다');
+          calendar.refetchEvents();
+          
         }
       });
     },

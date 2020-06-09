@@ -10,7 +10,7 @@
 	</select>
 	
 	 <select id="calendarSelectRoutine" parameterType="java.util.Map" resultType="calendarDTO">
- 		select s.subscribe_no id, start_date as "start", start_date+7 as "end", routine_name title, s.routine_no 
+ 		select s.subscribe_no id, start_date as "start", start_date+7 as "end", routine_name title, s.routine_no, sub_calendar_no 
  		from subscribe s join sub_calendar sc on s.subscribe_no = sc.subscribe_no 
  			join routine r on s.routine_no = r.routine_no 
  		where s.id = #{id}
@@ -32,7 +32,7 @@
 	</delete>
 	
 	<delete id="deleteCalendarRoutine" parameterType="java.util.Map">
-		delete sub_calendar where subscribe_no = #{subscribeNo}
+		delete sub_calendar where sub_calendar_no = #{subCalendarNo}
 	</delete>
 	
 	<insert id="calendarInsert" parameterType="java.util.Map">

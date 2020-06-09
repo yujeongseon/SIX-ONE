@@ -31,7 +31,6 @@ var editEvent = function (event,calendar) {
         var start = moment(editStart.val()).format('YYYY-MM-DD');
         var backgroundColor = event.backgroundColor;
         
-        console.log(backgroundColor);
         event.setProp('title',title);
         event.setExtendedProp('count',count);
         event.setExtendedProp('setCount',setCount);
@@ -55,11 +54,12 @@ var editEvent = function (event,calendar) {
                 'backgroundColor': backgroundColor
             },
             success: function (response) {
-                alert('수정되었습니다.')
+                alert('수정되었습니다.');
+                calendar.refetchEvents();
             }
         });
         
-//        calendar.refetchEvents();
+        
 
     });
 
