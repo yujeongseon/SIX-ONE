@@ -101,8 +101,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="<c:url value='/resources/LoginCSS/js/main.js'/>"></script>
 <!-- 로그인창 스크립트 -->
 
+<!-- Mail스크립트 건들 ㄴㄴ -->
 
+<!-- Mail스크립트 건들 ㄴㄴ -->
 
+<!-- 
+<script src="<c:url value='/resources/MailCSS/vendor/jquery/jquery-3.2.1.min.js'/>"></script>
+<script src="<c:url value='/resources/MailCSS/vendor/bootstrap/js/bootstrap.min.js'/>"></script>
+<script src="<c:url value='/resources/MailCSS/vendor/bootstrap/js/popper.js'/>"></script>
+<script src="<c:url value='/resources/MailCSS/js/main.js'/>"></script>
+<script src="<c:url value='/resources/MailCSS/vendor/select2/select2.min.js'/>"></script>
+ -->
 
 
 	</body>

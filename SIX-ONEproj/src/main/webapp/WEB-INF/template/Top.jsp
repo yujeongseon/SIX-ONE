@@ -16,8 +16,16 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/LoginCSS/vendor/select2/select2.min.css'/>" >
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/LoginCSS/css/util.css'/>" >
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/LoginCSS/css/main.css'/>" >  
-    
 <!-- 로그인폼 css링크끝 -->
+
+
+<!--<link rel="stylesheet" type="text/css" href="<c:url value='/resources/MailCSS/css/util.css'/>"/>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/MailCSS/css/main.css'/>"/>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/MailCSS/vendor/select2/select2.min.css'/>"/>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/MailCSS/vendor/animate/animate.css'/>"/>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/MailCSS/fonts/font-awesome-4.7.0/css/font-awesome.min.css'/>"/>
+	<link rel="icon" type="image/png" href="<c:url value='/resources/MailCSS/images/icons/favicon.ico'/>"/>
+	  -->
 	<title>우리 사이트 이름 정해야함</title>
 	
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900" rel="stylesheet">
