@@ -61,7 +61,6 @@
 			  	</ul>
 		  	</div>
 		</aside>
-		
 		<div id="colorlib-intro">
 			<div class="container">
 				<div class="row">
