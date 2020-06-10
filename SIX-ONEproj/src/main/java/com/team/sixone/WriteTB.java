@@ -27,7 +27,7 @@ public class WriteTB {
 		// 2-1] 업로드할 서버의 물리적 디렉토리를 얻어옴
 	//	String saveDirectory = application.getRealPath("/Upload");
 		
-		String saveDirectory = req.getServletContext().getRealPath("/uploadimage");//강제주소주입
+		String saveDirectory = req.getServletContext().getRealPath("/resources/uploadimage");//강제주소주입
 		System.out.println(saveDirectory);
 		int maxPostSize = 1024 * 500; // 500Kb
 		String encoding = "UTF-8";

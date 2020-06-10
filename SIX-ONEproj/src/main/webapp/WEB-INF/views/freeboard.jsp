@@ -6,6 +6,20 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/vendor/bootstrap/css/bootstrap.min.css"/>'>
+<!--===============================================================================================-->
+	<link rel="stylesheet"href='<c:url value="/resources/Table_Responsive/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>'>
+<!--===============================================================================================-->
+	<link rel="stylesheet"  href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet"  href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet"  href="css/util.css">
+	<link rel="stylesheet"  href="css/main.css">
 	<meta charset="utf-8">
 	<title>모두다짐</title>
 	
@@ -59,6 +73,7 @@
 	
 	
 	</script>
+	<!-- 
 	<style>
 .button {
 	background-color: black;
@@ -85,7 +100,9 @@ a:link {
 	color: black;
 	text-decoration: none;
 }
+ 
 </style>
+-->
 	<style type="text/css">
 </style>
 
@@ -159,14 +176,16 @@ a:link {
 					</ul>
 						<table id="hell" class="table table-bordered table-hover text-center" style="color:black; font-family:sans-serif;" id="tab">
 						<thead >			
-							<tr class="ub-content"style="text-size:15px;  border-bottom-style:solid; border-bottom-color: black; border-top-style: solid; border-top-color: black">
-								<th class="col-md-1 text-center">번호</th>
-								<th class="text-center">제목</th>
-								<th class="col-md-2 text-center">작성자</th>
-								<th class="col-md-2 text-center">작성일</th>
-								<th class="col-md-1 text-center">조회수</th>
-								<th class="col-md-1 text-center">추천</th>
+							<tr class="table100-head"style="text-size:15px;  border-bottom-style:solid; border-bottom-color: black; border-top-style: solid; border-top-color: black">
+								<th class="column1">번호</th>
+								<th class="column2">제목</th>
+								<th class="column3">작성자</th>
+								<th class="column4">작성일</th>
+								<th class="column5">조회수</th>
+								<th class="column6">추천</th>
 							</tr>
+							</thead>
+							<tbody>
 									<c:if test="${empty list}" var="isEmpty">
 										<tr>
 											<td colspan="6">등록된 게시물이 없습니다.</td>
@@ -196,7 +215,7 @@ a:link {
 											</tr>
 										</c:forEach>
 									</c:if>
-								</thead>
+								</tbody>
 						</table>
 						<ul class="nav nav-pills">
 					<li class="active" style="background-color: white"><a href="<c:url value='/freeboard.do?id=dd'/>">자유게시판</a></li>
@@ -295,6 +314,13 @@ a:link {
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
 	</div>
 	
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
 	
 	</body>
 </html>
