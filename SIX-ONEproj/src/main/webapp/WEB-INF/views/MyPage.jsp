@@ -3,61 +3,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
-<style>
-table {
-	width: 100%;
-	border: 1px solid #444444;
-	border-collapse: collapse;
-}
-
-th, td {
-	border: 1px solid #444444;
-	text-align: center;
-	color: black;
-}
-
-th {
-	background-color: #bbdefb;
-}
-
-td {
-	background-color: #e3f2fd;
-}
-.modal-dialog{ 
-overflow-y: initial !important;
-}
-
-.modal-body{ 
-height: 100%; overflow-y: auto; 
-}
-
-#ui-id-2{
-height: 350%;
-}
-.modal-dialog{ 
-overflow-y: initial !important
- } 
- .modal-body{
-  height: 100%; overflow-y: auto;
-   }
-
-</style>
-
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/MyPage.css'/>" > 
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="<c:url value='/resources/js/MyPageScroll.js'/>"></script>
 
-<script>
-$( function() {
-    $( "#accordion" ).accordion({
-      collapsible: true
-    });
-  } );
-  
-$(document).ready(function () { $('head').append('<style type="text/css">.modal .modal-body {max-height: ' + ($('body').height() * .8) + 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>'); });
-
-
-</script>
+<!-- 시작 -->
 <aside id="colorlib-hero">
 	<div class="flexslider">
 		<ul class="slides">
@@ -126,7 +77,7 @@ $(document).ready(function () { $('head').append('<style type="text/css">.modal 
 			<div class="thumbnail">
 				<img class=img-circle
 					style="margin: 0 auto; height: 150px; width: 150px; margin-top: 50px; margin-bottom: 10px;"
-					src="resources/images/멸치.png" alt="resources/images/profile.jpg"
+					src="resources/images/멸치.png" alt="..."
 					onerror="this.src='resources/images/profile.jpg'">
 				<div class="caption">
 				<c:forEach items="${list}" var="item" varStatus="loop">
@@ -173,11 +124,7 @@ $(document).ready(function () { $('head').append('<style type="text/css">.modal 
 							</div>
 							</c:forEach>
 							
-					</div><!--  -->
-					
-					
-					
-					
+					</div>
 					
 					<div class="panel-footer">
 					<c:forEach items="${list}" var="item" varStatus="loop">
@@ -272,102 +219,116 @@ $(document).ready(function () { $('head').append('<style type="text/css">.modal 
 						<span style="color: black;" class="glyphicon glyphicon-comment"> ${item.name}님의채팅리스트</span>
 						</c:forEach>
 					</div>
-					<div style="overflow-y:scroll;height: 203px; ">
-					
-					<div class="panel-footer">
-					<div>
-						 <img class=img-circle style="margin: 0 auto; height: 70px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-						<span style="color: black; font-weight:bold; margin-left:10px; position: relative; bottom: 18px;">나길동</span>
-						<span style="position: relative;right: 56px; top: 13px; color: black;">가나다라마바사</span>
-					</div>
-					</div>
-					
-					
-					<div class="panel-footer">
-					<div>
-						 <img class=img-circle style="margin: 0 auto; height: 70px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-						<span style="color: black; font-weight:bold; margin-left:10px; position: relative; bottom: 18px;">나길동</span>
-						<span style="position: relative;right: 56px; top: 13px; color: black;">가나다라마바사</span>
-					</div>
-					</div>
-					
-					
-					
-					<div class="panel-footer">
-					<div>
-						 <img class=img-circle style="margin: 0 auto; height: 70px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-						<span style="color: black; font-weight:bold; margin-left:10px; position: relative; bottom: 18px;">나길동</span>
-						<span style="position: relative;right: 56px; top: 13px; color: black;">가나다라마바사</span>
-					</div>
-					</div>
-					
-					
-					
-					<div class="panel-footer">
-					<div>
-						 <img class=img-circle style="margin: 0 auto; height: 70px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-						<span style="color: black; font-weight:bold; margin-left:10px; position: relative; bottom: 18px;">나길동</span>
-						<span style="position: relative;right: 56px; top: 13px; color: black;">가나다라마바사</span>
-					</div>
-					</div>
-					
-					
-					<div class="panel-footer">
-					<div>
-						 <img class=img-circle style="margin: 0 auto; height: 70px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-						<span style="color: black; font-weight:bold; margin-left:10px; position: relative; bottom: 18px;">나길동</span>
-						<span style="position: relative;right: 56px; top: 13px; color: black;">가나다라마바사</span>
-					</div>
-					</div>
-					
-					
-					<div class="panel-footer">
-					<div>
-						 <img class=img-circle style="margin: 0 auto; height: 70px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-						<span style="color: black; font-weight:bold; margin-left:10px; position: relative; bottom: 18px;">나길동</span>
-						<span style="position: relative;right: 56px; top: 13px; color: black;">가나다라마바사</span>
-					</div>
-					</div>
-					
 					
 					
 					
 					
 					
 					<div class="panel-footer">
-						<span style="color: black;" class="glyphicon glyphicon-bed">
-						<a href="#" style="color: black; font-size: 1.0em" data-toggle="modal" data-target="#mailModal" id=""> 받은쪽지목록</a><span class="label label-success">2</span>
-						</span>
-						
-					
-						
-					</div>
-					
-					<div class="panel-footer">
-						<span style="color: black;" class="glyphicon glyphicon-send">
-						 <a href="#" style="color: black; font-size: 1.0em" data-toggle="modal" data-target="#mymailModal"> 보낸쪽지목록</a><span class="label label-info">4</span>
+						<span style="color: black;" class="glyphicon glyphicon-plus">
+						<a href="#" style="color: black; font-size: 1.0em" data-toggle="modal" data-target="#NewChatting"> 새로운채팅</a>
 						</span>
 					</div>
-				</div>
+					
+
+					<div class="box"style="overflow-y:scroll;height: 250px;">
+					
+					<!-- 채팅리스트 하나도 없을때 
+					<h3 style="text-align: center; padding-top: 110px; color: #DCDCDC">채팅방이 없습니다</h3>
+					 -->
+					
+					
+					
+					<div class="panel-footer" style="height:110px;">
+						 <img class=img-circle style="margin: 0 auto; height: 70px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="..." onerror="this.src='resources/images/profile.jpg'">				
+						<span style="color: black; font-weight:bold; position: relative; left:10px; bottom:19px;">나길동</span>
+						<span class="label label-danger"style="position: relative; bottom:21px; left:10px;">3</span><br/>
+						<span style="position: relative; left:53px; bottom:48px;">안녕하세요</span><br/>
+						<span style="position: relative; left:53px; bottom:45px;">2020-10-10 오후10:30</span>		
+					</div>
+					
+					<div class="panel-footer" style="height:110px;">
+						 <img class=img-circle style="margin: 0 auto; height: 70px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연1.jpg" alt="..." onerror="this.src='resources/images/profile.jpg'">				
+						<span style="color: black; font-weight:bold; position: relative; left:10px; bottom:19px;">나길동</span>
+						<span class="label label-danger"style="position: relative; bottom:21px; left:10px;">3</span><br/>
+						<span style="position: relative; left:53px; bottom:48px;">반갑습니다</span><br/>
+						<span style="position: relative; left:53px; bottom:45px;">2020-10-10 오후10:30</span>		
+					</div>
+					
+					<div class="panel-footer" style="height:110px;">
+						 <img class=img-circle style="margin: 0 auto; height: 70px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="..." onerror="this.src='resources/images/profile.jpg'">				
+						<span style="color: black; font-weight:bold; position: relative; left:10px; bottom:19px;">나길동</span>
+						<span class="label label-danger"style="position: relative; bottom:21px; left:10px;">3</span><br/>
+						<span style="position: relative; left:53px; bottom:48px;">하이요</span><br/>
+						<span style="position: relative; left:53px; bottom:45px;">2020-10-10 오후10:30</span>		
+					</div>
+					
+					<div class="panel-footer" style="height:110px;">
+						 <img class=img-circle style="margin: 0 auto; height: 70px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="..." onerror="this.src='resources/images/profile.jpg'">				
+						<span style="color: black; font-weight:bold; position: relative; left:10px; bottom:19px;">나길동</span>
+						<span class="label label-danger"style="position: relative; bottom:21px; left:10px;">3</span><br/>
+						<span style="position: relative; left:53px; bottom:48px;">가나다라마바사</span><br/>
+						<span style="position: relative; left:53px; bottom:45px;">2020-10-10 오후10:30</span>		
+					</div>
+					
+					<div class="panel-footer" style="height:110px;">
+						 <img class=img-circle style="margin: 0 auto; height: 70px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="..." onerror="this.src='resources/images/profile.jpg'">				
+						<span style="color: black; font-weight:bold; position: relative; left:10px; bottom:19px;">나길동</span>
+						<span class="label label-danger"style="position: relative; bottom:21px; left:10px;">3</span><br/>
+						<span style="position: relative; left:53px; bottom:48px;">가나다라마바사</span><br/>
+						<span style="position: relative; left:53px; bottom:45px;">2020-10-10 오후10:30</span>		
+					</div>
+					
+					
+					
+					<!-- 
+					<div class="panel-footer">
+						 <img class=img-circle style="margin: 0 auto; height: 70px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="..." onerror="this.src='resources/images/profile.jpg'">
+						<span style="color: black; font-weight:bold; margin-left:10px; position: relative; bottom: 18px;">나길동<span class="label label-danger" style="position: relative;bottom: 5px;left: 5px;">3</span></span>
+						<span style="position: relative;right: 80px; top: 13px;">가나다라마바사</span><br/>
+						<span style="position: relative; left: 56px; bottom: 10px;">2020-10-10 오후10:30</span>				
+					</div>
+					
+					<div class="panel-footer">
+						 <img class=img-circle style="margin: 0 auto; height: 70px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연1.jpg" alt="..." onerror="this.src='resources/images/profile.jpg'">
+						<span style="color: black; font-weight:bold; margin-left:10px; position: relative; bottom: 18px;">나길동<span class="label label-danger" style="position: relative;bottom: 5px;left: 5px;">3</span></span>
+						<span style="position: relative;right: 80px; top: 13px;">가나다라마바사</span><br/>
+						<span style="position: relative; left: 56px; bottom: 10px;">2020-10-10 오후10:30</span>				
+					</div>
+					
+					<div class="panel-footer">
+						 <img class=img-circle style="margin: 0 auto; height: 70px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연1.jpg" alt="..." onerror="this.src='resources/images/profile.jpg'">
+						<span style="color: black; font-weight:bold; margin-left:10px; position: relative; bottom: 18px;">나길동<span class="label label-danger" style="position: relative;bottom: 5px;left: 5px;">3</span></span>
+						<span style="position: relative;right: 80px; top: 13px;">가나다라마바사</span><br/>
+						<span style="position: relative; left: 56px; bottom: 10px;">2020-10-10 오후10:30</span>				
+					</div>
+					
+					<div class="panel-footer">
+						 <img class=img-circle style="margin: 0 auto; height: 70px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연1.jpg" alt="..." onerror="this.src='resources/images/profile.jpg'">
+						<span style="color: black; font-weight:bold; margin-left:10px; position: relative; bottom: 18px;">나길동<span class="label label-danger" style="position: relative;bottom: 5px;left: 5px;">3</span></span>
+						<span style="position: relative;right: 80px; top: 13px;">가나다라마바사</span><br/>
+						<span style="position: relative; left: 56px; bottom: 10px;">2020-10-10 오후10:30</span>				
+					</div>
+					 -->
+				</div><!-- 스크롤바 다이브 -->
+
 			</div>
 		</div>
 
-		<div class="tab-pane fade" id="zxc">
+			</div>
+			<div class="tab-pane fade" id="zxc">
 			<div class="animate-box"style="margin: 30px auto auto auto; width: 100%;">
 				<div class="panel panel-danger">
 					<div class="panel-body">
-						<span style="color: black;" class="glyphicon glyphicon-user">김길동님의최근정보현황</span>
+						<span style="color: black;" class="glyphicon glyphicon-user">집가고ㅓ싶다</span>
 					</div>
 					<div class="panel-footer">
-						<span style="color: black;" class="glyphicon glyphicon-scale">김길동님의현재몸무게-<span class="label label-danger">62kg</span>
+						<span style="color: black;" class="glyphicon glyphicon-scale">헤헿에ㅔ헤@@-<span class="label label-danger">62kg</span>
 								</span>
 							</div>
 						</div>
 					</div>
 				</div>
-
-
-			</div>
 		</div>
 
 	</div>
@@ -377,622 +338,84 @@ $(document).ready(function () { $('head').append('<style type="text/css">.modal 
 
 
 
-		
-		<!-- 모달 영역 -->
-		<div class="modal fade" id="mailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">×</span>
-						</button>
-						<h4 class="modal-title" id="myModalLabel">김길동님의 쪽지함</h4>
-					</div>
-					<div class="modal-body">
-					 
-					<div class="panel panel-default">
-						  <div class="panel-heading col-md-12">안녕하세요 김길동님
-						  <div class="col-md-">
-						  <span class="glyphicon glyphicon-remove" style=""></span>
-						  </div>
-						  </div>
-						  <div class="panel-body">
-						   <div class="media">
-				  <div class="media-left media-middle">
-				      <img class=img-circle style="margin: 0 auto; height: 100px; width: 100px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-				    <span style="color: black; margin-left: 15px;">가길동<span>님</span></span>		
-				       
-				  </div>
-				  
-				  <div class="media-body">
-				    <h4 class="media-heading" style="margin-left: 15px;">가나다라마바사아자차</h4>
-				  </div>
-				   <span style="color: black; margin-left: 15px;">2020-06-06</span>	
-					</div>
-					
-						  </div>
-						  <table class="table">
-						  </table>
-						</div> 
-					
-					<div class="panel panel-default">
-						  <div class="panel-heading">안녕하세요 김길동님<a href="#" style="color: black;"></a></div>
-						  <div class="panel-body">
-						   <div class="media">
-				  <div class="media-left media-middle">
-				      <img class=img-circle style="margin: 0 auto; height: 100px; width: 100px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-				    <span style="color: black; margin-left: 15px;">가길동<span>님</span></span>		
-				       
-				  </div>
-				  
-				  <div class="media-body">
-				    <h4 class="media-heading" style="margin-left: 15px;">가나다라마바사아자차</h4>
-				  </div>
-				   <span style="color: black; margin-left: 15px;">2020-06-06</span>	
-					</div>
-					
-						  </div>
-						  <table class="table">
-						  </table>
-						</div> 
-						
-						<div class="panel panel-default">
-						  <div class="panel-heading">안녕하세요 김길동님<a href="#" style="color: black;"></a></div>
-						  <div class="panel-body">
-						   <div class="media">
-				  <div class="media-left media-middle">
-				      <img class=img-circle style="margin: 0 auto; height: 100px; width: 100px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-				    <span style="color: black; margin-left: 15px;">가길동<span>님</span></span>		
-				       
-				  </div>
-				  
-				  <div class="media-body">
-				    <h4 class="media-heading" style="margin-left: 15px;">가나다라마바사아자차</h4>
-				  </div>
-				   <span style="color: black; margin-left: 15px;">2020-06-06</span>	
-					</div>
-					
-						  </div>
-						  <table class="table">
-						  </table>
-						</div> 
-						
-						<div class="panel panel-default">
-						  <div class="panel-heading">안녕하세요 김길동님<a href="#" style="color: black;"></a></div>
-						  <div class="panel-body">
-						   <div class="media">
-				  <div class="media-left media-middle">
-				      <img class=img-circle style="margin: 0 auto; height: 100px; width: 100px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-				    <span style="color: black; margin-left: 15px;">가길동<span>님</span></span>		
-				       
-				  </div>
-				  
-				  <div class="media-body">
-				    <h4 class="media-heading" style="margin-left: 15px;">가나다라마바사아자차</h4>
-				  </div>
-				   <span style="color: black; margin-left: 15px;">2020-06-06</span>	
-					</div>
-					
-						  </div>
-						  <table class="table">
-						  </table>
-						</div> 
-						
-						<div class="panel panel-default">
-						  <div class="panel-heading">안녕하세요 김길동님<a href="#" style="color: black;"></a></div>
-						  <div class="panel-body">
-						   <div class="media">
-				  <div class="media-left media-middle">
-				      <img class=img-circle style="margin: 0 auto; height: 100px; width: 100px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-				    <span style="color: black; margin-left: 15px;">가길동<span>님</span></span>		
-				       
-				  </div>
-				  
-				  <div class="media-body">
-				    <h4 class="media-heading" style="margin-left: 15px;">가나다라마바사아자차</h4>
-				  </div>
-				   <span style="color: black; margin-left: 15px;">2020-06-06</span>	
-					</div>
-					
-						  </div>
-						  <table class="table">
-						  </table>
-						</div> 
-						
-						<div class="panel panel-default">
-						  <div class="panel-heading">안녕하세요 김길동님<a href="#" style="color: black;"></a></div>
-						  <div class="panel-body">
-						   <div class="media">
-				  <div class="media-left media-middle">
-				      <img class=img-circle style="margin: 0 auto; height: 100px; width: 100px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-				    <span style="color: black; margin-left: 15px;">가길동<span>님</span></span>		
-				       
-				  </div>
-				  
-				  <div class="media-body">
-				    <h4 class="media-heading" style="margin-left: 15px;">가나다라마바사아자차</h4>
-				  </div>
-				   <span style="color: black; margin-left: 15px;">2020-06-06</span>	
-					</div>
-					
-						  </div>
-						  <table class="table">
-						  </table>
-						</div> 
-						
-						<div class="panel panel-default">
-						  <div class="panel-heading">안녕하세요 김길동님<a href="#" style="color: black;"></a></div>
-						  <div class="panel-body">
-						   <div class="media">
-				  <div class="media-left media-middle">
-				      <img class=img-circle style="margin: 0 auto; height: 100px; width: 100px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-				    <span style="color: black; margin-left: 15px;">가길동<span>님</span></span>		
-				       
-				  </div>
-				  
-				  <div class="media-body">
-				    <h4 class="media-heading" style="margin-left: 15px;">가나다라마바사아자차</h4>
-				  </div>
-				   <span style="color: black; margin-left: 15px;">2020-06-06</span>	
-					</div>
-					
-						  </div>
-						  <table class="table">
-						  </table>
-						</div> 
-						
-						<div class="panel panel-default">
-						  <div class="panel-heading">안녕하세요 김길동님<a href="#" style="color: black;"></a></div>
-						  <div class="panel-body">
-						   <div class="media">
-				  <div class="media-left media-middle">
-				      <img class=img-circle style="margin: 0 auto; height: 100px; width: 100px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-				    <span style="color: black; margin-left: 15px;">가길동<span>님</span></span>		
-				       
-				  </div>
-				  
-				  <div class="media-body">
-				    <h4 class="media-heading" style="margin-left: 15px;">가나다라마바사아자차</h4>
-				  </div>
-				   <span style="color: black; margin-left: 15px;">2020-06-06</span>	
-					</div>
-					
-						  </div>
-						  <table class="table">
-						  </table>
-						</div> 
-						
-						<div class="panel panel-default">
-						  <div class="panel-heading">안녕하세요 김길동님<a href="#" style="color: black;"></a></div>
-						  <div class="panel-body">
-						   <div class="media">
-				  <div class="media-left media-middle">
-				      <img class=img-circle style="margin: 0 auto; height: 100px; width: 100px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-				    <span style="color: black; margin-left: 15px;">가길동<span>님</span></span>		
-				       
-				  </div>
-				  
-				  <div class="media-body">
-				    <h4 class="media-heading" style="margin-left: 15px;">가나다라마바사아자차</h4>
-				  </div>
-				   <span style="color: black; margin-left: 15px;">2020-06-06</span>	
-					</div>
-					
-						  </div>
-						  <table class="table">
-						  </table>
-						</div> 
-						
-						<div class="panel panel-default">
-						  <div class="panel-heading">안녕하세요 김길동님<a href="#" style="color: black;"></a></div>
-						  <div class="panel-body">
-						   <div class="media">
-				  <div class="media-left media-middle">
-				      <img class=img-circle style="margin: 0 auto; height: 100px; width: 100px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-				    <span style="color: black; margin-left: 15px;">가길동<span>님</span></span>		
-				       
-				  </div>
-				  
-				  <div class="media-body">
-				    <h4 class="media-heading" style="margin-left: 15px;">가나다라마바사아자차</h4>
-				  </div>
-				   <span style="color: black; margin-left: 15px;">2020-06-06</span>	
-					</div>
-					
-						  </div>
-						  <table class="table">
-						  </table>
-						</div> 
-						
-						<div class="panel panel-default">
-						  <div class="panel-heading">안녕하세요 김길동님<a href="#" style="color: black;"></a></div>
-						  <div class="panel-body">
-						   <div class="media">
-				  <div class="media-left media-middle">
-				      <img class=img-circle style="margin: 0 auto; height: 100px; width: 100px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-				    <span style="color: black; margin-left: 15px;">가길동<span>님</span></span>		
-				       
-				  </div>
-				  
-				  <div class="media-body">
-				    <h4 class="media-heading" style="margin-left: 15px;">가나다라마바사아자차</h4>
-				  </div>
-				   <span style="color: black; margin-left: 15px;">2020-06-06</span>	
-					</div>
-					
-						  </div>
-						  <table class="table">
-						  </table>
-						</div> 
-						
-						<div class="panel panel-default">
-						  <div class="panel-heading">안녕하세요 김길동님<a href="#" style="color: black;"></a></div>
-						  <div class="panel-body">
-						   <div class="media">
-				  <div class="media-left media-middle">
-				      <img class=img-circle style="margin: 0 auto; height: 100px; width: 100px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
-				    <span style="color: black; margin-left: 15px;">가길동<span>님</span></span>		
-				       
-				  </div>
-				  
-				  <div class="media-body">
-				    <h4 class="media-heading" style="margin-left: 15px;">가나다라마바사아자차</h4>
-				  </div>
-				   <span style="color: black; margin-left: 15px;">2020-06-06</span>	
-					</div>
-					
-						  </div>
-						  <table class="table">
-						  </table>
-						</div> 
-					
-					
-					
-						
-						
 
 
-<!-- 
-				<div id="accordion">
-				<h3 style="margin: auto auto auto auto;" >안녕하세요</h3>
-					
-				<div style="width: 100%;">
-				   <img class=img-circle style="height: 150px; width: 150px; display: inline-block;" onerror="this.src='resources/images/profile.jpg'" class="media-object" src="resources/images/멸치.png" alt="...">
-					<div style="margin-top: 20px;">
-						우리 가산동 더블드래곤
-					</div>
-					<div style="margin-top: 110px;">
-						<span>보낸날짜:2020-06-05</span>
-						<span>가나다라</span><span>님</span>
-						<button type="button" class="btn btn-warning">삭제</button>
-					</div>
-				</div>
-				
-				<h3 style="margin: auto auto auto auto;" >안녕하세요</h3>
-					
-				<div style="width: 100%;">
-				   <img class=img-circle style="height: 150px; width: 150px; display: inline-block;" onerror="this.src='resources/images/profile.jpg'" class="media-object" src="resources/images/멸치.png" alt="...">
-					<div style="margin-top: 20px;">
-						우리 가산동 더블드래곤
-					</div>
-					<div style="margin-top: 110px;">
-						<span>보낸날짜:2020-06-05</span>
-						<span>가나다라</span><span>님</span>
-						<button type="button" class="btn btn-warning">삭제</button>
-					</div>
-				</div>
-				
-				<h3 style="margin: auto auto auto auto;" >안녕하세요</h3>
-					
-				<div style="width: 100%;">
-				   <img class=img-circle style="height: 150px; width: 150px; display: inline-block;" onerror="this.src='resources/images/profile.jpg'" class="media-object" src="resources/images/멸치.png" alt="...">
-					<div style="margin-top: 20px;">
-						우리 가산동 더블드래곤
-					</div>
-					<div style="margin-top: 110px;">
-						<span>보낸날짜:2020-06-05</span>
-						<span>가나다라</span><span>님</span>
-						<button type="button" class="btn btn-warning">삭제</button>
-					</div>
-				</div>
-				
-				<h3 style="margin: auto auto auto auto;" >안녕하세요</h3>
-					
-				<div style="width: 100%;">
-				   <img class=img-circle style="height: 150px; width: 150px; display: inline-block;" onerror="this.src='resources/images/profile.jpg'" class="media-object" src="resources/images/멸치.png" alt="...">
-					<div style="margin-top: 20px;">
-						우리 가산동 더블드래곤
-					</div>
-					<div style="margin-top: 110px;">
-						<span>보낸날짜:2020-06-05</span>
-						<span>가나다라</span><span>님</span>
-						<button type="button" class="btn btn-warning">삭제</button>
-					</div>
-				</div>
-				
-				<h3 style="margin: auto auto auto auto;" >안녕하세요</h3>
-					
-				<div style="width: 100%;">
-				   <img class=img-circle style="height: 150px; width: 150px; display: inline-block;" onerror="this.src='resources/images/profile.jpg'" class="media-object" src="resources/images/멸치.png" alt="...">
-					<div style="margin-top: 20px;">
-						우리 가산동 더블드래곤
-					</div>
-					<div style="margin-top: 110px;">
-						<span>보낸날짜:2020-06-05</span>
-						<span>가나다라</span><span>님</span>
-						<button type="button" class="btn btn-warning">삭제</button>
-					</div>
-				</div>
-				
-				
-				
-				
-				</div>	
-						 -->
-						
-						
-  				
-						
-					</div> <!-- 모달 바디 -->
-					
-				</div>
-			</div>
-		</div>
-
-
-
-<div class="modal fade" id="mymailModal" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel">
+<!-- 새로운채팅창만들기 모달 -->
+<div class="modal fade" id="NewChatting" tabindex="-1" role="dialog"aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
+				<button type="button" class="close" data-dismiss="modal"aria-label="Close">
 					<span aria-hidden="true">×</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">김길동님의 보낸 쪽지 목록</h4>
+				<h4 class="modal-title" id="myModalLabel">대화상대 검색</h4>
 			</div>
 			<div class="modal-body">
-			<div class="col-md-12">
-		 
-			<table id="mail">
-				<tr><th style="width: 80px; height:20px;">아이디</th><th style="width: 100px;">제목</th><th>날짜</th><th>확인</th></tr>
-				<tr><td>이길동</td><td><a href="#" style="color: black;" data-toggle="modal" data-target="#answermyModal">안녕하세요</a></td><td>2020-06-07</td><td>o</td></tr>
-				<tr><td>나길동</td><td><a href="#" style="color: black;" data-toggle="modal" data-target="#answermyModal">ㅎㅇ</a></td><td>2020-06-07</td><td>o</td></tr>
-				<tr><td>다길동</td><td><a href="#" style="color: black;" data-toggle="modal" data-target="#answermyModal">저기요</a></td><td>2020-06-07</td><td>o</td></tr>
-				<tr><td>가길동</td><td><a href="#" style="color: black;" data-toggle="modal" data-target="#answermyModal">ㄱㄱ</a></td><td>2020-06-07</td><td>o</td></tr>
-				<tr><td>이이길동</td><td><a href="#" style="color: black;" data-toggle="modal" data-target="#answermyModal">가나달마바사ㅏ아자ㅏ</a></td><td>2020-06-07</td><td>o</td></tr>
-				<tr><td>윳놀이</td><td><a href="#" style="color: black;" data-toggle="modal" data-target="#answermyModal">ㄴㅇㄹsdfsdfsdfdsfsfsfsfsfsfdsfs</a></td><td>2020-06-07</td><td>o</td></tr>
-				<tr><td>아가나나</td><td><a href="#" style="color: black;" data-toggle="modal" data-target="#answermyModal">sfㅁㄴㅇㅁㅇㅁㅇs</a></td><td>2020-06-07</td><td>o</td></tr>
-			</table>
+			<span class="glyphicon glyphicon-search"></span>
+			<input type="text"placeholder="아이디  입력" name="search" style="width: 40%; height: 33px; border: 1px solid #E6E6FA;"/>
+			<button class="btn btn-warning">검색</button>
+			<hr>
+			<div class="box" style="overflow-y:scroll;height: 180px;">
 			
-					
-				</div>
+			<div class="ChattingList">
+			<img class=img-circle style="margin: 0 auto; height: 40px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
+			<span>김길동</span>
+			</div>
+			
+			<div class="ChattingList">
+			<img class=img-circle style="margin: 0 auto; height: 40px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
+			<span>김길동</span>
+			</div>
+			
+			<div class="ChattingList">
+			<img class=img-circle style="margin: 0 auto; height: 40px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
+			<span>김길동</span>
+			</div>
+			
+			<div class="ChattingList">
+			<img class=img-circle style="margin: 0 auto; height: 40px; width: 40px; margin-top: 5px; margin-bottom: 10px;" class="media-object" src="resources/images/정연.jpg" alt="...">
+			<span>김길동</span>
+			</div>
+			
+			
+			</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary">확인</button>
+				<button type="button" class="btn btn-warning">확인</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 			</div>
 		</div>
 	</div>
 </div>
-
-
-<!-- 모달 영역 -->
-<div class="modal fade" id="answermyModal" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">×</span>
-				</button>
-				<h4 class="modal-title" id="myModalLabel">모달 타이틀</h4>
-			</div>
-			<div class="modal-body">내용</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary">확인</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- 새로운채팅창만들기 모달 -->
 
 
 <script>
-	
-
 $(function(){
-	
-	 
-	
-	$(document).ready(function () { $('head').append('<style type="text/css">.modal .modal-body {max-height: ' + ($('body').height() * .4) + 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>'); });
-
-	
-	$("#myinformation").trigger("click");
-	
-	
-	$('#kgup').on('click',function(){
-		var weight = $('#weight').html();
-		var Intweight = parseFloat(weight);
-		var aa = $('#weight').html(Intweight + 0.5);
-		$('#weightid').val(Intweight + 0.5);
-		
+	/*
+	$('.ChattingList').mouseover(function(){
+		 $('.ChattingList').css("background-color","#F0F8FF");
 	});
-		
 
-	$('#kgdown').on('click',function(){
-		var weight = $('#weight').html();
-		var Intweight = parseFloat(weight);
-		var aa = $('#weight').html(Intweight - 0.5);
-		$('#weightid').val(Intweight - 0.5);
+	$('.ChattingList').mouseleave(function(){
+		 $('.ChattingList').css("background-color","white");
 	});
 	
-});
+	
+	$('.ChattingList').on('click',function(){
+		if($('.ChattingList').css("background-color") != "rgb(240, 248, 255)") {
+			$('.ChattingList').css("background-color","#F0F9F9");
 		
-var weight = $('#weight').html();
-var Intweight = parseFloat(weight);
-
-
-		var weight = Intweight;
-		var heightCM = 172;
-		var age = 24;
-		var heightM = heightCM * 0.01;
-		
-
-
-		// BMI 지수 = 체중 ÷ (키 x 키)
-		var bmiResult = (weight / (heightM * heightM)).toFixed(2);
-		bmiResult = parseFloat(bmiResult);
-		var bmiResult = bmiResult.toFixed(2);
-		if(bmiResult <= 18.5) {
-			$('#target').after('<span class="label label-success" id="bmi"><span id="bmiResult" style="font-weight: bold;"></span> kg/m2</span>');
-			$('#bmiResult').html(bmiResult);
-		}
-		else if(bmiResult <= 24.8) {
-			$('#target').after('<span class="label label-primary" id="bmi"><span id="bmiResult" style="font-weight: bold;"></span> kg/m2</span>');
-			$('#bmiResult').html(bmiResult);
-		}
-		else if(bmiResult <= 29.8) {
-			$('#target').after('<span class="label label-warning" id="bmi"><span id="bmiResult" style="font-weight: bold;"></span> kg/m2</span>');
-			$('#bmiResult').html(bmiResult);
 		}
 		else {
-			$('#target').after('<span class="label label-danger" id="bmi"><span id="bmiResult" style="font-weight: bold;"></span> kg/m2</span>');
-			$('#bmiResult').html(bmiResult);
+			$('.ChattingList').css("background-color","white");
 		}
 		
 		
-		
-
-		// 18.5 미만	저체중
-		// 18.6 ~ 22.9	표준
-		// 23.0 ~ 24.9	과체중
-		// 25.0 ~ 29.9	중도비만
-		// 30.0 이상	고도비만
-		//남성 체지방량kg = (1.10 x 본인체중kg) - (128 x (본인체중kg ÷ 본인키cm))
-		//여성 체지방량kg = (1.07 x 본인체중kg) - (128 x (본인체중kg ÷ 본인키cm))
-		//var fatResult = (1.07 * weight) - (128 * (weight / heightCM)).toFixed(2);   // 여자
-		var fatResult = (1.10 * weight) - (128 * (weight / heightCM)).toFixed(2);  //남자
-		fatResult = parseFloat(fatResult);
-		fatResult = fatResult.toFixed(2);
-		if(fatResult <= 18.5) {
-			$('#calor').after('<span class="label label-success"><span id="fatResult" style="font-weight: bold;"></span> kg</span>');
-			$('#fatResult').html(fatResult);
-		}
-		else if(fatResult <= 22.9) {
-			$('#calor').after('<span class="label label-primary"><span id="fatResult" style="font-weight: bold;"></span> kg</span>');
-			$('#fatResult').html(fatResult);
-		}
-		else if(fatResult <= 24.9) {
-			$('#calor').after('<span class="label label-info"><span id="fatResult" style="font-weight: bold;"></span> kg</span>');
-			$('#fatResult').html(fatResult);
-		}
-		else if(fatResult <= 29.9) {
-			$('#calor').after('<span class="label label-warning"><span id="fatResult" style="font-weight: bold;"></span> kg</span>');
-			$('#fatResult').html(fatResult);
-		}
-		else{
-			$('#calor').after('<span class="label label-danger"><span id="fatResult" style="font-weight: bold;"></span> kg</span>');
-			$('#fatResult').html(fatResult);
-		}
-		
-		
-		
-		
-		//var fatResult = fatResult.toFixed(2);
-		
-		
-		
-		// 17.0 이하	저체중	20.0 이하	저체중
-		// 17.1 ~ 22.9	표준	20.1 ~ 26.9	표준
-		//23.0 ~ 27.9	과체중	27.0 ~ 32.9	과체중
-		// 28.0 ~ 37.9	중도비만	33.0 ~ 42.9	중도비만
-		// 38.0 이상		고도비만	43.0 이상		고도비만
-
-
-
-		//비만도
-		//표준체중(남) = (신장 - 100) * 0.9
-		//표준체중(여) = (신장 - 105) * 0.9
-		//비만도 = (실제체중 / 표준체중) * 100
-		var ratioResult = ((weight / ((heightCM - 100) * 0.9)) * 100).toFixed(2); //남자
-		//var ratioResult = ((weight / ((heightCM - 105) * 0.9)) * 100).toFixed(2); // 여자
-		ratioResult = parseFloat(ratioResult);
-		ratioResult = ratioResult.toFixed(2);
-		
-		if(ratioResult <= 94) {
-			$('#Beman').after('<span class="label label-success"><span id="ratioResult" style="font-weight: bold;"></span></span>');
-			$('#ratioResult').html(ratioResult);
-		}
-		else if(ratioResult <= 119) {
-			console.log(ratioResult);
-			$('#Beman').after('<span class="label label-primary"><span id="ratioResult" style="font-weight: bold;"></span></span>');
-			$('#ratioResult').html(ratioResult);
-		}
-		else if(ratioResult <= 129) {
-			$('#Beman').after('<span class="label label-info"><span id="ratioResult" style="font-weight: bold;"></span></span>');
-			$('#ratioResult').html(ratioResult);
-		}
-		else if(ratioResult <= 149) {
-			$('#Beman').after('<span class="label label-warning"><span id="ratioResult" style="font-weight: bold;"></span></span>');
-			$('#ratioResult').html(ratioResult);
-		}
-		else{
-			$('#Beman').after('<span class="label label-danger"><span id="ratioResult" style="font-weight: bold;"></span></span>');
-			$('#ratioResult').html(ratioResult);
-		}
-
-		// 90 ~ 110%	저체중
-		// 110 ~ 119 %	표준
-		// 120 ~ 129%	과체중
-		// 130 ~ 149%	중도비만
-		// 150%	고도비만
-
-		//기초대사량
-		//남자 = 66.47+(13.75 x 체중)+(5 x 키) - (6.76 x 나이)
-		//여자 = 655.1+(9.56 x 체중)+(1.85 x 키) - (4.68 x 나이)
-		var kcalResult = (66.47 +(13.75 * weight) + (5 * heightCM) - (6.76 * age)).toFixed(2);//남자
-		//var kcalResult = (655.1 +(9.56 * weight) + (1.85 * heightCM) - (4.68 * age)).toFixed(2); //여자
-		kcalResult = parseFloat(kcalResult);
-		kcalResult = kcalResult.toFixed(2);
-		
-			$('#daesalyang').after('<span class="label label-primary"><span id="kcalResult" style="font-weight: bold;"></span>kcal</span>');
-			$('#kcalResult').html(kcalResult);
-		
-		
-
-		//		남자 						여자
-		// 나이	평균 기초대사량				 나이	평균 기초대사량
-		// 20 ~ 29세	1728 ± 368.2 ㎉		20 ~ 29세	1311.5 ± 233.0 ㎉
-		// 30 ~ 49세	1669.5 ± 302.1 ㎉	30 ~ 49세	1316.8 ± 225.9 ㎉
-		// 50세 이상	1493.8 ± 315.3 ㎉	50세 이상	1252.5 ± 228.6 ㎉	
-
-
-
-
-	</script>
-
-
+	});
+	*/
+	
+});
+</script>
+<script src="<c:url value='/resources/js/MyPageBMI.js'/>"></script>
 </html>
