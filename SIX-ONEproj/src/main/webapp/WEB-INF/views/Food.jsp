@@ -11,15 +11,16 @@
     margin-right: 5px;
 }
 
+.basket ul li {
+	font-size:14px;
+	margin-bottom:3px;
+}
 .basket ul li a {
     float: left;
-    margin: 4px 0 0 20px;
+    margin: 3px 5px 0 20px;
 }
 .kcal{
-	color: #1a252f;
-	font-weight: bold;
-
-
+	color: #ca481d;
 }
 .food_cart{
 	background-image: url(resources/images/bt_cart.jpg);
@@ -30,10 +31,70 @@
     margin-right: 5px;
 } 
 
-.food table tr a {
-    width: 50px;
-    margin: 4px 0 0 40px;
+#food_table tr td:last-child {
+	text-align:center;
+	padding-top:5px;
 }
+
+#food_table td {
+    border-bottom: 1px rgb(128, 128, 128) solid;
+    padding:9px 10px 5px;
+    vertical-align:middle;
+    font-size:14px;
+}
+#food_table th{
+	border-top: none !important;
+	background-color: #f9f9f9;
+	padding: 9px 10px 5px;
+	color:#333;	
+}
+.food{
+	padding:15px 0;
+}
+
+
+#foodWrap{
+	min-height: 500px; 
+}
+#cart{
+	margin-top:15px;
+	padding-right:0;
+}
+#cart > div {
+	position:relative;
+	background-color:#f9f9f9;
+	min-height: 500px; 
+	padding-bottom:50px;
+}
+#cart > div > p {
+	margin-bottom:0;
+	position:absolute;
+	bottom: 12px;
+    right: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    color:#000;
+}
+#cart .kcal {
+	padding-left:10px;
+}
+#cart .cart_date {
+	background-color: #f3f3f3;
+    height: 37px;
+    border-bottom: 1px solid #e7e7e7;
+    line-height: 39px;
+    color: #333;
+}
+
+#food_selector{
+	color: #333;
+
+}
+#food_selector .food_select{
+	font-size:14px !important;
+
+}
+
 </style>
 
 
@@ -86,14 +147,14 @@
 				</div>
 			</div>
 			
-			<div class="row">
+			<div class="row" style="margin-top:50px;">
 				<h2>음식 칼로리 계산하기.</h2>
 				<p>오늘 하루 먹은 음식의 칼로리를 계산해보세요</p>
 				<hr/>
 			</div>	
 			
 			<div class="row">
-				<form>
+				<form id="food_selector">
 					<div class="col-md-3">
 						<label for="foodGroup">식품군</label>
 						<select class="form-control food_select" id="foodGroup" multiple class="form-control" style="height: 300px">
@@ -106,57 +167,66 @@
 						 	<option value="">식품군을 선택하세요</option>
 						</select>				
 					</div>
-					
 					<div class="col-md-6">
 						<label for="foodContent">식품명</label>
 						<select class="form-control food_select" id="foodName"multiple class="form-control" style="height: 300px">
 						 	<option value="">브랜드를 선택하세요</option>
 						</select>				
 					</div>
-				
-				 	
 				</form>
-				<hr/>
 			</div>
 			
 			<div class="row" style="margin-top: 30px;">
-				<div class="col-md-12" style="border: solid 1px #abacb1; min-height: 500px;">
+				<div id="foodWrap" class="col-md-12">
 					<div class="col-md-8 table-responsive food">
 						<table class="table table-condensed " id="food_table">
 							<tr>
 								<th>음식</th>
 								<th>1회제공량</th>
 								<th>칼로리</th>
+								<th> </th>
 							</tr>
+							
+							<tr>
+			        		<td>고구마</td>
+			        		<td>100</td>
+			        		<td class="kcal">100kcal</td>
+			        		<td><a href="#;" onclick="javascript:add_cart(this)">
+		        			<img src="<c:url value="/resources/images/bt_cart.jpg"/>"/></a></td></tr>
+							
+							<tr>
+			        		<td>고구마</td>
+			        		<td>100</td>
+			        		<td class="kcal">100kcal</td>
+			        		<td><a href="#;" onclick="javascript:add_cart(this)">
+		        			<img src="<c:url value="/resources/images/bt_cart.jpg"/>"/></a></td></tr>
+		        			
+		        			<tr>
+			        		<td>고구마</td>
+			        		<td>100</td>
+			        		<td class="kcal">100kcal</td>
+			        		<td><a href="#;" onclick="javascript:add_cart(this)">
+		        			<img src="<c:url value="/resources/images/bt_cart.jpg"/>"/></a></td></tr>
+							
+							
 							
 						</table>
 						
 						
 					</div>
 					
-					<div class="col-md-4 text-center" style="min-height: 500px;">
-						<div style="margin-top: 10px">2020-06-10</div>
-						<div class="text-left basket"style="background-color: #f2f3f7; min-height: 350px" >
-							<ul class="list-unstyled" id="my_food_list" style="padding-top: 10px">
-								<li><a href="#"><span class="ex"></span></a><span class="basket_menu">고구마 줄기 나물</span>&nbsp;<span class="kcal">300Kcal</span></li>
-								<li><a href="#"><span class="ex"></span></a><span class="basket_menu">흰쌀밥 1공기</span>&nbsp;<span class="kcal">300Kcal</span></li>
-							</ul>
-						
-						
+					<div id ="cart" class="col-md-4 text-center">
+						<div>
+							<div class="cart_date">2020-06-10</div>
+							<div class="text-left basket"style="min-height: 350px" >
+								<ul class="list-unstyled" id="my_food_list" style="padding-top: 20px">
+									<li><a href="javascript:void(0)" onclick="remove_cart(this)"><span class="ex"></span></a><span class="basket_menu">고구마 줄기 나물</span>&nbsp;<span class="kcal">300Kcal</span></li>
+									<li><a href="#;"><span class="ex"></span></a><span class="basket_menu">흰쌀밥 1공기</span>&nbsp;<span class="kcal">300Kcal</span></li>
+								</ul>
+							</div>
+						<p>999 kkk</p>
 						</div>
-						
-					
-					
-					
-					
 					</div>
-					
-					
-					
-				
-				
-				
-				
 				</div>
 				
 			
@@ -281,10 +351,9 @@
 			        		query += '<td>'+response['foodName']+'</td>'
 			        		query += '<td>'+response['foodOnce']+'</td>'
 			        		query += '<td class="kcal">'+response['foodKcal']+'kcal</td>'
-			        		query += '<td><a class="btn_cart" onclick="javascript:add_cart('+"this"+')">'
+			        		query += '<td><a href="#;" onclick="javascript:add_cart('+"this"+')">'
 		        			query += '<img src="<c:url value="/resources/images/bt_cart.jpg"/>"/></a></td></tr>'
 							
-				        	
 				        	$('#food_table').html(query);
 		        			index +=1;
 				        	
@@ -310,13 +379,16 @@
 		
 			
 			var query = $('#my_food_list').html();
-			query += '<li><a href="#">'
+			query += '<li><a href="#;" onclick="remove_cart('+"this"+')">'
 			query += '<span class="ex"></span></a>'
 			query += '<span class="basket_menu">'+foodName+'</span>&nbsp;'
-			query += '<span class="kcal">'+foodKcal+'Kcal</span></li>'
+			query += '<span class="kcal">'+foodKcal+'</span></li>'
 			$('#my_food_list').html(query);
 			
-			
+		}
+		
+		function remove_cart(e){
+			$(e).parent().remove();			
 		}
 		
 		
