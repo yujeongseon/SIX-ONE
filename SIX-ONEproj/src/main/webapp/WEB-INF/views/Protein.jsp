@@ -10,7 +10,6 @@
 
 
 
-
 </style>	
 
 	<aside id="colorlib-hero">
