@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
 .ex {
+
     background-image: url(resources/images/btn_sx.jpg);
     display: block;
     cursor: pointer;
