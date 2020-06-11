@@ -1,6 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
 .ex {
     background-image: url(resources/images/btn_sx.jpg);
@@ -187,7 +188,7 @@
 								<th> </th>
 							</tr>
 							
-							<tr>
+							<%-- <tr>
 			        		<td>고구마</td>
 			        		<td>100</td>
 			        		<td class="kcal">100kcal</td>
@@ -206,7 +207,7 @@
 			        		<td>100</td>
 			        		<td class="kcal">100kcal</td>
 			        		<td><a href="#;" onclick="javascript:add_cart(this)">
-		        			<img src="<c:url value="/resources/images/bt_cart.jpg"/>"/></a></td></tr>
+		        			<img src="<c:url value="/resources/images/bt_cart.jpg"/>"/></a></td></tr> --%>
 							
 							
 							
@@ -217,14 +218,16 @@
 					
 					<div id ="cart" class="col-md-4 text-center">
 						<div>
-							<div class="cart_date">2020-06-10</div>
+							<div class="cart_date"><input id="datepicker" style="text-align: center" disabled><!-- 2020-06-10 --></div>
 							<div class="text-left basket"style="min-height: 350px" >
 								<ul class="list-unstyled" id="my_food_list" style="padding-top: 20px">
+								<!-- 
 									<li><a href="javascript:void(0)" onclick="remove_cart(this)"><span class="ex"></span></a><span class="basket_menu">고구마 줄기 나물</span>&nbsp;<span class="kcal">300Kcal</span></li>
 									<li><a href="#;"><span class="ex"></span></a><span class="basket_menu">흰쌀밥 1공기</span>&nbsp;<span class="kcal">300Kcal</span></li>
+								 -->
 								</ul>
 							</div>
-						<p>999 kkk</p>
+						<p><span id="total_kcal">0</span> kcal</p>
 						</div>
 					</div>
 				</div>
@@ -240,7 +243,7 @@
 				
 		</div><!-- container -->
 	</div>
-	
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 	
 	
@@ -250,6 +253,7 @@
 	
 	
 	<script>
+		
 		$.ajax({
 	        type: "get",
 	        url: "http://192.168.0.36:9090/restapi/foodGroup",
@@ -385,14 +389,32 @@
 			query += '<span class="kcal">'+foodKcal+'</span></li>'
 			$('#my_food_list').html(query);
 			
+			var total_kcal = $('#total_kcal').html();
+			food_kcal = foodKcal.substring(0,foodKcal.length-4)
+			$('#total_kcal').html((parseInt(total_kcal)+parseInt(food_kcal)));
+			
+			
 		}
 		
 		function remove_cart(e){
-			$(e).parent().remove();			
+			$(e).parent().remove();		
+			var total_kcal = $('#total_kcal').html();
+			var foodKcal = $(e).closest('li').find('span').eq(2).html();
+			food_kcal = foodKcal.substring(0,foodKcal.length-4)
+			$('#total_kcal').html((parseInt(total_kcal)-parseInt(food_kcal)));
+			
+			
 		}
 		
-		
-	
+		$( "#datepicker" ).datepicker({
+		      showOn: "button",
+		      buttonImage: "resources/images/calendar-icon.png",
+		      buttonImageOnly: true,
+		      showButtonPanel: true,
+		      buttonText: "Select date"
+		    });
+		$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");
+		$( "#datepicker" ).datepicker('setDate', new Date());
 	
 	</script>
 

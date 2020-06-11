@@ -1,7 +1,18 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	
+
+<style>
+
+
+
+
+
+
+
+
+</style>	
+
 	<aside id="colorlib-hero">
 		<div class="flexslider">
 			<ul class="slides">
@@ -43,7 +54,7 @@
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
 							<a href="https://www.coupang.com/np/search?component=&q=%EA%B3%A8%EB%93%9C+%EC%8A%A4%ED%83%A0%EB%8B%A4%EB%93%9C+%EC%9B%A8%EC%9D%B4+%EC%B4%88%EC%BD%94&channel=auto" class="blog-img" target="_blank" style="background-image: url(resources/images/protein01.jpg);">
-								<p class="meta"><span class="day">1</span><span class="month">6월</span></p>
+								<img src="<c:url value='/resources/images/btn_rank1.png'/>"/>
 							</a>
 							<div class="desc">
 								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
@@ -55,7 +66,7 @@
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
 							<a href="#" class="blog-img" style="background-image: url(resources/images/protein02.jpg);">
-								<p class="meta"><span class="day">2</span><span class="month">6월</span></p>
+								<img src="<c:url value='/resources/images/btn_rank2.png'/>"/>
 							</a>
 							<div class="desc">
 								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
@@ -67,7 +78,7 @@
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
 							<a href="#" class="blog-img" style="background-image: url(resources/images/protein03.jpg);">
-								<p class="meta"><span class="day">3</span><span class="month">6월</span></p>
+								<img src="<c:url value='/resources/images/btn_rank3.png'/>"/>
 							</a>
 							<div class="desc">
 								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
@@ -81,7 +92,7 @@
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
 							<a href="#" class="blog-img" style="background-image: url(resources/images/protein04.jpg);">
-								<p class="meta"><span class="day">4</span><span class="month">6월</span></p>
+								<img src="<c:url value='/resources/images/btn_rank4.png'/>"/>
 							</a>
 							<div class="desc">
 								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
@@ -93,7 +104,7 @@
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
 							<a href="#" class="blog-img" style="background-image: url(resources/images/protein05.jpg);">
-								<p class="meta"><span class="day">5</span><span class="month">6월</span></p>
+								<img src="<c:url value='/resources/images/btn_rank5.png'/>"/>
 							</a>
 							<div class="desc">
 								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
@@ -105,7 +116,7 @@
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
 							<a href="#" class="blog-img" style="background-image: url(resources/images/protein06.jpg);">
-								<p class="meta"><span class="day">6</span><span class="month">6월</span></p>
+								<img src="<c:url value='/resources/images/btn_rank6.png'/>"/>
 							</a>
 							<div class="desc">
 								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
@@ -129,7 +140,7 @@
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
 							<a href="https://www.coupang.com/np/search?component=&q=%EA%B3%A8%EB%93%9C+%EC%8A%A4%ED%83%A0%EB%8B%A4%EB%93%9C+%EC%9B%A8%EC%9D%B4+%EC%B4%88%EC%BD%94&channel=auto" class="blog-img" style="background-image: url(resources/images/protein01.jpg);">
-								<p class="meta"><span class="day">1</span><span class="month">6월</span></p>
+								<img src="<c:url value='/resources/images/btn_rank1.png'/>"/>
 							</a>
 							<div class="desc">
 								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
@@ -141,7 +152,7 @@
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
 							<a href="#" class="blog-img" style="background-image: url(resources/images/protein02.jpg);">
-								<p class="meta"><span class="day">2</span><span class="month">6월</span></p>
+								<img src="<c:url value='/resources/images/btn_rank2.png'/>"/>
 							</a>
 							<div class="desc">
 								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
@@ -153,7 +164,7 @@
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
 							<a href="#" class="blog-img" style="background-image: url(resources/images/protein03.jpg);">
-								<p class="meta"><span class="day">3</span><span class="month">6월</span></p>
+								<img src="<c:url value='/resources/images/btn_rank3.png'/>"/>
 							</a>
 							<div class="desc">
 								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
@@ -167,7 +178,7 @@
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
 							<a href="#" class="blog-img" style="background-image: url(resources/images/protein04.jpg);">
-								<p class="meta"><span class="day">4</span><span class="month">6월</span></p>
+								<img src="<c:url value='/resources/images/btn_rank4.png'/>"/>
 							</a>
 							<div class="desc">
 								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
@@ -179,7 +190,7 @@
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
 							<a href="#" class="blog-img" style="background-image: url(resources/images/protein05.jpg);">
-								<p class="meta"><span class="day">5</span><span class="month">6월</span></p>
+								<img src="<c:url value='/resources/images/btn_rank5.png'/>"/>
 							</a>
 							<div class="desc">
 								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
@@ -191,7 +202,7 @@
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
 							<a href="#" class="blog-img" style="background-image: url(resources/images/protein06.jpg);">
-								<p class="meta"><span class="day">6</span><span class="month">6월</span></p>
+								<img src="<c:url value='/resources/images/btn_rank6.png'/>"/>
 							</a>
 							<div class="desc">
 								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
