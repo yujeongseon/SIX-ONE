@@ -11,6 +11,8 @@ public class BoardController {
 	@RequestMapping("/freeboard.do")
 	public String board(@RequestParam(value="id",required=false) String id) {
 		
+		
+		System.out.println("/freeboard.tiles");
 			return "/freeboard.tiles";
 		
 	}

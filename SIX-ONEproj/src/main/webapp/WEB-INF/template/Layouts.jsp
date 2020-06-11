@@ -96,7 +96,9 @@ function isLogin(){
 					<div class="row">
 
 						<div class="col-md-2">
-							<div id="colorlib-logo" ><a style="font-size:30px;"href="<c:url value='/'/>">SIX-ONE</a></div>
+
+							<div id="colorlib-logo"><a style="font-size: 1.0em" href="<c:url value='/'/>">SIX-ONE</a></div>
+
 						</div>
 						<div class="col-md-10 text-right menu-1">
 							<ul >
