@@ -7,19 +7,13 @@
 <html>
 	<head>
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
 	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/vendor/bootstrap/css/bootstrap.min.css"/>'>
-<!--===============================================================================================-->
-	<link rel="stylesheet"href='<c:url value="/resources/Table_Responsive/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>'>
-<!--===============================================================================================-->
-	<link rel="stylesheet"  href="vendor/animate/animate.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet"  href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet"  href="css/util.css">
-	<link rel="stylesheet"  href="css/main.css">
+	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>'>
+	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/vendor/animate/animate.css"/>'>
+	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/vendor/select2/select2.min.css"/>'>
+	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/vendor/perfect-scrollbar/perfect-scrollbar.css"/>'>
+	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/css/util.css"/>'>
+	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/css/main.css"/>'>
 	<meta charset="utf-8">
 	<title>모두다짐</title>
 	
@@ -50,27 +44,91 @@
 	
 	$(function(){
 		
+		
 		 //3]AJAX사용-JSON데이타로 응답받기       
-		$('#rr').click(function(){
+		$('#routine').click(function(){
 			$.ajax({
-				url:"<c:url value='/Ajax/AjaxJson.do'/>",
-				data:{id:'rr'},//안줘도 돌아감 게시판구분용으로  window.onload 백그라운드 진행
+				url:"<c:url value='/Ajax/Routine.do'/>",
+				//data:{id:'rr'},//안줘도 돌아감 게시판구분용으로  window.onload 백그라운드 진행
 				dataType:'json',
-				success:function(data){
-					var option="";
-					$.each(data,function(key,value){
-						option+="<h2>"+value+"</h2>";
-					});
-					$('#hell').html(option);
-					$('#1num').css("background-color", 'white');
-					$('#2num').css("background-color", 'black');
-					$('#3num').css("background-color", 'white');
+				success:function(data){successAjax(data,'list');},
+				error:function(request,error){
+					console.log('상태코드:',request.status);
+					console.log('서버로부터 받은 HTML데이타:',request.responseText);
+					console.log('에러:',error);
 				}
+				
 			});
+			
 		});
+					//var option="";
+					//$.each(data,function(key,value){
+						//option+="<h2>"+value+"</h2>";
+					//});
+				//}
+			//});
+		//});
+});
+//ajax로 불러온 루틴 목록의 상세보기
+function find(no){
+	$.ajax({
+		url:"<c:url value='/Ajax/RoutineOne.do'/>",
+		dataType:'json',
+		data:{no:no},
+		success:function(data){successOneAjax(data,'list');},
+		error:function(request,error){
+			console.log('상태코드:',request.status);
+			console.log('서버로부터 받은 HTML데이타:',request.responseText);
+			console.log('에러:',error);
+		}
 		
 	});
-	
+}
+
+
+	var successOneAjax = function(data,id){
+		console.log('서버로부터 받은 루틴상세데이타:',data);
+	}
+
+	var successAjax = function(data,id){
+		console.log('서버로부터 받은 루틴데이타:',data);	
+	    var tableString="<tr class='table100-head'style='text-size:15px;  border-bottom-style:solid; border-bottom-color: black; border-top-style: solid; border-top-color: black'>";
+	    tableString+="<th class='column1'>번호</th>";
+	    tableString+="<th class='column2'>제목</th>";
+	    tableString+="<th class='column3'>날짜</th>";
+	    tableString+="<th class='column4'>작성자</th>";
+	    tableString+="</tr>";
+	    $('#tthead').html(tableString);
+	    
+	    var bodyString=""
+	    $.each(data,function(index,record){
+	    	
+	    	bodyString+="<tr class='hoo' onclick='find("+record['no']+")'>";
+	    	bodyString+="<td >"+record['no']+"</td>";
+	    	bodyString+="<td >"+record['ru_name']+"</td>";
+	    	bodyString+="<td >"+record['create_date']+"</td>";
+	    	bodyString+="<td >"+record['name']+"</td>";
+	    	bodyString+="</tr>";
+	    });
+	   
+	    $('#ttbody').html(bodyString);
+	};	
+	/* 이게 아코디언 한 라인
+	<div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Collapsible Group Item #1
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+	*/
 	
 	</script>
 	<!-- 
@@ -171,11 +229,11 @@ a:link {
 					<div class="col-md-12">
 					<ul class="nav nav-pills">
 					<li id="1num" style="background-color: black; border-style:solid; "><a href="<c:url value='/freeboard.do?id=fr'/>">자유게시판</a></li>
-					<li id="2num" style="background-color: white;border-style: groove; "><a id="rr" href="#">루틴 공유</a></li>
+					<li id="2num" style="background-color: white;border-style: groove; "><a id="routine" href="#">루틴 공유</a></li>
 					<li id="3num" style="background-color: white;border-style: solid;"><a id="an" href="<c:url value='/freeboard.do?id=an'/>">익명게시판</a></li>
 					</ul>
 						<table id="hell" class="table table-bordered table-hover text-center" style="color:black; font-family:sans-serif;" id="tab">
-						<thead >			
+						<thead id="tthead">			
 							<tr class="table100-head"style="text-size:15px;  border-bottom-style:solid; border-bottom-color: black; border-top-style: solid; border-top-color: black">
 								<th class="column1">번호</th>
 								<th class="column2">제목</th>
@@ -185,7 +243,7 @@ a:link {
 								<th class="column6">추천</th>
 							</tr>
 							</thead>
-							<tbody>
+							<tbody id="ttbody">
 									<c:if test="${empty list}" var="isEmpty">
 										<tr>
 											<td colspan="6">등록된 게시물이 없습니다.</td>
@@ -216,6 +274,7 @@ a:link {
 										</c:forEach>
 									</c:if>
 								</tbody>
+								
 						</table>
 						<ul class="nav nav-pills">
 					<li class="active" style="background-color: white"><a href="<c:url value='/freeboard.do?id=dd'/>">자유게시판</a></li>
@@ -250,10 +309,53 @@ a:link {
 					<input type="text" name="searchWord" class="form-control"/>
 				</div>
 				<button type="submit" class="btn btn-success">검색</button>
-
 			</form>
 		</div>
 	</div>
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Collapsible Group Item #1
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Collapsible Group Item #2
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Collapsible Group Item #3
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>
 			</div>
 			
 			</div>
@@ -315,12 +417,12 @@ a:link {
 	</div>
 	
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src='<c:url value="/resources/Table_Responsive/vendor/bootstrap/js/popper.js"/>'></script>
+	<script src='<c:url value="/resources/Table_Responsive/vendor/bootstrap/js/bootstrap.min.js"/>'></script>
 <!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
+	<script src='<c:url value="/resources/Table_Responsive/vendor/select2/select2.min.js"/>'></script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+	
 	
 	</body>
 </html>
