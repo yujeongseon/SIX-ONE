@@ -128,10 +128,10 @@ public class BoardController {
 			List<Map> collections = new Vector<Map>();
 			for(Rou_exeDTO dto:list) {
 				Map record = new HashMap();
-				record.put("exe_no", dto.getExe_no());
-				record.put("ru_name", dto.getCount());
-				record.put("set", dto.getSet());
-				record.put("routine_days", dto.getDays());
+				record.put("exe_no", dto.getExe_no());//운동명
+				record.put("ru_count", dto.getCount());//운동횟수
+				record.put("set", dto.getSet());// 세트수
+				record.put("routine_days", dto.getDays());// 몇일차
 				collections.add(record);
 			}
 			return JSONArray.toJSONString(collections);

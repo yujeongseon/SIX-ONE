@@ -75,7 +75,7 @@ function find(no){
 		url:"<c:url value='/Ajax/RoutineOne.do'/>",
 		dataType:'json',
 		data:{no:no},
-		success:function(data){successOneAjax(data,'list');},
+		success:function(data){successOneAjax(data,'list',no);},
 		error:function(request,error){
 			console.log('상태코드:',request.status);
 			console.log('서버로부터 받은 HTML데이타:',request.responseText);
@@ -86,9 +86,34 @@ function find(no){
 }
 
 
-	var successOneAjax = function(data,id){
+	var successOneAjax = function(data,id,no){
+		console.log('no는 이거다',no)
 		console.log('서버로부터 받은 루틴상세데이타:',data);
+		var pbodyString="";
+		var day=1;
+		var id = document.getElementById("pbody"+no);
+
+		$.each(data,function(index,record){
+			
+			pbodyString+="<div class='col-md-1 week'>";
+			pbodyString+="<div>"+day+"일차</div>";
+			pbodyString+="<p class='icon'><span><i class='flaticon-arm'></i></span></p>";
+			pbodyString+="<p class='time'><span>"+record['ru_count']+"회/"+record['set']+"세트</span></p>";
+			pbodyString+="<p class='trainer'><span>"+record['exe_no']+"</span></p>";
+			pbodyString+="</div>";
+			pbodyString+="</div>";
+			day++;
+		});
+		id.innerhtml=pbodyString;
 	}
+	//<div class="col-md-1 week">
+	//<div>월요일</div>
+	//<div class="entry-forth">
+		//<p class="icon"><span><i class="flaticon-arm"></i></span></p>
+		//<p class="time"><span>10회/3세트</span></p>
+		//<p class="trainer"><span>팔굽혀펴기</span></p>
+	//</div>
+	//</div>
 
 	var successAjax = function(data,id){
 		console.log('서버로부터 받은 루틴데이타:',data);	
@@ -101,34 +126,56 @@ function find(no){
 	    $('#tthead').html(tableString);
 	    
 	    var bodyString=""
+	    var i=1
+	    var num
 	    $.each(data,function(index,record){
 	    	
-	    	bodyString+="<tr class='hoo' onclick='find("+record['no']+")'>";
-	    	bodyString+="<td >"+record['no']+"</td>";
-	    	bodyString+="<td >"+record['ru_name']+"</td>";
-	    	bodyString+="<td >"+record['create_date']+"</td>";
-	    	bodyString+="<td >"+record['name']+"</td>";
-	    	bodyString+="</tr>";
+	    	switch(i){
+	    	case 1 : num = 'One'; break;
+	    	case 2 : num = 'Two'; break;
+	    	case 3 : num = 'Three'; break;
+	    	case 4 : num = 'Four'; break;
+	    	case 5 : num = 'Five'; break;
+	    	default : num= '오류';
+	    	}
+	    	
+	    	bodyString+="<div class='panel panel-default'>";
+	    	bodyString+="<div class='panel-heading' role='tab' id='heading"+num+"'>";
+	    	bodyString+="<h4 class='panel-title'>"
+	    	if(i==1)bodyString+="<a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#collapse"+num+"' aria-expanded='false' aria-controls='collapse"+num+"'>";
+	    	else bodyString+="<a data-toggle='collapse' data-parent='#accordion' href='#collapse"+num+"' aria-expanded='false' aria-controls='collapse"+num+"'onclick='find("+record['no']+")'>";
+	    	bodyString+= record['no']+"      "+record['ru_name']+"     "+record['create_date']+"    "+record['name'];
+	    	bodyString+="</a>";
+	    	bodyString+="</h4>";
+	    	bodyString+="</div>";
+	    	bodyString+="<div id='collapse"+num+"' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='heading"+num+"'>";
+	    	bodyString+="<div class='panel-body'>";
+	    	bodyString+="<div class='row'>"
+	    	bodyString+="<div class='schedule text-center animate-box'>"
+	    	bodyString+="<div class='col-md-12'>"
+	    	bodyString+="<div class='routine' id='pbody"+record['no']+"'>"
+	    	//이 pbody안에  루틴내용 들어가야함
+	    	bodyString+="</div>";
+	    	bodyString+="</div>";
+	    	bodyString+="</div>";
+	    	bodyString+="</div>";
+	    	bodyString+="</div>";
+	    	bodyString+="</div>";
+	    	bodyString+="</div>";
+	    	//<div class="row">
+			//<div class="schedule text-center animate-box">
+				//<div class="col-md-12">
+					//<div class="routine" >
+	    	//bodyString+="<tr class='hoo' onclick='find("+record['no']+")'>";
+	    	//bodyString+="<td >"+record['no']+"</td>";
+	    	//bodyString+="<td >"+record['ru_name']+"</td>";
+	    	//bodyString+="<td >"+record['routine_days']+"</td>";
+	    	//bodyString+="<td >"+record['name']+"</td>";
+	    	//bodyString+="</tr>";
+	    	i++;
 	    });
-	   
-	    $('#ttbody').html(bodyString);
+	    $('#accordion').html(bodyString);
 	};	
-	/* 이게 아코디언 한 라인
-	<div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-          Collapsible Group Item #1
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-	*/
 	
 	</script>
 	<!-- 
@@ -274,8 +321,12 @@ a:link {
 										</c:forEach>
 									</c:if>
 								</tbody>
-								
 						</table>
+						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+						
+						</div>
+						
+						
 						<ul class="nav nav-pills">
 					<li class="active" style="background-color: white"><a href="<c:url value='/freeboard.do?id=dd'/>">자유게시판</a></li>
 					<li style="background-color: white"><a href="<c:url value='/freeboard.do?id=ru'/>">루틴 공유</a></li>
@@ -312,50 +363,7 @@ a:link {
 			</form>
 		</div>
 	</div>
-	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-          Collapsible Group Item #1
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Collapsible Group Item #2
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Collapsible Group Item #3
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-</div>
+	
 			</div>
 			
 			</div>
