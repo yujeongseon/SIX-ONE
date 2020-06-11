@@ -1,0 +1,44 @@
+@charset "UTF-8";
+table {
+	width: 100%;
+	border: 1px solid #444444;
+	border-collapse: collapse;
+}
+
+th, td {
+	border: 1px solid #444444;
+	text-align: center;
+	color: black;
+}
+
+th {
+	background-color: #bbdefb;
+}
+
+td {
+	background-color: #e3f2fd;
+}
+.modal-dialog{ 
+overflow-y: initial !important;
+}
+
+.modal-body{ 
+height: 100%; overflow-y: auto; 
+}
+
+#ui-id-2{
+height: 350%;
+}
+.modal-dialog{ 
+overflow-y: initial !important
+ } 
+ .modal-body{
+  height: 100%; overflow-y: auto;
+   }
+.box {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.box::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
