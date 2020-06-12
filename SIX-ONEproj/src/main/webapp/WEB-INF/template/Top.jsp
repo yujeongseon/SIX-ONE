@@ -185,16 +185,16 @@ $(function(){
 						</span>
 					</div>
 					<div class="flex-c-m">
-						<a href="#" class="login100-social-item bg1">
-							<i class="fa fa-facebook"></i>
+						<a href="#">
+							<img class="img-circle"  alt="..." src="resources/images/NAVER.PNG" style="width: 53px;height: 53px;">
 						</a>
 
-						<a href="#" class="login100-social-item bg2">
-							<i class="fa fa-twitter"></i>
+						<a href="#">
+							<img class="img-circle"  alt="..." src="resources/images/kokoao.png" style="width: 53px;height: 53px; margin-right: 15px; margin-left: 15px;">
 						</a>
 
-						<a href="#" class="login100-social-item bg3">
-							<i class="fa fa-google"></i>
+						<a href="#">
+							<img class="img-circle"  alt="..." src="resources/images/Facebook.png" style="width: 53px;height: 53px;">
 						</a>
 					</div>
 					
