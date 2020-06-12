@@ -11,6 +11,7 @@
 	</page_setting>
 	<category_index>0</category_index>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<zoom>0.75</zoom>
 	<x>293</x>
 	<y>129</y>
@@ -19,6 +20,11 @@
 	<x>0</x>
 	<y>105</y>
 >>>>>>> branch 'suntae' of https://github.com/yujeongseon/SIX-ONE.git
+=======
+	<zoom>1.0</zoom>
+	<x>508</x>
+	<y>66</y>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 	<default_color>
 		<r>255</r>
 		<g>255</g>
@@ -99,7 +105,7 @@
 				<is_open_after_saved>true</is_open_after_saved>
 			</export_html_setting>
 			<export_image_setting>
-				<output_file_path>WebContent\ERD\team.png</output_file_path>
+				<output_file_path>C:\Users\kosmo_18\Desktop\team.png</output_file_path>
 				<category_dir_path></category_dir_path>
 				<with_category_image>true</with_category_image>
 				<is_open_after_saved>true</is_open_after_saved>
@@ -146,10 +152,14 @@
 			<display>false</display>
 			<creation_date>2020-05-07 20:42:46</creation_date>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<updated_date>2020-06-08 14:54:19</updated_date>
 =======
 			<updated_date>2020-06-08 09:49:34</updated_date>
 >>>>>>> branch 'suntae' of https://github.com/yujeongseon/SIX-ONE.git
+=======
+			<updated_date>2020-06-10 09:53:59</updated_date>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -1002,9 +1012,28 @@
 		<word>
 <<<<<<< HEAD
 			<id>45</id>
+<<<<<<< HEAD
 =======
 			<id>38</id>
 >>>>>>> branch 'suntae' of https://github.com/yujeongseon/SIX-ONE.git
+=======
+			<length>null</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>루틴 내용번호</logical_name>
+			<physical_name>rou_exe_no</physical_name>
+			<type>decimal</type>
+		</word>
+		<word>
+			<id>46</id>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 			<length>1</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1021,7 +1050,11 @@
 		</word>
 		<word>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<id>46</id>
+=======
+			<id>47</id>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1037,7 +1070,7 @@
 			<type>decimal</type>
 		</word>
 		<word>
-			<id>47</id>
+			<id>48</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1053,7 +1086,7 @@
 			<type>date</type>
 		</word>
 		<word>
-			<id>48</id>
+			<id>49</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1069,7 +1102,7 @@
 			<type>decimal</type>
 		</word>
 		<word>
-			<id>49</id>
+			<id>50</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1085,6 +1118,7 @@
 			<type>decimal</type>
 		</word>
 		<word>
+<<<<<<< HEAD
 			<id>50</id>
 =======
 			<id>39</id>
@@ -1105,6 +1139,9 @@
 		<word>
 			<id>40</id>
 >>>>>>> branch 'suntae' of https://github.com/yujeongseon/SIX-ONE.git
+=======
+			<id>51</id>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1121,10 +1158,14 @@
 		</word>
 		<word>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<id>51</id>
 =======
 			<id>41</id>
 >>>>>>> branch 'suntae' of https://github.com/yujeongseon/SIX-ONE.git
+=======
+			<id>52</id>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 			<length>20</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1141,10 +1182,14 @@
 		</word>
 		<word>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<id>52</id>
 =======
 			<id>42</id>
 >>>>>>> branch 'suntae' of https://github.com/yujeongseon/SIX-ONE.git
+=======
+			<id>53</id>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -1319,10 +1364,14 @@
 				</normal_column>
 				<normal_column>
 <<<<<<< HEAD
+<<<<<<< HEAD
 					<word_id>52</word_id>
 =======
 					<word_id>42</word_id>
 >>>>>>> branch 'suntae' of https://github.com/yujeongseon/SIX-ONE.git
+=======
+					<word_id>53</word_id>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 					<id>4</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1619,10 +1668,14 @@
 				</normal_column>
 				<normal_column>
 <<<<<<< HEAD
+<<<<<<< HEAD
 					<word_id>51</word_id>
 =======
 					<word_id>41</word_id>
 >>>>>>> branch 'suntae' of https://github.com/yujeongseon/SIX-ONE.git
+=======
+					<word_id>52</word_id>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 					<id>11</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1688,7 +1741,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>11</word_id>
+					<word_id>10</word_id>
 					<id>13</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1908,7 +1961,11 @@
 			<columns>
 				<normal_column>
 <<<<<<< HEAD
+<<<<<<< HEAD
 					<word_id>50</word_id>
+=======
+					<word_id>51</word_id>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 					<id>18</id>
 =======
 					<word_id>40</word_id>
@@ -2052,7 +2109,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>10</word_id>
+					<word_id>11</word_id>
 					<id>21</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2270,7 +2327,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>10</word_id>
+					<word_id>11</word_id>
 					<id>25</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3006,10 +3063,14 @@
 				</normal_column>
 				<normal_column>
 <<<<<<< HEAD
+<<<<<<< HEAD
 					<word_id>45</word_id>
 =======
 					<word_id>38</word_id>
 >>>>>>> branch 'suntae' of https://github.com/yujeongseon/SIX-ONE.git
+=======
+					<word_id>46</word_id>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 					<id>40</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3272,10 +3333,11 @@
 		</table>
 		<table>
 			<id>8</id>
-			<height>204</height>
-			<width>299</width>
+			<height>149</height>
+			<width>251</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
+<<<<<<< HEAD
 <<<<<<< HEAD
 			<x>828</x>
 			<y>34</y>
@@ -3283,6 +3345,10 @@
 			<x>1380</x>
 			<y>708</y>
 >>>>>>> branch 'suntae' of https://github.com/yujeongseon/SIX-ONE.git
+=======
+			<x>1332</x>
+			<y>351</y>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 			<color>
 				<r>255</r>
 				<g>255</g>
@@ -3291,7 +3357,7 @@
 			<connections>
 				<relation>
 					<id>10</id>
-					<source>12</source>
+					<source>11</source>
 					<target>8</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -3313,7 +3379,7 @@
 				</relation>
 				<relation>
 					<id>11</id>
-					<source>0</source>
+					<source>7</source>
 					<target>8</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -3334,8 +3400,8 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 			</connections>
-			<physical_name>play_exe</physical_name>
-			<logical_name>운동</logical_name>
+			<physical_name>rou_exe</physical_name>
+			<logical_name>루틴-운동</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
@@ -3343,7 +3409,11 @@
 			<columns>
 				<normal_column>
 <<<<<<< HEAD
+<<<<<<< HEAD
 					<word_id>30</word_id>
+=======
+					<word_id>45</word_id>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 					<id>46</id>
 =======
 					<word_id>37</word_id>
@@ -3381,8 +3451,12 @@
 				</normal_column>
 				<normal_column>
 <<<<<<< HEAD
+<<<<<<< HEAD
 					<word_id>9</word_id>
+=======
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 					<id>47</id>
+<<<<<<< HEAD
 =======
 					<word_id>36</word_id>
 					<id>43</id>
@@ -3525,6 +3599,9 @@
 				<normal_column>
 					<id>51</id>
 					<referenced_column>65</referenced_column>
+=======
+					<referenced_column>60</referenced_column>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 					<relation>10</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3556,6 +3633,7 @@
 						<decimal_size>0</decimal_size>
 					</sequence>
 				</normal_column>
+<<<<<<< HEAD
 			</columns>
 			<indexes>
 			</indexes>
@@ -3636,7 +3714,10 @@
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
+=======
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 				<normal_column>
+<<<<<<< HEAD
 <<<<<<< HEAD
 					<id>52</id>
 					<referenced_column>65</referenced_column>
@@ -3678,8 +3759,11 @@
 				<normal_column>
 <<<<<<< HEAD
 					<id>53</id>
+=======
+					<id>48</id>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 					<referenced_column>42</referenced_column>
-					<relation>13</relation>
+					<relation>11</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3712,11 +3796,15 @@
 				</normal_column>
 				<normal_column>
 					<word_id>20</word_id>
+<<<<<<< HEAD
 					<id>54</id>
 =======
 					<word_id>9</word_id>
 					<id>47</id>
 >>>>>>> branch 'suntae' of https://github.com/yujeongseon/SIX-ONE.git
+=======
+					<id>49</id>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3750,11 +3838,15 @@
 				<normal_column>
 <<<<<<< HEAD
 					<word_id>21</word_id>
+<<<<<<< HEAD
 					<id>55</id>
 =======
 					<word_id>29</word_id>
 					<id>48</id>
 >>>>>>> branch 'suntae' of https://github.com/yujeongseon/SIX-ONE.git
+=======
+					<id>50</id>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3787,7 +3879,7 @@
 				</normal_column>
 				<normal_column>
 					<word_id>42</word_id>
-					<id>56</id>
+					<id>51</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3828,7 +3920,7 @@
 			</table_properties>
 		</table>
 		<table>
-			<id>10</id>
+			<id>9</id>
 			<height>86</height>
 			<width>252</width>
 				<font_name>맑은 고딕</font_name>
@@ -3842,9 +3934,9 @@
 			</color>
 			<connections>
 				<relation>
-					<id>14</id>
+					<id>12</id>
 					<source>1</source>
-					<target>10</target>
+					<target>9</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
 						<target_xp>-1</target_xp>
@@ -3864,9 +3956,9 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 				<relation>
-					<id>15</id>
+					<id>13</id>
 					<source>0</source>
-					<target>10</target>
+					<target>9</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
 						<target_xp>-1</target_xp>
@@ -3894,9 +3986,9 @@
 			<option></option>
 			<columns>
 				<normal_column>
-					<id>57</id>
+					<id>52</id>
 					<referenced_column>0</referenced_column>
-					<relation>15</relation>
+					<relation>13</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3928,9 +4020,9 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<id>58</id>
+					<id>53</id>
 					<referenced_column>10</referenced_column>
-					<relation>14</relation>
+					<relation>12</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3972,7 +4064,11 @@
 		</table>
 		<table>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<id>11</id>
+=======
+			<id>10</id>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 			<height>204</height>
 			<width>356</width>
 =======
@@ -4006,11 +4102,15 @@
 				<normal_column>
 <<<<<<< HEAD
 					<word_id>35</word_id>
+<<<<<<< HEAD
 					<id>59</id>
 =======
 					<word_id>17</word_id>
 					<id>51</id>
 >>>>>>> branch 'suntae' of https://github.com/yujeongseon/SIX-ONE.git
+=======
+					<id>54</id>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4044,11 +4144,15 @@
 				<normal_column>
 <<<<<<< HEAD
 					<word_id>34</word_id>
+<<<<<<< HEAD
 					<id>60</id>
 =======
 					<word_id>16</word_id>
 					<id>52</id>
 >>>>>>> branch 'suntae' of https://github.com/yujeongseon/SIX-ONE.git
+=======
+					<id>55</id>
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4082,7 +4186,7 @@
 				<normal_column>
 <<<<<<< HEAD
 					<word_id>36</word_id>
-					<id>61</id>
+					<id>56</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4115,7 +4219,7 @@
 				</normal_column>
 				<normal_column>
 					<word_id>33</word_id>
-					<id>62</id>
+					<id>57</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4148,7 +4252,7 @@
 				</normal_column>
 				<normal_column>
 					<word_id>32</word_id>
-					<id>63</id>
+					<id>58</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4181,7 +4285,170 @@
 				</normal_column>
 				<normal_column>
 					<word_id>37</word_id>
-					<id>64</id>
+					<id>59</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>nvarchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+			</columns>
+			<indexes>
+			</indexes>
+			<complex_unique_key_list>
+			</complex_unique_key_list>
+			<table_properties>
+				<schema></schema>
+			</table_properties>
+		</table>
+		<table>
+			<id>11</id>
+			<height>178</height>
+			<width>375</width>
+				<font_name>맑은 고딕</font_name>
+				<font_size>9</font_size>
+			<x>1234</x>
+			<y>47</y>
+			<color>
+				<r>255</r>
+				<g>255</g>
+				<b>255</b>
+			</color>
+			<connections>
+			</connections>
+			<physical_name>exercise</physical_name>
+			<logical_name>운동종류</logical_name>
+			<description></description>
+			<constraint></constraint>
+			<primary_key_name></primary_key_name>
+			<option></option>
+			<columns>
+				<normal_column>
+					<word_id>16</word_id>
+					<id>60</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>decimal</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>true</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>15</word_id>
+					<id>61</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>nvarchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>17</word_id>
+					<id>62</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>nvarchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>14</word_id>
+					<id>63</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4223,6 +4490,7 @@
 		</table>
 		<table>
 			<id>12</id>
+<<<<<<< HEAD
 			<height>178</height>
 			<width>375</width>
 				<font_name>맑은 고딕</font_name>
@@ -4493,6 +4761,8 @@
 		</table>
 		<table>
 			<id>13</id>
+=======
+>>>>>>> branch 'Song_you' of https://github.com/yujeongseon/SIX-ONE.git
 			<height>86</height>
 			<width>259</width>
 				<font_name>맑은 고딕</font_name>
@@ -4506,9 +4776,9 @@
 			</color>
 			<connections>
 				<relation>
-					<id>16</id>
-					<source>14</source>
-					<target>13</target>
+					<id>14</id>
+					<source>13</source>
+					<target>12</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
 						<target_xp>-1</target_xp>
@@ -4536,8 +4806,8 @@
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>49</word_id>
-					<id>69</id>
+					<word_id>50</word_id>
+					<id>64</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4569,8 +4839,8 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>47</word_id>
-					<id>70</id>
+					<word_id>48</word_id>
+					<id>65</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4602,8 +4872,150 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<id>71</id>
-					<referenced_column>72</referenced_column>
+					<id>66</id>
+					<referenced_column>67</referenced_column>
+					<relation>14</relation>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>decimal</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>true</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+			</columns>
+			<indexes>
+			</indexes>
+			<complex_unique_key_list>
+			</complex_unique_key_list>
+			<table_properties>
+				<schema></schema>
+			</table_properties>
+		</table>
+		<table>
+			<id>13</id>
+			<height>152</height>
+			<width>295</width>
+				<font_name>맑은 고딕</font_name>
+				<font_size>9</font_size>
+			<x>1080</x>
+			<y>720</y>
+			<color>
+				<r>255</r>
+				<g>255</g>
+				<b>255</b>
+			</color>
+			<connections>
+				<relation>
+					<id>15</id>
+					<source>0</source>
+					<target>13</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>0..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
+				<relation>
+					<id>16</id>
+					<source>7</source>
+					<target>13</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>0..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
+			</connections>
+			<physical_name>subscribe</physical_name>
+			<logical_name>구독</logical_name>
+			<description></description>
+			<constraint></constraint>
+			<primary_key_name></primary_key_name>
+			<option></option>
+			<columns>
+				<normal_column>
+					<word_id>49</word_id>
+					<id>67</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>decimal</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>true</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<id>68</id>
+					<referenced_column>42</referenced_column>
 					<relation>16</relation>
 =======
 					<word_id>2</word_id>
@@ -4773,6 +5185,40 @@
 						<decimal_size>0</decimal_size>
 					</sequence>
 				</normal_column>
+				<normal_column>
+					<id>69</id>
+					<referenced_column>0</referenced_column>
+					<relation>15</relation>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>true</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
 			</columns>
 			<indexes>
 			</indexes>
@@ -4784,12 +5230,12 @@
 		</table>
 		<table>
 			<id>14</id>
-			<height>152</height>
-			<width>295</width>
+			<height>204</height>
+			<width>299</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>1080</x>
-			<y>720</y>
+			<x>828</x>
+			<y>34</y>
 			<color>
 				<r>255</r>
 				<g>255</g>
@@ -4798,6 +5244,28 @@
 			<connections>
 				<relation>
 					<id>17</id>
+					<source>11</source>
+					<target>14</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
+				<relation>
+					<id>18</id>
 					<source>0</source>
 					<target>14</target>
 						<source_xp>-1</source_xp>
@@ -4809,29 +5277,7 @@
 							<g>0</g>
 							<b>0</b>
 						</color>
-					<child_cardinality>0..n</child_cardinality>
-					<parent_cardinality>1</parent_cardinality>
-					<reference_for_pk>true</reference_for_pk>
-					<name></name>
-					<on_delete_action>RESTRICT</on_delete_action>
-					<on_update_action>RESTRICT</on_update_action>
-					<referenced_column>null</referenced_column>
-					<referenced_complex_unique_key>null</referenced_complex_unique_key>
-				</relation>
-				<relation>
-					<id>18</id>
-					<source>7</source>
-					<target>14</target>
-						<source_xp>-1</source_xp>
-						<source_yp>-1</source_yp>
-						<target_xp>-1</target_xp>
-						<target_yp>-1</target_yp>
-						<color>
-							<r>0</r>
-							<g>0</g>
-							<b>0</b>
-						</color>
-					<child_cardinality>0..n</child_cardinality>
+					<child_cardinality>1..n</child_cardinality>
 					<parent_cardinality>1</parent_cardinality>
 					<reference_for_pk>true</reference_for_pk>
 					<name></name>
@@ -4841,16 +5287,16 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 			</connections>
-			<physical_name>subscribe</physical_name>
-			<logical_name>구독</logical_name>
+			<physical_name>play_exe</physical_name>
+			<logical_name>운동</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>48</word_id>
-					<id>72</id>
+					<word_id>30</word_id>
+					<id>70</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -4882,14 +5328,113 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<id>73</id>
-					<referenced_column>42</referenced_column>
-					<relation>18</relation>
+					<word_id>9</word_id>
+					<id>71</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
 					<type>decimal</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>47</word_id>
+					<id>72</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>decimal</type>
+					<constraint></constraint>
+					<default_value>0</default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>29</word_id>
+					<id>73</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>date</type>
+					<constraint></constraint>
+					<default_value>&lt;현재일자&gt;</default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<id>74</id>
+					<referenced_column>0</referenced_column>
+					<relation>18</relation>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -4916,14 +5461,14 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<id>74</id>
-					<referenced_column>0</referenced_column>
+					<id>75</id>
+					<referenced_column>60</referenced_column>
 					<relation>17</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>varchar(n)</type>
+					<type>decimal</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>

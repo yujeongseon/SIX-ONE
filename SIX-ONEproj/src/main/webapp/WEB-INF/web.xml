@@ -30,6 +30,8 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
+
+	
 	<!--  한글 깨지는거 방지하기 위해 스프링에서 제공하는 필터 이용-->
 	<filter>
 		<filter-name>CharacterEncoding</filter-name> <!-- filter-name은 임의로 -->

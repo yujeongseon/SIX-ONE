@@ -123,7 +123,12 @@ function isLogin(el){
 								</li>
 								<li><a href="#;" onclick="javascript:isLogin(this);">스케쥴</a></li>
 								<li><a href="<c:url value='/TimeLine.do'/>">타임라인</a></li>
-								<li><a href="<c:url value='/freeboard.do'/>">게시판</a></li>
+								<li><a href="<c:url value='/freeboard.do'/>">게시판</a>
+									<ul class="dropdown">
+										<li><a href="<c:url value='/freeboard.do'/>">자유게시판</a></li>
+										<li><a href="<c:url value='/routine.do'/>">루틴게시판</a></li>
+									</ul>
+								</li>
 								<li><a href="#;" onclick="javascript:isLogin(this);" id="MyButton">마이</a></li>
 								<c:if test="${empty sessionScope.LoginSuccess}" var="flag">
 								<li><a href="#" data-toggle="modal" data-target="#myModal" class="MyMenu">로그인</a></li>
@@ -133,7 +138,6 @@ function isLogin(el){
 								<li><a href="<c:url value="Logout.do"/>">로그아웃</a></li>
 								<input type="hidden" id="loginckeck" value="no">
 								</c:if>
-							</ul>
 						</div>
 					</div>
 				</div>

@@ -60,12 +60,12 @@
 			  	</ul>
 		  	</div>
 		</aside>
-		
 		<div id="colorlib-intro">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 intro-wrap animate-box">
 						<div class="intro-flex">
+						
 							<div class="one-third intro-img" style="background-image: url(resources/images/intro-img-1.jpg)">
 								<div class="desc">
 									<h3>헬스</h3>
