@@ -4,7 +4,6 @@
 var editEvent = function (event,calendar) {
     $('#deleteEvent').data('id', event._id); //클릭한 이벤트 ID
     
-
     modalTitle.html('일정 수정');
     editTitle.val(event.title);
     editCount.val(event.extendedProps.count);
