@@ -6,6 +6,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
+	<!-- 
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/vendor/bootstrap/css/bootstrap.min.css"/>'>
 	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>'>
@@ -14,6 +15,7 @@
 	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/vendor/perfect-scrollbar/perfect-scrollbar.css"/>'>
 	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/css/util.css"/>'>
 	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/css/main.css"/>'>
+	 -->
 	<meta charset="utf-8">
 	<title>모두다짐</title>
 	
@@ -91,10 +93,9 @@ function find(no){
 		console.log('서버로부터 받은 루틴상세데이타:',data);
 		var pbodyString="";
 		var day=1;
-		var id = document.getElementById("pbody"+no);
-
+		
+		
 		$.each(data,function(index,record){
-			
 			pbodyString+="<div class='col-md-1 week'>";
 			pbodyString+="<div>"+day+"일차</div>";
 			pbodyString+="<p class='icon'><span><i class='flaticon-arm'></i></span></p>";
@@ -104,7 +105,7 @@ function find(no){
 			pbodyString+="</div>";
 			day++;
 		});
-		id.innerhtml=pbodyString;
+		$('#showrou').html(pbodyString);
 	}
 	//<div class="col-md-1 week">
 	//<div>월요일</div>
@@ -120,7 +121,7 @@ function find(no){
 	    var tableString="<tr class='table100-head'style='text-size:15px;  border-bottom-style:solid; border-bottom-color: black; border-top-style: solid; border-top-color: black'>";
 	    tableString+="<th class='column1'>번호</th>";
 	    tableString+="<th class='column2'>제목</th>";
-	    tableString+="<th class='column3'>날짜</th>";
+	    tableString+="<th class='column3'>작성일</th>";
 	    tableString+="<th class='column4'>작성자</th>";
 	    tableString+="</tr>";
 	    $('#tthead').html(tableString);
@@ -129,56 +130,18 @@ function find(no){
 	    var i=1
 	    var num
 	    $.each(data,function(index,record){
-	    	
-	    	switch(i){
-	    	case 1 : num = 'One'; break;
-	    	case 2 : num = 'Two'; break;
-	    	case 3 : num = 'Three'; break;
-	    	case 4 : num = 'Four'; break;
-	    	case 5 : num = 'Five'; break;
-	    	default : num= '오류';
-	    	}
-	    	
-	    	bodyString+="<div class='panel panel-default'>";
-	    	bodyString+="<div class='panel-heading' role='tab' id='heading"+num+"'>";
-	    	bodyString+="<h4 class='panel-title'>"
-	    	if(i==1)bodyString+="<a class='collapsed' data-toggle='collapse' data-parent='#accordion' href='#collapse"+num+"' aria-expanded='false' aria-controls='collapse"+num+"'>";
-	    	else bodyString+="<a data-toggle='collapse' data-parent='#accordion' href='#collapse"+num+"' aria-expanded='false' aria-controls='collapse"+num+"'onclick='find("+record['no']+")'>";
-	    	bodyString+= record['no']+"      "+record['ru_name']+"     "+record['create_date']+"    "+record['name'];
-	    	bodyString+="</a>";
-	    	bodyString+="</h4>";
-	    	bodyString+="</div>";
-	    	bodyString+="<div id='collapse"+num+"' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='heading"+num+"'>";
-	    	bodyString+="<div class='panel-body'>";
-	    	bodyString+="<div class='row'>"
-	    	bodyString+="<div class='schedule text-center animate-box'>"
-	    	bodyString+="<div class='col-md-12'>"
-	    	bodyString+="<div class='routine' id='pbody"+record['no']+"'>"
-	    	//이 pbody안에  루틴내용 들어가야함
-	    	bodyString+="</div>";
-	    	bodyString+="</div>";
-	    	bodyString+="</div>";
-	    	bodyString+="</div>";
-	    	bodyString+="</div>";
-	    	bodyString+="</div>";
-	    	bodyString+="</div>";
-	    	//<div class="row">
-			//<div class="schedule text-center animate-box">
-				//<div class="col-md-12">
-					//<div class="routine" >
-	    	//bodyString+="<tr class='hoo' onclick='find("+record['no']+")'>";
-	    	//bodyString+="<td >"+record['no']+"</td>";
-	    	//bodyString+="<td >"+record['ru_name']+"</td>";
-	    	//bodyString+="<td >"+record['routine_days']+"</td>";
-	    	//bodyString+="<td >"+record['name']+"</td>";
-	    	//bodyString+="</tr>";
-	    	i++;
+	    	bodyString+="<tr class='hoo' onclick='find("+record['no']+")'>";
+	    	bodyString+="<td >"+record['no']+"</td>";
+	    	bodyString+="<td >"+record['ru_name']+"</td>";
+	    	bodyString+="<td >"+record['create_date']+"</td>";
+	    	bodyString+="<td >"+record['name']+"</td>";
+	    	bodyString+="</tr>";	
 	    });
-	    $('#accordion').html(bodyString);
+	    $('#ttbody').html(bodyString);
 	};	
 	
 	</script>
-	<!-- 
+	
 	<style>
 .button {
 	background-color: black;
@@ -207,7 +170,7 @@ a:link {
 }
  
 </style>
--->
+
 	<style type="text/css">
 </style>
 
@@ -266,8 +229,39 @@ a:link {
 					<div class="bbs_title">
 						<p>${sessionScope.id} 아이디 확인 걍 씀</p>
 					</div>
+					
 					<div class="desc">글적는곳</div>
 					<div class="side">사이드 적는곳</div>
+					<!-- 아코디언으로 뿌려주기 -->
+					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+					<div class="panel panel-default">
+					<div class="panel-heading" role="tab" id="headingOne">
+				      <h4 class="panel-title">
+				        <a id="rouname" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				         	루틴 내용
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+     				 <div class="panel-body">
+     				 <!-- 루틴 뿌려주는 곳 -->
+     				 <div class="row">
+					<div class="schedule text-center animate-box">
+						<div class="col-md-12">
+							<div class="routine" id="showrou">
+							
+							
+							</div>
+						</div>
+						</div>
+						</div>
+     				 </div>
+     				 </div>
+					</div>
+					</div>
+					
+					
+					
 				</div>
 
 
@@ -424,12 +418,11 @@ a:link {
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
 	</div>
 	
-<!--===============================================================================================-->
+<!-- 
 	<script src='<c:url value="/resources/Table_Responsive/vendor/bootstrap/js/popper.js"/>'></script>
 	<script src='<c:url value="/resources/Table_Responsive/vendor/bootstrap/js/bootstrap.min.js"/>'></script>
-<!--===============================================================================================-->
 	<script src='<c:url value="/resources/Table_Responsive/vendor/select2/select2.min.js"/>'></script>
-<!--===============================================================================================-->
+ -->
 	
 	
 	</body>

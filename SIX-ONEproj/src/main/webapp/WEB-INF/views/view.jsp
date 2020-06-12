@@ -127,9 +127,7 @@
 					<tr>						
 						<td colspan="2">${record.content}</td>
 					</tr>				
-				</table>
-				
-			
+				</table>	
 		</div>
 				
 			<!-- 검색용 UI -->
