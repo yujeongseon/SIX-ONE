@@ -123,7 +123,7 @@ function isLogin(el){
 								</li>
 								<li><a href="#;" onclick="javascript:isLogin(this);">스케쥴</a></li>
 								<li><a href="<c:url value='/TimeLine.do'/>">타임라인</a></li>
-								<li><a href="<c:url value='/freeboard.do'/>">게시판</a>
+								<li class="has-dropdown"><a href="<c:url value='/freeboard.do'/>">게시판</a>
 									<ul class="dropdown">
 										<li><a href="<c:url value='/freeboard.do'/>">자유게시판</a></li>
 										<li><a href="<c:url value='/routine.do'/>">루틴게시판</a></li>
@@ -158,6 +158,22 @@ function isLogin(el){
 
 <script src="<c:url value='/resources/js/bootstrap.min.js' />"></script>
 <!-- 합쳐지고 최소화된 최신 CSS -->
-
+<script>
+      if(location.pathname.indexOf('exercise') != -1){
+         $('#nav-exercise').addClass('active');
+      }
+      else if(location.pathname.indexOf('schedule') != -1){
+         $('#nav-schedule').addClass('active');
+      }
+      else if(location.pathname.indexOf('TimeLine') != -1){
+         $('#nav-timeline').addClass('active');
+      }
+      else if(location.pathname.indexOf('freeboard') != -1){
+         $('#nav-freeboard').addClass('active');
+      }
+      else{
+         $('#nav-home').addClass('active');
+      }
+   </script>
 
 </html>
