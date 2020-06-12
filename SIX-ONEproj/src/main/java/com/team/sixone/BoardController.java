@@ -118,6 +118,7 @@ public class BoardController {
 	
 	//ajax 루틴 불러오기
 		@RequestMapping(value="/Ajax/RoutineOne.do",produces ="text/html; charset=UTF-8")
+		@ResponseBody
 		public String ajaxRoutineOne(String no) {
 			Map map = new HashMap();
 			System.out.println("no의 값"+no);

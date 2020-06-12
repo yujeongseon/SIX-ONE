@@ -294,8 +294,8 @@ a:link {
 						
 						<ul class="nav nav-pills">
 					
-					<c:if test="${empty id}" var="aa">
-					<li style="float: right"><a href="<c:url value='/Dataroom/Write.jsp?id=${session.id}'/>" class="btn btn-danger">글쓰기</a></li>
+					<c:if test="${empty LoginSuccess}" var="aa">
+					<li style="float: right"><a href="<c:url value='#'/>" class="btn btn-danger">로그인하세요</a></li>
 					</c:if>
 					<c:if test="${!aa}">
 					<li style="float: right"><a href="<c:url value='/write.do'/>" class="btn btn-success">글쓰기</a></li>

@@ -75,8 +75,10 @@ function find(no){
 			console.log('상태코드:',request.status);
 			console.log('서버로부터 받은 HTML데이타:',request.responseText);
 			console.log('에러:',error);
-		}
-		
+		},
+		complete : function() {
+			   $('#accordion').accordion("refresh");    
+		  }
 	});
 }
 
@@ -84,13 +86,14 @@ function find(no){
 	var successOneAjax = function(data,id,no){
 		console.log('no는 이거다',no)
 		console.log('서버로부터 받은 루틴상세데이타:',data);
+		var id = document.getElementById("rouin"+no);
 		var pbodyString="";
+		console.log("id값",id)
 		var day=1;
-		
-		
 		$.each(data,function(index,record){
 			pbodyString+="<div class='col-md-1 week'>";
 			pbodyString+="<div>"+day+"일차</div>";
+			pbodyString+="<div class='entry-forth'>"
 			pbodyString+="<p class='icon'><span><i class='flaticon-arm'></i></span></p>";
 			pbodyString+="<p class='time'><span>"+record['ru_count']+"회/"+record['set']+"세트</span></p>";
 			pbodyString+="<p class='trainer'><span>"+record['exe_no']+"</span></p>";
@@ -98,7 +101,7 @@ function find(no){
 			pbodyString+="</div>";
 			day++;
 		});
-		$('#showrou').html(pbodyString);
+		id.innerHTML=pbodyString;
 	}
 	//<div class="col-md-1 week">
 	//<div>월요일</div>
@@ -108,8 +111,7 @@ function find(no){
 		//<p class="trainer"><span>팔굽혀펴기</span></p>
 	//</div>
 	//</div>
-	window.onload = function () {
-	}
+	
 	</script>
 	
 	<style>
@@ -177,7 +179,7 @@ a:link {
 					<div class="carousel-caption">
 					</div>
 					</div>
-				...
+				
 			</div>
 			<!-- Controls -->
 			<a class="left carousel-control" href="#carousel" data-slide="prev">
@@ -222,6 +224,11 @@ a:link {
 							<div></div>
 							</c:if>
 							<c:if test="${not Empty}">
+							<div id="rl">
+							
+							
+							</div>
+							<!-- 
 								<c:forEach items="${rlist}" var="item" varStatus="loop">
 								<div>
 									<span>운동명--${item.exe_no}--</span>
@@ -230,6 +237,7 @@ a:link {
 									<span>일차--${item.days}--</span>
 									</div>
 								</c:forEach>
+								 -->
 							</c:if>
 						<div id="accordion">
 						<c:if test="${empty list}" var="isEmpty">
@@ -238,7 +246,7 @@ a:link {
 						<c:if test="${not isEmpty}">
 							<c:forEach items="${list}" var="item" varStatus="loop">
 							<!-- 아코디언 제목 -->
-							<div>${item.routine_name}
+							<div onclick="find(${item.routine_no})">${item.routine_name}
 								<span>${item.routine_no}</span>
 								<span>${item.name}</span>
 								<span>${item.create_at}</span>
@@ -248,104 +256,10 @@ a:link {
 				<div class="row">
 					<div class="schedule text-center animate-box">
 						<div class="col-md-12">
-							<div class="routine" >
-								<div class="col-md-1 week">
-									<div>월요일</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-arm"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
-								</div>
-			
-								<div class="col-md-1 week">
-									<div>화요일</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
-								</div>
-			
-								<div class="col-md-1 week">
-									<div>수요일</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
-								</div>
-			
-								<div class="col-md-1 week">
-									<div>목요일</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
-								</div>
-			
-								<div class="col-md-1 week">
-									<div>금요일</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
-								</div>
-			
-								<div class="col-md-1 week">
-									<div>토요일</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
-								</div>
-			
-								<div class="col-md-1 week">
-									<div>일요일</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
-								</div>
+							<div class="routine" id="rouin${item.routine_no}">
+							<!-- 이 안에 넣기 -->
+								
+							<!-- 이 안에 넣기 -->
 							</div>
 						</div>
 					</div>
@@ -356,19 +270,7 @@ a:link {
   
  
 </div>
-						
-						
-						<ul class="nav nav-pills">
-					<li class="active" style="background-color: white"><a href="<c:url value='/freeboard.do?id=dd'/>">자유게시판</a></li>
-					<li style="background-color: white"><a href="<c:url value='/freeboard.do?id=ru'/>">루틴 공유</a></li>
-					<li style="background-color: white"><a href="<c:url value='/freeboard.do?id=an'/>">익명게시판</a></li>
-					<c:if test="${empty id}" var="aa">
-					<li style="float: right"><a href="<c:url value='/Dataroom/Write.jsp?id=${session.id}'/>" class="btn btn-danger">글쓰기</a></li>
-					</c:if>
-					<c:if test="${!aa}">
-					<li style="float: right"><a href="<c:url value='/write.do'/>" class="btn btn-success">글쓰기</a></li>
-					</c:if>
-				</ul>
+			
 					</div>
 				<div class="row">
 					<div class="col-md-12 text-center">${pagingString}</div>
@@ -380,12 +282,11 @@ a:link {
 	<div class="row">
 		<div class="text-center">
 			<form class="form-inline" method="post"
-				action="<c:url value='/freeboard.do'/>">
+				action="<c:url value='/routine.do'/>">
 				<div class="form-group">
 					<select name="searchColumn" class="form-control">
-						<option value="title">제목</option>
+						<option value="routine_name">제목</option>
 						<option value="name">작성자</option>
-						<option value="content">내용</option>
 					</select>
 				</div>
 				<div class="form-group">
@@ -466,7 +367,9 @@ a:link {
 	<script src='<c:url value="/resources/Table_Responsive/vendor/select2/select2.min.js"/>'></script>
  -->
 	
-	
+	<script>
+	$('#accordion').collapse({hide: true})
+	</script>
 	</body>
 </html>
 
