@@ -48,8 +48,6 @@ public class RoutineDAO {
 			sql+=" WHERE "+map.get("searchColumn")+" LIKE '%"+map.get("searchWord")+"%' ";
 		}		
 		sql+=" ORDER BY routine_no DESC) T) WHERE R BETWEEN ? AND ?";
-		
-		
 		try {
 			psmt = conn.prepareStatement(sql);
 			//페이징을 위한 시작 및 종료 rownum설정]
@@ -71,23 +69,23 @@ public class RoutineDAO {
 	}//////////selectList()
 	
 	public List<Rou_exeDTO> selectone(String no) {
-		List<Rou_exeDTO> list = new Vector<Rou_exeDTO>();
+		List<Rou_exeDTO> rou = new Vector<Rou_exeDTO>();
 		System.out.println("no값"+no);
-		String sql="SELECT * FROM rou_exe WHERE routine_no=? order by routine_days";
+		String sql="SELECT e.exercise_name,r.goal_count,r.goal_set,r.routine_days FROM rou_exe r JOIN exercise e ON r.exercise_no = e.exercise_no  WHERE routine_no=? order by routine_days";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, no);
 			rs= psmt.executeQuery();
 			while(rs.next()) {
 				Rou_exeDTO dto=new Rou_exeDTO();
-				dto.setExe_no(rs.getString(2));
-				dto.setCount(rs.getString(4));
-				dto.setSet(rs.getString(5));
-				dto.setDays(rs.getString(6));
-				list.add(dto);
+				dto.setExe_no(rs.getString(1));
+				dto.setCount(rs.getString(2));
+				dto.setSet(rs.getString(3));
+				dto.setDays(rs.getString(4));
+				rou.add(dto);
 			}
 		} catch (Exception e) {e.printStackTrace();}
-		return list;
+		return rou;
 	}///////////selectOne
 	
 	public int getTotalRowCount(Map map) {

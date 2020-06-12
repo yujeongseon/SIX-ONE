@@ -6,20 +6,11 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-	<!-- 
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/vendor/bootstrap/css/bootstrap.min.css"/>'>
-	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>'>
-	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/vendor/animate/animate.css"/>'>
-	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/vendor/select2/select2.min.css"/>'>
-	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/vendor/perfect-scrollbar/perfect-scrollbar.css"/>'>
-	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/css/util.css"/>'>
-	<link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/css/main.css"/>'>
-	 -->
 	<meta charset="utf-8">
 	<title>모두다짐</title>
-	
-	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
 	jQuery(document).ready(function($) {
 		var followFlag = true;
@@ -45,7 +36,9 @@
 		});
 	
 	$(function(){
-		
+		 $( "#accordion" ).accordion({
+		      collapsible: true
+		    });
 		
 		 //3]AJAX사용-JSON데이타로 응답받기       
 		$('#routine').click(function(){
@@ -115,31 +108,8 @@ function find(no){
 		//<p class="trainer"><span>팔굽혀펴기</span></p>
 	//</div>
 	//</div>
-
-	var successAjax = function(data,id){
-		console.log('서버로부터 받은 루틴데이타:',data);	
-	    var tableString="<tr class='table100-head'style='text-size:15px;  border-bottom-style:solid; border-bottom-color: black; border-top-style: solid; border-top-color: black'>";
-	    tableString+="<th class='column1'>번호</th>";
-	    tableString+="<th class='column2'>제목</th>";
-	    tableString+="<th class='column3'>작성일</th>";
-	    tableString+="<th class='column4'>작성자</th>";
-	    tableString+="</tr>";
-	    $('#tthead').html(tableString);
-	    
-	    var bodyString=""
-	    var i=1
-	    var num
-	    $.each(data,function(index,record){
-	    	bodyString+="<tr class='hoo' onclick='find("+record['no']+")'>";
-	    	bodyString+="<td >"+record['no']+"</td>";
-	    	bodyString+="<td >"+record['ru_name']+"</td>";
-	    	bodyString+="<td >"+record['create_date']+"</td>";
-	    	bodyString+="<td >"+record['name']+"</td>";
-	    	bodyString+="</tr>";	
-	    });
-	    $('#ttbody').html(bodyString);
-	};	
-	
+	window.onload = function () {
+	}
 	</script>
 	
 	<style>
@@ -240,60 +210,158 @@ a:link {
 				
 				<div class="row">
 					<div class="col-md-12">
-					<ul class="nav nav-pills">
-					<li id="1num" style="background-color: black; border-style:solid; "><a href="<c:url value='/freeboard.do?id=fr'/>">자유게시판</a></li>
-					<li id="3num" style="background-color: white;border-style: solid;"><a id="an" href="<c:url value='/freeboard.do?id=an'/>">익명게시판</a></li>
-					</ul>
+					
 						<table id="hell" class="table table-bordered table-hover text-center" style="color:black; font-family:sans-serif;" id="tab">
 						<thead id="tthead">			
 							<tr class="table100-head"style="text-size:15px;  border-bottom-style:solid; border-bottom-color: black; border-top-style: solid; border-top-color: black">
-								<th class="column1">번호</th>
-								<th class="column2">제목</th>
-								<th class="column3">작성자</th>
-								<th class="column4">작성일</th>
-								<th class="column5">조회수</th>
-								<th class="column6">추천</th>
+								<th class="column1">루틴 목록</th>
 							</tr>
 							</thead>
-							<tbody id="ttbody">
-									<c:if test="${empty list}" var="isEmpty">
-										<tr>
-											<td colspan="6">등록된 게시물이 없습니다.</td>
-										</tr>
-									</c:if>
-									
-									<c:if test="${not isEmpty}">
-									<tr class="hoo">
-										<td><span class="blink" style="font-family: Fantasy">HOT</span></td>
-										<td class="text-left"><a class="aa"
-											href="<c:url value='#'/>">초보자 루틴 추천해준다</a></td>
-										<td>다짐하자</td>
-										<td>20-05-15</td>
-										<td>27</td>
-										<td>5</td>
-									</tr>
-										<c:forEach items="${list}" var="item" varStatus="loop">
-											<tr class="hoo">
-												<td>${item.board_no}</td>
-												<td class="text-left">
-												<a class="aa" href='<c:url value="/view.do?no=${item.board_no}&nowPage=${nowPage}"/>'>${item.title}</a>
-												</td>
-												<td>${item.name}</td>
-												<td>${item.create_at}</td>
-												<td>${item.count}</td>
-												<td>0</td>
-											</tr>
-										</c:forEach>
-									</c:if>
-								</tbody>
-						</table>
-						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-						
+							</table>
+							<c:if test="${empty rlist}" var="Empty">
+							<div></div>
+							</c:if>
+							<c:if test="${not Empty}">
+								<c:forEach items="${rlist}" var="item" varStatus="loop">
+								<div>
+									<span>운동명--${item.exe_no}--</span>
+									<span>몇세트--${item.set}--</span>
+									<span>개수--${item.count}--</span>
+									<span>일차--${item.days}--</span>
+									</div>
+								</c:forEach>
+							</c:if>
+						<div id="accordion">
+						<c:if test="${empty list}" var="isEmpty">
+											<div>등록된 루틴이 없습니다.</div>
+						</c:if>
+						<c:if test="${not isEmpty}">
+							<c:forEach items="${list}" var="item" varStatus="loop">
+							<!-- 아코디언 제목 -->
+							<div>${item.routine_name}
+								<span>${item.routine_no}</span>
+								<span>${item.name}</span>
+								<span>${item.create_at}</span>
+							</div>
+							<!-- 실질 내용 -->
+			<div>
+				<div class="row">
+					<div class="schedule text-center animate-box">
+						<div class="col-md-12">
+							<div class="routine" >
+								<div class="col-md-1 week">
+									<div>월요일</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-arm"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>팔굽혀펴기</span></p>
+									</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>턱걸이</span></p>
+									</div>
+								</div>
+			
+								<div class="col-md-1 week">
+									<div>화요일</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>팔굽혀펴기</span></p>
+									</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>턱걸이</span></p>
+									</div>
+								</div>
+			
+								<div class="col-md-1 week">
+									<div>수요일</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>팔굽혀펴기</span></p>
+									</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>턱걸이</span></p>
+									</div>
+								</div>
+			
+								<div class="col-md-1 week">
+									<div>목요일</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>팔굽혀펴기</span></p>
+									</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>턱걸이</span></p>
+									</div>
+								</div>
+			
+								<div class="col-md-1 week">
+									<div>금요일</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>팔굽혀펴기</span></p>
+									</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>턱걸이</span></p>
+									</div>
+								</div>
+			
+								<div class="col-md-1 week">
+									<div>토요일</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>팔굽혀펴기</span></p>
+									</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>턱걸이</span></p>
+									</div>
+								</div>
+			
+								<div class="col-md-1 week">
+									<div>일요일</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>팔굽혀펴기</span></p>
+									</div>
+									<div class="entry-forth">
+										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
+										<p class="time"><span>10회/3세트</span></p>
+										<p class="trainer"><span>턱걸이</span></p>
+									</div>
+								</div>
+							</div>
 						</div>
+					</div>
+				</div>
+			</div>
+									</c:forEach>
+									</c:if>
+  
+ 
+</div>
 						
 						
 						<ul class="nav nav-pills">
-					
+					<li class="active" style="background-color: white"><a href="<c:url value='/freeboard.do?id=dd'/>">자유게시판</a></li>
+					<li style="background-color: white"><a href="<c:url value='/freeboard.do?id=ru'/>">루틴 공유</a></li>
+					<li style="background-color: white"><a href="<c:url value='/freeboard.do?id=an'/>">익명게시판</a></li>
 					<c:if test="${empty id}" var="aa">
 					<li style="float: right"><a href="<c:url value='/Dataroom/Write.jsp?id=${session.id}'/>" class="btn btn-danger">글쓰기</a></li>
 					</c:if>
@@ -305,6 +373,7 @@ a:link {
 				<div class="row">
 					<div class="col-md-12 text-center">${pagingString}</div>
 				</div>
+				
 				</div>
 				
 			<!-- 검색용 UI -->

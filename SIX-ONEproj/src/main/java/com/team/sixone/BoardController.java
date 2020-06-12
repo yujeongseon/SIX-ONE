@@ -117,7 +117,6 @@ public class BoardController {
 	
 	//ajax 루틴 불러오기
 		@RequestMapping(value="/Ajax/RoutineOne.do",produces ="text/html; charset=UTF-8")
-		@ResponseBody
 		public String ajaxRoutineOne(String no) {
 			Map map = new HashMap();
 			System.out.println("no의 값"+no);
@@ -140,12 +139,15 @@ public class BoardController {
 	
 	
 	//ajax테스트
-	@RequestMapping(value="/Ajax/Routine.do",produces ="text/html; charset=UTF-8")
-	@ResponseBody
-	public String ajaxRoutine(HttpServletRequest req) {//id는 게시판 구분용으로
+	@RequestMapping(value="/routine.do",produces ="text/html; charset=UTF-8")
+	public String ajaxRoutine(@RequestParam Map map,//검색어 받기
+			@RequestParam(required = false,defaultValue = "1") int nowPage,
+			HttpServletRequest req,//컨텍스트 루트 얻기용
+			Model model) {//id는 게시판 구분용으로
 		//JSON데이타 타입으로 반환하기위해 JSONObject객체 생성
-		int nowPage=1;
-		Map map = new HashMap();
+		int pageSize = 10;
+		int blockPage = 10;
+		
 		RoutineDAO dao= new RoutineDAO(null);
 		//전체 레코드수	
 		int totalRecordCount = dao.getTotalRowCount(map);
@@ -159,28 +161,22 @@ public class BoardController {
 		map.put("start", start);
 		map.put("end", end);
 		List<RoutineDTO> list=dao.selectList(map);
-		dao.close();
-		List<Map> collections = new Vector<Map>();
-		for(RoutineDTO dto:list) {
-			Map record = new HashMap();
-			record.put("no", dto.getRoutine_no());
-			record.put("ru_name", dto.getRoutine_name());
-			record.put("name", dto.getName());
-			record.put("create_date", dto.getCreate_at().toString());
-			collections.add(record);
+		String a=list.get(0).getRoutine_no();
+		System.out.println("a의 값"+a);
+		System.out.println("리스트 크기"+list.size());
+		List<Rou_exeDTO> rlist = new Vector<Rou_exeDTO>();
+		for(int i=0; i<list.size(); i++) {
+			rlist.addAll(dao.selectone(list.get(i).getRoutine_no()));
 		}
-		String pagingString= PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,req.getContextPath()+ "/freeboard.do?");
-		//map.put("pagingString", pagingString);//페이징스트링 맵에 담아 넘겨주기
-		//collections.add(map);
+		String pagingString= PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,req.getContextPath()+ "/routine.do?");
 		//데이타 저장]
+		//[[1,2,3,4],[4,5,6,7],[8,9,10,11]][[a,b,c,d],[d,f,g,h],[i,j,k,l]]
+		model.addAttribute("list", list);
+		model.addAttribute("pagingString", pagingString);
+		model.addAttribute("rlist",rlist);
 		//뷰정보 반환]
-		return JSONArray.toJSONString(collections);
+		return "/routineboard.tiles";
 	}///////////ajaxJson
-	
-	
-	
-	
-	
 	
 	
 	@RequestMapping("/write.do")

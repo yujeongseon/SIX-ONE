@@ -122,11 +122,17 @@
 						<td>${record.create_at}</td>
 					</tr>
 					<tr>
+					<td><img src="<c:url value='/resources/uploadimage/${record.image_name}'/>"/></td>
+					
+					</tr>	
+					<tr>
 						<th class="text-center" colspan="2">내용</th>						
 					</tr>
 					<tr>						
 						<td colspan="2">${record.content}</td>
-					</tr>				
+					</tr>	
+					
+						
 				</table>	
 		</div>
 				
@@ -145,130 +151,10 @@
 					<li style="float: right"><a href="<c:url value='/delete.do?nowPage=${param.nowPage}&no=${record.board_no}'/>" class="btn btn-success">삭제</a></li>
 				</c:when>
 				</c:choose>
-					
 				</ul>
 			</div>
 		
-		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          루틴 보기
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-       <div class="row">
-					<div class="schedule text-center animate-box">
-						<div class="col-md-12">
-							<div class="routine" >
-								<div class="col-md-1 week">
-									<div>월요일</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-arm"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
-								</div>
-			
-								<div class="col-md-1 week">
-									<div>화요일</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
-								</div>
-			
-								<div class="col-md-1 week">
-									<div>수요일</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
-								</div>
-			
-								<div class="col-md-1 week">
-									<div>목요일</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
-								</div>
-			
-								<div class="col-md-1 week">
-									<div>금요일</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
-								</div>
-			
-								<div class="col-md-1 week">
-									<div>토요일</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
-								</div>
-			
-								<div class="col-md-1 week">
-									<div>일요일</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-      </div>
-    </div>
-  </div>
-</div>
+		
 			</div>
 			</div>
 			

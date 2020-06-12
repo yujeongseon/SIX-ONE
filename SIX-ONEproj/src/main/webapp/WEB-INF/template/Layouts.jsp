@@ -60,7 +60,13 @@
 								</li>
 								<li id="nav-schedule"><a href="<c:url value='/schedule.do'/>">스케쥴</a></li>
 								<li id="nav-timeline"><a href="<c:url value='/TimeLine.do'/>">타임라인</a></li>
-								<li id="nav-freeboard"><a href="<c:url value='/freeboard.do'/>">게시판</a></li>
+								<li id="nav-freeboard" class="has-dropdown">
+									<a href="<c:url value='/freeboard.do'/>">게시판</a>
+									<ul class="dropdown">
+										<li><a href="<c:url value='/freeboard.do'/>">자유게시판</a></li>
+										<li><a href="<c:url value='/routine.do'/>">루틴게시판</a></li>
+									</ul>
+								</li>
 								<li><a href="blog.html">Blog</a></li>
 								<li><a href="#" data-toggle="modal" data-target="#myModal" id="MyMenu">마이</a></li>
 							</ul>
