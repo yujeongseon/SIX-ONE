@@ -20,7 +20,7 @@ public class CalendarDAO implements CalendarService {
 
 	@Override
 	public List<CalendarDTO> selectList(Map map) {
-		map.put("id", "kim");
+		
 		List<CalendarDTO> list2 = sqlMapper.selectList("calendarSelectRoutine",map); 
 		
 		List<CalendarDTO> list = sqlMapper.selectList("calendarSelectList",map);
@@ -35,7 +35,6 @@ public class CalendarDAO implements CalendarService {
 
 	@Override
 	public int insert(Map map) {
-		map.put("id", "kim");
 		return sqlMapper.insert("calendarInsert",map);
 	}
 
@@ -68,7 +67,6 @@ public class CalendarDAO implements CalendarService {
 	}
 
 	public List<CalendarDTO> selectRoutine(Map map) {
-		map.put("id", "kim");
 		return sqlMapper.selectList("calendarSelectRoutine",map);
 	}
 	

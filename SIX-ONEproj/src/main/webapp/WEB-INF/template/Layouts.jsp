@@ -30,7 +30,9 @@
 	<script src="<c:url value='/resources/js/main.js' />"></script>
 	
 <script>
-function isLogin(){
+function isLogin(el){
+	console.log($(el).html())
+	var title = $(el).html();
 	$.ajax({
 		url:"<c:url value='/LoginCkeck.do'/>",
 		type:'get',
@@ -42,7 +44,13 @@ function isLogin(){
 				alert('로그인후 이용하세요');
 			}
 			else{
-				window.location.href = "<c:url value='/MyPage.do'/>";
+				if(title == '마이'){
+					window.location.href = "<c:url value='/MyPage.do'/>";
+				}
+				else if(title == '스케쥴'){
+					window.location.href = "<c:url value='/schedule.do'/>";
+				}
+				
 			}
 			
 		},
@@ -113,10 +121,10 @@ function isLogin(){
 										<li><a href="#">Body Building</a></li>
 									</ul>
 								</li>
-								<li><a href="<c:url value='/schedule.do'/>">스케쥴</a></li>
+								<li><a href="#;" onclick="javascript:isLogin(this);">스케쥴</a></li>
 								<li><a href="<c:url value='/TimeLine.do'/>">타임라인</a></li>
 								<li><a href="<c:url value='/freeboard.do'/>">게시판</a></li>
-								<li><a href="javascript:isLogin();" id="MyButton">마이</a></li>
+								<li><a href="#;" onclick="javascript:isLogin(this);" id="MyButton">마이</a></li>
 								<c:if test="${empty sessionScope.LoginSuccess}" var="flag">
 								<li><a href="#" data-toggle="modal" data-target="#myModal" class="MyMenu">로그인</a></li>
 								<input type="hidden" id="loginckeck" value="ok">
