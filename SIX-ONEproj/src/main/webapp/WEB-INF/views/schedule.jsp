@@ -585,7 +585,7 @@
 	
 	// 구독취소
 	function cancelSubscribe(){
-		subscribeNo = $('#cancel_btn').val()
+		subscribeNo = $('#cancel_btn').val();
 		if(confirm('달력에 추가된 루틴도 모두 지워집니다\r\n정말로 취소하시겠습니까?')){
 			
 			$.ajax({

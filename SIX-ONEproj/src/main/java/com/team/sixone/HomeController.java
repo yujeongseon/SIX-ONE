@@ -36,4 +36,11 @@ public class HomeController {
 		return "home.tiles";
 	}
 	
+	@RequestMapping("/home.do")
+	public String moveHome() {
+
+		return"home.tiles";
+	}
+	
+	
 }

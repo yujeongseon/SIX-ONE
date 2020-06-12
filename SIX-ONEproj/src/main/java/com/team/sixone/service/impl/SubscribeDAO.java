@@ -22,7 +22,6 @@ public class SubscribeDAO implements SubscribeService {
 
 	@Override
 	public List<SubscribeDTO> selectList(Map map) {
-		map.put("id", "kim");
 		return sqlMapper.selectList("subscribeSelectList",map);
 	}
 

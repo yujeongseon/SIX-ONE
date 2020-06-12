@@ -17,6 +17,15 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/LoginCSS/css/util.css'/>" >
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/LoginCSS/css/main.css'/>" >  
 <!-- 로그인폼 css링크끝 -->
+
+
+<!--<link rel="stylesheet" type="text/css" href="<c:url value='/resources/MailCSS/css/util.css'/>"/>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/MailCSS/css/main.css'/>"/>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/MailCSS/vendor/select2/select2.min.css'/>"/>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/MailCSS/vendor/animate/animate.css'/>"/>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/MailCSS/fonts/font-awesome-4.7.0/css/font-awesome.min.css'/>"/>
+	<link rel="icon" type="image/png" href="<c:url value='/resources/MailCSS/images/icons/favicon.ico'/>"/>
+	  -->
 	<title>우리 사이트 이름 정해야함</title>
 	
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900" rel="stylesheet">
@@ -27,8 +36,6 @@
 	<link rel="stylesheet" href="<c:url value='/resources/css/animate.css' />">
 	<!-- Icomoon Icon Fonts-->
 	<link rel="stylesheet" href="<c:url value='/resources/css/icomoon.css' />">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.css' />">
 
 	<!-- Magnific Popup -->
 	<link rel="stylesheet" href="<c:url value='/resources/css/magnific-popup.css' />">
@@ -53,7 +60,7 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 	
-	<style>
+<style>
 	/*
 	모달창 중앙 뜨기 건들 ㄴㄴ
 	*/
@@ -86,26 +93,46 @@
 <script>
 
 $(function(){
-		// $('#myModal').modal("hide"); //모달 닫혔을때
-		//$('#myModal').modal("show");//모달 열렸을때
+	//768
+	$('#myModal').on('show.bs.modal', function () {
+		if($(window).width() <= 768){
+		$('body').removeClass('overflow offcanvas');
+			//$('a').removeClass('colorlib-nav-toggle');
+		}
 		
-		$('#MyMenu').on('click',function(){
-			console.log('마이메뉴클릭');
-			$('#colorlib-offcanvas').hide();
-		});
-		
-		
-		
-		
-		
-		
-		/*
-		$('.js-colorlib-nav-toggle').on('click',function(){
-			console.log('열림');
-		});
-		*/
-		
+	});
 	
+	$('#myModal').on('hidden.bs.modal', function () {
+		if($(window).width() <= 768){
+		$('body').addClass('overflow offcanvas');
+			
+		}
+	});
+	
+	$('#LoginButton').click(function(){
+		$.ajax({
+			url:"<c:url value='/Login.do'/>",
+			type:'get',
+			dataType:'text',
+			data:$('#frm').serialize(),
+			success:function(data){
+				console.log(data);
+				//$('#msg').html(data);
+				var msg = data;
+				if(msg == "로그인 성공"){
+					window.location.href = "<c:url value='/home.do'/>";
+				}
+				else{
+					$('#msg').html(data);
+				}
+				
+			},
+			error:function(data){
+				console.log('에러:',data.responseText);
+			}
+		});
+		
+	});
 	
 	
 	
@@ -119,60 +146,62 @@ $(function(){
 	<!-- 모달 시작 -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
+	
 		<div class="modal-content">
+		
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"aria-label="Close">
-					<span aria-hidden="true" id="x">&times;</span>
-				</button>
-			
 			</div>
+			
 			<div class="modal-body">
-			<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+			<form  id="frm">
+			<div class="form-group wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
 						<span class="label-input100">아이디</span>
-						<input class="input100" type="text" name="username" placeholder="아이디를 입력하세요">
+						<input class="input100" type="text" name="id" id = "id"placeholder="아이디를 입력하세요">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 					
-			<div class="wrap-input100 validate-input" data-validate="Password is required">
+			<div class="form-group wrap-input100 validate-input" data-validate="Password is required">
 						<span class="label-input100">비밀번호</span>
-						<input class="input100" type="password" name="pass" placeholder="비밀번호를 입력하세요">
+						<input class="input100" type="password" name="password" id="pass" placeholder="비밀번호를 입력하세요">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					
+					
 				<div class="text-right p-t-8 p-b-31">
+					<span id="msg" style=" color: red; width: 10%;"></span>
 					<a href="#" style="color: black; text-decoration:underline;">아이디 / 비밀번호 찾기</a>
 				</div>
 				
 				<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" >Login</button>
+							<button type="button"class="login100-form-btn" id="LoginButton">Login</button>
 						</div>
 					</div>
-					
+					</form>
 					<div class="txt1 text-center p-t-54 p-b-20">
 						<span>
 							SNS로그인
 						</span>
 					</div>
 					<div class="flex-c-m">
-						<a href="#" class="login100-social-item bg1">
-							<i class="fa fa-facebook"></i>
+						<a href="#">
+							<img class="img-circle"  alt="..." src="resources/images/NAVER.PNG" style="width: 53px;height: 53px;">
 						</a>
 
-						<a href="#" class="login100-social-item bg2">
-							<i class="fa fa-twitter"></i>
+						<a href="#">
+							<img class="img-circle"  alt="..." src="resources/images/kokoao.png" style="width: 53px;height: 53px; margin-right: 15px; margin-left: 15px;">
 						</a>
 
-						<a href="#" class="login100-social-item bg3">
-							<i class="fa fa-google"></i>
+						<a href="#">
+							<img class="img-circle"  alt="..." src="resources/images/Facebook.png" style="width: 53px;height: 53px;">
 						</a>
 					</div>
-					<div class="txt1 text-center">
+					
+					<div class="txt1 text-center" style="padding-top: 40px;">
 						<span>회원가입</span>
 						</div>
 			</div>
-			
 		</div>
 	</div>
 </div>

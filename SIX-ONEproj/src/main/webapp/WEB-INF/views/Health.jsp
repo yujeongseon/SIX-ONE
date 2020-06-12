@@ -1,6 +1,40 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <style>
+.map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
+.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
+.map_wrap {position:relative;width:100%;height:500px;}
+#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+.bg_white {background:#fff;}
+#menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
+#menu_wrap .option{text-align: center;}
+#menu_wrap .option p {margin:10px 0;}  
+#menu_wrap .option button {margin-left:5px;}
+#placesList li {list-style: none;}
+#placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
+#placesList .item span {display: block;margin-top:4px;}
+#placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+#placesList .item .info{padding:10px 0 10px 55px;}
+#placesList .info .gray {color:#8a8a8a;}
+#placesList .info .jibun {padding-left:26px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
+#placesList .info .tel {color:#009900;}
+#placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(resources/images/gymimg.png) no-repeat;}
+#placesList .item .marker_1 {background-position: 0 -0px;}
+#placesList .item .marker_2 {background-position: 0 -36px;}
+#placesList .item .marker_3 {background-position: 0 -73px}
+#placesList .item .marker_4 {background-position: 0 -110px;}
+#placesList .item .marker_5 {background-position: 0 -146px;}
+#placesList .item .marker_6 {background-position: 0 -182px;} <!--중앙헬스-->
+#placesList .item .marker_7 {background-position: 0 -219px;}
+#placesList .item .marker_8 {background-position: 0 -255px;}<!--스포플렉스-->
+#placesList .item .marker_9 {background-position: 0 -325px;}  <!--움집헬스-->
+#placesList .item .marker_10 {background-position: 0 -358px;} <!--커브스-->
+#pagination {margin:10px auto;text-align: center;}
+#pagination a {display:inline-block;margin-right:10px;}
+#pagination .on {font-weight: bold; cursor: default;color:#777;}
+</style>
+    
 
 			<aside id="colorlib-hero">
 				<div class="flexslider">
@@ -81,16 +115,72 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="col-md-3 col-sm-3 animate-box">
+			
+			<div class="col-md-3 col-sm-3 animate-box" >
+			
 				<div class="trainers-entry">
 					<div class="trainer-img" style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)"></div>
 					<div class="desc">
-						<h3>가까운 헬스장 찾기</h3>
+						<a href="http://www.naver.com"><h3>가까운 헬스장 찾기</h3>
+						</a>
 						<span>현재 위치를 바탕으로 </br>가까운 헬스장을 찾습니다</span>
+						onclick="wirteModal.show();"
 					</div>
 				</div>
+				
 			</div>
+			
+			
+			
+	<!-- Modal -->
+	<div class="modal fade" id="wirteModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true" >
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">글 작성하기</h4>
+				</div>
+				<div class="modal-body">
+					<!-- 글작성 폼 -->
+					
+					<div class="form-group">
+					<form action="<c:url value='/upload.do'/>" enctype="multipart/form-data" method="POST" id="imgform">
+						<div id="image_container"></div>
+						<label for="exampleInputFile">사진 업로드</label> <input type="file"
+							id="image" name="image" onchange="setThumbnail(event);">
+						<p class="help-block">이미지 파일만 업로드 가능합니다</p>
+					
+					
+						<div class="form-group">
+							<label for="exampleInputEmail1">내용</label>
+							<textarea class="form-control" id="inscontent" rows="4" placeholder="내용 입력"></textarea>
+						</div>
+					
+					<div class="checkbox">
+					<label> <input type="checkbox" name="saveRadio" checked="checked"> 내용 임시 저장하기
+					</label>
+				</div>
+				<div class="modal-footer">
+					<input type="submit" class="btn btn-default"/>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="isSaved();">취소하기</button>
+				</div>
+					<!-- 글작성 폼 끝 -->
+					</form>
+				</div>
+				
+				
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	<!-- 모달끝 -->
+			
 
 			<div class="col-md-3 col-sm-3 animate-box">
 				<!--칼로리 계산기랑 연결-->

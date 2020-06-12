@@ -56,12 +56,14 @@ public class RoutineDAO {
 			rs=psmt.executeQuery();
 			while(rs.next()) {
 				RoutineDTO dto = new RoutineDTO();
+				Rou_exeDTO rouDto = new Rou_exeDTO();
+				
+				// 1. 루틴번호, 2. 루틴 이름, 3.생성일, 4.아이디, 5. 목표수, 6.셋트수
 				dto.setRoutine_no(rs.getString(1));
 				dto.setId(rs.getString(4));
 				dto.setCreate_at(rs.getDate(3));
 				dto.setRoutine_name(rs.getString(2));
-				dto.setName(rs.getString(5));
-				
+
 				list.add(dto);
 			}
 		}

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,8 +38,10 @@ public class ScheduleController {
 	
 	
 	@RequestMapping("/schedule.do")
-	public String schedule(Model model) {
+	public String schedule(Model model,HttpSession session) {
 		Map map = new HashMap();
+		String id = session.getAttribute("LoginSuccess").toString();
+		map.put("id",id);
 		//List<ExerciseDTO> list = exerciseDAO.selectList();
 		//model.addAttribute("exerciseList", list);
 		List<SubscribeDTO> list = subscribeDAO.selectList(map);
@@ -50,8 +53,9 @@ public class ScheduleController {
 	
 	@RequestMapping(value="/schedule.read",produces = "text/html; charset=UTF-8")
 	@ResponseBody
-	public String readCalendar(@RequestParam Map map) {
-		
+	public String readCalendar(@RequestParam Map map,HttpSession session) {
+		String id = session.getAttribute("LoginSuccess").toString();
+		map.put("id",id);
 		List<CalendarDTO> list = calendarDAO.selectList(map);
 		
 		ObjectMapper mapper = new ObjectMapper();
@@ -66,7 +70,9 @@ public class ScheduleController {
 	
 	@RequestMapping(value="/scheduleRoutine.read",produces = "text/html; charset=UTF-8")
 	@ResponseBody
-	public String readRoutine(@RequestParam Map map) {
+	public String readRoutine(@RequestParam Map map,HttpSession session) {
+		String id = session.getAttribute("LoginSuccess").toString();
+		map.put("id",id);
 		List<CalendarDTO> list = null;
 		if(map.get("routine") == null) {
 			list = calendarDAO.selectList(map);
@@ -118,7 +124,9 @@ public class ScheduleController {
 	
 	@RequestMapping(value="/schedule.insert")
 	@ResponseBody
-	public String insertCalendar(@RequestParam Map map) {
+	public String insertCalendar(@RequestParam Map map,HttpSession session) {
+		String id = session.getAttribute("LoginSuccess").toString();
+		map.put("id",id);
 		int result = calendarDAO.insert(map);
 		
 		return String.valueOf(result);
@@ -126,7 +134,9 @@ public class ScheduleController {
 	
 	@RequestMapping(value="/schedule.insertRoutine")
 	@ResponseBody
-	public String insertCalendarRoutine(@RequestParam Map map) {
+	public String insertCalendarRoutine(@RequestParam Map map,HttpSession session) {
+		String id = session.getAttribute("LoginSuccess").toString();
+		map.put("id",id);
 		int result = calendarDAO.insertCalendarRoutine(map);
 		
 		return String.valueOf(result);

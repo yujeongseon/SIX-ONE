@@ -2,6 +2,7 @@ package com.team.sixone;
 
 public class Rou_exeDTO {
 	private String no;
+	private String exe_name;
 	private String exe_no;
 	private String rou_no;
 	private String count;
@@ -10,15 +11,16 @@ public class Rou_exeDTO {
 	
 	public Rou_exeDTO() {}
 	
-	public Rou_exeDTO(String no, String exe_no,String count, String rou_no, String set, String days) {
-		this.count = no;
-		this.no = no;
-		this.exe_no = exe_no;
-		this.rou_no = rou_no;
-		this.set = set;
-		this.days = days;
-	}
 	
+	public String getExe_name() {
+		return exe_name;
+	}
+
+
+	public void setExe_name(String exe_name) {
+		this.exe_name = exe_name;
+	}
+
 	public String getCount() {
 		return count;
 	}
