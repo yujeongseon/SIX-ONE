@@ -66,31 +66,31 @@
 					
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
-							<a href="https://www.coupang.com/np/search?component=&q=%EA%B3%A8%EB%93%9C+%EC%8A%A4%ED%83%A0%EB%8B%A4%EB%93%9C+%EC%9B%A8%EC%9D%B4+%EC%B4%88%EC%BD%94&channel=auto" class="blog-img" target="_blank" style="background-image: url(resources/images/protein01.jpg);">
+							<a href="${list[0].proteinUrl }" class="blog-img" target="_blank" style="background-image: ${list[0].proteinImage};">
 								<img src="<c:url value='/resources/images/btn_rank1.png'/>"/>
 							</a>
 							<div class="desc">
-								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
-								<h2><a href="blog.html">￦83000</a></h2>
-								<p>링크</p>
+								<p class="admin"><span>${list[0].proteinName }</span>
+								<h2><a href="blog.html">￦${list[0].proteinPrice }</a></h2>
+								<p>바로가기</p>
 							</div>
 						</article>
 					</div>
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
-							<a href="#" class="blog-img" style="background-image: url(resources/images/protein02.jpg);">
+							<a href="${list[1].proteinUrl }" class="blog-img" style="background-image: url(resources/images/protein02.jpg);">
 								<img src="<c:url value='/resources/images/btn_rank2.png'/>"/>
 							</a>
 							<div class="desc">
-								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
-								<h2><a href="blog.html">가격</a></h2>
-								<p>링크</p>
+								<p class="admin"><span>${list[1].proteinName }</span>
+								<h2><a href="blog.html">￦${list[1].proteinPrice }</a></h2>
+								<p>바로가기</p>
 							</div>
 						</article>
 					</div>
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
-							<a href="#" class="blog-img" style="background-image: url(resources/images/protein03.jpg);">
+							<a href="${list[2].proteinUrl }" class="blog-img" style="background-image: url(resources/images/protein03.jpg);">
 								<img src="<c:url value='/resources/images/btn_rank3.png'/>"/>
 							</a>
 							<div class="desc">

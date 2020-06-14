@@ -23,7 +23,7 @@
 				<select name="category" class="form-control">
 						<option value="free">자유게시판</option>
 						<option value="nobody">익명게시판</option>
-						<c:if test="${sessionScope.id eq 'admin'}">
+						<c:if test="${sessionScope.LoginSuccess eq 'admin'}">
 						<option value="notice">공지</option>
 						</c:if>
 					</select>
@@ -42,7 +42,7 @@
 					<input type="file" name="upload"/>
 				</div>
 				</div>
-						<input type="hidden" name="id" value="${sessionScope.id}" >
+						<input type="hidden" name="id" value="${sessionScope.LoginSuccess}" >
 						<input type="hidden" name="WorU" value="W">
 				<div class="form-group">
 					<label class="col-sm-2 control-label">내용</label>

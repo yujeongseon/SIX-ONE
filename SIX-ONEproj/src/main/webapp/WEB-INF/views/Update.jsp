@@ -23,7 +23,7 @@
 				<select name="category" class="form-control">
 						<option value="free"<c:if test="${record.category=='free'}">selected</c:if>>자유게시판</option>
 						<option value="nobody"<c:if test="${record.category=='nobody'}">selected</c:if>>익명게시판</option>
-						<c:if test="${sessionScope.id eq 'admin'}">
+						<c:if test="${sessionScope.LoginSuccess eq 'admin'}">
 						<option value="notice"<c:if test="${record.category=='notice'}">selected</c:if>>공지</option>
 						</c:if>
 					</select>

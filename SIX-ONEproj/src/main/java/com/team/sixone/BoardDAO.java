@@ -61,7 +61,7 @@ public class BoardDAO {
 		}//////////close
 		
 		
-		
+		 
 		public List<BoardDTO> selectList(Map map){
 			List<BoardDTO> list = new Vector<BoardDTO>();
 			//페이징 적용 前 쿼리- 전체 쿼리
