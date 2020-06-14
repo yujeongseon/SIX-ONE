@@ -13,6 +13,8 @@ import javax.naming.InitialContext;
 import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
+import org.springframework.web.context.request.SessionScope;
+
 public class RoutineDAO {
 
    private Connection conn;
@@ -108,7 +110,18 @@ public class RoutineDAO {
             
    }//getTotalRowCount   
    
-   
+   public int gudokin(String no,String id) {
+	   int affected =0;
+	   String sql="INSERT INTO subscribe VALUES(SEQ_SUBSCRIBE.nextval,?,?)";
+	   try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, no);
+			psmt.setString(2, id);
+			affected=psmt.executeUpdate();	
+			System.out.println("쿼리까지함");
+		} catch (Exception e) {e.printStackTrace();}
+		return affected;
+   }
    
    
    

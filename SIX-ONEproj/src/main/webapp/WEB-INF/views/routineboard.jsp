@@ -83,6 +83,30 @@ function find(no){
    });
 }
 
+function gudok(no){
+	var ID = "<%=session.getAttribute("LoginSuccess") %>"
+	console.log('구독 눌러지긴함')
+	$.ajax({
+	      url:"<c:url value='/Ajax/gudok.do'/>",
+	      dataType:'text',
+	      data:{no:no,id:ID},
+	      success:function(data){
+	    	  console.log(data)
+	    	  alert(data);
+	      },
+	      error:function(request,error){
+	         console.log('상태코드:',request.status);
+	         console.log('서버로부터 받은 HTML데이타:',request.responseText);
+	         console.log('에러:',error);
+	      }
+	      
+	   });
+	
+}
+
+
+
+
 
    var successOneAjax = function(data,id,no){
       console.log('no는 이거다',no)
@@ -221,14 +245,14 @@ a:link {
                      </tr>
                      </thead>
                      </table>
+                     <!-- 
                      <c:if test="${empty rlist}" var="Empty">
                      <div></div>
                      </c:if>
                      <c:if test="${not Empty}">
                      <div id="rl">
-                     
-                     
                      </div>
+                      -->
                      <!-- 
                         <c:forEach items="${rlist}" var="item" varStatus="loop">
                         <div>
@@ -238,8 +262,8 @@ a:link {
                            <span>일차--${item.days}--</span>
                            </div>
                         </c:forEach>
-                         -->
                      </c:if>
+                     -->
                   <div id="accordion">
                   <c:if test="${empty list}" var="isEmpty">
                                  <div>등록된 루틴이 없습니다.</div>
@@ -257,11 +281,15 @@ a:link {
             <div class="row">
                <div class="schedule text-center animate-box">
                   <div class="col-md-12">
-                     <div class="routine" id="rouin${item.routine_no}">
+                     <div class="routine" >
+                     <button style="float: center; font-style:italic;" onclick="gudok(${item.routine_no})">구독하기</button>
+                     <div id="rouin${item.routine_no}">
                      <!-- 이 안에 넣기 -->
                         
                      <!-- 이 안에 넣기 -->
                      </div>
+                     </div>
+                     
                   </div>
                </div>
             </div>

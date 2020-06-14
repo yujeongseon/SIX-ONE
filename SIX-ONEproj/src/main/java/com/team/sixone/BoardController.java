@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.context.request.SessionScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartRequest;
@@ -114,6 +116,22 @@ public class BoardController {
 
          resp.sendRedirect("/sixone/freeboard.do");
       }/////////list
+      
+      //ajax 구독
+      @RequestMapping(value="/Ajax/gudok.do",produces ="text/html; charset=UTF-8")
+      @ResponseBody
+      public String ajaxgudok(String no, String id) {
+    	  int and;
+    	  String answer;
+    	  RoutineDAO dao= new RoutineDAO(null);
+    	  and=dao.gudokin(no, id);
+    	  System.out.println("and값:"+and);
+    	  if(and==1) answer="구독 되었습니다";
+    	  else answer="이미 구독되었습니다";
+    	  return answer;
+      }
+      
+      
    
    //ajax 루틴 불러오기
       @RequestMapping(value="/Ajax/RoutineOne.do",produces ="text/html; charset=UTF-8")
@@ -162,19 +180,19 @@ public class BoardController {
       map.put("start", start);
       map.put("end", end);
       List<RoutineDTO> list=dao.selectList(map);
-      String a=list.get(0).getRoutine_no();
-      System.out.println("a의 값"+a);
-      System.out.println("리스트 크기"+list.size());
-      List<Rou_exeDTO> rlist = new Vector<Rou_exeDTO>();
-      for(int i=0; i<list.size(); i++) {
-         rlist.addAll(dao.selectone(list.get(i).getRoutine_no()));
-      }
+//      String a=list.get(0).getRoutine_no();
+//      System.out.println("a의 값"+a);
+//      System.out.println("리스트 크기"+list.size());
+//      List<Rou_exeDTO> rlist = new Vector<Rou_exeDTO>();
+//      for(int i=0; i<list.size(); i++) {
+//         rlist.addAll(dao.selectone(list.get(i).getRoutine_no()));
+//      }
       String pagingString= PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,req.getContextPath()+ "/routine.do?");
       //데이타 저장]
       //[[1,2,3,4],[4,5,6,7],[8,9,10,11]][[a,b,c,d],[d,f,g,h],[i,j,k,l]]
       model.addAttribute("list", list);
       model.addAttribute("pagingString", pagingString);
-      model.addAttribute("rlist",rlist);
+      //model.addAttribute("rlist",rlist);
       //뷰정보 반환]
       return "/routineboard.tiles";
    }///////////ajaxJson

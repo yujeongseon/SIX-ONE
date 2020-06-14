@@ -31,11 +31,11 @@
 					$('.follow').attr('style',('padding-top :'+ $(window).scrollTop()+'px') );
 				}
 			})
-			
 		});
-	
 	</script>
+<style>
 
+</style>
 	</head>
 	<body>
 	<img src="resources/images/black.jpg" style="width: 100%; height: 100px;" />
@@ -98,42 +98,37 @@
 
 				
 			<div>
-			
 				<table class="table table-bordered table-striped">
 					<tr>
 						<th class="col-md-2 text-center">번호</th>
-						<td>${record.board_no}</td>
-					</tr>
-					<tr>
 						<th class="text-center">제목</th>
-						<td>${record.title}</td>
-					</tr>
-					<tr>
 						<th class="text-center">작성자</th>
-						<td>${record.name}</td>
-					</tr>
-					<tr>
 						<th class="text-center">조회수</th>
-						<td>${record.count}</td>
-					</tr>
-					
-					<tr>
 						<th class="text-center">등록일</th>
+					</tr>
+					<tr class="text-center">
+						<td>${record.board_no}</td>
+						<td>${record.title}</td>
+						<td>${record.name}</td>
+						<td>${record.count}</td>
 						<td>${record.create_at}</td>
 					</tr>
-					<tr>
-					<td><img src="<c:url value='/resources/uploadimage/${record.image_name}'/>"/></td>
+					</table>
+					<div>
+					<span><img src="<c:url value='/resources/uploadimage/${record.image_name}'/>" style="width:300px; height:400px;"  /></span>
+					<span><textarea rows="10" cols="80" id="text">${record.content}</textarea></span>
 					
-					</tr>	
-					<tr>
+					<div></div>
+						
+					<!-- 
 						<th class="text-center" colspan="2">내용</th>						
-					</tr>
-					<tr>						
-						<td colspan="2">${record.content}</td>
-					</tr>	
+					 -->
+											
+						
+						
 					
 						
-				</table>	
+					
 		</div>
 				
 			<!-- 검색용 UI -->
