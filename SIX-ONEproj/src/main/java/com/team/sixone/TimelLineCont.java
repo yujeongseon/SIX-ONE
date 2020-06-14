@@ -5,7 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -14,6 +16,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.springframework.stereotype.Controller;
@@ -37,16 +40,13 @@ public class TimelLineCont {
 	
 	@RequestMapping(value = "/TimeLine.do", method = RequestMethod.GET)
 	public String TimeLine(Locale locale, Model model, HttpServletRequest req) {
-		/*
-		DAO dao = new DAO(req.getSession().getServletContext());
 		
-		model.addAttribute("aaa", "resources/images/black.jpg");
-		model.addAttribute("bbb", "resources/images/classes-1.jpg");
-		String[] images = dao.test();
+		DAO dao = new DAO(req.getServletContext());
+		Map map = new HashMap();
 		
-		req.setAttribute("images", images);
-		System.out.println("기존2");
-		*/
+		map = dao.replys();
+		
+		
 		return "/TimeLine.tiles";
 	}
 	
@@ -77,10 +77,49 @@ public class TimelLineCont {
 		
 
 		resp.sendRedirect("/sixone/TimeLine.do");
+		//return "/TimeLine.tiles:for";
+	}
+	
+	@RequestMapping(value="/upload.do", method=RequestMethod.GET)
+	public String delete(Locale locale, Model model, HttpServletRequest req, 
+			 HttpServletResponse resp) throws ServletException, IOException {
+		return "/TimeLine.tiles";
+		//return "/TimeLine.tiles:for";
+	}
+	
 
+	@RequestMapping(value = "/del.do", method = RequestMethod.GET)
+	public String del(Locale locale, Model model, HttpServletRequest req) {
+		DAO dao = new DAO(req.getServletContext());
+		String delimg = req.getParameter("img");
+		dao.delTL(delimg);
+		
+		return "/TimeLine.tiles";
+	}
+	
+	
+	
+	@RequestMapping(value = "/tlcom.do", method = RequestMethod.POST)
+	public String tlcomment(Locale locale, Model model, HttpServletRequest req, HttpSession session ) {
+		DAO dao = new DAO(req.getServletContext());
+		String comment = req.getParameter("tlcom");
+		String tlno = req.getParameter("tlno");
+		
+		System.out.println(comment);
+		String id = (String)session.getAttribute("LoginSuccess"); // 아이디 받아오는거
+		System.out.println("아이디는 " +id);
+		System.out.println("영향받은 행 수 : cont.java" +dao.tlcomment(id, comment, tlno));
 
 		
-		//return "/TimeLine.tiles:for";
+		/*
+		 * <form action="<c:url value='/tlcom.do'/>"  method="POST" id="commentform">
+							<input type="hidden" name="tlcomid" value="<%=id %>" id="id"/>
+							<input type="hidden" name="tlno" value="<%=j++ %>" id="tlno"/>
+							<input type="text" class="col-md-9" name="tlcom" class="ftlcom" id="tlcom" placeholder="댓글 입력" style="border-radius:10px;"></input>
+							<input type="submit"/>
+		 * 
+		 * */
+		return "/TimeLine.tiles";
 	}
 
 

@@ -138,6 +138,7 @@ function isLogin(el){
 								<li><a href="<c:url value="Logout.do"/>">로그아웃</a></li>
 								<input type="hidden" id="loginckeck" value="no">
 								</c:if>
+							</ul>
 						</div>
 					</div>
 				</div>

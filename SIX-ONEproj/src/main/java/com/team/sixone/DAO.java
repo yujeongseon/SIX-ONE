@@ -35,15 +35,14 @@ public class DAO {
 	}
 	
 	public int uploadtest(String saveDirectory, String filename, String content, String id) {
-		int no = (int)(Math.random()*10000);
-		System.out.println("번호 "  + no);
-		String sql = "insert into timeline values("+no+",'"+content+"', '"+saveDirectory+filename+"', sysdate, '"+id+"')";
+		int upd;
+		String sql = "insert into timeline values(SEQ_TIMELINE.nextval,'"+content+"', '"+saveDirectory+filename+"', sysdate, '"+id+"')";
 		System.out.println(saveDirectory);
 		System.out.println(filename);
 		
 		try {
 			psmt = conn.prepareStatement(sql);
-			int upd =psmt.executeUpdate();
+			upd =psmt.executeUpdate();
 			System.out.println("영향받은 행수 : " + upd);
 			
 			psmt.close();
@@ -51,21 +50,23 @@ public class DAO {
 		
 		} catch (Exception e) {
 			e.printStackTrace();
+			upd =0;
 		}
 		
 		
-		return 9;
+		return upd;
 	}
 	
 	public String[] SearchTest() {
 		 //라이크 사용
 
+		String[] nos = new String[1];
 		String[] images = new String[1];
 		String[] ids = new String[1];
+		Date[] created_at = new Date[1];
 		String[] content = new String[1];
-		Date[] date = new Date[1];
-		String cntSql = "SELECT COUNT(*) FROM test WHERE src LIKE '%ja%'"; // 배열 선언함
-		String sql = "SELECT * FROM TEST WHERE src LIKE '%ja%'"; // 사진긁어옴
+		String cntSql = "SELECT COUNT(*) FROM timeline WHERE IMAGE_NAME LIKE '%de%'"; // 배열 선언함
+		String sql = "SELECT * FROM timeline WHERE IMAGE_NAME LIKE '%de%'"; // 사진긁어옴
 		
 		int i = 0;
 		try {
@@ -79,22 +80,32 @@ public class DAO {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 		
-			System.out.println(columnCount);
 			if(columnCount != 0) {
+				nos = new String[columnCount]; 
 				images = new String[columnCount]; 
-				ids = new String[columnCount];
-				content = new String[columnCount];
-				date = new Date[columnCount];}
+				ids = new String[columnCount]; 
+				content = new String[columnCount]; 
+				created_at = new Date[columnCount];
+			}
+			
 			while (rs.next()) {
-				images[i] = rs.getString(2);
-				ids[i] = rs.getString(2);
+				nos[i] = rs.getString(1);
 				content[i] = rs.getString(2);
-				date[i] = rs.getDate(2);
+				ids[i] = rs.getString(5);
+				created_at[i] = rs.getDate(4);
+				images[i] = rs.getString(3);
 				System.out.println(images[i]);
-				
-				
 				i++;
 			}
+			/*
+			 * nos[i] = rs.getString(1);
+			content[i] = rs.getString(2);
+			ids[i] = rs.getString(5);
+			created_at[i] = rs.getDate(4);
+			images[i] = rs.getString(3);
+			System.out.println(images[i]);
+			i++;
+			 */
 			psmt.close();
 			conn.close();
 			
@@ -108,15 +119,50 @@ public class DAO {
 		return images;
 		
 	}	
+	
+	
+	public int tlcomment(String id, String comment, String timeline_no ) {
+		/*
+COMMENTS_NO
+CONTENT
+ID
+TIMELINE_NO
+ */
+		int upd = 0;
+		String sql = "insert into timeline_comments values(SEQ_TIMELINE_COMMENTS.nextval, ?, ?, ?)";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, comment);
+			psmt.setString(2, id);
+			psmt.setString(3, timeline_no);
+			upd =psmt.executeUpdate();
+			System.out.println("댓글입력 영향받은개수 " + upd);
+			
+			psmt.close();
+			conn.close();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			upd =0;
+		}
+		
+		return upd;
+		
+		
+	}
+	
+	
 	public Map timelines() {
 	
 		Map map = new HashMap();
+		String[] nos = new String[1];
 		String[] images = new String[1];
 		String[] ids = new String[1];
 		Date[] created_at = new Date[1];
 		String[] content = new String[1];
-	String cntSql = "SELECT COUNT(*) FROM timeline where id='가라아이디'"; // 배열 선언함
-	String sql = "SELECT * FROM timeline WHERE id='가라아이디' ORDER BY timeline_no asc"; // 사진긁어옴
+	String cntSql = "SELECT COUNT(*) FROM timeline "/*where id='id'"*/; // 배열 선언함
+	String sql = "SELECT * FROM timeline "/*WHERE id='id'*/+" ORDER BY timeline_no desc"; // 사진긁어옴
 	
 	int i = 0;
 	try {
@@ -133,6 +179,7 @@ public class DAO {
 	
 		System.out.println(columnCount);
 		if(columnCount != 0) {
+			nos = new String[columnCount]; 
 			images = new String[columnCount]; 
 			ids = new String[columnCount]; 
 			content = new String[columnCount]; 
@@ -141,6 +188,7 @@ public class DAO {
 		}
 		
 		while (rs.next()) {
+			nos[i] = rs.getString(1);
 			content[i] = rs.getString(2);
 			ids[i] = rs.getString(5);
 			created_at[i] = rs.getDate(4);
@@ -151,8 +199,8 @@ public class DAO {
 		psmt.close();
 		conn.close();
 		
-		if(images.length == 0)
-			images[0] = "https://item.kakaocdn.net/do/9c5d673c91e8f1080c2602931c81f178f43ad912ad8dd55b04db6a64cddaf76d";
+		if(images.length == 1)
+			images[0] = "https://www.loud.kr/hive/template/LOUD_IMG/portfolio2018/notfound_m.jpg";
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
@@ -160,6 +208,113 @@ public class DAO {
 	map.put("ids", ids);
 	map.put("content", content);
 	map.put("date", created_at);
+	map.put("nos", nos);
+	
+	/*
+	 
+TIMELINE_NO
+CONTENT
+IMAGE_NAME
+CREATED_ ID
+ 
+	 */
+	return map;
+	}
+	
+	public void comments() {
+		String sql =  "select * from timeline_comments";
+		
+		
+		
+	}
+	public int delTL(String imagename) {
+		
+		String nosc = "select timeline_no from timeline where image_name=?";//타임라인넘버찾기
+	
+		
+		String sql = "delete timeline where image_name=?";
+		
+		try {
+			psmt = conn.prepareStatement(nosc);
+			psmt.setString(1, imagename);
+			rs = psmt.executeQuery();
+			rs.next();
+			String no = rs.getString(1);
+			System.out.println("no = " + no);
+			
+			psmt.close();
+			
+			String sqlcomdel = "delete timeline_comments where timeline_no = ?";
+			psmt = conn.prepareStatement(sqlcomdel);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+			psmt.close();
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, imagename);
+			
+			int del =psmt.executeUpdate();
+			System.out.println("영향받은 행수 : " + del);
+			
+			psmt.close();
+			conn.close();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+
+	public Map replys() {
+		
+		/*
+		comments_no number NOT NULL,
+		content nvarchar2(200),
+		id varchar2(20) NOT NULL,
+		timeline_no number NOT NULL,
+		  */
+		Map map = new HashMap();
+		String[] comid= new String[1]; //코멘트 넘버
+		String[] comment = new String[1]; //댓글
+		String[] id = new String[1]; //댓글단사람 아이디
+		String[] tlno = new String[1]; //타임라인 넘버
+		
+		/*
+		 * 필요한거 : 어디다 댓글달았는지, 댓글단 아이디, 코멘트, 수정삭제용 코멘트아이디
+		 */
+		
+	String cntSql = "SELECT COUNT(*) FROM timeline_comments where timeline_no=1"; // 배열 선언함
+	String sql = "SELECT * FROM timeline WHERE id='id' ORDER BY timeline_no asc"; // 
+	
+	int i = 0;
+	try {
+		psmt = conn.prepareStatement(cntSql);
+		rs = psmt.executeQuery();
+		rs.next();
+		int columnCount = rs.getInt(1);
+		System.out.println("댓글 개수" + columnCount);
+		psmt.close();
+		
+		
+		psmt = conn.prepareStatement(sql);
+		rs = psmt.executeQuery();
+	
+	
+
+	
+		while (rs.next()) {
+		
+			map.put(""+i+"","");
+			i++;
+		}
+		psmt.close();
+		conn.close();
+		
+		} catch (Exception e) {
+		e.printStackTrace();
+	}
 
 	
 	return map;

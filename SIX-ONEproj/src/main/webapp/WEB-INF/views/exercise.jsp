@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=baec786c99350c041ef35a31dcf9afcf&libraries=services"></script>
 
@@ -243,29 +244,6 @@
 			<a href="https://www.msn.com/ko-kr/health/strength">
 				<div class="col-md-3 col-sm-3 animate-box">
 
-			<div class="col-md-3 col-sm-3 animate-box">
-				<div class="trainers-entry">
-					<div class="trainer-img" style="background-image: url(https://cdn.pixabay.com/photo/2016/03/26/22/47/blur-1281675_960_720.jpg)"></div>
-					<div class="desc">
-						<h3>야외운동</h3>
-						<span>신선한 공기를 마시며 운동해보세요　</span>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-3 col-sm-3 animate-box">
-				<div class="trainers-entry">
-					<div class="trainer-img" style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)"></div>
-					<div class="desc">
-						<h3>가까운 헬스장 찾기</h3>
-						<span>현재 위치를 바탕으로 </br>가까운 헬스장을 찾습니다</span>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-3 col-sm-3 animate-box">
-				<!--칼로리 계산기랑 연결-->
-				<a href="#">
 					<div class="trainers-entry">
 						<div class="trainer-img"
 							style="background-image: url(https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBfc6b6/_h400_w284_m1_bwhite.jpg)"></div>
@@ -293,7 +271,17 @@
 		data-target="#mapModal">
 
 		<div class="trainer-img" id="healthimg"
-			style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)"></div>
+			style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)">
+			<div id='img1' style="height: 50%; background-color: #F0F0F0;;display:none" >
+				<span style="color: red;"> 해야하는나중에함</span>
+				<img src="resources/images/marker_.png" >
+			</div>
+			<div id='img2' style="height: 50%; background-color: gray;display:none">
+				<span style="color: red;"> 지도 검색</span>
+				<img src="resources/images/mapimg.png">
+			</div>
+			
+		</div>
 		<div class="desc">
 			<h3>가까운 헬스장 찾기</h3>
 			<span>현재 위치를 바탕으로 </br>가까운 헬스장을 찾습니다
@@ -304,29 +292,6 @@
 	</div>
 </div>
 
-
-
-
-<div class="col-md-3 col-sm-3 animate-box">
-
-	<div class="trainers-entry" id="health" >
-		<div style="height: 50%; background-color: #F0F0F0" >
-			<span style="color: red;"> 위치 기반</span><img
-				src="resources/images/marker_.png" data-toggle="modal"
-				data-target="#mapModal">
-		</div>
-		<div style="height: 50%; background-color: gray;">
-			<span style="color: red;"> 지도 검색</span><img
-				src="resources/images/mapimg.png">
-		</div>
-		<div class="desc">
-			<h3>가까운 헬스장 찾기</h3>
-			<span>현재 위치를 바탕으로 </br>가까운 헬스장을 찾습니다
-			</span>
-		</div>
-
-	</div>
-</div>
 
 
 <!-- Modal -->
@@ -636,7 +601,7 @@
 
 <div class="col-md-3 col-sm-3 animate-box">
 	<!--칼로리 계산기랑 연결-->
-	<a href="http://u-health.dobong.go.kr/hcal/nutrition.asp">
+	<a href="<c:url value='/food.do'/>">
 		<div class="trainers-entry">
 			<div class="trainer-img"
 				style="background-image: url(https://cdn.pixabay.com/photo/2016/04/15/17/20/bread-and-butter-1331452_960_720.jpg)"></div>
@@ -662,9 +627,19 @@
 				scrollTop : $(this.hash).offset().top
 			}, 500);
 		});
+		
 
 	});
+	
 	var page = 1;
+	
+	$('#mapSer').click(function(event) {
+		console.log('asfd12323df2213');
+	});
+	
+	function geos(){
+		console.log("sd1");
+	};
 
 	/*  $(window).scroll(function () {
 		
@@ -685,27 +660,67 @@
 	      }
 	  
 	});*/
+	
 
 	var health = document.getElementById('health');
 	var healthimg = document.getElementById('healthimg');
 	var modal = document.getElementById('mapModal');
+	
+	$('#health').on('mouseover',function(e){
+		/*
+		e.stopPropagtion;
+		$('#healthimg').html('')
+		$('#healthimg').append('<div class="aaa" style="height: 50%; background-color: #F0F0F0" ><span style="color: red;"> 해야하는나중에함</span><img src="resources/images/marker_.png" ></div><div style="height: 50%; background-color: gray;"><span style="color: red;"> 지도 검색</span><img src="resources/images/mapimg.png"></div>')
+		$('.aaa').on('click',function(){
+			
+			
+			console.log('aaaaaaaaaaaaaaaa')});
+		*/
+		$('#img1').css('display','')
+		$('#img2').css('display','')
+		console.log('마우스 오보')
+	}).on('mouseout',function(){
+		$('#img1').css('display','none')
+		$('#img2').css('display','none')
+		console.log('마우스 아웃')
+		
+	});
+	$('#img1').click(function(){
+		console.log('클릭 이벤트')
+	})
+	/*
 
 	health
 			.addEventListener(
 					'mouseover',
 					function() {
 						
-						healthimg.innerHTML = '<div onclick="alert(23232);" style="height: 50%; background-color: #F0F0F0" data-toggle="modal" data-target="#mapModal"><span style="color: red;"> 위치 기반</span><img src="resources/images/marker_.png" data-toggle="modal"'
-						+' data-target="#mapModal"></div><div style="height: 50%; background-color: gray;"><span style="color: red;"> 지도 검색</span><img src="resources/images/mapimg.png">'
-					+'</div>';
+						//healthimg.innerHTML = '<div onclick="console.log(\'마우스오버:innerhtml\');" style="height: 50%; background-color: #F0F0F0" ><span style="color: red;"> 해야하는나중에함</span><img src="resources/images/marker_.png" ></div><div style="height: 50%; background-color: gray;"><span style="color: red;"> 지도 검색</span><img src="resources/images/mapimg.png">'+'</div>';
+					
+						//healthimg.innerHTML = '<div style="height: 50%; background-color: #F0F0F0" >111111</div>'
+						//healthimg.innerHTML='<div id="aaa" style="height: 50%; background-color: #F0F0F0" ><span style="color: red;"> 해야하는나중에함</span><img src="resources/images/marker_.png" ></div><div style="height: 50%; background-color: gray;"><span style="color: red;"> 지도 검색</span><img src="resources/images/mapimg.png"></div>'
+
+						$('#healthimg').html('')
+						$('#healthimg').append('<div id="aaa" style="height: 50%; background-color: #F0F0F0" ><span style="color: red;"> 해야하는나중에함</span><img src="resources/images/marker_.png" ></div><div style="height: 50%; background-color: gray;"><span style="color: red;"> 지도 검색</span><img src="resources/images/mapimg.png"></div>')
+						
+						$('#aaa').on('click',function(){console.log('aaaaaaaaaaaaaaaa')});
+
+					
 					});
+					
+	*/
+	/*
 	//  list.getElementsByClassName("child")[0].innerHTML = count;
 	health
 			.addEventListener(
 					'mouseout',
 					function() {
-						healthimg.innerHTML = '<div class="trainer-img" id="healthimg" style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)"></div>';
-					});
+						//healthimg.innerHTML = ''
+						console.log('마우스 아웃:')
+						
+						
+						//healthimg.innerHTML = '<div class="trainer-img" id="healthimg" style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)"></div>';
+					});*/
 </script>
 </html>
 

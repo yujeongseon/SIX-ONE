@@ -7,22 +7,34 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <img src="resources/images/black.jpg"
 	style="width: 100%; height: 100px;" />
+	<style>
+	
+hr {
+ border-top: 0.8px dashed #444444;
+ margin: 0.5em
+}
+	</style>
 <%
+int j = 0;
 DAO dao = new DAO(request.getSession().getServletContext());
 Map map = new HashMap();
+String id = (String)session.getAttribute("LoginSuccess");
 String[] images = new String[1];
 String[] ids = new String[1];
 String[] content = new String[1];
 Date[] date = new Date[1];
+String[] nos = new String[1];
 if(request.getParameter("search")!=null){
 	//뭔가 검색했을때
 	images = dao.SearchTest();
 }else{
+	//String[] comment  = dao.comments();
 	map = dao.timelines();
 	images = (String[])(map.get("images"));
 	ids = (String[])(map.get("ids"));
 	content = (String[])(map.get("content")) ;
 	date = (Date[])(map.get("date"));
+	nos = (String[])(map.get("nos")) ;
 }%>
 <script>
 
@@ -76,8 +88,8 @@ function isSaved(event){ //세이브 체크박스
 					
 					<div class="form-group">
 					<form action="<c:url value='/upload.do'/>" enctype="multipart/form-data" method="POST" id="imgform">
-						<!-- 아이디 연동 제대로 -->
-						<input type="hidden" name="id" value="가라아이디" id="id"/>
+						<!-- 아이디 연동 제대로(함) -->
+						<input type="hidden" name="id" value="<%=id %>" id="id"/>
 						<div id="image_container"></div>
 						<label for="exampleInputFile">사진 업로드</label> <input type="file"
 							id="image" name="image" onchange="setThumbnail(event);">
@@ -109,7 +121,6 @@ function isSaved(event){ //세이브 체크박스
 	</div>
 
 	<!-- 모달끝 -->
-	<button type="button" class="btn btn-default  btn-block">어쩌고저쩌고</button>
 
 
 
@@ -129,15 +140,48 @@ function isSaved(event){ //세이브 체크박스
 
 
 
-<div class="col-md-6  appendd" style="padding-top: 10px;">
+<div class="col-md-5  appendd" style="padding-top: 10px;">
 	<div class="animate-box">
 		<div class="trainers-entry">
 			<div class="trainer-img"
 				style="background-image: url('<%=images[0]%>'); height: 600px"></div>
 			<div class="desc">
-				<h3 style="color:black;"><%=ids[0]%> <button class="btn btn-primary col-md-offset-8" value="sss">del</button> </h3>
+				<h3 style="color:black;"><%=ids[0]%> <button class="btn btn-primary" value="sss" style=" float: right" onclick="location.href='del.do?img=<%=images[0]%>' ">del</button> </h3>
 				<span> <%=content[0]%></br> <%=date[0]%>
 				</span>
+				</br></br></br>
+		
+				
+				
+						
+						<hr>
+						<h5>
+						<span style="color:red">(아이디)</span> 댓글 					
+						</h5>
+						<hr>
+						<h5>
+						<span style="color:red">(아이디)</span> 댓글 					
+						</h5>
+						<hr>
+						<h5>
+						<span style="color:red">(아이디)</span> 댓글 					
+						</h5>
+						<hr>
+						<div class="form-group">
+							<form action="<c:url value='/tlcom.do'/>"  method="POST" id="commentform">
+							<input type="hidden" name="tlcomid" value="<%=id %>" id="id"/>
+							<input type="hidden" name="tlno" value="<%=nos[0] %>" id="tlno"/>
+							<input type="text" class="col-md-9" name="tlcom" class="ftlcom" id="tlcom" placeholder="댓글 입력" style="border-radius:10px;"></input>
+							<input type="submit"/>
+							</form>
+						</div>
+					
+					
+				
+					<!-- 글작성 폼 끝 -->
+				
+				</div>
+				
 			</div>
 		</div>
 
