@@ -4,6 +4,20 @@
 
 <style>
 
+@media screen and (max-width: 1000px) {
+	#proteinMain{
+		width:800px;
+	
+	}
+}
+
+@media screen and (max-width: 768px) {
+	#proteinMain{
+		width:500px;
+	
+	}
+}
+      
 
 
 
@@ -13,7 +27,7 @@
 </style>	
 
 	<aside id="colorlib-hero">
-		<div class="flexslider">
+		<div class="flexslider col-md-12">
 			<ul class="slides">
 		   	<li style="background-image: url(resources/images/img_bg_2.jpg);">
 		   		<div class="overlay"></div>
@@ -37,7 +51,7 @@
 			<div class="container">
 				<div class="row" style="margin-bottom: 100px">
 					<div class="col-md-12 text-center">
-						<img src="<c:url value="/resources/images/kimjongkuk.jpg"/>"style="margin-bottom: 30px" alt=""/>
+						<img id="proteinMain" src="<c:url value="/resources/images/kimjongkuk.jpg"/>"style="margin-bottom: 30px;" alt=""/>
 						<h2 style="font-size:3em; font-weight: bold">"운동은 끝나고 먹는거 까지가 운동이다"</h2>
 						<p style="font-size:2em">용도에 맞는 보충제를 선택하세요
 					</div>
