@@ -131,31 +131,7 @@ public class BoardController {
     	  return answer;
       }
       
-      
-   
-   //ajax 루틴 불러오기
-      @RequestMapping(value="/Ajax/RoutineOne.do",produces ="text/html; charset=UTF-8")
-      @ResponseBody
-      public String ajaxRoutineOne(String no) {
-         Map map = new HashMap();
-         System.out.println("no의 값"+no);
-         RoutineDAO dao= new RoutineDAO(null);
-         List<Rou_exeDTO> list = dao.selectone(no);
-         dao.close();
-         System.out.println("리스트 개수"+list.size());
-         List<Map> collections = new Vector<Map>();
-         for(Rou_exeDTO dto:list) {
-            Map record = new HashMap();
-            record.put("exe_no", dto.getExe_no());//운동명
-            record.put("ru_count", dto.getCount());//운동횟수
-            record.put("set", dto.getSet());// 세트수
-            record.put("routine_days", dto.getDays());// 몇일차
-            collections.add(record);
-         }
-         return JSONArray.toJSONString(collections);
-      }
-      
-   
+  
    
    //ajax테스트
    @RequestMapping(value="/routine.do",produces ="text/html; charset=UTF-8")
@@ -180,16 +156,10 @@ public class BoardController {
       map.put("start", start);
       map.put("end", end);
       List<RoutineDTO> list=dao.selectList(map);
-//      String a=list.get(0).getRoutine_no();
-//      System.out.println("a의 값"+a);
-//      System.out.println("리스트 크기"+list.size());
-//      List<Rou_exeDTO> rlist = new Vector<Rou_exeDTO>();
-//      for(int i=0; i<list.size(); i++) {
-//         rlist.addAll(dao.selectone(list.get(i).getRoutine_no()));
-//      }
+
       String pagingString= PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,req.getContextPath()+ "/routine.do?");
       //데이타 저장]
-      //[[1,2,3,4],[4,5,6,7],[8,9,10,11]][[a,b,c,d],[d,f,g,h],[i,j,k,l]]
+      
       model.addAttribute("list", list);
       model.addAttribute("pagingString", pagingString);
       //model.addAttribute("rlist",rlist);
@@ -236,38 +206,9 @@ public class BoardController {
       write.upload(req, resp, req.getSession().getServletContext());
       resp.sendRedirect("/sixone/freeboard.do");
 
-      //return "/TimeLine.tiles:for";
+      
    }
 
-   
-   
-   
-   
-   
-   //목록으로 이동]
-//   @RequestMapping("/FileUpDown/List.do")
-//   public String list(HttpServletRequest req) {
-//      //1]서버의 물리적 경로 얻기
-//      String phisicalPath=req.getServletContext().getRealPath("/uploadimage");
-//      //2]File객체 생성
-//      File f = new File(phisicalPath);
-//      File[] files = f.listFiles();
-//      //3]리퀘스트 영역에 저장
-//      //방법1]File[]배열 저장   
-//      req.setAttribute("files",files);
-//      //방법2]컬렉션 저장
-//      List<Map> list = new Vector<Map>();
-//      for(File file : files) {
-//         Map map = new HashMap();
-//         map.put("name", file.getName());
-//         map.put("size", (int)Math.ceil(file.length()/1024.0));
-//         list.add(map);
-//      }
-//      req.setAttribute("list", list);
-//      
-//      //4]뷰정보 반환
-//      return "/FileUpDown13/List.jsp";
-//   }
    
    
 

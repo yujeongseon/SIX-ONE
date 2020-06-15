@@ -19,6 +19,7 @@ public class RoutineDAO {
 
    private Connection conn;
    private ResultSet rs;
+   private ResultSet rs2;
    private PreparedStatement psmt;
    //[생성자]
    public RoutineDAO(ServletContext context) {
@@ -58,12 +59,30 @@ public class RoutineDAO {
          rs=psmt.executeQuery();
          while(rs.next()) {
             RoutineDTO dto = new RoutineDTO();
+            List<RoutineDTO> rou = new Vector<RoutineDTO>();
+            
             dto.setRoutine_no(rs.getString(1));
             dto.setId(rs.getString(4));
             dto.setCreate_at(rs.getDate(3));
             dto.setRoutine_name(rs.getString(2));
             dto.setName(rs.getString(5));
-            
+            String a= rs.getString(1);
+            System.out.println("a를뿌려보자"+a);
+            String sql2="SELECT e.exercise_name,r.goal_count,r.goal_set,r.routine_days FROM rou_exe r JOIN exercise e ON r.exercise_no = e.exercise_no  WHERE routine_no=? order by routine_days";
+            try {
+               psmt = conn.prepareStatement(sql2);
+               psmt.setString(1, a);
+               rs2= psmt.executeQuery();
+               while(rs2.next()) {
+              	 RoutineDTO dto2=new RoutineDTO();
+                  dto2.setExe_no(rs2.getString(1));
+                  dto2.setCount(rs2.getString(2));
+                  dto2.setSet(rs2.getString(3));
+                  dto2.setDays(rs2.getString(4));
+                  rou.add(dto2);
+               }
+            } catch (Exception e) {e.printStackTrace();}
+            dto.setList(rou);
             list.add(dto);
          }
       }
@@ -71,25 +90,6 @@ public class RoutineDAO {
       return list;
    }//////////selectList()
    
-   public List<Rou_exeDTO> selectone(String no) {
-      List<Rou_exeDTO> rou = new Vector<Rou_exeDTO>();
-      System.out.println("no값"+no);
-      String sql="SELECT e.exercise_name,r.goal_count,r.goal_set,r.routine_days FROM rou_exe r JOIN exercise e ON r.exercise_no = e.exercise_no  WHERE routine_no=? order by routine_days";
-      try {
-         psmt = conn.prepareStatement(sql);
-         psmt.setString(1, no);
-         rs= psmt.executeQuery();
-         while(rs.next()) {
-            Rou_exeDTO dto=new Rou_exeDTO();
-            dto.setExe_no(rs.getString(1));
-            dto.setCount(rs.getString(2));
-            dto.setSet(rs.getString(3));
-            dto.setDays(rs.getString(4));
-            rou.add(dto);
-         }
-      } catch (Exception e) {e.printStackTrace();}
-      return rou;
-   }///////////selectOne
    
    public int getTotalRowCount(Map map) {
    int totalRowCount=0;
