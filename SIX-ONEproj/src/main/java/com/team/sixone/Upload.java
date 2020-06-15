@@ -27,7 +27,7 @@ public class Upload {
 		// 2-1] 업로드할 서버의 물리적 디렉토리를 얻어옴
 	//	String saveDirectory = application.getRealPath("/Upload");
 		
-		String saveDirectory ="C:\\Users\\kosmo_09\\git\\SIX-ONE__\\SIX-ONEproj\\src\\main\\webapp\\resources\\images\\TLImg";//강제주소주입
+		String saveDirectory ="C:\\Users\\kosmo_26\\git\\SIX-ONE\\SIX-ONEproj\\src\\main\\webapp\\resources\\images\\TLImg";//강제주소주입
 		System.out.println(saveDirectory);
 		int maxPostSize = 1024 * 500; // 500Kb
 		String encoding = "UTF-8";

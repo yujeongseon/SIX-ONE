@@ -273,7 +273,7 @@
 		<div class="trainer-img" id="healthimg"
 			style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)">
 			<div id='img1' style="height: 50%; background-color: #F0F0F0;;display:none" >
-				<span style="color: red;"> 해야하는나중에함</span>
+				<span style="color: red;"> 위치 검색</span>
 				<img src="resources/images/marker_.png" >
 			</div>
 			<div id='img2' style="height: 50%; background-color: gray;display:none">

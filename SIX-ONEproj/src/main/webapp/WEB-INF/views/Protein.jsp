@@ -66,7 +66,7 @@
 					
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
-							<a href="${list[0].proteinUrl }" class="blog-img" target="_blank" style="background-image: ${list[0].proteinImage};">
+							<a href="${list[0].proteinUrl }" class="blog-img" target="_blank" style="background-image:url('${list[0].proteinImage}');">
 								<img src="<c:url value='/resources/images/btn_rank1.png'/>"/>
 							</a>
 							<div class="desc">
@@ -78,7 +78,7 @@
 					</div>
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
-							<a href="${list[1].proteinUrl }" class="blog-img" style="background-image: url(resources/images/protein02.jpg);">
+							<a href="${list[1].proteinUrl }" class="blog-img" target="_blank" style="background-image:url('${list[1].proteinImage}');">
 								<img src="<c:url value='/resources/images/btn_rank2.png'/>"/>
 							</a>
 							<div class="desc">
@@ -90,13 +90,13 @@
 					</div>
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
-							<a href="${list[2].proteinUrl }" class="blog-img" style="background-image: url(resources/images/protein03.jpg);">
+							<a href="${list[2].proteinUrl }" class="blog-img" target="_blank" style="background-image:url('${list[2].proteinImage}');">
 								<img src="<c:url value='/resources/images/btn_rank3.png'/>"/>
 							</a>
 							<div class="desc">
-								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
-								<h2><a href="blog.html">가격</a></h2>
-								<p>링크</p>
+								<p class="admin"><span>${list[2].proteinName }</span>
+								<h2><a href="blog.html">￦${list[2].proteinPrice }</a></h2>
+								<p>바로가기</p>
 							</div>
 						</article>
 					</div>
@@ -104,37 +104,37 @@
 				<div class="row">
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
-							<a href="#" class="blog-img" style="background-image: url(resources/images/protein04.jpg);">
+							<a href="${list[3].proteinUrl }" class="blog-img" target="_blank" style="background-image:url('${list[3].proteinImage}');">
 								<img src="<c:url value='/resources/images/btn_rank4.png'/>"/>
 							</a>
 							<div class="desc">
-								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
-								<h2><a href="blog.html">가격</a></h2>
-								<p>링크</p>
+								<p class="admin"><span>${list[3].proteinName }</span>
+								<h2><a href="blog.html">￦${list[3].proteinPrice }</a></h2>
+								<p>바로가기</p>
 							</div>
 						</article>
 					</div>
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
-							<a href="#" class="blog-img" style="background-image: url(resources/images/protein05.jpg);">
+							<a href="${list[4].proteinUrl }" class="blog-img" target="_blank" style="background-image:url('${list[4].proteinImage}');">
 								<img src="<c:url value='/resources/images/btn_rank5.png'/>"/>
 							</a>
 							<div class="desc">
-								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
-								<h2><a href="blog.html">가격</a></h2>
-								<p>링크</p>
+								<p class="admin"><span>${list[4].proteinName }</span>
+								<h2><a href="blog.html">￦${list[4].proteinPrice }</a></h2>
+								<p>바로가기</p>
 							</div>
 						</article>
 					</div>
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
-							<a href="#" class="blog-img" style="background-image: url(resources/images/protein06.jpg);">
+							<a href="${list[5].proteinUrl }" class="blog-img" target="_blank" style="background-image:url('${list[5].proteinImage}');">
 								<img src="<c:url value='/resources/images/btn_rank6.png'/>"/>
 							</a>
 							<div class="desc">
-								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
-								<h2><a href="blog.html">가격</a></h2>
-								<p>링크</p>
+								<p class="admin"><span>${list[5].proteinName }</span>
+								<h2><a href="blog.html">￦${list[5].proteinPrice }</a></h2>
+								<p>바로가기</p>
 							</div>
 						</article>
 					</div>
@@ -152,37 +152,37 @@
 					
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
-							<a href="https://www.coupang.com/np/search?component=&q=%EA%B3%A8%EB%93%9C+%EC%8A%A4%ED%83%A0%EB%8B%A4%EB%93%9C+%EC%9B%A8%EC%9D%B4+%EC%B4%88%EC%BD%94&channel=auto" class="blog-img" style="background-image: url(resources/images/protein01.jpg);">
+							<a href="${list[6].proteinUrl }" class="blog-img" target="_blank" style="background-image:url('${list[6].proteinImage}');">
 								<img src="<c:url value='/resources/images/btn_rank1.png'/>"/>
 							</a>
 							<div class="desc">
-								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
-								<h2><a href="blog.html">￦83000</a></h2>
-								<p>링크</p>
+								<p class="admin"><span>${list[6].proteinName }</span> 
+								<h2><a href="blog.html">￦${list[6].proteinPrice }</a></h2>
+								<p>바로가기</p>
 							</div>
 						</article>
 					</div>
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
-							<a href="#" class="blog-img" style="background-image: url(resources/images/protein02.jpg);">
+							<a href="${list[7].proteinUrl }" class="blog-img" target="_blank" style="background-image:url('${list[7].proteinImage}');">
 								<img src="<c:url value='/resources/images/btn_rank2.png'/>"/>
 							</a>
 							<div class="desc">
-								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
-								<h2><a href="blog.html">가격</a></h2>
-								<p>링크</p>
+								<p class="admin"><span>${list[7].proteinName }</span>
+								<h2><a href="blog.html">￦${list[7].proteinPrice }</a></h2>
+								<p>바로가기</p>
 							</div>
 						</article>
 					</div>
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
-							<a href="#" class="blog-img" style="background-image: url(resources/images/protein03.jpg);">
+							<a href="${list[8].proteinUrl }" class="blog-img" target="_blank" style="background-image:url('${list[8].proteinImage}');">
 								<img src="<c:url value='/resources/images/btn_rank3.png'/>"/>
 							</a>
 							<div class="desc">
-								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
-								<h2><a href="blog.html">가격</a></h2>
-								<p>링크</p>
+								<p class="admin"><span>${list[8].proteinName }</span> 
+								<h2><a href="blog.html">￦${list[8].proteinPrice }</a></h2>
+								<p>바로가기</p>
 							</div>
 						</article>
 					</div>
@@ -190,37 +190,37 @@
 				<div class="row">
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
-							<a href="#" class="blog-img" style="background-image: url(resources/images/protein04.jpg);">
+							<a href="${list[9].proteinUrl }" class="blog-img" target="_blank" style="background-image:url('${list[9].proteinImage}');">
 								<img src="<c:url value='/resources/images/btn_rank4.png'/>"/>
 							</a>
 							<div class="desc">
-								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
-								<h2><a href="blog.html">가격</a></h2>
-								<p>링크</p>
+								<p class="admin"><span>${list[9].proteinName }</span> 
+								<h2><a href="blog.html">￦${list[9].proteinPrice }</a></h2>
+								<p>바로가기</p>
 							</div>
 						</article>
 					</div>
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
-							<a href="#" class="blog-img" style="background-image: url(resources/images/protein05.jpg);">
+							<a href="${list[10].proteinUrl }" class="blog-img" target="_blank" style="background-image:url('${list[10].proteinImage}');">
 								<img src="<c:url value='/resources/images/btn_rank5.png'/>"/>
 							</a>
 							<div class="desc">
-								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
-								<h2><a href="blog.html">가격</a></h2>
-								<p>링크</p>
+								<p class="admin"><span>${list[10].proteinName }</span> 
+								<h2><a href="blog.html">￦${list[10].proteinPrice }</a></h2>
+								<p>바로가기</p>
 							</div>
 						</article>
 					</div>
 					<div class="col-md-4 animate-box">
 						<article class="article-entry">
-							<a href="#" class="blog-img" style="background-image: url(resources/images/protein06.jpg);">
+							<a href="${list[11].proteinUrl }" class="blog-img" target="_blank" style="background-image:url('${list[11].proteinImage}');">
 								<img src="<c:url value='/resources/images/btn_rank6.png'/>"/>
 							</a>
 							<div class="desc">
-								<p class="admin"><span>보충제 이름:</span> <span>업제</span></p>
-								<h2><a href="blog.html">가격</a></h2>
-								<p>링크</p>
+								<p class="admin"><span>${list[11].proteinName }</span>
+								<h2><a href="blog.html">￦${list[11].proteinPrice }</a></h2>
+								<p>바로가기</p>
 							</div>
 						</article>
 					</div>
