@@ -123,21 +123,19 @@ function isLogin(el){
 						</div>
 						<div class="col-md-10 text-right menu-1">
 							<ul >
-								<li class="active"><a href="<c:url value='/home.do'/>">홈</a></li>
-								<li class="has-dropdown">
+								<li id="nav-home"><a href="<c:url value='/'/>">홈</a></li>
+								<li id="nav-exercise" class="has-dropdown ">
 									<a href="<c:url value='/exercise.do'/>">운동</a>
 									<ul class="dropdown">
 										<li><a href="<c:url value='/exercise.do'/>">운동</a></li>
-										<li><a href="<c:url value='/challenge.do'/>">챌린지</a></li>
 										<li><a href="<c:url value='/protein.do'/>">보충제</a></li>
 										<li><a href="<c:url value='/food.do'/>">식단</a></li>
-										<li><a href="#">Body Building</a></li>
 									</ul>
 								</li>
-								<li><a href="#;" onclick="javascript:isLogin(this);">스케쥴</a></li>
-								<li><a href="<c:url value='/TimeLine.do'/>">타임라인</a></li>
+								<li id="nav-schedule"><a href="#;" onclick="javascript:isLogin(this);">스케쥴</a></li>
+								<li id="nav-timeline"><a href="<c:url value='/TimeLine.do'/>">타임라인</a></li>
 								
-								<li class="has-dropdown"><a href="#" onclick="javascript:isLogin(this);">게시판</a>
+								<li id="nav-freeboard" class="has-dropdown"><a href="#" onclick="javascript:isLogin(this);">게시판</a>
 									<ul class="dropdown">
 										<li><a href="#" onclick="javascript:isLogin(this);">자유게시판</a></li>
 										<li><a href="#" onclick="javascript:isLogin(this);">루틴게시판</a></li>
@@ -152,7 +150,7 @@ function isLogin(el){
 									</ul>
 								</li>
 								 -->
-								<li><a href="#;" onclick="javascript:isLogin(this);" id="MyButton">마이</a></li>
+								<li id="nav-myPage"><a href="#;" onclick="javascript:isLogin(this);" id="MyButton">마이</a></li>
 								<c:if test="${empty sessionScope.LoginSuccess}" var="flag">
 								<li><a href="#" data-toggle="modal" data-target="#myModal" class="MyMenu">로그인</a></li>
 								<input type="hidden" id="loginckeck" value="ok">
@@ -186,6 +184,12 @@ function isLogin(el){
       if(location.pathname.indexOf('exercise') != -1){
          $('#nav-exercise').addClass('active');
       }
+      else if(location.pathname.indexOf('protein') != -1){
+          $('#nav-exercise').addClass('active');
+       }
+      else if(location.pathname.indexOf('food') != -1){
+          $('#nav-exercise').addClass('active');
+       }
       else if(location.pathname.indexOf('schedule') != -1){
          $('#nav-schedule').addClass('active');
       }
@@ -195,6 +199,12 @@ function isLogin(el){
       else if(location.pathname.indexOf('freeboard') != -1){
          $('#nav-freeboard').addClass('active');
       }
+      else if(location.pathname.indexOf('routine') != -1){
+          $('#nav-freeboard').addClass('active');
+       }
+      else if(location.pathname.indexOf('MyPage') != -1){
+         $('#nav-myPage').addClass('active');
+       }
       else{
          $('#nav-home').addClass('active');
       }

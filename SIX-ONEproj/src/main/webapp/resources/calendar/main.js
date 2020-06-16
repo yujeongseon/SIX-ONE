@@ -243,8 +243,9 @@
           'start':start
         },
         success: function (response) {
-          alert('루틴이 추가되었습니다');
-          calendar.refetchEvents();
+        	calendar.refetchEvents();
+        	alert('루틴이 추가되었습니다');
+          
           
         }
       });

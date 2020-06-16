@@ -99,15 +99,15 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center colorlib-heading animate-box">
-						<h2>이달의 루틴</h2>
-						<p>한달동안 가장 많은 사람이 구독한 루틴으로 운동을 시작해보세요</p>
+						<h2>인기있는 루틴</h2>
+						<p>가장 많은 사람이 구독한 루틴으로 운동을 시작해보세요</p>
 					</div>
 				</div>
 				
 				
 				<div class="best-member">
 					<img src="<c:url value='/resources/images/trainer-4.jpg'/>"/>
-					<span>회원 아이디 | 루틴이름</span>
+					<span>${bestRoutine[0].id } | ${bestRoutine[0].routineName }</span>
 				</div>
 
 
@@ -116,19 +116,93 @@
 						<div class="col-md-12">
 							<div class="routine" >
 								<div class="col-md-1 week">
-									<div>월요일</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-arm"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>팔굽혀펴기</span></p>
-									</div>
-									<div class="entry-forth">
-										<p class="icon"><span><i class="flaticon-gym"></i></span></p>
-										<p class="time"><span>10회/3세트</span></p>
-										<p class="trainer"><span>턱걸이</span></p>
-									</div>
+									<div>1일차</div>
+									<c:forEach items="${bestRoutine }" var="list">
+										<c:if test="${list.routineDays == 1 }">
+											<div class="entry-forth">
+												<p class="icon"><span><i class="flaticon-arm"></i></span></p>
+												<p class="time"><span>${list.goalCount }회 / ${list.goalSet }세트</span></p>
+												<p class="trainer"><span>${list.exerciseName }</span></p>
+											</div>
+										</c:if>	
+									</c:forEach>
 								</div>
-			
+								<div class="col-md-1 week">
+									<div>2일차</div>
+									<c:forEach items="${bestRoutine }" var="list">
+										<c:if test="${list.routineDays == 2 }">
+											<div class="entry-forth">
+												<p class="icon"><span><i class="flaticon-arm"></i></span></p>
+												<p class="time"><span>${list.goalCount }회 / ${list.goalSet }세트</span></p>
+												<p class="trainer"><span>${list.exerciseName }</span></p>
+											</div>
+										</c:if>	
+									</c:forEach>
+								</div>
+								<div class="col-md-1 week">
+									<div>3일차</div>
+									<c:forEach items="${bestRoutine }" var="list">
+										<c:if test="${list.routineDays == 3 }">
+											<div class="entry-forth">
+												<p class="icon"><span><i class="flaticon-arm"></i></span></p>
+												<p class="time"><span>${list.goalCount }회 / ${list.goalSet }세트</span></p>
+												<p class="trainer"><span>${list.exerciseName }</span></p>
+											</div>
+										</c:if>	
+									</c:forEach>
+								</div>
+								<div class="col-md-1 week">
+									<div>4일차</div>
+									<c:forEach items="${bestRoutine }" var="list">
+										<c:if test="${list.routineDays == 4 }">
+											<div class="entry-forth">
+												<p class="icon"><span><i class="flaticon-arm"></i></span></p>
+												<p class="time"><span>${list.goalCount }회 / ${list.goalSet }세트</span></p>
+												<p class="trainer"><span>${list.exerciseName }</span></p>
+											</div>
+										</c:if>	
+									</c:forEach>
+								</div>
+								<div class="col-md-1 week">
+									<div>5일차</div>
+									<c:forEach items="${bestRoutine }" var="list">
+										<c:if test="${list.routineDays == 5 }">
+											<div class="entry-forth">
+												<p class="icon"><span><i class="flaticon-arm"></i></span></p>
+												<p class="time"><span>${list.goalCount }회 / ${list.goalSet }세트</span></p>
+												<p class="trainer"><span>${list.exerciseName }</span></p>
+											</div>
+										</c:if>	
+									</c:forEach>
+								</div>
+								<div class="col-md-1 week">
+									<div>6일차</div>
+									<c:forEach items="${bestRoutine }" var="list">
+										<c:if test="${list.routineDays == 6 }">
+											<div class="entry-forth">
+												<p class="icon"><span><i class="flaticon-arm"></i></span></p>
+												<p class="time"><span>${list.goalCount }회 / ${list.goalSet }세트</span></p>
+												<p class="trainer"><span>${list.exerciseName }</span></p>
+											</div>
+										</c:if>	
+									</c:forEach>
+								</div>
+								<div class="col-md-1 week">
+									<div>7일차</div>
+									<c:forEach items="${bestRoutine }" var="list">
+										<c:if test="${list.routineDays == 7 }">
+											<div class="entry-forth">
+												<p class="icon"><span><i class="flaticon-arm"></i></span></p>
+												<p class="time"><span>${list.goalCount }회 / ${list.goalSet }세트</span></p>
+												<p class="trainer"><span>${list.exerciseName }</span></p>
+											</div>
+										</c:if>	
+									</c:forEach>
+								</div>
+										
+									
+								
+			<!-- 
 								<div class="col-md-1 week">
 									<div>화요일</div>
 									<div class="entry-forth">
@@ -212,6 +286,8 @@
 										<p class="trainer"><span>턱걸이</span></p>
 									</div>
 								</div>
+					 -->
+								
 							</div>
 						</div>
 					</div>
@@ -284,7 +360,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center colorlib-heading animate-box">
-						<h2>인기있는 타임라인</h2>
+						<h2>인기있는 피드</h2>
 						<p>소중한 운동 일상을 여러 사람들과 공유하세요</p>
 					</div>
 				</div>

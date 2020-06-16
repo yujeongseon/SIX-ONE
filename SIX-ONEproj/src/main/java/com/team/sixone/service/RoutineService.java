@@ -9,7 +9,7 @@ public interface RoutineService {
 	List<RoutineDTO> selectList(Map map);
 	
 	//하나 불러오기
-	RoutineDTO selectOne(Map map);
+	List<RoutineDTO> selectOne(Map map);
 	
 	//입력 수정 삭제
 	int insert(Map map);

@@ -10,7 +10,15 @@
 		where ro.routine_no = #{routineNo}
 	</select>
 	
-	
+	<select id="routineSelectOne" parameterType="java.util.Map" resultType="routineDTO">
+		select r.routine_no, routine_name,create_at, id, goal_count, goal_set, routine_days, exercise_name
+		from routine r join rou_exe ro on r.routine_no = ro.routine_no join exercise e on ro.exercise_no = e.exercise_no
+		where r.routine_no = 
+		    (select routine_no
+		    from
+		        (select routine_no,count(*) as routine_count from subscribe group by routine_no order by routine_count desc)
+		    where ROWNUM = 1)
+	</select>
 	
 	
 	
