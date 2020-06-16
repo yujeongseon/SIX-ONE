@@ -13,6 +13,8 @@ import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
 
 import com.team.sixone.BoardDAO;
 
@@ -45,7 +47,7 @@ public class BoardController {
    //글 불러오기 페이징]
       @RequestMapping("/freeboard.do")
       public String list(
-            //@ModelAttribute("id") String id, //로그인 해야만 현 메소드로 들어오게 하기 위한 인자
+            //@ModelAttribute("LoginSuccess") String id, //로그인 해야만 현 메소드로 들어오게 하기 위한 인자
             @RequestParam Map map,//검색어 받기
             @RequestParam(required = false,defaultValue = "1") int nowPage,
             HttpServletRequest req,//컨텍스트 루트 얻기용
@@ -125,9 +127,19 @@ public class BoardController {
     	  String answer;
     	  RoutineDAO dao= new RoutineDAO(null);
     	  and=dao.gudokin(no, id);
-    	  System.out.println("and값:"+and);
-    	  if(and==1) answer="구독 되었습니다";
-    	  else answer="이미 구독되었습니다";
+    	  answer="구독완료";
+    	  return answer;
+      }
+      
+    //ajax 구독취소
+      @RequestMapping(value="/Ajax/gudNO.do",produces ="text/html; charset=UTF-8")
+      @ResponseBody
+      public String ajaxgudno(String no, String id) {
+    	  int and;
+    	  String answer;
+    	  RoutineDAO dao= new RoutineDAO(null);
+    	  and=dao.gudokout(no, id);
+    	  answer="구독완료";
     	  return answer;
       }
       
@@ -138,11 +150,13 @@ public class BoardController {
    public String ajaxRoutine(@RequestParam Map map,//검색어 받기
          @RequestParam(required = false,defaultValue = "1") int nowPage,
          HttpServletRequest req,//컨텍스트 루트 얻기용
+         HttpSession session,
          Model model) {//id는 게시판 구분용으로
       //JSON데이타 타입으로 반환하기위해 JSONObject객체 생성
       int pageSize = 10;
       int blockPage = 10;
-      
+     
+      String id= session.getAttribute("LoginSuccess").toString();
       RoutineDAO dao= new RoutineDAO(null);
       //전체 레코드수   
       int totalRecordCount = dao.getTotalRowCount(map);
@@ -155,7 +169,7 @@ public class BoardController {
       //페이징을 위한 로직 끝]   
       map.put("start", start);
       map.put("end", end);
-      List<RoutineDTO> list=dao.selectList(map);
+      List<RoutineDTO> list=dao.selectList(map,id);
 
       String pagingString= PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,req.getContextPath()+ "/routine.do?");
       //데이타 저장]
