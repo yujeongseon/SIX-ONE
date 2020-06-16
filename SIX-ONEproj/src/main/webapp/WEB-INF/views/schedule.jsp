@@ -243,8 +243,8 @@
 					<div class="schedule text-left animate-box">
 						<div class="col-md-12 ">
 						<span style="font-size:30px;" id="infoTitle"></span>
-						<button id="cancel_btn" style="float: right;"onclick="javascript:cancelSubscribe()">구독취소</button>
-						<button id="delete_btn" style="float: right; display: none;"onclick="javascript:deleteSubscribe()">삭제</button>
+						<button class="btn" id="cancel_btn" style="float: right;"onclick="javascript:cancelSubscribe()">구독취소</button>
+						<button class="btn" id="delete_btn" style="float: right; display: none;"onclick="javascript:deleteSubscribe()">삭제</button>
 						<input type="hidden" />	
 							<div class="routine" >
 								<div class="col-md-1 week">

@@ -42,12 +42,16 @@ function isLogin(el){
 			var msg = data;
 			if(msg == "NotLogin"){
 				alert('로그인후 이용하세요');
+				$('#myModal').modal('show');
 			}
 			else{
 				if(title == '마이'){
 					window.location.href = "<c:url value='/MyPage.do'/>";
 				}
 				else if(title == '스케쥴'){
+					window.location.href = "<c:url value='/schedule.do'/>";
+				}
+				else if(title.indexOf('확인하기') != -1){
 					window.location.href = "<c:url value='/schedule.do'/>";
 				}
 				

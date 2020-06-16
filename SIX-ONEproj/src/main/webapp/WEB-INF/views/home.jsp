@@ -69,20 +69,20 @@
 						
 							<div class="one-third intro-img" style="background-image: url(resources/images/intro-img-1.jpg)">
 								<div class="desc">
-									<h3>헬스</h3>
-									<a href="#"><span class="price text-center">확인하기<br><small>/month</small></span></a>
+									<h3>운동</h3>
+									<a href="<c:url value='/exercise.do'/>"><span class="price text-center">확인하기<br></span></a>
 								</div>
 							</div>
 							<div class="one-third intro-img" style="background-image: url(resources/images/intro-img-2.jpg)">
 								<div class="desc">
-									<h3>요가</h3>
-									<a href="#"><span class="price text-center">확인하기<br><small>/month</small></span></a>
+									<h3>스케쥴</h3>
+									<a href="#;" onclick="javascript:isLogin(this);"><span class="price text-center">확인하기<br></span></a>
 								</div>
 							</div>
 							<div class="one-third intro-img" style="background-image: url(resources/images/intro-img-3.jpg)">
 								<div class="desc">
-									<h3>홈 트레이닝</h3>
-									<a href="#"><span class="price text-center">확인하기<br><small>/month</small></span></a>
+									<h3>칼로리 계산</h3>
+									<a href="<c:url value='/food.do'/>"><span class="price text-center">확인하기<br></span></a>
 								</div>
 							</div>
 						</div>
