@@ -31,8 +31,29 @@
 	
 <script>
 function isLogin(el){
-	console.log($(el).html())
+	console.log($(el).attr('href'))
 	var title = $(el).html();
+	var url = "<c:url value='/'/>";
+	if(title == '마이'){
+		url = "<c:url value='/MyPage.do'/>";
+	}
+	else if(title == '스케쥴'){
+		url = "<c:url value='/schedule.do'/>";
+	}
+	else if(title.indexOf('확인하기') != -1){
+		url = "<c:url value='/schedule.do'/>";
+	}
+	else if(title == '게시판'){
+		url = "<c:url value='/freeboard.do'/>";
+	}
+	else if(title == '자유게시판'){
+		url = "<c:url value='/freeboard.do'/>";
+	}
+	else if(title == '루틴게시판'){
+		url = "<c:url value='/routine.do'/>";
+	}
+	
+	
 	$.ajax({
 		url:"<c:url value='/LoginCkeck.do'/>",
 		type:'get',
@@ -43,25 +64,26 @@ function isLogin(el){
 			if(msg == "NotLogin"){
 				alert('로그인후 이용하세요');
 				$('#myModal').modal('show');
+				$('#locationUrl').val(url);
 			}
 			else{
 				if(title == '마이'){
-					window.location.href = "<c:url value='/MyPage.do'/>";
+					window.location.href = url;
 				}
 				else if(title == '스케쥴'){
-					window.location.href = "<c:url value='/schedule.do'/>";
+					window.location.href = url;
 				}
 				else if(title.indexOf('확인하기') != -1){
-					window.location.href = "<c:url value='/schedule.do'/>";
+					window.location.href = url;
 				}
 				else if(title == '게시판'){
-					window.location.href = "<c:url value='/freeboard.do'/>";
+					window.location.href = url;
 				}
 				else if(title == '자유게시판'){
-					window.location.href = "<c:url value='/freeboard.do'/>";
+					window.location.href = url;
 				}
 				else if(title == '루틴게시판'){
-					window.location.href = "<c:url value='/routine.do'/>";
+					window.location.href = url;
 				}
 				
 			}

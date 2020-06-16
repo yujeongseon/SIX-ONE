@@ -163,6 +163,7 @@ $(function(){
 			
 			<div class="modal-body">
 			<form  id="frm">
+			<input type="hidden" id ="locationUrl">
 			<div class="form-group wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
 						<span class="label-input100">아이디</span>
 						<input class="input100" type="text" name="id" id = "id"placeholder="아이디를 입력하세요">
@@ -229,7 +230,7 @@ function doLogin(){
 			//$('#msg').html(data);
 			var msg = data;
 			if(msg == "로그인 성공"){
-				//window.location.href = "<c:url value='/'/>";
+				window.location.href = $('#locationUrl').val();
 			}
 			else{
 				$('#msg').html(data);
