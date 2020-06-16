@@ -50,24 +50,41 @@
 
 function gudok(no){
 	var ID = "<%=session.getAttribute("LoginSuccess")%>"
-	
-	console.log(item)
-	console.log('구독 눌러지긴함')
+	var id = document.getElementById("gudokbtn"+no);
+	if(id.innerHTML=="구독하기"){
 	$.ajax({
 	      url:"<c:url value='/Ajax/gudok.do'/>",
 	      dataType:'text',
 	      data:{no:no,id:ID},
 	      success:function(data){
-	    	  console.log(data)
-	    	  alert(data);
+	    		  id.innerHTML="구독취소";
+	    		  alert("구독되었습니다")
 	      },
 	      error:function(request,error){
 	         console.log('상태코드:',request.status);
 	         console.log('서버로부터 받은 HTML데이타:',request.responseText);
 	         console.log('에러:',error);
 	      }
-	      
 	   });
+	}//if
+	else {
+		$.ajax({
+		      url:"<c:url value='/Ajax/gudNO.do'/>",
+		      dataType:'text',
+		      data:{no:no,id:ID},
+		      success:function(data){
+		    		  id.innerHTML="구독하기";
+		    		  alert("구독이 취소되었습니다")
+		      },
+		      error:function(request,error){
+		         console.log('상태코드:',request.status);
+		         console.log('서버로부터 받은 HTML데이타:',request.responseText);
+		         console.log('에러:',error);
+		      }
+		   });
+	}//else
+	
+	
 	
 }
 
@@ -184,25 +201,7 @@ a:link {
 									</tr>
 								</thead>
 							</table>
-							<!-- 
-                     <c:if test="${empty rlist}" var="Empty">
-                     <div></div>
-                     </c:if>
-                     <c:if test="${not Empty}">
-                     <div id="rl">
-                     </div>
-                      -->
-							<!-- 
-                        <c:forEach items="${rlist}" var="item" varStatus="loop">
-                        <div>
-                           <span>운동명--${item.exe_no}--</span>
-                           <span>몇세트--${item.set}--</span>
-                           <span>개수--${item.count}--</span>
-                           <span>일차--${item.days}--</span>
-                           </div>
-                        </c:forEach>
-                     </c:if>
-                     -->
+							
 							<div id="accordion">
 								<c:if test="${empty list}" var="isEmpty">
 									<div>등록된 루틴이 없습니다.</div>
@@ -211,7 +210,7 @@ a:link {
 									<c:forEach items="${list}" var="item" varStatus="loop">
 										<!-- 아코디언 제목 -->
 										<div>${item.routine_name}
-											<span>${item.routine_no}</span> <span>${item.name}</span> <span>${item.create_at}</span>                  
+											<span>${item.routine_no}</span> <span>${item.name}</span> <span style="float: right">${item.create_at}</span>                  
 										</div>
 										<!-- 실질 내용 -->
 										<div>
@@ -219,11 +218,15 @@ a:link {
 												<div class="schedule text-center animate-box">
 													<div class="col-md-12">
 														<div class="routine">
-															<c:if test="${not isEmpty}">
-																<button style="float: center; font-style: italic;"
-																	onclick="gudok(${item.routine_no})">구독하기</button>
+															<c:if test="${item.gudok}" var="gudok">
+																<button id="gudokbtn${item.routine_no}" style="float: center; font-style: italic;"
+																onclick="gudok(${item.routine_no});">구독중</button>
 															</c:if>
-															<div id="rouin${item.routine_no}">
+															<c:if test="${not gudok}">
+																<button id="gudokbtn${item.routine_no}" style="float: center; font-style: italic;"
+																	onclick="gudok(${item.routine_no});">구독하기</button>
+															</c:if>
+															<div>
 																<!-- 이 안에 넣기 -->
 																<c:forEach items="${item.list}" var="list">
 																	<div class="col-md-1 week">

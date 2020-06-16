@@ -17,6 +17,7 @@ public class RoutineDTO {
 	private String set;
 	private String days;
 	private List list;
+	private Boolean gudok; 
    
    
    
@@ -31,6 +32,19 @@ public class RoutineDTO {
 				+ "]";
 	}
 
+public RoutineDTO(){}
+
+public Boolean getGudok() {
+	return gudok;
+}
+
+
+
+public void setGudok(Boolean gudok) {
+	this.gudok = gudok;
+}
+
+
 
 public List getList() {
 	return list;
@@ -42,7 +56,7 @@ public void setList(List list) {
 }
 
 
-public RoutineDTO(){}
+
    
    public String getExe_name() {
 		return exe_name;
