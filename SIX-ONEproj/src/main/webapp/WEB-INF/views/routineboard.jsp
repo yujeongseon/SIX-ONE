@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE HTML>
 <html>
@@ -42,8 +42,6 @@
        $( "#accordion" ).accordion({
             collapsible: true
           });
-      
-      
 });
 
 
@@ -181,9 +179,14 @@ a:link {
 						</div>
 
 						<div class="desc"></div>
-						<div class="side"></div>
+						<div class="side">
+						<!-- 
+						<c:if test="${fn:length(fn:split(split,','))==2}">
+						나눔
+						</c:if>
+						 -->
+						</div>
 						<!-- 아코디언으로 뿌려주기 -->
-
 					</div>
 
 
@@ -219,12 +222,12 @@ a:link {
 													<div class="col-md-12">
 														<div class="routine">
 															<c:if test="${item.gudok}" var="gudok">
-																<button id="gudokbtn${item.routine_no}" style="float: center; font-style: italic;"
-																onclick="gudok(${item.routine_no});">구독중</button>
+																<button id="gudokbtn${item.routine_no}" style="float: center; font-style: italic; background-color: black;
+																font-size: 30px; color: white;display: inline-block;margin: 4px 2px;"onclick="gudok(${item.routine_no});">구독중</button>
 															</c:if>
 															<c:if test="${not gudok}">
-																<button id="gudokbtn${item.routine_no}" style="float: center; font-style: italic;"
-																	onclick="gudok(${item.routine_no});">구독하기</button>
+																<button id="gudokbtn${item.routine_no}" style="float: center; font-style: italic; background-color: black;
+																font-size: 30px; color: white; display: inline-block;margin: 4px 2px;"onclick="gudok(${item.routine_no});">구독하기</button>
 															</c:if>
 															<div>
 																<!-- 이 안에 넣기 -->
@@ -244,6 +247,7 @@ a:link {
 																		</div>
 																	</div>
 																</c:forEach>
+																
 																<!-- 이 안에 넣기 -->
 															</div>
 														</div>
