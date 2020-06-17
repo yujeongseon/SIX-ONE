@@ -359,7 +359,10 @@ a:link {
    <script src='<c:url value="/resources/Table_Responsive/vendor/bootstrap/js/bootstrap.min.js"/>'></script>
    <script src='<c:url value="/resources/Table_Responsive/vendor/select2/select2.min.js"/>'></script>
  -->
-
+	
+	<script>
+	
+	</script>
 </body>
 </html>
 

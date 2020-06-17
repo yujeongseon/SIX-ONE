@@ -32,7 +32,7 @@
 	</delete>
 	
 	<delete id="deleteCalendarRoutine" parameterType="java.util.Map">
-		delete sub_calendar where subscribe_no = #{subscribeNo}
+		delete sub_calendar where sub_calendar_no = #{subCalendarNo}
 	</delete>
 	
 	<insert id="calendarInsert" parameterType="java.util.Map">

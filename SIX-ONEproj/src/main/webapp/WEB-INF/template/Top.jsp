@@ -102,6 +102,11 @@ $(function(){
 		
 	});
 	
+	$('#myModal').on('shown.bs.modal', function () {
+		$('#id').focus();
+	});
+	
+	
 	$('#myModal').on('hidden.bs.modal', function () {
 		if($(window).width() <= 768){
 		$('body').addClass('overflow offcanvas');
@@ -109,7 +114,10 @@ $(function(){
 		}
 	});
 	
-	$('#LoginButton').click(function(){
+	
+	
+	// 선태씨가 한거
+	/* $('#LoginButton').click(function(){
 		$.ajax({
 			url:"<c:url value='/Login.do'/>",
 			type:'get',
@@ -132,7 +140,8 @@ $(function(){
 			}
 		});
 		
-	});
+	}); */
+	
 	
 	
 	
@@ -154,6 +163,7 @@ $(function(){
 			
 			<div class="modal-body">
 			<form  id="frm">
+			<input type="hidden" id ="locationUrl">
 			<div class="form-group wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
 						<span class="label-input100">아이디</span>
 						<input class="input100" type="text" name="id" id = "id"placeholder="아이디를 입력하세요">
@@ -162,7 +172,7 @@ $(function(){
 					
 			<div class="form-group wrap-input100 validate-input" data-validate="Password is required">
 						<span class="label-input100">비밀번호</span>
-						<input class="input100" type="password" name="password" id="pass" placeholder="비밀번호를 입력하세요">
+						<input onkeydown="javascript: if(event.keyCode == 13) {doLogin()}" class="input100" type="password" name="password" id="pass" placeholder="비밀번호를 입력하세요">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					
@@ -175,7 +185,7 @@ $(function(){
 				<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button type="button"class="login100-form-btn" id="LoginButton">Login</button>
+							<button onclick="javascript:doLogin()" type="button"class="login100-form-btn" id="LoginButton">Login</button>
 						</div>
 					</div>
 					</form>
@@ -206,4 +216,35 @@ $(function(){
 	</div>
 </div>
 <!-- 모달끝 -->
+
+<script>
+function doLogin(){
+	
+	$.ajax({
+		url:"<c:url value='/Login.do'/>",
+		type:'get',
+		dataType:'text',
+		data:$('#frm').serialize(),
+		success:function(data){
+			console.log(data);
+			//$('#msg').html(data);
+			var msg = data;
+			if(msg == "로그인 성공"){
+				window.location.href = $('#locationUrl').val();
+			}
+			else{
+				$('#msg').html(data);
+			}
+			
+		},
+		error:function(data){
+			console.log('에러:',data.responseText);
+		}
+	});
+	
+}
+</script>
+
+
+
 	

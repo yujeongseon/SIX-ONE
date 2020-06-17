@@ -22,7 +22,7 @@ public class RoutineServiceImpl implements RoutineService{
 	}
 
 	@Override
-	public RoutineDTO selectOne(Map map) {
+	public List<RoutineDTO> selectOne(Map map) {
 		return dao.selectOne(map);
 	}
 

@@ -23,8 +23,8 @@ public class RoutineDAO implements RoutineService {
 	}
 
 	@Override
-	public RoutineDTO selectOne(Map map) {
-		return null;
+	public List<RoutineDTO> selectOne(Map map) {
+		return sqlMapper.selectList("routineSelectOne", map);
 	}
 
 	@Override
