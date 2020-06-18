@@ -9,8 +9,16 @@ public class RoutineDTO {
 	private String goalSet;
 	private String exerciseName;
 	private String routineDays;
+	private String exerciseMotions;
 	
 	
+	
+	public String getExerciseMotions() {
+		return exerciseMotions;
+	}
+	public void setExerciseMotions(String exerciseMotions) {
+		this.exerciseMotions = exerciseMotions;
+	}
 	public String getRoutineDays() {
 		return routineDays;
 	}

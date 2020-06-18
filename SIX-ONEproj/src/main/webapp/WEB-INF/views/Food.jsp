@@ -220,6 +220,20 @@
 					<div id ="cart" class="col-md-4 text-center">
 						<div>
 							<div class="cart_date"><input id="datepicker" style="text-align: center" disabled><!-- 2020-06-10 --></div>
+							<form class="form-horizontal">
+								<label class="radio-inline"> 
+									<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+									<span>아침</span>
+								</label> 
+								
+								<label class="radio-inline"> 
+									<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">점심
+								</label> 
+								<label class="radio-inline"> 
+									<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">저녁
+								</label>
+
+						</form>
 							<div class="text-left basket"style="min-height: 350px" >
 								<ul class="list-unstyled" id="my_food_list" style="padding-top: 20px">
 								<!-- 
