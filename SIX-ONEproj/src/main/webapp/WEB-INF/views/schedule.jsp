@@ -134,6 +134,7 @@
 			</div>
 		</div>	
 	</div>
+	
 	<!-- 달력 클릭시 나오는 모달 -->
 	<div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
       <div class="modal-dialog" role="document">

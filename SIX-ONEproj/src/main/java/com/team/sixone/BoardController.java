@@ -143,9 +143,27 @@ public class BoardController {
     	  return answer;
       }
       
+    //ajax 루틴 제목
+      @RequestMapping(value="/Ajax/writerou.do",produces ="text/html; charset=UTF-8")
+      @ResponseBody
+      public void ajaxroutinewrite(String title,String id) {
+    	  RoutineDAO dao= new RoutineDAO(null);
+    	  dao.writerou(title, id);
+      }
+      
+      @RequestMapping(value="/Ajax/writedetail.do",produces ="text/html; charset=UTF-8")
+      @ResponseBody
+      public void ajaxroutinedetailwrite(String exename,String roucount,String rouset, int days) {
+    	  RoutineDAO dao= new RoutineDAO(null);
+    	  if(days > 7) {
+    		  days=days-7;
+    	  }
+    	  System.out.println("이거 두번만 들어와야 정상인데"+days+"날짜 확인 정상으로 들어오냐");
+    	  dao.writeroudetail(exename,roucount,rouset,days);
+      }
   
    
-   //ajax테스트
+   //ajax 루틴뿌려주기
    @RequestMapping(value="/routine.do",produces ="text/html; charset=UTF-8")
    public String ajaxRoutine(@RequestParam Map map,//검색어 받기
          @RequestParam(required = false,defaultValue = "1") int nowPage,

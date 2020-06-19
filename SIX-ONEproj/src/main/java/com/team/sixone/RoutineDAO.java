@@ -133,6 +133,31 @@ public class RoutineDAO {
             
    }//getTotalRowCount   
    
+   public void writerou(String title,String id) {
+	   String sql="INSERT INTO routine VALUES(SEQ_ROUTINE.nextval,?,sysdate,?)";
+	   try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, title);
+			psmt.setString(2, id);
+			psmt.executeUpdate();	
+			System.out.println("루틴입력완료");
+		} catch (Exception e) {e.printStackTrace();}
+   }
+   
+   public void writeroudetail(String exename,String roucount,String rouset,int days) {
+	   String sql4="Insert into rou_exe values((select exercise_no from exercise where exercise_name like ?),(select MAX(routine_no) from routine),?,?,?)";
+	   try {
+			psmt = conn.prepareStatement(sql4);
+			psmt.setString(1, exename);
+			psmt.setString(2, roucount);
+			psmt.setString(3, rouset);
+			psmt.setInt(4, days);
+			psmt.executeUpdate();
+			System.out.println("루틴상세정보입력완료");
+		} catch (Exception e) {e.printStackTrace();}
+   }
+   
+   
    public int gudokin(String no,String id) {
 	   int affected =0;
 	   String sql="INSERT INTO subscribe VALUES(SEQ_SUBSCRIBE.nextval,?,?)";
