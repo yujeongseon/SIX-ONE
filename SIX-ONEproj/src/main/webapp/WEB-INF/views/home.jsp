@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<style>
+	.entry-forth .icon img{
+		width:100px;
+	
+	
+	}
+
+
+</style>
 
 
 		<aside id="colorlib-hero">
@@ -120,7 +129,7 @@
 									<c:forEach items="${bestRoutine }" var="list">
 										<c:if test="${list.routineDays == 1 }">
 											<div class="entry-forth">
-												<p class="icon"><span><i class="flaticon-arm"></i></span></p>
+												<p class="icon"><span><img src="${list.exerciseMotions }"></img></span></p>
 												<p class="time"><span>${list.goalCount }회 / ${list.goalSet }세트</span></p>
 												<p class="trainer"><span>${list.exerciseName }</span></p>
 											</div>
@@ -132,7 +141,7 @@
 									<c:forEach items="${bestRoutine }" var="list">
 										<c:if test="${list.routineDays == 2 }">
 											<div class="entry-forth">
-												<p class="icon"><span><i class="flaticon-arm"></i></span></p>
+												<p class="icon"><span><img src="${list.exerciseMotions }"></img></span></p>
 												<p class="time"><span>${list.goalCount }회 / ${list.goalSet }세트</span></p>
 												<p class="trainer"><span>${list.exerciseName }</span></p>
 											</div>
@@ -144,7 +153,7 @@
 									<c:forEach items="${bestRoutine }" var="list">
 										<c:if test="${list.routineDays == 3 }">
 											<div class="entry-forth">
-												<p class="icon"><span><i class="flaticon-arm"></i></span></p>
+												<p class="icon"><span><img src="${list.exerciseMotions }"></img></span></p>
 												<p class="time"><span>${list.goalCount }회 / ${list.goalSet }세트</span></p>
 												<p class="trainer"><span>${list.exerciseName }</span></p>
 											</div>
@@ -156,7 +165,7 @@
 									<c:forEach items="${bestRoutine }" var="list">
 										<c:if test="${list.routineDays == 4 }">
 											<div class="entry-forth">
-												<p class="icon"><span><i class="flaticon-arm"></i></span></p>
+												<p class="icon"><span><img src="${list.exerciseMotions }"></img></span></p>
 												<p class="time"><span>${list.goalCount }회 / ${list.goalSet }세트</span></p>
 												<p class="trainer"><span>${list.exerciseName }</span></p>
 											</div>
@@ -168,7 +177,7 @@
 									<c:forEach items="${bestRoutine }" var="list">
 										<c:if test="${list.routineDays == 5 }">
 											<div class="entry-forth">
-												<p class="icon"><span><i class="flaticon-arm"></i></span></p>
+												<p class="icon"><span><img src="${list.exerciseMotions }"></img></span></p>
 												<p class="time"><span>${list.goalCount }회 / ${list.goalSet }세트</span></p>
 												<p class="trainer"><span>${list.exerciseName }</span></p>
 											</div>
@@ -180,7 +189,7 @@
 									<c:forEach items="${bestRoutine }" var="list">
 										<c:if test="${list.routineDays == 6 }">
 											<div class="entry-forth">
-												<p class="icon"><span><i class="flaticon-arm"></i></span></p>
+												<p class="icon"><span><img src="${list.exerciseMotions }"></img></span></p>
 												<p class="time"><span>${list.goalCount }회 / ${list.goalSet }세트</span></p>
 												<p class="trainer"><span>${list.exerciseName }</span></p>
 											</div>
@@ -192,7 +201,7 @@
 									<c:forEach items="${bestRoutine }" var="list">
 										<c:if test="${list.routineDays == 7 }">
 											<div class="entry-forth">
-												<p class="icon"><span><i class="flaticon-arm"></i></span></p>
+												<p class="icon"><span><img src="${list.exerciseMotions }"></img></span></p>
 												<p class="time"><span>${list.goalCount }회 / ${list.goalSet }세트</span></p>
 												<p class="trainer"><span>${list.exerciseName }</span></p>
 											</div>

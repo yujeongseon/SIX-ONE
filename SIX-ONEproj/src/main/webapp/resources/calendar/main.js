@@ -45,6 +45,7 @@
     selectable: true,
     allDayDefault :true,
     eventDurationEditable: false,
+    contentHeight:"auto",
     events:function(fetchInfo, successCallback, failureCallback){
     	
         $.ajax({
@@ -130,7 +131,7 @@
 		        	response.forEach(el => {
 		        		
 		        		var query = '<div class="entry-forth">';
-			        	query += '<p class="icon"><span><i class="flaticon-arm"></i></span></p>';
+			        	query += '<p class="icon"><span><img src="'+el.exerciseMotions+'"></img></span></p>';
 			        	query += '<p class="time"><span>'+el.goalCount+'회/'+el.goalSet+'세트</span></p>';
 			        	query += '<p class="trainer"><span>'+el.exerciseName+'</span></p>';
 			        	query += '</div>';

@@ -81,6 +81,23 @@
  
  }
   
+ .entry-forth .icon img{
+ 	width:90px;
+ }
+ 
+  @media screen and (max-width: 900px) {
+  
+ 	.week > div > div:nth-child(2){
+ 		display: block;	
+ 	}
+  
+ }
+ 
+  
+}
+  
+  
+  
   
 
 </style>
@@ -340,14 +357,6 @@
                       </div>
                     </div>
 
-                    
-                    <div class="form-group">
-                            <label class="col-sm-2 control-label" for="exe-desc">설명</label>
-                        <div class="col-sm-10">
-                            <textarea rows="4" cols="50" class="form-control" name="exe-desc" id="exe-desc"></textarea>
-                            <span class="error" id="exe-desc-error"></span>
-                        </div>
-                    </div>
                 </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
@@ -408,7 +417,7 @@
 		        	response.forEach(el => {
 		        		
 		        		var query = '<div class="entry-forth">';
-			        	query += '<p class="icon"><span><i class="flaticon-arm"></i></span></p>';
+			        	query += '<p class="icon"><span><img src="'+el.exerciseMotions+'"></img></span></p>';
 			        	query += '<p class="time"><span>'+el.goalCount+'회/'+el.goalSet+'세트</span></p>';
 			        	query += '<p class="trainer"><span>'+el.exerciseName+'</span></p>';
 			        	query += '</div>';
@@ -437,7 +446,7 @@
 		        		
 		        		}
 		        		
-		        	})
+		        	});
 		        	
 		        	/* var query = '<div class="entry-forth">';
 		        	query += '<p class="icon"><span><i class="flaticon-arm"></i></span></p>';
@@ -488,10 +497,10 @@
 		}
 	});
 	
+	// 운동 등록
 	$("#save-exe").click(function(){
 		var exerciseName = $('#exe-name').val();
 		var exercisePartials = $('#exe-part option:selected').val();
-		var exerciseMotions = $('#exe-desc').val();
 		
 		
 		if(exerciseName == ''){
@@ -503,19 +512,28 @@
 		}
 		
 		if(exercisePartials == ''){
-			$('#exe-part-error').html('운동 부위를 입력하세요');
+			$('#exe-part-error').html('운동 부위를 선택하세요');
 			return;
 		}
 		else{
 			$('#exe-part-error').html('');
 		}
 		
-		if(exerciseMotions == ''){
-			$('#exe-desc-error').html('운동에 대한 설명을 입력하세요');
-			return;
+		var exerciseMotions = '';
+		if(exercisePartials == '상체'){
+			exerciseMotions = "<c:url value='/resources/images/up_exercise.png'/>"
+		}
+		else if(exercisePartials == '하체'){
+			exerciseMotions = "<c:url value='/resources/images/low_exercise.png'/>"
+		}
+		else if(exercisePartials == '전신'){
+			exerciseMotions = "<c:url value='/resources/images/whole_exercise.png'/>"
+		}
+		else if(exercisePartials == '유산소'){
+			exerciseMotions = "<c:url value='/resources/images/aerobic_exercise.png'/>"
 		}
 		else{
-			$('#exe-desc-error').html('');
+			exerciseMotions = "<c:url value='/resources/images/etc_exercise.png'/>"
 		}
 		
 		
@@ -573,7 +591,7 @@
 			}
       });
 	
-	
+	// 운동 모달
 	function addOption_(exerciseList) {
     	var htmlString = '<option value="" >운동을 선택하세요</option>';
     	$.each(exerciseList,function(index,element){

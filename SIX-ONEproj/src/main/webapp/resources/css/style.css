@@ -692,9 +692,13 @@ h1, h2, h3, h4, h5, h6, figure {
     margin: 10px;
     
   }
+  #colorlib-schedule > div > div:nth-child(3) > div > div > div > div{
+  	margin:5px;
+  }
+  
   
 }
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 700px) {
   .week{
     margin:0px;
     width: 100%;
@@ -710,6 +714,12 @@ h1, h2, h3, h4, h5, h6, figure {
     margin: 10px;
     
   }
+ 
+ #colorlib-schedule > div > div:nth-child(3) > div > div > div > div > div:nth-child(3){
+ 	display:block;
+ 
+ }
+ 
   
 }
 .week div{

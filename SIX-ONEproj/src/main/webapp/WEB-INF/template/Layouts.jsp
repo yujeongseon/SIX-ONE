@@ -147,7 +147,7 @@ function isLogin(el){
 							<ul >
 								<li id="nav-home"><a href="<c:url value='/'/>">홈</a></li>
 								<li id="nav-exercise" class="has-dropdown ">
-									<a href="<c:url value='/exercise.do'/>">운동</a>
+									<a id="exerciseButton"href="<c:url value='/exercise.do'/>">운동</a>
 									<ul class="dropdown">
 										<li><a href="<c:url value='/exercise.do'/>">운동</a></li>
 										<li><a href="<c:url value='/protein.do'/>">보충제</a></li>
@@ -157,7 +157,7 @@ function isLogin(el){
 								<li id="nav-schedule"><a href="#;" onclick="javascript:isLogin(this);">스케쥴</a></li>
 								<li id="nav-timeline"><a href="<c:url value='/TimeLine.do'/>">타임라인</a></li>
 								
-								<li id="nav-freeboard" class="has-dropdown"><a href="#" onclick="javascript:isLogin(this);">게시판</a>
+								<li id="nav-freeboard" class="has-dropdown"><a id="freeboardButton" href="#" onclick="javascript:isLogin(this);">게시판</a>
 									<ul class="dropdown">
 										<li><a href="#" onclick="javascript:isLogin(this);">자유게시판</a></li>
 										<li><a href="#" onclick="javascript:isLogin(this);">루틴게시판</a></li>
@@ -230,6 +230,25 @@ function isLogin(el){
       else{
          $('#nav-home').addClass('active');
       }
+      
+      $(window).resize(function() {
+          if ($(window).width() < 1091) {
+             //   $('.follow *').remove();
+             $('#exerciseButton').attr('href', '#;');
+             $('#freeboardButton').attr('onclick', 'void(0);');
+             
+          } 
+          else if ($(window).width() > 1091) {
+            
+          }
+       });
+      
+      
+      
+      
+      
+      
+      
    </script>
 
 </html>
