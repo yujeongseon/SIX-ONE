@@ -45,6 +45,22 @@
           });
 });
 
+function delok(no){
+	$.ajax({
+	      url:"<c:url value='/Ajax/delok.do'/>",
+	      dataType:'text',
+	      data:{no:no},
+	      success:function(){
+	    		  alert("삭제 되었습니다")
+	    		  location.reload();
+	      },
+	      error:function(request,error){
+	         console.log('상태코드:',request.status);
+	         console.log('서버로부터 받은 HTML데이타:',request.responseText);
+	         console.log('에러:',error);
+	      }
+	   });
+}
 
 
 function gudok(no){
@@ -121,6 +137,11 @@ a:link {
 </style>
 
 <style type="text/css">
+.entry-forth .icon img{
+		width:90px;
+	
+	
+	}
 </style>
 
 </head>
@@ -236,6 +257,12 @@ a:link {
 																	style="float: center; font-style: italic; background-color: black; font-size: 30px; color: white; display: inline-block; margin: 4px 2px;"
 																	onclick="gudok(${item.routine_no});">구독하기</button>
 															</c:if>
+															<c:if test="${item.id==sessionScope.LoginSuccess}">
+															<button style="float: right; font-style: italic; background-color: black; font-size: 30px; color: white; display: inline-block; margin: 4px 2px;"
+																	onclick="updateok(${item.routine_no});">수정하기</button>
+															<button style="float: right; font-style: italic; background-color: black; font-size: 30px; color: white; display: inline-block; margin: 4px 2px;"
+																	onclick="delok(${item.routine_no});">삭제하기</button>
+																	</c:if>
 															<div>
 
 																<div class="col-md-1 week">
@@ -243,9 +270,7 @@ a:link {
 																	<c:forEach items="${item.list}" var="list">
 																		<c:if test="${list.days == 1}">
 																			<div class="entry-forth">
-																				<p class="icon">
-																					<span><i class="flaticon-arm"></i></span>
-																				</p>
+																				<p class="icon"><span><img src="${list.exercise_motions}"></img></span></p>
 																				<p class="time">
 																					<span>${list.count}회/${list.set}세트</span>
 																				</p>
@@ -261,9 +286,7 @@ a:link {
 																	<c:forEach items="${item.list}" var="list">
 																		<c:if test="${list.days == 2}">
 																			<div class="entry-forth">
-																				<p class="icon">
-																					<span><i class="flaticon-arm"></i></span>
-																				</p>
+																				<p class="icon"><span><img src="${list.exercise_motions}"></img></span></p>
 																				<p class="time">
 																					<span>${list.count}회/${list.set}세트</span>
 																				</p>
@@ -279,9 +302,7 @@ a:link {
 																	<c:forEach items="${item.list}" var="list">
 																		<c:if test="${list.days == 3}">
 																			<div class="entry-forth">
-																				<p class="icon">
-																					<span><i class="flaticon-arm"></i></span>
-																				</p>
+																				<p class="icon"><span><img src="${list.exercise_motions}"></img></span></p>
 																				<p class="time">
 																					<span>${list.count}회/${list.set}세트</span>
 																				</p>
@@ -297,9 +318,7 @@ a:link {
 																	<c:forEach items="${item.list}" var="list">
 																		<c:if test="${list.days == 4}">
 																			<div class="entry-forth">
-																				<p class="icon">
-																					<span><i class="flaticon-arm"></i></span>
-																				</p>
+																				<p class="icon"><span><img src="${list.exercise_motions}"></img></span></p>
 																				<p class="time">
 																					<span>${list.count}회/${list.set}세트</span>
 																				</p>
@@ -315,9 +334,7 @@ a:link {
 																	<c:forEach items="${item.list}" var="list">
 																		<c:if test="${list.days == 5}">
 																			<div class="entry-forth">
-																				<p class="icon">
-																					<span><i class="flaticon-arm"></i></span>
-																				</p>
+																				<p class="icon"><span><img src="${list.exercise_motions}"></img></span></p>
 																				<p class="time">
 																					<span>${list.count}회/${list.set}세트</span>
 																				</p>
@@ -333,9 +350,7 @@ a:link {
 																	<c:forEach items="${item.list}" var="list">
 																		<c:if test="${list.days == 6}">
 																			<div class="entry-forth">
-																				<p class="icon">
-																					<span><i class="flaticon-arm"></i></span>
-																				</p>
+																				<p class="icon"><span><img src="${list.exercise_motions}"></img></span></p>
 																				<p class="time">
 																					<span>${list.count}회/${list.set}세트</span>
 																				</p>
@@ -351,9 +366,7 @@ a:link {
 																	<c:forEach items="${item.list}" var="list">
 																		<c:if test="${list.days == 7}">
 																			<div class="entry-forth">
-																				<p class="icon">
-																					<span><i class="flaticon-arm"></i></span>
-																				</p>
+																				<p class="icon"><span><img src="${list.exercise_motions}"></img></span></p>
 																				<p class="time">
 																					<span>${list.count}회/${list.set}세트</span>
 																				</p>
@@ -729,6 +742,7 @@ a:link {
 											</div>
 										</div>
 										<div>
+											<button type="button" class="btn btn-success" id="dayout" style="float:right">지우기</button>
 											<button type="button" class="btn btn-success" id="dayin" style="float:right">입력</button>
 										</div>
 									</div>
@@ -744,8 +758,284 @@ a:link {
       </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 		
-		<div style="" id="exeno"></div>
 		
+	<!-- 루틴수정 클릭시 나오는 모달 -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="updateModal">
+      <div class="modal-dialog modal-lg" role="document" style="width: 70%; min-height:380px;">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                          aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title"></h4>
+              </div>
+					<div class="modal-body">
+						<div class="form-horizontal">
+							<div class="row">
+								<div class="schedule text-center animate-box">
+									<div class="col-md-9">
+										<div class="routine">
+										<div class="col-md-1 week" style="cursor:pointer">
+											<h4 style="text: center;" id="roudaysup1">1일차</h4>
+											<div id="1">
+											<div class="entry-forth" onclick="showup(1)">
+													<p class="icon">
+														<span><i class="flaticon-arm"></i></span>
+													</p>
+													<p class="time">
+														<span id="roucountup1"></span><span>회/</span><span
+															id="rousetup1"></span><span>세트</span>
+													</p>
+													<p class="trainer">
+														<span id="rounameup1"></span>
+													</p>
+												</div>
+												</div>
+												<div id="2">
+												<div class="entry-forth" onclick="showin(2)">
+													<p class="icon">
+														<span><i class="flaticon-arm"></i></span>
+													</p>
+													<p class="time">
+														<span id="roucountup2"></span><span>회/</span><span
+															id="rousetup2"></span><span>세트</span>
+													</p>
+													<p class="trainer">
+														<span id="rounameup2"></span>
+													</p>
+												</div>
+												</div>
+											</div>
+										<div class="col-md-1 week" style="cursor:pointer">
+											<h4 style="text: center;" id="roudaysup2">2일차</h4>
+											<div id="3">
+											<div class="entry-forth" onclick="showin(3)">
+											<p class="icon">
+														<span><i class="flaticon-arm"></i></span>
+													</p>
+													<p class="time">
+														<span id="roucountup3"></span><span>회/</span><span
+															id="rousetup3"></span><span>세트</span>
+													</p>
+													<p class="trainer">
+														<span id="rounameup3"></span>
+													</p>
+											</div>
+											</div>
+											<div id="4">
+											<div class="entry-forth" onclick="showin(4)">
+											<p class="icon">
+														<span><i class="flaticon-arm"></i></span>
+													</p>
+													<p class="time">
+														<span id="roucountup4"></span><span>회/</span><span
+															id="rousetup4"></span><span>세트</span>
+													</p>
+													<p class="trainer">
+														<span id="rounameup4"></span>
+													</p>
+											</div>
+											</div>
+										</div>
+										<div class="col-md-1 week" style="cursor:pointer">
+											<h4 style="text: center;" id="roudaysup3">3일차</h4>
+											<div id="5">
+											<div class="entry-forth" onclick="showin(5)">
+													<p class="icon">
+														<span><i class="flaticon-arm"></i></span>
+													</p>
+													<p class="time">
+														<span id="roucountup5"></span><span>회/</span><span
+															id="rousetup5"></span><span>세트</span>
+													</p>
+													<p class="trainer">
+														<span id="rounameup5"></span>
+													</p>
+												</div>
+												</div>
+											<div id="6">
+											<div class="entry-forth" onclick="showin(6)">
+											<p class="icon">
+														<span><i class="flaticon-arm"></i></span>
+													</p>
+													<p class="time">
+														<span id="roucountup6"></span><span>회/</span><span
+															id="rousetup6"></span><span>세트</span>
+													</p>
+													<p class="trainer">
+														<span id="rounameup6"></span>
+													</p>
+											</div>
+											</div>
+										</div>
+										<div class="col-md-1 week" style="cursor:pointer">
+											<h4 style="text: center;" id="roudaysup4">4일차</h4>
+											<div id="7">
+											<div class="entry-forth" onclick="showin(7)">
+											<p class="icon">
+														<span><i class="flaticon-arm"></i></span>
+													</p>
+													<p class="time">
+														<span id="roucountup7"></span><span>회/</span><span
+															id="rousetup1"></span><span>세트</span>
+													</p>
+													<p class="trainer">
+														<span id="rounameup7"></span>
+													</p>
+											</div>
+											</div>
+											<div id="8">
+											<div class="entry-forth" onclick="showin(8)">
+											<p class="icon">
+														<span><i class="flaticon-arm"></i></span>
+													</p>
+													<p class="time">
+														<span id="roucountup8"></span><span>회/</span><span
+															id="rousetup8"></span><span>세트</span>
+													</p>
+													<p class="trainer">
+														<span id="rounameup8"></span>
+													</p>
+											</div>
+											</div>
+										</div>
+										<div class="col-md-1 week" style="cursor:pointer">
+											<h4 style="text: center;" id="roudaysup5">5일차</h4>
+											<div id="9">
+											<div class="entry-forth" onclick="showin(9)">
+											<p class="icon">
+														<span><i class="flaticon-arm"></i></span>
+													</p>
+													<p class="time">
+														<span id="roucountup9"></span><span>회/</span><span
+															id="rousetup9"></span><span>세트</span>
+													</p>
+													<p class="trainer">
+														<span id="rounameup9"></span>
+													</p>
+											</div>
+											</div>
+											<div id="10">
+											<div class="entry-forth" onclick="showin(10)">
+											<p class="icon">
+														<span><i class="flaticon-arm"></i></span>
+													</p>
+													<p class="time">
+														<span id="roucountup10"></span><span>회/</span><span
+															id="rousetup10"></span><span>세트</span>
+													</p>
+													<p class="trainer">
+														<span id="rounameup10"></span>
+													</p>
+											</div>
+											</div>
+										</div>
+										<div class="col-md-1 week" style="cursor:pointer">
+											<h4 style="text: center;" id="roudaysup6">6일차</h4>
+											<div id="11">
+											<div class="entry-forth" onclick="showin(11)">
+											<p class="icon">
+														<span><i class="flaticon-arm"></i></span>
+													</p>
+													<p class="time">
+														<span id="roucountup11"></span><span>회/</span><span
+															id="rousetup11"></span><span>세트</span>
+													</p>
+													<p class="trainer">
+														<span id="rounameup11"></span>
+													</p>
+											</div>
+											</div>
+											<div id="12">
+											<div class="entry-forth" onclick="showin(12)">
+											<p class="icon">
+														<span><i class="flaticon-arm"></i></span>
+													</p>
+													<p class="time">
+														<span id="roucountup12"></span><span>회/</span><span
+															id="rousetup12"></span><span>세트</span>
+													</p>
+													<p class="trainer">
+														<span id="rounameup12"></span>
+													</p>
+											</div>
+										</div>
+										</div>
+										<div class="col-md-1 week" style="cursor:pointer">
+											<h4 style="text: center;" id="roudaysup7">7일차</h4>
+											<div id="13">
+											<div class="entry-forth" onclick="showin(13)">
+											<p class="icon">
+														<span><i class="flaticon-arm"></i></span>
+													</p>
+													<p class="time">
+														<span id="roucountup13"></span><span>회/</span><span
+															id="rousetup13"></span><span>세트</span>
+													</p>
+													<p class="trainer">
+														<span id="rounameup13"></span>
+													</p>
+											</div>
+											</div>
+											<div id="14">
+											<div class="entry-forth" onclick="showin(14)">
+											<p class="icon">
+														<span><i class="flaticon-arm"></i></span>
+													</p>
+													<p class="time">
+														<span id="roucountup14"></span><span>회/</span><span
+															id="rousetup14"></span><span>세트</span>
+													</p>
+													<p class="trainer">
+														<span id="rounameup14"></span>
+													</p>
+											</div>
+											</div>
+										</div>
+										</div>
+									</div>
+									<div class="col-md-3" style="display:none" id="disp2">
+										<div class="form-group">
+										<h3 id="roudaysup"></h3>
+											<label class="col-sm-2 control-label" for="edit-title">운동명</label>
+											<div class="col-sm-10">
+												<select class="form-control" name="edit-title"
+													id="edit-titleup" required="required">
+													<option value="">운동을 선택하세요</option>
+													<c:forEach items="${exerciseList}" var="item">
+														<option value="${item.exerciseName}">${item.exerciseName}</option>
+													</c:forEach>
+													<option value="addd">운동 추가하기</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label" for="edit-count">운동횟수</label>
+											<div class="col-sm-4">
+												<input class="form-control" type="text" name="edit-count"
+													id="roucountup" />
+											</div>
+											<label class="col-sm-2 control-label" for="edit-setcount">세트수</label>
+											<div class="col-sm-4">
+												<input class="form-control" type="text" name="edit-setcount"
+													id="rousetup" />
+											</div>
+										</div>
+										<div>
+											<button type="button" class="btn btn-success" id="dayout" style="float:right">지우기</button>
+											<button type="button" class="btn btn-success" id="dayin" style="float:right">입력</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer modalBtnContainer-addEvent">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                  <button type="button" class="btn btn-primary" id="save-event">저장</button>
+              </div>
+          </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 		
 		
 		
@@ -785,16 +1075,6 @@ a:link {
 									</select> <span class="error" id="exe-part-error"></span>
 								</div>
 							</div>
-
-
-							<div class="form-group">
-								<label class="col-sm-2 control-label" for="exe-desc">설명</label>
-								<div class="col-sm-10">
-									<textarea rows="4" cols="50" class="form-control"
-										name="exe-desc" id="exe-desc"></textarea>
-									<span class="error" id="exe-desc-error"></span>
-								</div>
-							</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
@@ -826,6 +1106,170 @@ a:link {
  -->
 	
 	<script type="text/javascript">
+	function updateok(no){
+		$.ajax({//루틴 상세정보 작성
+		      url:"<c:url value='/Ajax/selectone.do'/>",
+		      dataType:'json',
+		      data:{no:no},
+		      success:function(data){
+		    	  successOneAjax(data,'list');
+		    	  $('#updateModal').modal('show'); //수정 모달 띄우기
+		      },
+		      error:function(request,error){
+		         console.log('상태코드:',request.status);
+		         console.log('서버로부터 받은 HTML데이타:',request.responseText);
+		         console.log('에러:',error);
+		      }
+		   });
+		
+	}////
+	
+	var successOneAjax = function(data){
+	      var a=0,b=0,c=0,d=0,e=0,f=0,g=0;
+	      $.each(data,function(index,record){
+	    	  if(record['days']==1 && a==1) index=2;
+	    	  if(record['days']==1 && a==0){index=1; a++;}
+	    	  if(record['days']==2 && b==1) index=4;
+	    	  if(record['days']==2 && b==0){index=3; b++;}
+	    	  if(record['days']==3 && c==1) index=6;
+	    	  if(record['days']==3 && c==0){index=5; c++;}
+	    	  if(record['days']==4 && d==1) index=8;
+	    	  if(record['days']==4 && d==0){index=7; d++;}
+	    	  if(record['days']==5 && e==1) index=10;
+	    	  if(record['days']==5 && e==0){index=9; e++;}
+	    	  if(record['days']==6 && f==1) index=12;
+	    	  if(record['days']==6 && f==0){index=11; f++;}
+	    	  if(record['days']==7 && g==1) index=14;
+	    	  if(record['days']==7 && g==0){index=13; g++;}
+	    	  var pbodyString="";
+	    	  
+	    	 id= document.getElementById(index)
+	         pbodyString+="<div class='entry-forth'onclick='showup("+index+")'>"
+	         pbodyString+="<p class='icon'><span><img src='"+record['motions']+"'></img></span></p>";
+	         pbodyString+="<p class='time'><span id='roucountup"+index+"'></span><span>"+record['count']+"회/</span><span id='rousetup"+index+"'></span><span>"+record['set']+"세트</span></p>";
+	         pbodyString+="<p class='trainer'><span id='rounameup"+index+"'>"+record['exename']+"</span></p>";
+	         pbodyString+="</div>";
+	         id.innerHTML=pbodyString;
+	      });
+	   }
+	 /*
+		<div class="entry-forth" onclick="showup(1)">
+			<p class="icon">
+				<span><i class="flaticon-arm" ></i></span>
+			</p>
+			<p class="time"><span id=roucountup1></span><span>회/</span><span id="rousetup1"></span><span>세트</span></p>
+			<p class="trainer"><span id="rounameup1"></span></p>
+		</div>
+	*/
+	function showup(no){
+		$('#disp2').show();
+			switch(no){
+			case 1 : $('#roudaysup').text($('#roudaysup1').text()+" 첫번째");
+					 $('#roucountup').val($('#roucountup1').text());
+					 $('#rousetup').val($('#rousetup1').text());
+					 if($('#rounameup1').text()==""){
+						 $('#edit-titleup option:first').prop("selected", true); break;
+					 }
+					 $('#edit-titleup').val($('#rounameup1').text()).prop("selected", true); break;
+			case 2 : $('#roudaysup').text($('#roudaysup1').text()+" 두번째");
+					 $('#roucountup').val($('#roucountup2').text());
+					 $('#rousetup').val($('#rousetup2').text());
+					 if($('#rounameup2').text()==""){
+						 $('#edit-titleup option:first').prop("selected", true); break;
+					 }
+					 $('#edit-titleup').val($('#rounameup2').text()).prop("selected", true); break;	
+			case 3 : $('#roudaysup').text($('#roudaysup2').text()+" 첫번째");
+					 $('#roucountup').val($('#roucountup3').text());
+					 $('#rousetup').val($('#rousetup3').text());
+					 if($('#rounameup3').text()==""){
+						 $('#edit-titleup option:first').prop("selected", true); break;
+					 }
+					 $('#edit-titleup').val($('#rounameup3').text()).prop("selected", true); break;
+			case 4 : $('#roudaysup').text($('#roudaysup2').text()+" 두번째");
+					 $('#roucountup').val($('#roucountup4').text());
+					 $('#rousetup').val($('#rousetup4').text());
+					 if($('#rounameup4').text()==""){
+						 $('#edit-titleup option:first').prop("selected", true); break;
+					 }
+					 $('#edit-titleup').val($('#rounameup4').text()).prop("selected", true); break;
+			case 5 : $('#roudaysup').text($('#roudaysup3').text()+" 첫번째");
+					 $('#roucountup').val($('#roucountup5').text());
+					 $('#rousetup').val($('#rousetup5').text());
+					 if($('#rounameup5').text()==""){
+						 $('#edit-titleup option:first').prop("selected", true); break;
+					 }
+					 $('#edit-titleup').val($('#rounameup5').text()).prop("selected", true); break;
+			case 6 : $('#roudaysup').text($('#roudaysup3').text()+" 두번째");
+					 $('#roucountup').val($('#roucountup6').text());
+					 $('#rousetup').val($('#rousetup6').text());
+					 if($('#rounameup6').text()==""){
+						 $('#edit-titleup option:first').prop("selected", true); break;
+					 }
+					 $('#edit-titleup').val($('#rounameup6').text()).prop("selected", true); break;
+			case 7 : $('#roudaysup').text($('#roudaysup4').text()+" 첫번째");
+					 $('#roucountup').val($('#roucountup7').text());
+					 $('#rousetup').val($('#rousetup7').text());
+					 if($('#rounameup7').text()==""){
+						 $('#edit-titleup option:first').prop("selected", true); break;
+					 }
+					 $('#edit-titleup').val($('#rounameup7').text()).prop("selected", true); break;
+			case 8 : $('#roudaysup').text($('#roudaysup4').text()+" 두번째");
+					 $('#roucountup').val($('#roucountup8').text());
+					 $('#rousetup').val($('#rousetup8').text());
+					 if($('#rounameup8').text()==""){
+						 $('#edit-titleup option:first').prop("selected", true); break;
+					 }
+					 $('#edit-titleup').val($('#rounameup8').text()).prop("selected", true); break;
+			case 9 : $('#roudaysup').text($('#roudaysup5').text()+" 첫번째");
+					 $('#roucountup').val($('#roucountup9').text());
+					 $('#rousetup').val($('#rousetup9').text());
+					 if($('#rounameup9').text()==""){
+						 $('#edit-titleup option:first').prop("selected", true); break;
+					 }
+					 $('#edit-titleup').val($('#rounameup9').text()).prop("selected", true); break;
+			case 10 : $('#roudaysup').text($('#roudaysup5').text()+" 두번째");
+					 $('#roucountup').val($('#roucountup10').text());
+					 $('#rousetup').val($('#rousetup10').text());
+					 if($('#rounameup10').text()==""){
+						 $('#edit-titleup option:first').prop("selected", true); break;
+					 }
+					 $('#edit-titleup').val($('#rounameup10').text()).prop("selected", true); break;
+			case 11 : $('#roudaysup').text($('#roudaysup6').text()+" 첫번째");
+					 $('#roucountup').val($('#roucountup11').text());
+					 $('#rousetup').val($('#rousetup11').text());
+					 if($('#rounameup11').text()==""){
+						 $('#edit-titleup option:first').prop("selected", true); break;
+					 }
+					 $('#edit-titleup').val($('#rounameup11').text()).prop("selected", true); break;
+			case 12 : $('#roudaysup').text($('#roudaysup6').text()+" 두번째");
+					 $('#roucountup').val($('#roucountup12').text());
+					 $('#rousetup').val($('#rousetup12').text());
+					 if($('#rounameup12').text()==""){
+						 $('#edit-titleup option:first').prop("selected", true); break;
+					 }
+					 $('#edit-titleup').val($('#rounameup12').text()).prop("selected", true); break;
+			case 13 : $('#roudaysup').text($('#roudaysup7').text()+" 첫번째");
+					 $('#roucountup').val($('#roucountup13').text());
+					 $('#rousetup').val($('#rousetup13').text());
+					 if($('#rounameup13').text()==""){
+						 $('#edit-titleup option:first').prop("selected", true); break;
+					 }
+					 $('#edit-titleup').val($('#rounameup13').text()).prop("selected", true); break;
+			case 14 : $('#roudaysup').text($('#roudaysup7').text()+" 두번째");
+					 $('#roucountup').val($('#roucountup14').text());
+					 $('#rousetup').val($('#rousetup14').text());
+					 if($('#rounameup14').text()==""){
+						 $('#edit-titleup option:first').prop("selected", true); break;
+					 }
+					 $('#edit-titleup').val($('#rounameup14').text()).prop("selected", true); break;
+			
+					 
+			default :
+			}
+			
+		}/////글쓰기 일차 누르면 입력칸에 해당일자 내용으로 변경
+	
+	
 	
 	
 	
@@ -993,6 +1437,36 @@ a:link {
 		document.getElementById("roucount"+no).innerText = $('#roucount').val();
 	});
 	
+	//적은 루틴상세데이터 빈칸으로 만들어주기
+	$("#dayout").click(function(){
+		var days = $('#roudays').text();
+		var no;
+		switch(days){
+		case "1일차 첫번째" : no=1; break;
+		case "1일차 두번째" : no=8; break;
+		case "2일차 첫번째" : no=2; break;
+		case "2일차 두번째" : no=9; break;
+		case "3일차 첫번째" : no=3; break;
+		case "3일차 두번째" : no=10; break;
+		case "4일차 첫번째" : no=4; break;
+		case "4일차 두번째" : no=11; break;
+		case "5일차 첫번째" : no=5; break;
+		case "5일차 두번째" : no=12; break;
+		case "6일차 첫번째" : no=6; break;
+		case "6일차 두번째" : no=13; break;
+		case "7일차 첫번째" : no=7; break;
+		case "7일차 두번째" : no=14; break;
+		default :
+		}
+		//해당하는 일차에 적용된 내용 지워주기
+		$('#roucount').val("");
+		$('#rouset').val("");
+		$('#edit-title option:first').prop("selected", true);
+		document.getElementById("rouname"+no).innerText = "";
+		document.getElementById("rouset"+no).innerText = "";
+		document.getElementById("roucount"+no).innerText = "";
+	});
+	
 	
 	$("#edit-title").change(function(){
 		if($(this).val() == 'add'){
@@ -1000,27 +1474,15 @@ a:link {
 			$(this).val("").prop("selected", true);
 		}
 	});
+	$("#edit-titleup").change(function(){
+		if($(this).val() == 'addd'){
+			$('#exerciseModal').modal('show');
+			$(this).val("").prop("selected", true);
+		}
+	});
 	
 	$("#writeroutine").click(function(){
-		/*
-		$.ajax({
-		      url:"<c:url value='/Ajax/writeroutine'/>",
-		      dataType:'json',
-		      data:{no:no,id:ID},
-		      success:function(data){
-		    		  id.innerHTML="구독취소";
-		    		  alert("구독되었습니다")
-		      },
-		      error:function(request,error){
-		         console.log('상태코드:',request.status);
-		         console.log('서버로부터 받은 HTML데이타:',request.responseText);
-		         console.log('에러:',error);
-		      }
-		   });
-		*/
 		$('#firstmodal').modal('show');
-		//$('#eventModal').modal('show');
-		//$('#exerciseModal').modal('show');
 	});
 	$("#next-exe").click(function(){
 		if($('#rou_name').val()==""){
@@ -1129,6 +1591,7 @@ a:link {
     	});
    		htmlString += '<option value="add" >운동 추가하기</option>';
     	$('#edit-title').html(htmlString)
+    	$('#deit-titleup').html(htmlString)
     }
 	
 	$('#save-event').click(function(){

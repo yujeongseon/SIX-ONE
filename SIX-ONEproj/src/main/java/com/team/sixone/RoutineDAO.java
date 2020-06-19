@@ -70,8 +70,7 @@ public class RoutineDAO {
             dto.setName(rs.getString(5));
             
             String a= rs.getString(1);
-            System.out.println("a를뿌려보자"+a);
-            String sql2="SELECT e.exercise_name,r.goal_count,r.goal_set,r.routine_days FROM rou_exe r JOIN exercise e ON r.exercise_no = e.exercise_no  WHERE routine_no=? order by routine_days";
+            String sql2="SELECT e.exercise_name,r.goal_count,r.goal_set,r.routine_days,exercise_motions FROM rou_exe r JOIN exercise e ON r.exercise_no = e.exercise_no  WHERE routine_no=? order by routine_days";
             try {
                psmt = conn.prepareStatement(sql2);
                psmt.setString(1, a);
@@ -82,6 +81,7 @@ public class RoutineDAO {
                   dto2.setCount(rs2.getString(2));
                   dto2.setSet(rs2.getString(3));
                   dto2.setDays(rs2.getString(4));
+                  dto2.setExercise_motions(rs2.getString(5));
                   rou.add(dto2);
                }
             } catch (Exception e) {e.printStackTrace();}
@@ -95,6 +95,27 @@ public class RoutineDAO {
       catch (SQLException e) {e.printStackTrace();}
       return list;
    }//////////selectList()
+   
+   public List<RoutineDTO> selectone(String no){
+	      List<RoutineDTO> list = new Vector<RoutineDTO>();
+	      String sql="SELECT e.exercise_name,r.goal_count,r.goal_set,r.routine_days,exercise_motions FROM rou_exe r JOIN exercise e ON r.exercise_no = e.exercise_no  WHERE routine_no=? order by routine_days";
+          try {
+             psmt = conn.prepareStatement(sql);
+             psmt.setString(1, no);
+             rs2= psmt.executeQuery();
+             while(rs2.next()) {
+            	 RoutineDTO dto2=new RoutineDTO();
+                dto2.setExe_no(rs2.getString(1));
+                dto2.setCount(rs2.getString(2));
+                dto2.setSet(rs2.getString(3));
+                dto2.setDays(rs2.getString(4));
+                dto2.setExercise_motions(rs2.getString(5));
+                list.add(dto2);
+             }
+          } catch (Exception e) {e.printStackTrace();}
+	      return list;
+   }
+   
    
    public boolean gudokok(String no,String id) {
 	   boolean gudok= false;
@@ -132,6 +153,17 @@ public class RoutineDAO {
       return totalRowCount;   
             
    }//getTotalRowCount   
+   
+   //작성한 루틴 삭제
+   public void deleterou(String no) {
+	   String sql="DELETE FROM routine WHERE routine_no like ?";
+	   try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, no);
+			psmt.executeUpdate();	
+			System.out.println("루틴삭제완료");
+		} catch (Exception e) {e.printStackTrace();}
+   }
    
    public void writerou(String title,String id) {
 	   String sql="INSERT INTO routine VALUES(SEQ_ROUTINE.nextval,?,sysdate,?)";

@@ -143,6 +143,14 @@ public class BoardController {
     	  return answer;
       }
       
+    //ajax 루틴 삭제
+      @RequestMapping(value="/Ajax/delok.do",produces ="text/html; charset=UTF-8")
+      @ResponseBody
+      public void ajaxroudelete(String no) {
+    	  RoutineDAO dao= new RoutineDAO(null);
+    	  dao.deleterou(no);
+      }
+      
     //ajax 루틴 제목
       @RequestMapping(value="/Ajax/writerou.do",produces ="text/html; charset=UTF-8")
       @ResponseBody
@@ -198,6 +206,29 @@ public class BoardController {
       //뷰정보 반환]
       return "/routineboard.tiles";
    }///////////ajaxJson
+   
+   @RequestMapping(value="/Ajax/selectone.do",produces ="text/html; charset=UTF-8")
+   @ResponseBody
+   public String ajaxRoutineOne(String no) {
+      Map map = new HashMap();
+      RoutineDAO dao= new RoutineDAO(null);
+      List<RoutineDTO> list = dao.selectone(no);
+      dao.close();
+      List<Map> collections = new Vector<Map>();
+      for(RoutineDTO dto:list) {
+         Map record = new HashMap();
+         record.put("exename", dto.getExe_no());//운동명
+         record.put("count", dto.getCount());//운동횟수
+         record.put("set", dto.getSet());// 세트수
+         record.put("days", dto.getDays());// 몇일차
+         record.put("motions", dto.getExercise_motions());//아이콘
+         collections.add(record);
+      }
+      return JSONArray.toJSONString(collections);
+   }
+   
+   
+   
    
    
    @RequestMapping("/write.do")
