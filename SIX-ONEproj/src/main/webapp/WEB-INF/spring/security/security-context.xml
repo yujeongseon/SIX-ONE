@@ -25,7 +25,7 @@
 		<!-- password-parameter 로그인 폼에 비밀번호로 등록한 파라미터 -->
 		<security:form-login login-page="/Login.do" 
 							 default-target-url="/Login.do"
-							 authentication-failure-url="/OneMemo/Auth/Login.bbs?NotLogin=error"
+							 authentication-failure-url="/Login.do"
 							 login-processing-url="/Login.do"
 							 username-parameter="id"
 							 password-parameter="password"

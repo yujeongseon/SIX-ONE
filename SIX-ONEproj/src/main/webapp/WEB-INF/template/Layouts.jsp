@@ -172,13 +172,14 @@ function isLogin(el){
 									</ul>
 								</li>
 								 -->
-								<li id="nav-myPage"><a href="#;" onclick="javascript:isLogin(this);" id="MyButton">마이</a></li>
+								
 								<c:if test="${empty sessionScope.LoginSuccess}" var="flag">
-								<li><a href="#" data-toggle="modal" data-target="#myModal" class="MyMenu">로그인</a></li>
-								<input type="hidden" id="loginckeck" value="ok">
+									<li><a href="#" data-toggle="modal" data-target="#myModal" class="MyMenu">로그인</a></li>
+									<input type="hidden" id="loginckeck" value="ok">
 								</c:if>
 								<c:if test="${not flag }">
-								<li><a href="<c:url value="Logout.do"/>">로그아웃</a></li>
+									<li id="nav-myPage"><a href="#;" onclick="javascript:isLogin(this);" id="MyButton">${LoginSuccess }님의 페이지</a></li>
+									<li><a href="<c:url value="Logout.do"/>">로그아웃</a></li>
 								<input type="hidden" id="loginckeck" value="no">
 								</c:if>
 							</ul>

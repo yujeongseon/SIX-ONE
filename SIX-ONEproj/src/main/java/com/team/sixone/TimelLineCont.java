@@ -44,7 +44,6 @@ public class TimelLineCont {
 		DAO dao = new DAO(req.getServletContext());
 		Map map = new HashMap();
 		
-		map = dao.replys();
 		
 		
 		return "/TimeLine.tiles";
@@ -96,11 +95,8 @@ public class TimelLineCont {
 		
 		return "/TimeLine.tiles";
 	}
-	
-	
-	
 	@RequestMapping(value = "/tlcom.do", method = RequestMethod.POST)
-	public String tlcomment(Locale locale, Model model, HttpServletRequest req, HttpSession session ) {
+	public void tlcomment(Locale locale, Model model, HttpServletRequest req,HttpServletResponse resp, HttpSession session ) throws IOException {
 		DAO dao = new DAO(req.getServletContext());
 		String comment = req.getParameter("tlcom");
 		String tlno = req.getParameter("tlno");
@@ -119,8 +115,27 @@ public class TimelLineCont {
 							<input type="submit"/>
 		 * 
 		 * */
-		return "/TimeLine.tiles";
+		resp.sendRedirect("/sixone/TimeLine.do");
+		//return "/TimeLine.tiles";
 	}
-
+//tl_full.do
+	@RequestMapping(value = "/tl_full.do", method = RequestMethod.GET)
+	public String tlselone(Locale locale, Model model, HttpServletRequest req, HttpSession session ) {
+		
+		System.out.println(req.getParameter("tlno"));
+		DAO dao = new DAO(session.getServletContext());
+		String[] tlplus = dao.selectone((String)req.getParameter("tlno"));
+		DAO dao2 = new DAO(session.getServletContext());
+		Map map = dao2.replys(tlplus[0]);
+		String[] ids = (String[])map.get("ids");
+		String[] comments = (String[])map.get("comments");
+	
+		
+		model.addAttribute("tlone", tlplus);
+		model.addAttribute("ids", ids);
+		model.addAttribute("comments", comments);
+	
+		return "/selectone";
+	}
 
 }

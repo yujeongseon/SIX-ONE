@@ -11,12 +11,13 @@
 	
 hr {
  border-top: 0.8px dashed #444444;
- margin: 0.5em
+ margin: 0.3em
 }
 	</style>
 <%
 int j = 0;
 DAO dao = new DAO(request.getSession().getServletContext());
+
 Map map = new HashMap();
 String id = (String)session.getAttribute("LoginSuccess");
 String[] images = new String[1];
@@ -142,6 +143,7 @@ function isSaved(event){ //세이브 체크박스
 
 <div class="col-md-5  appendd" style="padding-top: 10px;">
 	<div class="animate-box">
+	<!-- a href="<c:url value="tl_full.do"/>"-->
 		<div class="trainers-entry">
 			<div class="trainer-img"
 				style="background-image: url('<%=images[0]%>'); height: 600px"></div>
@@ -156,17 +158,10 @@ function isSaved(event){ //세이브 체크박스
 						
 						<hr>
 						<h5>
-						<span style="color:red">(아이디)</span> 댓글 					
+						<span style="color:red"><a href="./tl_full.do?tlno=<%=nos[0] %>">댓글 (n)개...		</a></span> 	
 						</h5>
 						<hr>
-						<h5>
-						<span style="color:red">(아이디)</span> 댓글 					
-						</h5>
-						<hr>
-						<h5>
-						<span style="color:red">(아이디)</span> 댓글 					
-						</h5>
-						<hr>
+						
 						<div class="form-group">
 							<form action="<c:url value='/tlcom.do'/>"  method="POST" id="commentform">
 							<input type="hidden" name="tlcomid" value="<%=id %>" id="id"/>
@@ -183,6 +178,7 @@ function isSaved(event){ //세이브 체크박스
 				</div>
 				
 			</div>
+			<!-- /a-->
 		</div>
 
 	</div>
@@ -211,6 +207,8 @@ jQuery(document).ready(function($) {
 	var ids = Array();
 	var content = Array();
 	var date = Array();
+	var nos = Array();
+	var id = "<%=id%>";
 	
 	//자바코드로 배열받은거 => JS배열로 변환
 	<%for (int i = 0; i < images.length; i++) {%>
@@ -218,6 +216,7 @@ jQuery(document).ready(function($) {
 		ids[<%=i%>] = '<%=ids[i]%>';
 		content[<%=i%>] = '<%=content[i]%>';
 		date[<%=i%>] = '<%=date[i]%>';
+		nos[<%=i%>] = '<%=nos[i]%>';
 		
 <%}%>
 console.log(images);
@@ -274,13 +273,21 @@ console.log(content);
 													$(".appendd")
 															//카루셀도..대응시켜야..하는p
 															.append(
-																	'<div class="animate-bos"><div class="trainers-entry"><div class="trainer-img" style="background-image: url('
+																	/*'<div class="animate-bos"><div class="trainers-entry"><div class="trainer-img" style="background-image: url('
 																			+ images[(page)]
 																			+ '); height:600px"></div><div class="desc"><h3>'
 																			+ ids[(page)]
 																			+ '</h3><span>'
 																			+ content[(page)]
-																			+ '</br>'+date[(page++)]+'</span></div></div></div></div>');
+																			+ '</br>'+date[(page)]+'</span></div></div></div></div>');
+													
+													*/
+													
+													'<div class="animate-bos" style="padding-top:30px"><div class="trainers-entry"><div class="trainer-img" style="background-image: url('+images[(page)]+'); height: 600px"></div><div class="desc"><h3 style="color:black;">'+ids[(page)]+'<button class="btn btn-primary" value="sss" style=" float: right">del</button> </h3><span> '+content[(page)]+'</br>'+date[(page)]+'</span></br></br></br><hr><h5><span style="color:red"> <a href="./tl_full.do?tlno='+nos[(page)]+'"> 댓글 (n)개...		</a></span> </h5><hr>'
+						+'<div class="form-group"><form action="./tlcom.do"  method="POST" id="commentform"><input type="hidden" name="tlcomid" value="'+id+'" id="id"/><input type="hidden" name="tlno" value="'+nos[(page++)]+'" id="tlno"/>'
+						+	'<input type="text" class="col-md-9" name="tlcom" class="ftlcom" id="tlcom" placeholder="댓글 입력" style="border-radius:10px;"></input><input type="submit"/></form></div></div></div></div>');
+											
+													
 												}
 
 											} else if (page ==
