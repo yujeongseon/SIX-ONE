@@ -11,9 +11,14 @@
 <title>모두다짐</title>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link href="https://fonts.googleapis.com/css?family=BenchNine:700">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-   
+$(".hover").mouseleave(
+		  function() {
+		    $(this).removeClass("hover");
+		  }
+		);
    
    
    jQuery(document).ready(function($) {
@@ -107,6 +112,63 @@ function gudok(no){
    </script>
 
 <style>
+
+.snip1535 {
+  background-color: #013ADF;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'BenchNine', Arial, sans-serif;
+  font-size: 1em;
+  font-size: 22px;
+  line-height: 1em;
+  margin: 15px 40px;
+  outline: none;
+  padding: 12px 40px 10px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.snip1535:before,
+.snip1535:after {
+  border-color: transparent;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  border-style: solid;
+  border-width: 0;
+  content: "";
+  height: 24px;
+  position: absolute;
+  width: 24px;
+}
+.snip1535:before {
+  border-color: #013ADF;
+  border-right-width: 2px;
+  border-top-width: 2px;
+  right: -5px;
+  top: -5px;
+}
+.snip1535:after {
+  border-bottom-width: 2px;
+  border-color: #013ADF;
+  border-left-width: 2px;
+  bottom: -5px;
+  left: -5px;
+}
+.snip1535:hover,
+.snip1535.hover {
+  background-color: #013ADF;
+}
+.snip1535:hover:before,
+.snip1535.hover:before,
+.snip1535:hover:after,
+.snip1535.hover:after {
+  height: 100%;
+  width: 100%;
+}
+
+
 .button {
 	background-color: black;
 	color: white;
@@ -392,9 +454,8 @@ a:link {
 							</div>
 
 						</div>
-						<button
-							style="float: right; background-color: black; font-size: 30px; color: white; display: inline-block; margin: 4px 2px;"
-							id="writeroutine">루틴작성</button>
+						<button class="snip1535" id="writeroutine" style="float : right">루틴작성</button>
+						
 						<div class="row">
 							<div class="col-md-12 text-center">${pagingString}</div>
 						</div>
@@ -498,6 +559,7 @@ a:link {
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">닫기</button>
 							<button type="button" class="btn btn-primary" id="next-exe">NEXT</button>
+
 						</div>
 					</div>
 				</div>
