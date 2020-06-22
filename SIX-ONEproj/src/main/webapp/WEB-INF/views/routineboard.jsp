@@ -779,7 +779,7 @@ a:link {
 											<div id="1">
 											<div class="entry-forth" onclick="showup(1)">
 													<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+														<span id="rouicon1"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
 														<span id="roucountup1"></span><span>회/</span><span
@@ -791,9 +791,9 @@ a:link {
 												</div>
 												</div>
 												<div id="2">
-												<div class="entry-forth" onclick="showin(2)">
+												<div class="entry-forth" onclick="showup(2)">
 													<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+														<span id="rouicon2"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
 														<span id="roucountup2"></span><span>회/</span><span
@@ -808,9 +808,9 @@ a:link {
 										<div class="col-md-1 week" style="cursor:pointer">
 											<h4 style="text: center;" id="roudaysup2">2일차</h4>
 											<div id="3">
-											<div class="entry-forth" onclick="showin(3)">
+											<div class="entry-forth" onclick="showup(3)">
 											<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+														<span id="rouicon3"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
 														<span id="roucountup3"></span><span>회/</span><span
@@ -822,9 +822,9 @@ a:link {
 											</div>
 											</div>
 											<div id="4">
-											<div class="entry-forth" onclick="showin(4)">
+											<div class="entry-forth" onclick="showup(4)">
 											<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+														<span id="rouicon4"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
 														<span id="roucountup4"></span><span>회/</span><span
@@ -839,9 +839,9 @@ a:link {
 										<div class="col-md-1 week" style="cursor:pointer">
 											<h4 style="text: center;" id="roudaysup3">3일차</h4>
 											<div id="5">
-											<div class="entry-forth" onclick="showin(5)">
+											<div class="entry-forth" onclick="showup(5)">
 													<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+														<span id="rouicon5"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
 														<span id="roucountup5"></span><span>회/</span><span
@@ -853,9 +853,9 @@ a:link {
 												</div>
 												</div>
 											<div id="6">
-											<div class="entry-forth" onclick="showin(6)">
+											<div class="entry-forth" onclick="showup(6)">
 											<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+														<span id="rouicon6"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
 														<span id="roucountup6"></span><span>회/</span><span
@@ -870,13 +870,13 @@ a:link {
 										<div class="col-md-1 week" style="cursor:pointer">
 											<h4 style="text: center;" id="roudaysup4">4일차</h4>
 											<div id="7">
-											<div class="entry-forth" onclick="showin(7)">
+											<div class="entry-forth" onclick="showup(7)">
 											<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+														<span id="rouicon7"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
 														<span id="roucountup7"></span><span>회/</span><span
-															id="rousetup1"></span><span>세트</span>
+															id="rousetup7"></span><span>세트</span>
 													</p>
 													<p class="trainer">
 														<span id="rounameup7"></span>
@@ -884,9 +884,9 @@ a:link {
 											</div>
 											</div>
 											<div id="8">
-											<div class="entry-forth" onclick="showin(8)">
+											<div class="entry-forth" onclick="showup(8)">
 											<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+														<span id="rouicon8"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
 														<span id="roucountup8"></span><span>회/</span><span
@@ -901,9 +901,9 @@ a:link {
 										<div class="col-md-1 week" style="cursor:pointer">
 											<h4 style="text: center;" id="roudaysup5">5일차</h4>
 											<div id="9">
-											<div class="entry-forth" onclick="showin(9)">
+											<div class="entry-forth" onclick="showup(9)">
 											<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+														<span id="rouicon9"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
 														<span id="roucountup9"></span><span>회/</span><span
@@ -915,9 +915,9 @@ a:link {
 											</div>
 											</div>
 											<div id="10">
-											<div class="entry-forth" onclick="showin(10)">
+											<div class="entry-forth" onclick="showup(10)">
 											<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+														<span id="rouicon10"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
 														<span id="roucountup10"></span><span>회/</span><span
@@ -932,9 +932,9 @@ a:link {
 										<div class="col-md-1 week" style="cursor:pointer">
 											<h4 style="text: center;" id="roudaysup6">6일차</h4>
 											<div id="11">
-											<div class="entry-forth" onclick="showin(11)">
+											<div class="entry-forth" onclick="showup(11)">
 											<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+														<span id="rouicon11"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
 														<span id="roucountup11"></span><span>회/</span><span
@@ -946,9 +946,9 @@ a:link {
 											</div>
 											</div>
 											<div id="12">
-											<div class="entry-forth" onclick="showin(12)">
+											<div class="entry-forth" onclick="showup(12)">
 											<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+														<span id="rouicon12"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
 														<span id="roucountup12"></span><span>회/</span><span
@@ -963,9 +963,9 @@ a:link {
 										<div class="col-md-1 week" style="cursor:pointer">
 											<h4 style="text: center;" id="roudaysup7">7일차</h4>
 											<div id="13">
-											<div class="entry-forth" onclick="showin(13)">
+											<div class="entry-forth" onclick="showup(13)">
 											<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+														<span id="rouicon13"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
 														<span id="roucountup13"></span><span>회/</span><span
@@ -977,9 +977,9 @@ a:link {
 											</div>
 											</div>
 											<div id="14">
-											<div class="entry-forth" onclick="showin(14)">
+											<div class="entry-forth" onclick="showup(14)">
 											<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+														<span id="rouicon14"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
 														<span id="roucountup14"></span><span>회/</span><span
@@ -996,9 +996,9 @@ a:link {
 									<div class="col-md-3" style="display:none" id="disp2">
 										<div class="form-group">
 										<h3 id="roudaysup"></h3>
-											<label class="col-sm-2 control-label" for="edit-title">운동명</label>
+											<label class="col-sm-2 control-label" for="edit-titleup">운동명</label>
 											<div class="col-sm-10">
-												<select class="form-control" name="edit-title"
+												<select class="form-control" name="edit-titleup"
 													id="edit-titleup" required="required">
 													<option value="">운동을 선택하세요</option>
 													<c:forEach items="${exerciseList}" var="item">
@@ -1021,17 +1021,16 @@ a:link {
 											</div>
 										</div>
 										<div>
-											<button type="button" class="btn btn-success" id="dayout" style="float:right">지우기</button>
-											<button type="button" class="btn btn-success" id="dayin" style="float:right">입력</button>
+											<button type="button" class="btn btn-success" id="dayoutup" style="float:right">지우기</button>
+											<button type="button" class="btn btn-success" id="dayinup" style="float:right">입력</button>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="modal-footer modalBtnContainer-addEvent">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                  <button type="button" class="btn btn-primary" id="save-event">저장</button>
+					<div class="modal-footer modalBtnContainer-addEvent" id="savebtn">
+                  
               </div>
           </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -1106,7 +1105,13 @@ a:link {
  -->
 	
 	<script type="text/javascript">
+	//수정모달에 수정할 정보 띄워주기
 	function updateok(no){
+		var btn="";
+		btn += "<button type='button' class='btn btn-default' data-dismiss='modal'>취소</button>"
+		btn += "<button type='button' class='btn btn-primary' onclick='updaterou("+no+")' >저장</button>"
+        $('#savebtn').html(btn);
+        
 		$.ajax({//루틴 상세정보 작성
 		      url:"<c:url value='/Ajax/selectone.do'/>",
 		      dataType:'json',
@@ -1142,14 +1147,15 @@ a:link {
 	    	  if(record['days']==7 && g==1) index=14;
 	    	  if(record['days']==7 && g==0){index=13; g++;}
 	    	  var pbodyString="";
-	    	  
 	    	 id= document.getElementById(index)
+	    	 console.log("id=",id);
 	         pbodyString+="<div class='entry-forth'onclick='showup("+index+")'>"
 	         pbodyString+="<p class='icon'><span><img src='"+record['motions']+"'></img></span></p>";
-	         pbodyString+="<p class='time'><span id='roucountup"+index+"'></span><span>"+record['count']+"회/</span><span id='rousetup"+index+"'></span><span>"+record['set']+"세트</span></p>";
+	         pbodyString+="<p class='time'><span id='roucountup"+index+"'>"+record['count']+"</span><span>회/</span><span id='rousetup"+index+"'>"+record['set']+"</span><span>세트</span></p>";
 	         pbodyString+="<p class='trainer'><span id='rounameup"+index+"'>"+record['exename']+"</span></p>";
 	         pbodyString+="</div>";
 	         id.innerHTML=pbodyString;
+	         
 	      });
 	   }
 	 /*
@@ -1409,8 +1415,6 @@ a:link {
 				return false;
 			}
 			
-			
-			
 		var days = $('#roudays').text();
 		var no;
 		switch(days){
@@ -1436,6 +1440,66 @@ a:link {
 		document.getElementById("rouset"+no).innerText = $('#rouset').val();
 		document.getElementById("roucount"+no).innerText = $('#roucount').val();
 	});
+	
+	//수정 폼 입력
+	$("#dayinup").click(function(){
+		console.log("트루냐?",isNaN($('#rousetup').val()));
+		
+			if($('#edit-titleup option:selected').val()==""){
+				$('#edit-titleup').focus();
+				alert("수정할 운동을 선택해주세요");
+				return false;
+			}
+			else if($('#roucountup').val()==""){
+				alert("몇회 수행할지 입력하세요");
+				$('#roucountup').focus();
+				return false;
+			}
+			else if($('#rousetup').val()==""){
+				$('#rousetup').focus();
+				alert("몇 세트를 할지 입력하세요");
+				return false;
+			}
+			else if(isNaN($('#roucountup').val())){
+				alert("횟수는 숫자만 입력해주세요");
+				$('#roucountup').focus();
+				return false;
+			}
+			else if(isNaN($('#rousetup').val())){
+				alert("세트는 숫자만 입력해주세요");
+				$('#rousetup').focus();
+				return false;
+			}
+			
+		var days = $('#roudaysup').text();
+		var no;
+		switch(days){
+		case "1일차 첫번째" : no=1; break;
+		case "1일차 두번째" : no=2; break;
+		case "2일차 첫번째" : no=3; break;
+		case "2일차 두번째" : no=4; break;
+		case "3일차 첫번째" : no=5; break;
+		case "3일차 두번째" : no=6; break;
+		case "4일차 첫번째" : no=7; break;
+		case "4일차 두번째" : no=8; break;
+		case "5일차 첫번째" : no=9; break;
+		case "5일차 두번째" : no=10; break;
+		case "6일차 첫번째" : no=11; break;
+		case "6일차 두번째" : no=12; break;
+		case "7일차 첫번째" : no=13; break;
+		case "7일차 두번째" : no=14; break;
+		default :
+		}
+		//각각의 일차에 자신이 입력한 값 넣어주기
+		console.log("노값:",no);
+		document.getElementById("rounameup"+no).innerText = $('#edit-titleup option:selected').val();//select로 선택된 값 가져오기
+		document.getElementById("rousetup"+no).innerText = $('#rousetup').val();
+		document.getElementById("roucountup"+no).innerText = $('#roucountup').val();
+	});//수정폼 입력
+	
+	
+	
+	
 	
 	//적은 루틴상세데이터 빈칸으로 만들어주기
 	$("#dayout").click(function(){
@@ -1465,6 +1529,36 @@ a:link {
 		document.getElementById("rouname"+no).innerText = "";
 		document.getElementById("rouset"+no).innerText = "";
 		document.getElementById("roucount"+no).innerText = "";
+	});
+	
+	//수정폼 루틴상세데이터 빈칸으로 만들어주기
+	$("#dayoutup").click(function(){
+		var days = $('#roudaysup').text();
+		var no;
+		switch(days){
+		case "1일차 첫번째" : no=1; break;
+		case "1일차 두번째" : no=2; break;
+		case "2일차 첫번째" : no=3; break;
+		case "2일차 두번째" : no=4; break;
+		case "3일차 첫번째" : no=5; break;
+		case "3일차 두번째" : no=6; break;
+		case "4일차 첫번째" : no=7; break;
+		case "4일차 두번째" : no=8; break;
+		case "5일차 첫번째" : no=9; break;
+		case "5일차 두번째" : no=10; break;
+		case "6일차 첫번째" : no=11; break;
+		case "6일차 두번째" : no=12; break;
+		case "7일차 첫번째" : no=13; break;
+		case "7일차 두번째" : no=14; break;
+		default :
+		}
+		//해당하는 일차에 적용된 내용 지워주기
+		$('#roucountup').val("");
+		$('#rousetup').val("");
+		$('#edit-titleup option:first').prop("selected", true);
+		document.getElementById("rounameup"+no).innerText = "";
+		document.getElementById("rousetup"+no).innerText = "";
+		document.getElementById("roucountup"+no).innerText = "";
 	});
 	
 	
@@ -1567,6 +1661,7 @@ a:link {
 	            }
 	           });
 	   });
+	
 	$.ajax({
         type: "get",
         url: "/sixone/exercise.read",
@@ -1583,16 +1678,20 @@ a:link {
 	
 	function addOption_(exerciseList) {
     	var htmlString = '<option value="" >운동을 선택하세요</option>';
+    	var htmlStringup = '<option value="" >운동을 선택하세요</option>';
     	$.each(exerciseList,function(index,element){
     		console.log("번호:",element.exerciseNo);
     		console.log("운동명:",element.exerciseName);
     		htmlString	+= '<option value="'+element.exerciseName+'">'+element.exerciseName+'</option>';
-    		
+    		htmlStringup += '<option value="'+element.exerciseName+'">'+element.exerciseName+'</option>';
     	});
    		htmlString += '<option value="add" >운동 추가하기</option>';
-    	$('#edit-title').html(htmlString)
-    	$('#deit-titleup').html(htmlString)
+   		htmlStringup += '<option value="addd" >운동 추가하기</option>';
+    	$('#edit-title').html(htmlString);
+    	$('#edit-titleup').html(htmlStringup);
     }
+	
+	
 	
 	$('#save-event').click(function(){
 		var Title = document.getElementById("rou_title").value;
@@ -1642,15 +1741,67 @@ a:link {
 		   });
 	  
 	});
-		
-			
-		
-
 	
+		
+	 function updaterou(no){
+		 
+		 $.ajax({
+		        url: "<c:url value='/Ajax/roudelete.do'/>",
+		        data: {no:no},
+		        dataType:'text',
+		        success: alert("수정을 위한 먼저 삭제"),
+		        error:function(request,error){
+						console.log('상태코드:',request.status);
+						console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
+						console.log('에러:',error);
+					}
+		      });
+		    		 for(i=1; i<15; i++){
+		    				if(document.getElementById("rounameup"+i).innerText==""){
+		    					console.log("null확인하고 if문으로 들어옴"+i)
+		    					//return;
+		    				}
+		    				else {
+		    					exename = document.getElementById("rounameup"+i).innerText;
+		    					roucount = document.getElementById("roucountup"+i).innerText;
+		    					rouset = document.getElementById("rousetup"+i).innerText;
+		    					days = i;
+		    					$.ajax({//루틴 상세정보 작성
+		    					      url:"<c:url value='/Ajax/rouupdate.do'/>",
+		    					      dataType:'text',
+		    					      data:{exename:exename,roucount:roucount,rouset:rouset,days:days,no:no},
+		    					      success:function(){
+		    					    		  console.log("번째글 수정",i);
+		    					      },
+		    					      error:function(request,error){
+		    					         console.log('상태코드:',request.status);
+		    					         console.log('서버로부터 받은 HTML데이타:',request.responseText);
+		    					         console.log('에러:',error);
+		    					      }
+		    					   });
+		    				}
+		    			}
+		    		  alert("수정끝");
+		    		  location.reload();
+		   };
+
+		   $('#updateModal').on('hidden.bs.modal',function(){
+				
+				for(i=1; i<15; i++){
+					var reString = "<i class='flaticon-arm'></i>";
+					document.getElementById("rounameup"+i).innerText = "";
+					document.getElementById("roucountup"+i).innerText = "";
+					document.getElementById("rousetup"+i).innerText = "";
+					document.getElementById("rouicon"+i).innerHTML=reString;
+				}
+				
+				
+			});
 	
 	
 	</script>
 </body>
+
 </html>
 
 

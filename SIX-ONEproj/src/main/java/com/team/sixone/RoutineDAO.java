@@ -164,6 +164,15 @@ public class RoutineDAO {
 			System.out.println("루틴삭제완료");
 		} catch (Exception e) {e.printStackTrace();}
    }
+   public void deleterouagain(int no) {
+	   String sql="DELETE FROM rou_exe WHERE routine_no like ?";
+	   try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, no);
+			psmt.executeUpdate();	
+			System.out.println("루틴수정을 위한 삭제번호"+no);
+		} catch (Exception e) {e.printStackTrace();}
+   }
    
    public void writerou(String title,String id) {
 	   String sql="INSERT INTO routine VALUES(SEQ_ROUTINE.nextval,?,sysdate,?)";
@@ -184,6 +193,19 @@ public class RoutineDAO {
 			psmt.setString(2, roucount);
 			psmt.setString(3, rouset);
 			psmt.setInt(4, days);
+			psmt.executeUpdate();
+			System.out.println("루틴상세정보입력완료");
+		} catch (Exception e) {e.printStackTrace();}
+   }
+   public void writerouagain(String exename,String roucount,String rouset,int days,int no) {
+	   String sql="Insert into rou_exe values((select exercise_no from exercise where exercise_name like ?),?,?,?,?)";
+	   try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, exename);
+			psmt.setInt(2, no);
+			psmt.setString(3, roucount);
+			psmt.setString(4, rouset);
+			psmt.setInt(5, days);
 			psmt.executeUpdate();
 			System.out.println("루틴상세정보입력완료");
 		} catch (Exception e) {e.printStackTrace();}

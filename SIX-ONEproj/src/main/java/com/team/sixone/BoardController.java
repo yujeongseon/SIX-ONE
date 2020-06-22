@@ -169,6 +169,43 @@ public class BoardController {
     	  System.out.println("이거 두번만 들어와야 정상인데"+days+"날짜 확인 정상으로 들어오냐");
     	  dao.writeroudetail(exename,roucount,rouset,days);
       }
+      
+    //ajax 루틴 삭제
+      @RequestMapping(value="/Ajax/roudelete.do",produces ="text/html; charset=UTF-8")
+      @ResponseBody
+      public void ajaxroudel(int no) {
+    	  RoutineDAO dao= new RoutineDAO(null);
+    	  System.out.println("rou딜리트 들어오냐"+no);
+    	  dao.deleterouagain(no);
+      }
+      
+      
+      
+      @RequestMapping(value="/Ajax/rouupdate.do",produces ="text/html; charset=UTF-8")
+      @ResponseBody
+      public void ajaxroutinedetailupdate(String exename,String roucount,String rouset, int days,int no) {
+    	  RoutineDAO dao= new RoutineDAO(null);
+    	  switch(days) {
+    	  case 1 :
+    	  case 2 :  days=1; break;
+    	  case 3 :
+    	  case 4 :  days=2; break;
+    	  case 5 :
+    	  case 6 :  days=3; break;
+    	  case 7 :
+    	  case 8 :  days=4; break;
+    	  case 9 :
+    	  case 10 :  days=5; break;
+    	  case 11:
+    	  case 12 :  days=6; break;
+    	  case 13 :
+    	  case 14 :  days=7; break;
+    	  default :
+    	  }
+    	  System.out.println("이거 적힌만큼만 들어와야 정상인데"+days+"날짜 확인 정상으로 들어오냐");
+    	  dao.writerouagain(exename,roucount,rouset,days,no);
+      }
+      
   
    
    //ajax 루틴뿌려주기
