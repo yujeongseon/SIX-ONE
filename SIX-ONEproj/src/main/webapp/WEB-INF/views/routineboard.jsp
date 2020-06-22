@@ -9,9 +9,11 @@
 <head>
 <meta charset="utf-8">
 <title>모두다짐</title>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<link href="https://fonts.googleapis.com/css?family=BenchNine:700">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link href="https://fonts.googleapis.com/css?family=BenchNine:700">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 $(".hover").mouseleave(
@@ -71,13 +73,13 @@ function delok(no){
 function gudok(no){
 	var ID = "<%=session.getAttribute("LoginSuccess")%>"
 	var id = document.getElementById("gudokbtn"+no);
-	if(id.innerHTML=="구독하기"){
+	if(id.innerHTML=="구독"){
 	$.ajax({
 	      url:"<c:url value='/Ajax/gudok.do'/>",
 	      dataType:'text',
 	      data:{no:no,id:ID},
 	      success:function(data){
-	    		  id.innerHTML="구독취소";
+	    		  id.innerHTML="구독중";
 	    		  alert("구독되었습니다")
 	      },
 	      error:function(request,error){
@@ -93,7 +95,7 @@ function gudok(no){
 		      dataType:'text',
 		      data:{no:no,id:ID},
 		      success:function(data){
-		    		  id.innerHTML="구독하기";
+		    		  id.innerHTML="구독";
 		    		  alert("구독이 취소되었습니다")
 		      },
 		      error:function(request,error){
@@ -104,14 +106,81 @@ function gudok(no){
 		   });
 	}//else
 	
-	
-	
 }
-
 
    </script>
 
 <style>
+a.animated-button:link, a.animated-button:visited {
+	position: relative;
+	display: block;
+	padding: 14px 15px;
+	color: #fff;
+	font-size:14px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	letter-spacing: .08em;
+	border-radius: 0;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+a.animated-button:link:after, a.animated-button:visited:after {
+	content: "";
+	position: absolute;
+	height: 0%;
+	left: 50%;
+	top: 50%;
+	width: 150%;
+	z-index: -1;
+	-webkit-transition: all 0.75s ease 0s;
+	-moz-transition: all 0.75s ease 0s;
+	-o-transition: all 0.75s ease 0s;
+	transition: all 0.75s ease 0s;
+}
+a.animated-button:link:hover, a.animated-button:visited:hover {
+	color: #fff;
+	text-shadow: none;
+}
+a.animated-button:link:hover:after, a.animated-button:visited:hover:after {
+	height: 450%;
+}
+a.animated-button:link, a.animated-button:visited {
+	position: relative;
+	display: block;
+	padding: 14px 15px;
+	color: #000000;
+	font-size:19px;
+	border-radius: 0;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	letter-spacing: .08em;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+
+
+a.animated-button.victoria-one {
+	border: 2px solid #D24D57;
+}
+a.animated-button.victoria-one:after {
+	background: #D24D57;
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	-ms-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+	transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+}
 
 .snip1535 {
   background-color: #013ADF;
@@ -309,24 +378,42 @@ a:link {
 													<div class="col-md-12">
 														<div class="routine">
 															<!-- 이 안에 넣기 -->
+
 															<c:if test="${item.gudok}" var="gudok">
-																<button id="gudokbtn${item.routine_no}"
-																	style="float: center; font-style: italic; background-color: black; font-size: 30px; color: white; display: inline-block; margin: 4px 2px;"
-																	onclick="gudok(${item.routine_no});">구독중</button>
+																<div class="col-md-12">
+																<c:if test="${item.id==sessionScope.LoginSuccess}">
+																	<a href="#" class="btn btn-sm animated-button victoria-one"
+																		onclick="updateok(${item.routine_no});"
+																		style="height:50px; width: 100px; float : left">수정</a>
+																	<a href="#" class="btn btn-sm animated-button victoria-one"
+																		onclick="delok(${item.routine_no});"
+																		style="height:50px; width: 100px; float : left">삭제</a>
+															</c:if>
+																	<a href="#"
+																		class="btn btn-sm animated-button victoria-one"
+																		id="gudokbtn${item.routine_no}"
+																		onclick="gudok(${item.routine_no});"
+																		style="height:50px; width: 100px; float : right">구독중</a>
+																</div>
 															</c:if>
 															<c:if test="${not gudok}">
-																<button id="gudokbtn${item.routine_no}"
-																	style="float: center; font-style: italic; background-color: black; font-size: 30px; color: white; display: inline-block; margin: 4px 2px;"
-																	onclick="gudok(${item.routine_no});">구독하기</button>
+																<div class="col-md-12">
+																<c:if test="${item.id==sessionScope.LoginSuccess}">
+															<a href="#" class="btn btn-sm animated-button victoria-one"
+																		onclick="updateok(${item.routine_no});"
+																		style="height:50px; width: 100px; float : left">수정</a>
+																	<a href="#" class="btn btn-sm animated-button victoria-one"
+																		onclick="delok(${item.routine_no});"
+																		style="height:50px; width: 100px; float : left">삭제</a>
 															</c:if>
-															<c:if test="${item.id==sessionScope.LoginSuccess}">
-															<button style="float: right; font-style: italic; background-color: black; font-size: 30px; color: white; display: inline-block; margin: 4px 2px;"
-																	onclick="updateok(${item.routine_no});">수정하기</button>
-															<button style="float: right; font-style: italic; background-color: black; font-size: 30px; color: white; display: inline-block; margin: 4px 2px;"
-																	onclick="delok(${item.routine_no});">삭제하기</button>
-																	</c:if>
+																	<a href="#"
+																		class="btn btn-sm animated-button victoria-one"
+																		id="gudokbtn${item.routine_no}"
+																		onclick="gudok(${item.routine_no});"
+																		style="height:50px; width: 100px; float: right;">구독</a>
+																</div>
+															</c:if>
 															<div>
-
 																<div class="col-md-1 week">
 																	<div>1일차</div>
 																	<c:forEach items="${item.list}" var="list">
@@ -840,7 +927,7 @@ a:link {
 											<h4 style="text: center;" id="roudaysup1">1일차</h4>
 											<div id="1">
 											<div class="entry-forth" onclick="showup(1)">
-													<p class="icon">
+													<p class="icon" id="icon1">
 														<span id="roucon1"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
@@ -854,7 +941,7 @@ a:link {
 												</div>
 												<div id="2">
 												<div class="entry-forth" onclick="showup(2)">
-													<p class="icon">
+													<p class="icon" id="icon2">
 														<span id="roucon2"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
@@ -871,7 +958,7 @@ a:link {
 											<h4 style="text: center;" id="roudaysup2">2일차</h4>
 											<div id="3">
 											<div class="entry-forth" onclick="showup(3)">
-											<p class="icon">
+											<p class="icon" id="icon3">
 														<span id="rouicon3"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
@@ -885,7 +972,7 @@ a:link {
 											</div>
 											<div id="4">
 											<div class="entry-forth" onclick="showup(4)">
-											<p class="icon">
+											<p class="icon" id="icon4">
 														<span id="rouicon4"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
@@ -902,7 +989,7 @@ a:link {
 											<h4 style="text: center;" id="roudaysup3">3일차</h4>
 											<div id="5">
 											<div class="entry-forth" onclick="showup(5)">
-													<p class="icon">
+													<p class="icon" id="icon5">
 														<span id="rouicon5"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
@@ -916,7 +1003,7 @@ a:link {
 												</div>
 											<div id="6">
 											<div class="entry-forth" onclick="showup(6)">
-											<p class="icon">
+											<p class="icon" id="icon6">
 														<span id="rouicon6"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
@@ -933,7 +1020,7 @@ a:link {
 											<h4 style="text: center;" id="roudaysup4">4일차</h4>
 											<div id="7">
 											<div class="entry-forth" onclick="showup(7)">
-											<p class="icon">
+											<p class="icon" id="icon7">
 														<span id="rouicon7"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
@@ -947,7 +1034,7 @@ a:link {
 											</div>
 											<div id="8">
 											<div class="entry-forth" onclick="showup(8)">
-											<p class="icon">
+											<p class="icon" id="icon8">
 														<span id="rouicon8"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
@@ -964,7 +1051,7 @@ a:link {
 											<h4 style="text: center;" id="roudaysup5">5일차</h4>
 											<div id="9">
 											<div class="entry-forth" onclick="showup(9)">
-											<p class="icon">
+											<p class="icon" id="icon9">
 														<span id="rouicon9"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
@@ -978,7 +1065,7 @@ a:link {
 											</div>
 											<div id="10">
 											<div class="entry-forth" onclick="showup(10)">
-											<p class="icon">
+											<p class="icon" id="icon10">
 														<span id="rouicon10"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
@@ -995,7 +1082,7 @@ a:link {
 											<h4 style="text: center;" id="roudaysup6">6일차</h4>
 											<div id="11">
 											<div class="entry-forth" onclick="showup(11)">
-											<p class="icon">
+											<p class="icon" id="icon11">
 														<span id="rouicon11"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
@@ -1009,7 +1096,7 @@ a:link {
 											</div>
 											<div id="12">
 											<div class="entry-forth" onclick="showup(12)">
-											<p class="icon">
+											<p class="icon" id="icon12">
 														<span id="rouicon12"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
@@ -1026,7 +1113,7 @@ a:link {
 											<h4 style="text: center;" id="roudaysup7">7일차</h4>
 											<div id="13">
 											<div class="entry-forth" onclick="showup(13)">
-											<p class="icon">
+											<p class="icon" id="icon13">
 														<span id="rouicon13"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
@@ -1040,7 +1127,7 @@ a:link {
 											</div>
 											<div id="14">
 											<div class="entry-forth" onclick="showup(14)">
-											<p class="icon">
+											<p class="icon" id="icon14">
 														<span id="rouicon14"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
@@ -1169,6 +1256,16 @@ a:link {
 	<script type="text/javascript">
 	//수정모달에 수정할 정보 띄워주기
 	function updateok(no){
+		
+		for(i=1; i<15; i++){
+			document.getElementById("rounameup"+i).innerText = "";
+			document.getElementById("roucountup"+i).innerText = "";
+			document.getElementById("rousetup"+i).innerText = "";
+			var icon=document.getElementById("icon"+i);
+			var reString = "<span><i class='flaticon-arm'></i></span>";
+			icon.innerHTML = reString;
+		}
+		
 		var btn="";
 		btn += "<button type='button' class='btn btn-default' data-dismiss='modal'>취소</button>"
 		btn += "<button type='button' class='btn btn-primary' onclick='updaterou("+no+")' >저장</button>"
@@ -1211,7 +1308,7 @@ a:link {
 	    	  var pbodyString="";
 	    	 id= document.getElementById(index)
 	         pbodyString+="<div class='entry-forth'onclick='showup("+index+")'>"
-	         pbodyString+="<p class='icon'><span id='rouicon"+index+"'><img src='"+record['motions']+"'></img></span></p>";
+	         pbodyString+="<p class='icon' id='icon"+index+"'><span id='rouicon"+index+"'><img src='"+record['motions']+"'></img></span></p>";
 	         pbodyString+="<p class='time'><span id='roucountup"+index+"'>"+record['count']+"</span><span>회/</span><span id='rousetup"+index+"'>"+record['set']+"</span><span>세트</span></p>";
 	         pbodyString+="<p class='trainer'><span id='rounameup"+index+"'>"+record['exename']+"</span></p>";
 	         pbodyString+="</div>";
@@ -1850,15 +1947,8 @@ a:link {
 </body>
 <script type="text/javascript">
 $('#updateModal').on('hidden.bs.modal',function(){
-	  
-	for(i=1; i<15; i++){
-		var reString = "<i class='flaticon-arm'></i>";
-		document.getElementById("rounameup"+i).innerText = "";
-		document.getElementById("roucountup"+i).innerText = "";
-		document.getElementById("rousetup"+i).innerText = "";
-		document.getElementById("rouicon"+i).innerHTML ="<i class='flaticon-arm'></i>";
-		
-	}
+	 
+	
 });
 </script>
 
