@@ -475,7 +475,7 @@ a:link {
 
 
 
-		<div class="modal fade" tabindex="-1" role="dialog" id="firstmodal">
+		<div class="modal fade" tabindex="-1" role="dialog" id="firstmodal" data-backdrop="static">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -509,7 +509,7 @@ a:link {
 
 
 		<!-- 루틴추가 클릭시 나오는 모달 -->
-	<div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
+	<div class="modal fade" tabindex="-1" role="dialog" id="eventModal" data-backdrop="static">
       <div class="modal-dialog modal-lg" role="document" style="width: 70%; min-height:380px;">
           <div class="modal-content">
               <div class="modal-header">
@@ -760,7 +760,7 @@ a:link {
 		
 		
 	<!-- 루틴수정 클릭시 나오는 모달 -->
-	<div class="modal fade" tabindex="-1" role="dialog" id="updateModal">
+	<div class="modal fade" tabindex="-1" role="dialog" id="updateModal" data-backdrop="static">
       <div class="modal-dialog modal-lg" role="document" style="width: 70%; min-height:380px;">
           <div class="modal-content">
               <div class="modal-header">
@@ -779,7 +779,7 @@ a:link {
 											<div id="1">
 											<div class="entry-forth" onclick="showup(1)">
 													<p class="icon">
-														<span id="rouicon1"><i class="flaticon-arm"></i></span>
+														<span id="roucon1"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
 														<span id="roucountup1"></span><span>회/</span><span
@@ -793,7 +793,7 @@ a:link {
 												<div id="2">
 												<div class="entry-forth" onclick="showup(2)">
 													<p class="icon">
-														<span id="rouicon2"><i class="flaticon-arm"></i></span>
+														<span id="roucon2"><i class="flaticon-arm"></i></span>
 													</p>
 													<p class="time">
 														<span id="roucountup2"></span><span>회/</span><span
@@ -1040,7 +1040,7 @@ a:link {
 		
 		
 		<!-- 선택할 운동 추가하는 모달 -->
-		<div class="modal fade" tabindex="-1" role="dialog" id="exerciseModal">
+		<div class="modal fade" tabindex="-1" role="dialog" id="exerciseModal" data-backdrop="static">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -1148,9 +1148,8 @@ a:link {
 	    	  if(record['days']==7 && g==0){index=13; g++;}
 	    	  var pbodyString="";
 	    	 id= document.getElementById(index)
-	    	 console.log("id=",id);
 	         pbodyString+="<div class='entry-forth'onclick='showup("+index+")'>"
-	         pbodyString+="<p class='icon'><span><img src='"+record['motions']+"'></img></span></p>";
+	         pbodyString+="<p class='icon'><span id='rouicon"+index+"'><img src='"+record['motions']+"'></img></span></p>";
 	         pbodyString+="<p class='time'><span id='roucountup"+index+"'>"+record['count']+"</span><span>회/</span><span id='rousetup"+index+"'>"+record['set']+"</span><span>세트</span></p>";
 	         pbodyString+="<p class='trainer'><span id='rounameup"+index+"'>"+record['exename']+"</span></p>";
 	         pbodyString+="</div>";
@@ -1785,22 +1784,21 @@ a:link {
 		    		  location.reload();
 		   };
 
-		   $('#updateModal').on('hidden.bs.modal',function(){
-				
-				for(i=1; i<15; i++){
-					var reString = "<i class='flaticon-arm'></i>";
-					document.getElementById("rounameup"+i).innerText = "";
-					document.getElementById("roucountup"+i).innerText = "";
-					document.getElementById("rousetup"+i).innerText = "";
-					document.getElementById("rouicon"+i).innerHTML=reString;
-				}
-				
-				
-			});
-	
-	
 	</script>
 </body>
+<script type="text/javascript">
+$('#updateModal').on('hidden.bs.modal',function(){
+	  
+	for(i=1; i<15; i++){
+		var reString = "<i class='flaticon-arm'></i>";
+		document.getElementById("rounameup"+i).innerText = "";
+		document.getElementById("roucountup"+i).innerText = "";
+		document.getElementById("rousetup"+i).innerText = "";
+		document.getElementById("rouicon"+i).innerHTML ="<i class='flaticon-arm'></i>";
+		
+	}
+});
+</script>
 
 </html>
 
