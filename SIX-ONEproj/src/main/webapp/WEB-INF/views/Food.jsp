@@ -442,7 +442,7 @@
 		$( "#datepicker" ).datepicker('setDate', new Date());
 	
 		
-		
+		// 음식 저장하기
 		function foodSave(){
 			foodWhen = $(":input:radio[name=foodRadio]:checked").val();
 			totalKcal = $('#total_kcal').html();
@@ -450,6 +450,7 @@
 			var isLogin = ${LoginSuccess == null};
 			if(isLogin){
 				alert('식단을 저장하려먼 로그인이 필요합니다');
+				$('#myModal').modal('show');
 				return false;
 			}
 			if(foodWhen == null){
@@ -460,7 +461,7 @@
 				alert('추가할 음식이 없습니다');
 				return false;
 			}
-			var foodLists = $('#my_food_list > li > .basket_menu');
+			
 			var foodName = '';
 			for(var i = 0; i < foodLists.length; i++){
 				if(i == foodLists.length -1){
