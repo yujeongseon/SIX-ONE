@@ -18,6 +18,7 @@ public class RoutineDTO {
 	private String days;
 	private List list;
 	private Boolean gudok; 
+	private String exercise_motions;
    
    
    
@@ -33,6 +34,16 @@ public class RoutineDTO {
 	}
 
 public RoutineDTO(){}
+
+
+
+public String getExercise_motions() {
+	return exercise_motions;
+}
+
+public void setExercise_motions(String exercise_motions) {
+	this.exercise_motions = exercise_motions;
+}
 
 public Boolean getGudok() {
 	return gudok;

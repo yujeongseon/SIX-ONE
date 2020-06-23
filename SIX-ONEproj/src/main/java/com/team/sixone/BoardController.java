@@ -143,9 +143,72 @@ public class BoardController {
     	  return answer;
       }
       
+    //ajax 루틴 삭제
+      @RequestMapping(value="/Ajax/delok.do",produces ="text/html; charset=UTF-8")
+      @ResponseBody
+      public void ajaxroudelete(String no) {
+    	  RoutineDAO dao= new RoutineDAO(null);
+    	  dao.deleterou(no);
+      }
+      
+    //ajax 루틴 제목
+      @RequestMapping(value="/Ajax/writerou.do",produces ="text/html; charset=UTF-8")
+      @ResponseBody
+      public void ajaxroutinewrite(String title,String id) {
+    	  RoutineDAO dao= new RoutineDAO(null);
+    	  dao.writerou(title, id);
+      }
+      
+      @RequestMapping(value="/Ajax/writedetail.do",produces ="text/html; charset=UTF-8")
+      @ResponseBody
+      public void ajaxroutinedetailwrite(String exename,String roucount,String rouset, int days) {
+    	  RoutineDAO dao= new RoutineDAO(null);
+    	  if(days > 7) {
+    		  days=days-7;
+    	  }
+    	  System.out.println("이거 두번만 들어와야 정상인데"+days+"날짜 확인 정상으로 들어오냐");
+    	  dao.writeroudetail(exename,roucount,rouset,days);
+      }
+      
+    //ajax 루틴 삭제
+      @RequestMapping(value="/Ajax/roudelete.do",produces ="text/html; charset=UTF-8")
+      @ResponseBody
+      public void ajaxroudel(int no) {
+    	  RoutineDAO dao= new RoutineDAO(null);
+    	  System.out.println("rou딜리트 들어오냐"+no);
+    	  dao.deleterouagain(no);
+      }
+      
+      
+      
+      @RequestMapping(value="/Ajax/rouupdate.do",produces ="text/html; charset=UTF-8")
+      @ResponseBody
+      public void ajaxroutinedetailupdate(String exename,String roucount,String rouset, int days,int no) {
+    	  RoutineDAO dao= new RoutineDAO(null);
+    	  switch(days) {
+    	  case 1 :
+    	  case 2 :  days=1; break;
+    	  case 3 :
+    	  case 4 :  days=2; break;
+    	  case 5 :
+    	  case 6 :  days=3; break;
+    	  case 7 :
+    	  case 8 :  days=4; break;
+    	  case 9 :
+    	  case 10 :  days=5; break;
+    	  case 11:
+    	  case 12 :  days=6; break;
+    	  case 13 :
+    	  case 14 :  days=7; break;
+    	  default :
+    	  }
+    	  System.out.println("이거 적힌만큼만 들어와야 정상인데"+days+"날짜 확인 정상으로 들어오냐");
+    	  dao.writerouagain(exename,roucount,rouset,days,no);
+      }
+      
   
    
-   //ajax테스트
+   //ajax 루틴뿌려주기
    @RequestMapping(value="/routine.do",produces ="text/html; charset=UTF-8")
    public String ajaxRoutine(@RequestParam Map map,//검색어 받기
          @RequestParam(required = false,defaultValue = "1") int nowPage,
@@ -180,6 +243,29 @@ public class BoardController {
       //뷰정보 반환]
       return "/routineboard.tiles";
    }///////////ajaxJson
+   
+   @RequestMapping(value="/Ajax/selectone.do",produces ="text/html; charset=UTF-8")
+   @ResponseBody
+   public String ajaxRoutineOne(String no) {
+      Map map = new HashMap();
+      RoutineDAO dao= new RoutineDAO(null);
+      List<RoutineDTO> list = dao.selectone(no);
+      dao.close();
+      List<Map> collections = new Vector<Map>();
+      for(RoutineDTO dto:list) {
+         Map record = new HashMap();
+         record.put("exename", dto.getExe_no());//운동명
+         record.put("count", dto.getCount());//운동횟수
+         record.put("set", dto.getSet());// 세트수
+         record.put("days", dto.getDays());// 몇일차
+         record.put("motions", dto.getExercise_motions());//아이콘
+         collections.add(record);
+      }
+      return JSONArray.toJSONString(collections);
+   }
+   
+   
+   
    
    
    @RequestMapping("/write.do")
