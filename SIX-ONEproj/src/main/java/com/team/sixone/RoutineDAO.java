@@ -135,6 +135,24 @@ public class RoutineDAO {
 	   return gudok;
    }
    
+   //운동아이콘 받기
+   public String geticon(String name) {
+	   String icon="";
+	   String sql3="SELECT exercise_motions FROM exercise WHERE exercise_name LIKE ?";
+	   try {
+			psmt = conn.prepareStatement(sql3);
+			psmt.setString(1, name);
+			rs3 = psmt.executeQuery();
+			if(rs3.next()) {
+				icon=rs3.getString(1);
+			}
+		}
+		catch (Exception e) {e.printStackTrace();}
+	   
+	   return icon;
+   }
+   
+   
    public int getTotalRowCount(Map map) {
    int totalRowCount=0;
    String sql="SELECT COUNT(*) FROM routine r JOIN member m ON m.id=r.id ";

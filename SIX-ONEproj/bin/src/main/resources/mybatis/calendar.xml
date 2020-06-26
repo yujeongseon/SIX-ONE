@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 매퍼파일의 완전한 경로 : xml생략 -->
+<mapper namespace="mybatis.calendar">
+	
+	<select id="calendarSelectList" parameterType="java.util.Map" resultType="calendarDTO">
+		select play_no as id, count, play_at as "start",play_at+1 as "end" ,set_count, exercise_name as title, exercise_partials
+		from play_exe p join exercise e on p.exercise_no = e.exercise_no
+		where id = #{id}
+	</select>
+	
+	 <select id="calendarSelectRoutine" parameterType="java.util.Map" resultType="calendarDTO">
+ 		select s.subscribe_no id, start_date as "start", start_date+7 as "end", routine_name title, s.routine_no, sub_calendar_no 
+ 		from subscribe s join sub_calendar sc on s.subscribe_no = sc.subscribe_no 
+ 			join routine r on s.routine_no = r.routine_no 
+ 		where s.id = #{id}
+
+ 	</select>
+	
+	
+	<update id="calendarUpdate" parameterType="java.util.Map">
+		update play_exe set play_at=#{start} where play_no=#{playNo}
+	</update>
+	
+	<update id="updateCalendarRoutine" parameterType="java.util.Map">
+		update sub_calendar set start_date=#{start} where sub_calendar_no=#{subCalendarNo}
+	</update>
+	
+	
+	<delete id="calendarDelete" parameterType="java.util.Map">
+		delete play_exe where play_no=#{playNo}
+	</delete>
+	
+	<delete id="deleteCalendarRoutine" parameterType="java.util.Map">
+		delete sub_calendar where sub_calendar_no = #{subCalendarNo}
+	</delete>
+	
+	<insert id="calendarInsert" parameterType="java.util.Map">
+		insert into play_exe values(SEQ_PLAY_EXE.NEXTVAL, #{count}, #{setCount}, #{start}, #{id}, (select exercise_no from exercise where exercise_name = #{title}))
+	</insert>
+	
+	<insert id="insertCalendarRoutine" parameterType="java.util.Map">
+		insert into sub_calendar values(SEQ_SUB_CALENDAR.nextval, #{start}, #{subscribeNo})
+	</insert>
+	
+	
+	
+	
+	<update id="calendarUpdateOne" parameterType="java.util.Map">
+		update play_exe 
+		set count=#{count}, 
+		set_count=#{setCount}, 
+		play_at = #{start}, 
+		exercise_no = (select exercise_no from exercise where exercise_name = #{title}) 
+		where play_no = #{playNo}
+	</update>
+	
+	<update id="calendarUpdateOneExe" parameterType="java.util.Map">
+		UPDATE play_exe e
+   		SET e.count = #{count} , e.exercise_no = (select exercise_no from exercise where exercise_name = #{title})
+ 		WHERE EXISTS (SELECT 0 FROM calendar c WHERE c.play_no = e.play_no and c.calendar_no=#{calendarNo})
+	</update> 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
