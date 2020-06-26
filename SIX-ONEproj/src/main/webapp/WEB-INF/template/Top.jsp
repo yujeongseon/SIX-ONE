@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
 <!DOCTYPE HTML>
 <html>
    <head>
@@ -16,6 +19,7 @@
    <link rel="stylesheet" type="text/css" href="<c:url value='/resources/LoginCSS/vendor/select2/select2.min.css'/>" >
    <link rel="stylesheet" type="text/css" href="<c:url value='/resources/LoginCSS/css/util.css'/>" >
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/LoginCSS/css/main.css'/>" >  
+    <script type = "text/javascript" src = "https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <!-- 로그인폼 css링크끝 -->
 
 
@@ -267,13 +271,26 @@ $(function(){
                      <img class="img-circle"  alt="..." src="resources/images/Facebook.png" style="width: 53px;height: 53px;">
                   </a>
                </div>
-               
-               <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
-               <div id="status"></div>
+				<c:if test="${sessionScope.LoginSuccess != null}">
+				<h2>네이버 아이디 로그인 성공하셨습니다!!</h2>
+				<h3>'${sessionScope.LoginSuccess}'님 환영합니다!</h3>
+				<h3>
+					<a href="logout">로그아웃</a>
+				</h3>
+				</c:if>
+
+				<!-- 네이버 로그인 창으로 이동 -->
+				<div id="naver_id_login" style="text-align: center">
+					<a href="${url}"> <img width="223"
+						src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a>
+				</div>
+				<br>
+
+				<div id="status"></div>
                <div id="userInfo"></div>
                
-               
-               <div class="txt1 text-center" style="padding-top: 40px;">
+
+				<div class="txt1 text-center" style="padding-top: 40px;">
                   <span>회원가입</span>
                   </div>
          </div>

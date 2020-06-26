@@ -79,6 +79,7 @@ function gudok(no){
 	      dataType:'text',
 	      data:{no:no,id:ID},
 	      success:function(data){
+	    	  
 	    		  id.innerHTML="구독중";
 	    		  alert("구독되었습니다")
 	      },

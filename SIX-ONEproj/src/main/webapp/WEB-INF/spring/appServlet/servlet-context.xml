@@ -34,17 +34,12 @@
         <beans:property name="order" value="1" />
     </beans:bean>
     
-
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 		<beans:property name="order" value="2"></beans:property>
 	</beans:bean>
-	
-	
-	
-	
 	
 	<context:component-scan base-package="com.team.sixone" />
 	
@@ -53,5 +48,8 @@
 	</websocket:handlers>
 	
 	<beans:bean id="RefreshHandler" class="com.team.sixone.webSocket.webSocretServer"/>
-	
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="naverLoginBO" class="com.team.sixone.NaverLoginBO" />
+
+
 </beans:beans>
