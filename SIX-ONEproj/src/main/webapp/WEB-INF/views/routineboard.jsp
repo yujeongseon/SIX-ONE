@@ -677,7 +677,7 @@ a:link {
 												<h4 style="text: center;" id="roudays1">1일차</h4>
 												<div class="entry-forth" onclick="showin(1)">
 													<p class="icon" id="iconin1">
-														<span><i class="flaticon-arm" ></i></span>
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount1></span><span>회/</span>
@@ -689,7 +689,7 @@ a:link {
 												</div>
 												<div class="entry-forth" onclick="showin(8)">
 													<p class="icon" id="iconin8">
-														<span><i class="flaticon-arm" ></i></span>
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount8></span><span>회/</span>
@@ -704,7 +704,7 @@ a:link {
 												<h4 style="text: center;" id="roudays2">2일차</h4>
 												<div class="entry-forth" onclick="showin(2)">
 													<p class="icon" id="iconin2">
-														<span><i class="flaticon-arm"></i></span>
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount2></span><span>회/</span><span
@@ -716,7 +716,7 @@ a:link {
 												</div>
 												<div class="entry-forth" onclick="showin(9)">
 													<p class="icon" id="iconin9">
-														<span><i class="flaticon-arm" ></i></span>
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount9></span><span>회/</span>
@@ -731,7 +731,7 @@ a:link {
 												<h4 style="text: center;" id="roudays3">3일차</h4>
 												<div class="entry-forth" onclick="showin(3)">
 													<p class="icon" id="iconin3">
-														<span><i class="flaticon-arm"></i></span>
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount3></span><span>회/</span><span
@@ -743,7 +743,7 @@ a:link {
 												</div>
 												<div class="entry-forth" onclick="showin(10)">
 													<p class="icon" id="iconin10">
-														<span><i class="flaticon-arm" ></i></span>
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount10></span><span>회/</span>
@@ -758,7 +758,7 @@ a:link {
 												<h4 style="text: center;" id="roudays4">4일차</h4>
 												<div class="entry-forth" onclick="showin(4)">
 													<p class="icon" id="iconin4">
-														<span><i class="flaticon-arm"></i></span>
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount4></span><span>회/</span><span
@@ -770,7 +770,7 @@ a:link {
 												</div>
 												<div class="entry-forth" onclick="showin(11)">
 													<p class="icon" id="iconin11">
-														<span><i class="flaticon-arm" ></i></span>
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount11></span><span>회/</span>
@@ -785,7 +785,7 @@ a:link {
 												<h4 style="text: center;" id="roudays5">5일차</h4>
 												<div class="entry-forth" onclick="showin(5)">
 													<p class="icon" id="iconin5">
-														<span><i class="flaticon-arm"></i></span>
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount5></span><span>회/</span><span
@@ -797,7 +797,7 @@ a:link {
 												</div>
 												<div class="entry-forth" onclick="showin(12)">
 													<p class="icon" id="iconin12">
-														<span><i class="flaticon-arm" ></i></span>
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount12></span><span>회/</span>
@@ -812,7 +812,7 @@ a:link {
 												<h4 style="text: center;" id="roudays6">6일차</h4>
 												<div class="entry-forth" onclick="showin(6)">
 													<p class="icon" id="iconin6">
-														<span><i class="flaticon-arm"></i></span>
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount6></span><span>회/</span><span
@@ -824,7 +824,7 @@ a:link {
 												</div>
 												<div class="entry-forth" onclick="showin(13)">
 													<p class="icon" id="iconin13">
-														<span><i class="flaticon-arm" ></i></span>
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount13></span><span>회/</span>
@@ -839,7 +839,7 @@ a:link {
 												<h4 style="text: center;" id="roudays7">7일차</h4>
 												<div class="entry-forth" onclick="showin(7)">
 													<p class="icon" id="iconin7">
-														<span><i class="flaticon-arm"></i></span>
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount7></span><span>회/</span><span
@@ -851,7 +851,7 @@ a:link {
 												</div>
 												<div class="entry-forth" onclick="showin(14)">
 													<p class="icon" id="iconin14">
-														<span><i class="flaticon-arm" ></i></span>
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount14></span><span>회/</span>
@@ -1263,7 +1263,7 @@ a:link {
 			document.getElementById("roucountup"+i).innerText = "";
 			document.getElementById("rousetup"+i).innerText = "";
 			var icon=document.getElementById("icon"+i);
-			var reString = "<span><i class='flaticon-arm'></i></span>";
+			var reString = "<span><img src='/sixone/resources/images/rest.png'></img></span>";
 			icon.innerHTML = reString;
 		}
 		
@@ -1724,7 +1724,7 @@ a:link {
 		$('#roucount').val("");
 		$('#rouset').val("");
 		$('#edit-title option:first').prop("selected", true);
-		//document.getElementById("iconin"+no).innerHTML = "<span><img src='디폴트아이콘 위치'></img></span>";
+		document.getElementById("iconin"+no).innerHTML = "<span><img src='/sixone/resources/images/rest.png'></img></span>";
 		document.getElementById("rouname"+no).innerText = "";
 		document.getElementById("rouset"+no).innerText = "";
 		document.getElementById("roucount"+no).innerText = "";
@@ -1755,7 +1755,7 @@ a:link {
 		$('#roucountup').val("");
 		$('#rousetup').val("");
 		$('#edit-titleup option:first').prop("selected", true);
-		//document.getElementById("icon"+no).innerHTML = "<span><img src='디폴트아이콘 위치'></img></span>";
+		document.getElementById("icon"+no).innerHTML = "<span><img src='/sixone/resources/images/rest.png'></img></span>";
 		document.getElementById("rounameup"+no).innerText = "";
 		document.getElementById("rousetup"+no).innerText = "";
 		document.getElementById("roucountup"+no).innerText = "";
