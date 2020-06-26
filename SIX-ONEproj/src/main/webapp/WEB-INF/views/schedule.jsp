@@ -87,7 +87,7 @@
  
   @media screen and (max-width: 900px) {
   
- 	.week > div > div:nth-child(2){
+ 	.week > div > div{
  		display: block;	
  	}
   

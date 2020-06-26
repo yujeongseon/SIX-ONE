@@ -25,9 +25,20 @@ String[] ids = new String[1];
 String[] content = new String[1];
 Date[] date = new Date[1];
 String[] nos = new String[1];
+String[] comcnt = new String[1];
+String[] firid = new String[1];
+String[] fircom = new String[1];
 if(request.getParameter("search")!=null){
 	//뭔가 검색했을때
-	images = dao.SearchTest();
+	map = dao.Search(request.getParameter("search"));
+	images = (String[])(map.get("images"));
+	ids = (String[])(map.get("ids"));
+	content = (String[])(map.get("content")) ;
+	date = (Date[])(map.get("date"));
+	nos = (String[])(map.get("nos"));
+	comcnt = (String[])(map.get("comcnt"));
+	firid = (String[])(map.get("firid"));
+	fircom = (String[])(map.get("fircom"));
 }else{
 	//String[] comment  = dao.comments();
 	map = dao.timelines();
@@ -36,7 +47,13 @@ if(request.getParameter("search")!=null){
 	content = (String[])(map.get("content")) ;
 	date = (Date[])(map.get("date"));
 	nos = (String[])(map.get("nos")) ;
-}%>
+	comcnt = (String[])(map.get("comcnt")) ;
+	firid = (String[])(map.get("firid"));
+	fircom = (String[])(map.get("fircom"));
+}
+
+
+%>
 <script>
 
 //이미지 올리기전 미리보기
@@ -157,8 +174,10 @@ function isSaved(event){ //세이브 체크박스
 				
 						
 						<hr>
-						<h5>
-						<span style="color:red"><a href="./tl_full.do?tlno=<%=nos[0] %>">댓글 (n)개...		</a></span> 	
+						
+						<span style=""><h4><%="　"+firid[0] %>  <%=fircom[0] %></h4></span>
+						<h5 style="margin: 0">
+						<span style="color:red"><a href="./tl_full.do?tlno=<%=nos[0] %>">댓글 <%=comcnt[0] %>개 전체보기....		</a></span> 	
 						</h5>
 						<hr>
 						
@@ -208,6 +227,9 @@ jQuery(document).ready(function($) {
 	var content = Array();
 	var date = Array();
 	var nos = Array();
+	var comcnt = Array();
+	var firid = Array();
+	var fircom = Array();
 	var id = "<%=id%>";
 	
 	//자바코드로 배열받은거 => JS배열로 변환
@@ -217,6 +239,9 @@ jQuery(document).ready(function($) {
 		content[<%=i%>] = '<%=content[i]%>';
 		date[<%=i%>] = '<%=date[i]%>';
 		nos[<%=i%>] = '<%=nos[i]%>';
+		comcnt[<%=i%>] = '<%=comcnt[i]%>';
+		firid[<%=i%>] = '<%=firid[i]%>';
+		fircom[<%=i%>] = '<%=fircom[i]%>';
 		
 <%}%>
 console.log(images);
@@ -269,24 +294,24 @@ console.log(content);
 												if ($(window).scrollTop() + 800 > ($(
 														document).height() - $(
 														window).height())) {
-
+													if(id==ids[(page)]){
+														
 													$(".appendd")
 															//카루셀도..대응시켜야..하는p
-															.append(
-																	/*'<div class="animate-bos"><div class="trainers-entry"><div class="trainer-img" style="background-image: url('
-																			+ images[(page)]
-																			+ '); height:600px"></div><div class="desc"><h3>'
-																			+ ids[(page)]
-																			+ '</h3><span>'
-																			+ content[(page)]
-																			+ '</br>'+date[(page)]+'</span></div></div></div></div>');
+															.append('<div class="animate-bos" style="padding-top:30px"><div class="trainers-entry"><div class="trainer-img" style="background-image: url('+images[(page)]+'); height: 600px"></div><div class="desc"><h3 style="color:black;">'+ids[(page)]
+													+'<button class="btn btn-primary" value="sss" style=" float: right">del</button> '
+													+'</h3><span> '+content[(page)]+'</br>'+date[(page)]+'</span></br></br></br><hr><span style=""><h4>　'+firid[page]+'  '+fircom[page]+'</h4></span><h5 style="margin: 0"><span style="color:red"> <a href="./tl_full.do?tlno='+nos[(page)]+'"> 댓글 ('+comcnt[page]+')개 보기...		</a></span> </h5><hr>'
+													+'<div class="form-group"><form action="./tlcom.do"  method="POST" id="commentform"><input type="hidden" name="tlcomid" value="'+id+'" id="id"/><input type="hidden" name="tlno" value="'+nos[(page++)]+'" id="tlno"/>'
+													+ '<input type="text" class="col-md-9" name="tlcom" class="ftlcom" id="tlcom" placeholder="댓글 입력" style="border-radius:10px;"></input><input type="submit"/></form></div></div></div></div>');
+													}else{
+														$(".appendd")
+														//카루셀도..대응시켜야..하는p
+														.append('<div class="animate-bos" style="padding-top:30px"><div class="trainers-entry"><div class="trainer-img" style="background-image: url('+images[(page)]+'); height: 600px"></div><div class="desc"><h3 style="color:black;">'+ids[(page)]
+												+'</h3><span> '+content[(page)]+'</br>'+date[(page)]+'</span></br></br></br><hr><span style=""><h4>　'+firid[page]+'  '+fircom[page]+'</h4></span><h5 style="margin: 0"><span style="color:red"> <a href="./tl_full.do?tlno='+nos[(page)]+'"> 댓글 ('+comcnt[page]+')개 보기...		</a></span> </h5><hr>'
+												+'<div class="form-group"><form action="./tlcom.do"  method="POST" id="commentform"><input type="hidden" name="tlcomid" value="'+id+'" id="id"/><input type="hidden" name="tlno" value="'+nos[(page++)]+'" id="tlno"/>'
+												+ '<input type="text" class="col-md-9" name="tlcom" class="ftlcom" id="tlcom" placeholder="댓글 입력" style="border-radius:10px;"></input><input type="submit"/></form></div></div></div></div>');
+												}
 													
-													*/
-													
-													'<div class="animate-bos" style="padding-top:30px"><div class="trainers-entry"><div class="trainer-img" style="background-image: url('+images[(page)]+'); height: 600px"></div><div class="desc"><h3 style="color:black;">'+ids[(page)]+'<button class="btn btn-primary" value="sss" style=" float: right">del</button> </h3><span> '+content[(page)]+'</br>'+date[(page)]+'</span></br></br></br><hr><h5><span style="color:red"> <a href="./tl_full.do?tlno='+nos[(page)]+'"> 댓글 (n)개...		</a></span> </h5><hr>'
-						+'<div class="form-group"><form action="./tlcom.do"  method="POST" id="commentform"><input type="hidden" name="tlcomid" value="'+id+'" id="id"/><input type="hidden" name="tlno" value="'+nos[(page++)]+'" id="tlno"/>'
-						+	'<input type="text" class="col-md-9" name="tlcom" class="ftlcom" id="tlcom" placeholder="댓글 입력" style="border-radius:10px;"></input><input type="submit"/></form></div></div></div></div>');
-											
 													
 												}
 

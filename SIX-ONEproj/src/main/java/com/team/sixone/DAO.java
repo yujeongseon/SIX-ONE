@@ -17,7 +17,6 @@ import javax.sql.DataSource;
 
 public class DAO {
 	private Connection conn;
-	private Connection conn2;
 	private PreparedStatement psmt;
 	private ResultSet rs;
 
@@ -29,7 +28,6 @@ public class DAO {
 			DataSource source = (DataSource) ctx.lookup("java:comp/env/sixone");
 
 			conn = source.getConnection();
-			conn2 = source.getConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -58,35 +56,42 @@ public class DAO {
 
 		return upd;
 	}
-
-	public String[] SearchTest() {
+/*
+ * String cntSql = "SELECT COUNT(*) FROM timeline WHERE IMAGE_NAME LIKE '%s%'"; // 배열 선언함
+		String sql = "SELECT * FROM timeline WHERE IMAGE_NAME LIKE '%s%'"; // 사진긁어옴
+ */
+	public Map Search(String searchWord) {
 		// 라이크 사용
 
+		Map map = new HashMap();
 		String[] nos = new String[1];
 		String[] images = new String[1];
 		String[] ids = new String[1];
 		Date[] created_at = new Date[1];
 		String[] content = new String[1];
-		String cntSql = "SELECT COUNT(*) FROM timeline WHERE IMAGE_NAME LIKE '%de%'"; // 배열 선언함
-		String sql = "SELECT * FROM timeline WHERE IMAGE_NAME LIKE '%de%'"; // 사진긁어옴
-
+		String cntSql = "SELECT COUNT(*) FROM timeline WHERE CONTENT LIKE '%"+searchWord+"'"; // 배열 선언함
+		String sql = "SELECT * FROM timeline WHERE CONTENT LIKE '%"+searchWord+"%'"; // 사진긁어옴
+		String commentcnt = "SELECT COUNT(*) FROM timeline_comments where timeline_no=?";
 		int i = 0;
 		try {
 			psmt = conn.prepareStatement(cntSql);
 			rs = psmt.executeQuery();
 			rs.next();
 			int columnCount = rs.getInt(1);
+
 			psmt.close();
 
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 
+			System.out.println(columnCount);
 			if (columnCount != 0) {
 				nos = new String[columnCount];
 				images = new String[columnCount];
 				ids = new String[columnCount];
 				content = new String[columnCount];
 				created_at = new Date[columnCount];
+
 			}
 
 			while (rs.next()) {
@@ -98,22 +103,26 @@ public class DAO {
 				System.out.println(images[i]);
 				i++;
 			}
-			/*
-			 * nos[i] = rs.getString(1); content[i] = rs.getString(2); ids[i] =
-			 * rs.getString(5); created_at[i] = rs.getDate(4); images[i] = rs.getString(3);
-			 * System.out.println(images[i]); i++;
-			 */
 			psmt.close();
 			conn.close();
 
-			if (images.length == 0)
-				images[0] = "https://item.kakaocdn.net/do/9c5d673c91e8f1080c2602931c81f178f43ad912ad8dd55b04db6a64cddaf76d";
+			if (images[0] == null)
+				images[0] = "https://www.loud.kr/hive/template/LOUD_IMG/portfolio2018/notfound_m.jpg";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		map.put("images", images);
+		map.put("ids", ids);
+		map.put("content", content);
+		map.put("date", created_at);
+		map.put("nos", nos);
 
-		return images;
-
+		/*
+		 * 
+		 * TIMELINE_NO CONTENT IMAGE_NAME CREATED_ ID
+		 * 
+		 */
+		return map;
 	}
 
 	public int tlcomment(String id, String comment, String timeline_no) {
@@ -151,12 +160,37 @@ public class DAO {
 		String[] ids = new String[1];
 		Date[] created_at = new Date[1];
 		String[] content = new String[1];
+		String[] comcnt = new String[1];
+		String[] firid = new String[1];
+		String[] fircom = new String[1];
 		String cntSql = "SELECT COUNT(*) FROM timeline "/* where id='id'" */; // 배열 선언함
-		String sql = "SELECT * FROM timeline "/* WHERE id='id' */ + " ORDER BY timeline_no desc"; // 사진긁어옴
+		//비상용 sql
+		//sql = "SELECT timeline.*, (SELECT COUNT(*) FROM timeline_comments WHERE timeline_no= timeline.timeline_no)AS comcnt, (SELECT content FROM timeline_comments WHERE rownum=1 AND timeline_no=timeline.timeline_no)AS firstcontent, (SELECT id FROM timeline_comments WHERE rownum=1 AND timeline_no=timeline.timeline_no)AS firstid  FROM timeline  ORDER BY timeline_no DESC";
+		String sql = "SELECT timeline.*, (SELECT COUNT(*) FROM timeline_comments WHERE timeline_no= timeline.timeline_no)AS comcnt, " + 
+				"(SELECT content FROM timeline_comments WHERE timeline_no=timeline.timeline_no AND comments_no = (select max(comments_no) from timeline_comments where timeline_no = timeline.timeline_no) ) AS firstcontent, " + 
+				"(SELECT id FROM timeline_comments WHERE timeline_no=timeline.timeline_no AND comments_no = (select max(comments_no) from timeline_comments where timeline_no = timeline.timeline_no)) AS firstid " + 
+				"FROM timeline  ORDER BY timeline_no DESC";
+		
+		// SELECT timeline.*, (SELECT COUNT(*) from timeline_comments where timeline_no= timeline.timeline_no)as comcnt, (SELECT content from timeline_comments where rownum=1 and timeline_no=timeline.timeline_no)as firstcontent, (SELECT id from timeline_comments where rownum=1 and timeline_no=timeline.timeline_no)as firstid  FROM timeline  ORDER BY timeline_no desc;
+		
+		
+		//SELECT id, content from timeline_comments where rownum=1 and timeline_no=11 ORDER BY comments_no desc;
+		
+		//SELECT * FROM timeline.* ORDER BY timeline_no desc;
+		/*
+SELECT TO_CHAR(S.SALE_DATE, 'YYYYMM') AS YYYYMM
+	  , G.REGION
+	  , SUM(S.SALES)    AS SALES
+FROM SALES S
+	 , GEOGRAPHY G
+WHERE S.DOSI = G.DOSI
+GROUP BY TO_CHAR(S.SALE_DATE,'YYYYMM'), G.REGION;
 
+		 * */
+		String commentcnt = "SELECT COUNT(*) FROM timeline_comments where timeline_no=?";
 		int i = 0;
 		try {
-			psmt = conn2.prepareStatement(cntSql);
+			psmt = conn.prepareStatement(cntSql);
 			rs = psmt.executeQuery();
 			rs.next();
 			int columnCount = rs.getInt(1);
@@ -173,7 +207,9 @@ public class DAO {
 				ids = new String[columnCount];
 				content = new String[columnCount];
 				created_at = new Date[columnCount];
-
+				comcnt = new String[columnCount];
+				firid = new String[columnCount];
+				fircom = new String[columnCount];
 			}
 
 			while (rs.next()) {
@@ -182,14 +218,26 @@ public class DAO {
 				ids[i] = rs.getString(5);
 				created_at[i] = rs.getDate(4);
 				images[i] = rs.getString(3);
-				System.out.println(images[i]);
+				comcnt[i] = rs.getString(6);
+				if(rs.getString(8) == null) {
+					fircom[i] = "없습니다";
+					firid[i] = "댓글이";
+				}
+				else {
+				fircom[i] = rs.getString(7);
+				firid[i] = rs.getString(8);
+				}
+				System.out.println("앞 " +rs.getString(8) + "뒤");
 				i++;
 			}
 			psmt.close();
 			conn.close();
 
-			if (images.length == 1)
+			if (images.length == 1) {
 				images[0] = "https://www.loud.kr/hive/template/LOUD_IMG/portfolio2018/notfound_m.jpg";
+				ids[0] = "";
+				content[0] = "<h1>타임라인을 불러올수 없습니다</h1>";
+				}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -198,6 +246,9 @@ public class DAO {
 		map.put("content", content);
 		map.put("date", created_at);
 		map.put("nos", nos);
+		map.put("comcnt", comcnt);
+		map.put("firid", firid);
+		map.put("fircom", fircom);
 
 		/*
 		 * 
@@ -300,6 +351,10 @@ public class DAO {
 
 		return map;
 	}
+	
+	
+	
+	
 
 	public String[] selectone(String tlno) {
 
