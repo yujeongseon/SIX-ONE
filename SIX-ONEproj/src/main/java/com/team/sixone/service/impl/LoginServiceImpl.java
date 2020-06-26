@@ -15,5 +15,9 @@ public class LoginServiceImpl implements LoginService{
 	public int isLogin(Map map) {
 		return  dao.isLogin(map);
 	}
+	@Override
+	public int iskakaoLogin(Map map) {
+		return dao.iskakaoLogin(map);
+	}
 
 }

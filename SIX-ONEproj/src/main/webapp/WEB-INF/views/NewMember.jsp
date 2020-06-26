@@ -193,5 +193,3 @@ $(function(){
 });
 
 </script>  
-</body>
-</html>

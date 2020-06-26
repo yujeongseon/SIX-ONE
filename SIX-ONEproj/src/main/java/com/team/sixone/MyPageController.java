@@ -1,5 +1,6 @@
 package com.team.sixone;
 
+import java.io.File; 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -16,7 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 
+import com.team.sixone.service.FoodDTO;
+import com.team.sixone.service.FoodService;
 import com.team.sixone.service.LoginService;
 import com.team.sixone.service.MemberDTO;
 import com.team.sixone.service.MemberService;
@@ -26,13 +31,20 @@ public class MyPageController {
 	//서비스주입
 		@Resource(name = "MemberService")
 		private MemberService MemberService;
+		@Resource(name="foodService")
+		private FoodService FoodService;
+		
 
 	@RequestMapping("/MyPage.do")
-	public String MyPage(Model model,HttpSession session){////마이페이지 이동
+	public String MyPage(Model model,HttpSession session,Map map){////마이페이지 이동
 		String SessionID = (String) session.getAttribute("LoginSuccess");
 		if(SessionID != null) { //로그인 되어있는 경우
 		List<MemberDTO> MyPage = MemberService.MyPage(SessionID);
 		model.addAttribute("list", MyPage);
+		model.addAttribute("id",  session.getAttribute("LoginSuccess"));
+		map.put("id", session.getAttribute("LoginSuccess"));
+		List<FoodDTO> food = FoodService.selectFoodList(map);
+		model.addAttribute("food", food);
 		return "/MyPage.tiles";
 		}
 		else { //로그인 안된경우
@@ -64,6 +76,9 @@ public class MyPageController {
 		if(SessionID != null) { //로그인 되어있는 경우
 		List<MemberDTO> MyPage = MemberService.MyPage(SessionID);
 		model.addAttribute("list", MyPage);
+		map.put("id", session.getAttribute("LoginSuccess"));
+		List<FoodDTO> food = FoodService.selectFoodList(map);
+		model.addAttribute("food", food);
 		return "/MyPage.tiles";
 		}
 		else {
@@ -72,6 +87,31 @@ public class MyPageController {
 		}
 		
 	}//////////weightUpdate
+	
+	@RequestMapping("ProfileUpdate.do")
+	public String ProfileUpdate(@RequestParam Map map,MultipartRequest request,HttpSession session,Model model) throws IllegalStateException, IOException {
+		MultipartFile upload = (MultipartFile) request.getFile("file");
+		String phisicalPath = "C:\\Users\\kosmo_11\\git\\SIX-ONE\\SIX-ONEproj\\src\\main\\webapp\\resources\\Profile";
+		String profile = upload.getOriginalFilename().toString();
+		if(profile.equals("")) {
+			File file = new File(phisicalPath+File.separator+profile);
+			map.put("file", profile);
+			//upload.transferTo(file);
+			MemberService.profileupdate(map);
+		}
+		else {
+			String renameFile = FileUpDownUtils.getNewFileName(phisicalPath, upload.getOriginalFilename());
+			File file = new File(phisicalPath+File.separator+renameFile);
+			map.put("file", renameFile);
+			upload.transferTo(file);
+			MemberService.profileupdate(map);
+			
+		}
+		map.put("id", session.getAttribute("LoginSuccess"));
+		List<FoodDTO> food = FoodService.selectFoodList(map);
+		model.addAttribute("food", food);
+		return "redirect:/MyPage.do";
+	}
 	
 	
 	

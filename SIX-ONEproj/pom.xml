@@ -50,6 +50,43 @@
 			</dependency>
 		<!-- 웹소켓 끝 -->
 				
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+<dependency>
+	<groupId>org.apache.httpcomponents</groupId>
+	<artifactId>httpclient</artifactId>
+	<version>4.0-beta1</version>
+</dependency>
+			
+<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient</artifactId>
+    <version>4.5.6</version>
+</dependency>
+			
+	
+	<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>3.1.0</version>
+</dependency>
+	
+	
+	<dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.4</version>
+        </dependency>
+	
+	
+  
+
+				
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -152,13 +189,15 @@
 			<version>3.2.2</version>
 		</dependency>
 		
+		
 		<!-- 네이버로그인 -->
 		<dependency>
 			<groupId>com.github.scribejava</groupId>
 			<artifactId>scribejava-core</artifactId>
 			<version>2.8.1</version>
 		</dependency>
-
+		
+		
 		<!-- 마이바티스  선행-->
 		<dependency>
 			<groupId>org.springframework</groupId>
