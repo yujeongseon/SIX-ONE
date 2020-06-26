@@ -135,6 +135,24 @@ public class RoutineDAO {
 	   return gudok;
    }
    
+   //운동아이콘 받기
+   public String geticon(String name) {
+	   String icon="";
+	   String sql3="SELECT exercise_motions FROM exercise WHERE exercise_name LIKE ?";
+	   try {
+			psmt = conn.prepareStatement(sql3);
+			psmt.setString(1, name);
+			rs3 = psmt.executeQuery();
+			if(rs3.next()) {
+				icon=rs3.getString(1);
+			}
+		}
+		catch (Exception e) {e.printStackTrace();}
+	   
+	   return icon;
+   }
+   
+   
    public int getTotalRowCount(Map map) {
    int totalRowCount=0;
    String sql="SELECT COUNT(*) FROM routine r JOIN member m ON m.id=r.id ";
@@ -155,15 +173,27 @@ public class RoutineDAO {
    }//getTotalRowCount   
    
    //작성한 루틴 삭제
-   public void deleterou(String no) {
+   public void deleterou(int no) {
 	   String sql="DELETE FROM routine WHERE routine_no like ?";
 	   try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, no);
+			psmt.setInt(1, no);
 			psmt.executeUpdate();	
 			System.out.println("루틴삭제완료");
 		} catch (Exception e) {e.printStackTrace();}
    }
+   
+   public void deletesub(int no) {
+	   String sql="DELETE FROM subscribe WHERE routine_no like ?";
+	   try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, no);
+			psmt.executeUpdate();	
+			System.out.println("루틴에 구독된것 삭제완료");
+		} catch (Exception e) {e.printStackTrace();}
+   }
+   
+   //루틴_exe삭제
    public void deleterouagain(int no) {
 	   String sql="DELETE FROM rou_exe WHERE routine_no like ?";
 	   try {

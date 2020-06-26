@@ -27,6 +27,32 @@ public class MemberDAO implements MemberService{
 		return sqlMapper.update("weightUpdate",map);
 	}
 
+	@Override
+	public int kakaoLoginFirstCheck(Map map) {
+		return sqlMapper.selectOne("kakaoCheck",map);
+	}
+
+	@Override
+	public int kakaomemberinsert(Map map) {
+		return sqlMapper.insert("kakaomemberinsert",map);
+	}
+
+	@Override
+	public int kakaomemberlastinsert(Map map) {
+		// TODO Auto-generated method stub
+		return sqlMapper.insert("kakaomemberlastinsert",map);
+	}
+
+	@Override
+	public int profileupdate(Map map) {
+		return sqlMapper.update("profileupdate",map);
+	}
+
+	@Override
+	public int memberjoin(Map map) {
+		return sqlMapper.insert("memberjoin", map);
+	}
+
 	
 	
 	

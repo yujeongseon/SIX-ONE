@@ -18,14 +18,6 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/LoginCSS/css/main.css'/>" >  
 <!-- 로그인폼 css링크끝 -->
 
-
-<!--<link rel="stylesheet" type="text/css" href="<c:url value='/resources/MailCSS/css/util.css'/>"/>
-   <link rel="stylesheet" type="text/css" href="<c:url value='/resources/MailCSS/css/main.css'/>"/>
-   <link rel="stylesheet" type="text/css" href="<c:url value='/resources/MailCSS/vendor/select2/select2.min.css'/>"/>
-   <link rel="stylesheet" type="text/css" href="<c:url value='/resources/MailCSS/vendor/animate/animate.css'/>"/>
-   <link rel="stylesheet" type="text/css" href="<c:url value='/resources/MailCSS/fonts/font-awesome-4.7.0/css/font-awesome.min.css'/>"/>
-   <link rel="icon" type="image/png" href="<c:url value='/resources/MailCSS/images/icons/favicon.ico'/>"/>
-     -->
    <title>SIX-ONE</title>
    
    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900" rel="stylesheet">
@@ -55,44 +47,18 @@
 
    <!-- Modernizr JS -->
    <script src="<c:url value='/resources/js/modernizr-2.6.2.min.js' />"></script>
+   <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
    <!-- FOR IE9 below -->
    <!--[if lt IE 9]>
    <script src="js/respond.min.js"></script>
    <![endif]-->
    
-<style>
-   /*
-   모달창 중앙 뜨기 건들 ㄴㄴ
-   */
-.modal {
-   text-align: center;
-}
-
-@media screen and (min-width: 768px) {
-   .modal:before {
-      display: inline-block;
-      vertical-align: middle;
-      content: " ";
-      height: 100%;
-   }
-}
-
-.modal-dialog {
-   display: inline-block;
-   text-align: left;
-   vertical-align: middle;
-}
-
-.modal-open {
-   overflow: hidden;
-}
-
-
-
-</style>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/TopModal.css'/>" > 
 <script>
 
 $(function(){
+	
+
    //768
    $('#myModal').on('show.bs.modal', function () {
       if($(window).width() <= 768){
@@ -145,72 +111,7 @@ $(function(){
    });
 
 </script>
- <script>
-  function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    if (response.status === 'connected') {
-        alert("로그인 되었습니다.")
-        $('#status').after('<button id="logout">로그아웃</button>');
-      testAPI();
-    } else {
-      //document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
-    }
-  }
- 
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
- 
-  window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '566752667542543',
-    cookie     : true,  // enable cookies to allow the server to access 
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v7.0' 
-  });
- 
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
- 
-  };
- 
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
- 
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me',{fields:'email,name'}, function(response) {
-      console.log('Successful Name: ' + response.name);
-      console.log('Successful Email: ' + response.email);
-      
-      //javascript형식 문자열 추가하기
-      //document.getElementById('status').innerHTML =
-        //'페이스북 로그인되었습니다. ' + response.name + '님!';
-      
-      //jQuery형 문자열 추가하기
-      //$('#userInfo').html("이름 : "+response.name+" 메일 :"+response.email);
-      
-    });
-  }
-  
-    $(document).on("click","#logout",function(){ 
-        FB.logout(function(response) {
-           // Person is now logged out
-               alert("로그아웃 되었습니다.");
-               location.reload();
-        });
-      });
-</script> 
+
    </head>
    <!-- 모달 시작 -->
    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -255,61 +156,99 @@ $(function(){
                   </span>
                </div>
                <div class="flex-c-m">
-                  <a href="#">
+                  <a href="${url}">
                      <img class="img-circle"  alt="..." src="resources/images/NAVER.PNG" style="width: 53px;height: 53px;">
                   </a>
 
-                  <a href="#">
+                 <a href="#" onclick="javascript:kakaoLogin();">
                      <img class="img-circle"  alt="..." src="resources/images/kokoao.png" style="width: 53px;height: 53px; margin-right: 15px; margin-left: 15px;">
                   </a>
+                  
+   					
+				</div>
+               
+             
+               
+               
 
-                  <a href="#">
-                     <img class="img-circle"  alt="..." src="resources/images/Facebook.png" style="width: 53px;height: 53px;">
-                  </a>
-               </div>
-               
-               <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
-               <div id="status"></div>
-               <div id="userInfo"></div>
+ 					<div class="txt1 text-center" style="padding-top: 40px;">
+                  		<a href="<c:url value='/NewMember.do'/>"><span style="color: black;">회원가입</span></a>
+                    </div>
+               		
                
                
-               <div class="txt1 text-center" style="padding-top: 40px;">
-                  <span>회원가입</span>
-                  </div>
+               
          </div>
       </div>
    </div>
 </div>
 <!-- 모달끝 -->
-
 <script>
 function doLogin(){
-   
-   $.ajax({
-      url:"<c:url value='/Login.do'/>",
-      type:'get',
-      dataType:'text',
-      data:$('#frm').serialize(),
-      success:function(data){
-         console.log(data);
-         //$('#msg').html(data);
-         var msg = data;
-         if(msg == "로그인 성공"){
-            window.location.href = $('#locationUrl').val();
-         }
-         else{
-            $('#msg').html(data);
-         }
-         
-      },
-      error:function(data){
-         console.log('에러:',data.responseText);
-      }
-   });
-   
-}
+	   
+	   $.ajax({
+	      url:"<c:url value='/Login.do'/>",
+	      type:'get',
+	      dataType:'text',
+	      data:$('#frm').serialize(),
+	      success:function(data){
+	         //$('#msg').html(data);
+	         var msg = data;
+	         if(msg == "로그인 성공"){
+	            window.location.href = $('#locationUrl').val();
+	         }
+	         else if(msg == "이미있는카카오계정") {
+	        	 window.location.href = $('#locationUrl').val();
+	         }
+	         else{
+	            $('#msg').html(data);
+	         }
+	         
+	      },
+	      error:function(data){
+	      }
+	   });
+	   
+	}
 </script>
-
-
-
-   
+<script type='text/javascript'>
+function kakaoLogin(){
+	Kakao.init("2dc22a04b6ff1d2619ae3a6fd26088ff"); //여기서 아까 발급받은 키 중 javascript키를 사용해준다.
+	// 카카오 로그인 버튼을 생성합니다.
+	Kakao.Auth.loginForm({
+		success : function(authObj) {
+		   Kakao.API.request({
+	           url : '/v2/user/me',
+	           success : function(res) {
+	           var kakaoid = res.id
+	           var kakaoname = res.properties['nickname']
+	           var key;
+	        	  $.ajax({
+	           	   url:"<c:url value='/kakaoLogin.do'/>",
+	           	   type:'get',
+	           	   data:{id:kakaoid,name:kakaoname},
+	           	   dataType:'json',
+	              		success:function(data){
+	              			$.each(data,function(key,value){
+	              				console.log('key:',key,'value:',value);
+	              				if(value == '카카오톡첫로그인') {
+	              					window.location.href = "<c:url value='/NewkakaoMember.do?kakaoid='/>"+kakaoid+"&kakaoname="+kakaoname;
+	                     			}
+	              				else if(value == '카카오톡첫로그인아님'){
+	              					window.location.href = "<c:url value='/kakaoisLogin.do?kakaoid='/>"+kakaoid;
+	              				}
+	              			});
+	              			
+	              		},
+	              		error:function(data){
+	              			console.log('에러:',data.responseText);
+	              			console.log('if문 에이작스에러');
+	              		}
+	              });   
+	        	  
+	           }
+	        })
+	     }
+	})
+	} 
+</script>

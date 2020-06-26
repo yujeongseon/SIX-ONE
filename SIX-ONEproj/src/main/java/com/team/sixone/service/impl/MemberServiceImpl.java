@@ -23,6 +23,31 @@ public class MemberServiceImpl implements MemberService{
 	public int weightUpdate(Map map) {
 		return dao.weightUpdate(map);
 	}
+
+	@Override
+	public int kakaoLoginFirstCheck(Map map) {
+		return dao.kakaoLoginFirstCheck(map);
+	}
+
+	@Override
+	public int kakaomemberinsert(Map map) {
+		return dao.kakaomemberinsert(map);
+	}
+
+	@Override
+	public int kakaomemberlastinsert(Map map) {
+		return dao.kakaomemberlastinsert(map);
+	}
+
+	@Override
+	public int profileupdate(Map map) {
+		return dao.profileupdate(map);
+	}
+
+	@Override
+	public int memberjoin(Map map) {
+		return dao.memberjoin(map);
+	}
 	
 
 }

@@ -4,5 +4,7 @@
 	<select id="isLogin" resultType="int" parameterType="java.util.Map">
 		SELECT count(*) FROM MEMBER WHERE id = #{id} AND password = #{password}
 	</select>
-	
+	<select id="iskakaoLogin" resultType="int" parameterType="java.util.Map">
+		SELECT count(*) FROM MEMBER WHERE id = #{kakaoid}
+	</select>
 </mapper>

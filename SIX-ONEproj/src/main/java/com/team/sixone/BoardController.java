@@ -143,11 +143,28 @@ public class BoardController {
     	  return answer;
       }
       
+    //ajax 운동명 이미지파일 값 가져오기
+      @RequestMapping(value="/Ajax/exeimage.do",produces ="text/html; charset=UTF-8")
+      @ResponseBody
+      public String ajaximage(String name) {
+    	  String imagename;
+    	  RoutineDAO dao= new RoutineDAO(null);
+    	  imagename=dao.geticon(name);
+    	  return imagename;
+      }
+      
+      
+      
     //ajax 루틴 삭제
       @RequestMapping(value="/Ajax/delok.do",produces ="text/html; charset=UTF-8")
       @ResponseBody
-      public void ajaxroudelete(String no) {
+      public void ajaxroudelete(int no) {
     	  RoutineDAO dao= new RoutineDAO(null);
+    	  //루틴 rou_exe삭제
+    	  dao.deleterouagain(no);
+    	  //구독 삭제
+    	  dao.deletesub(no);
+    	  //루틴삭제
     	  dao.deleterou(no);
       }
       
@@ -298,6 +315,10 @@ public class BoardController {
 
       //return "/TimeLine.tiles:for";
    }
+   
+   
+   
+   
    
    @RequestMapping(value="/UpdateOK.do", method=RequestMethod.POST)
    public void update(Locale locale, Model model, HttpServletRequest req, 

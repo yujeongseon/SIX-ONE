@@ -8,8 +8,6 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.team.sixone.service.ExerciseDTO;
-import com.team.sixone.service.ExerciseService;
 import com.team.sixone.service.FoodDTO;
 import com.team.sixone.service.FoodService;
 
@@ -21,8 +19,7 @@ public class FoodDAO implements FoodService{
 
 	@Override
 	public List<FoodDTO> selectFoodList(Map map) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlMapper.selectList("selectFoodList",map);
 	}
 
 	@Override
@@ -46,6 +43,11 @@ public class FoodDAO implements FoodService{
 	public int foodDelete(Map map) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int foodreset(Map map) {
+		return sqlMapper.delete("foodreset",map);
 	}
 
 	

@@ -9,7 +9,14 @@
 		insert into food values(SEQ_FOOD.NEXTVAL,#{foodWhen},#{foodName},#{foodKcal},#{foodDate},#{id})
 	</insert>
 	
+	<select id="selectFoodList" parameterType="java.util.Map" resultType="FoodDTO">
+		SELECT * FROM food WHERE id=#{id}
+	</select>
 	
+	
+	<delete id="foodreset" parameterType="java.util.Map" >
+		DELETE FROM FOOD WHERE id= #{id}
+	</delete>
 	
 	
 	

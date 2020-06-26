@@ -21,8 +21,7 @@ public class FoodController {
 	@Resource(name="foodService")
 	private FoodServiceImpl foodDAO;
 	
-	
-	
+		
 	
 	@RequestMapping("/food.do")
 	public String food(Locale locale, Model model) {
@@ -42,6 +41,12 @@ public class FoodController {
 		return String.valueOf(result);
 	}
 	
+	@RequestMapping("/foodreset.do")
+	public String foodreset(HttpSession session,Map map) {
+		map.put("id", session.getAttribute("LoginSuccess"));
+		foodDAO.foodreset(map);
+		return "redirect:/MyPage.do";
+	}
 	
 	
 	

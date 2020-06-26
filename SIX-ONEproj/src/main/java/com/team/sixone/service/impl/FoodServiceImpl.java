@@ -40,6 +40,11 @@ public class FoodServiceImpl implements FoodService {
 	public int foodDelete(Map map) {
 		return dao.foodDelete(map);
 	}
+
+	@Override
+	public int foodreset(Map map) {
+		return dao.foodreset(map);
+	}
 	
 	
 	

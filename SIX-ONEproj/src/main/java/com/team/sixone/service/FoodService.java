@@ -16,7 +16,7 @@ public interface FoodService {
 	int foodInsert(Map map);
 	int foodUpdate(Map map);
 	int foodDelete(Map map);
-	
+	int foodreset(Map map);
 	
 	
 }

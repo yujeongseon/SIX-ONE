@@ -18,6 +18,11 @@ public class LoginDAO implements LoginService{
 	public int isLogin(Map map) {
 		return sqlMapper.selectOne("isLogin",map);
 	}
+
+	@Override
+	public int iskakaoLogin(Map map) {
+		return sqlMapper.selectOne("iskakaoLogin",map);
+	}
 	
 	
 	

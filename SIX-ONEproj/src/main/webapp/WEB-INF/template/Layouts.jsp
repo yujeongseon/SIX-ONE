@@ -30,6 +30,9 @@
 	<script src="<c:url value='/resources/js/main.js' />"></script>
 	
 <script>
+
+
+
 function isLogin(el){
 	console.log($(el).attr('href'))
 	var title = $(el).html();
@@ -156,7 +159,6 @@ function isLogin(el){
 								</li>
 								<li id="nav-schedule"><a href="#;" onclick="javascript:isLogin(this);">스케쥴</a></li>
 								<li id="nav-timeline"><a href="<c:url value='/TimeLine.do'/>">타임라인</a></li>
-								
 								<li id="nav-freeboard" class="has-dropdown"><a id="freeboardButton" href="#" onclick="javascript:isLogin(this);">게시판</a>
 									<ul class="dropdown">
 										<li><a href="#" onclick="javascript:isLogin(this);">자유게시판</a></li>
@@ -164,17 +166,11 @@ function isLogin(el){
 									</ul>
 								</li>
 								
-								<!-- 
-								<li class="has-dropdown"><a href="<c:url value='/freeboard.do'/>">게시판</a>
-									<ul class="dropdown">
-										<li><a href="<c:url value='/freeboard.do'/>">자유게시판</a></li>
-										<li><a href="<c:url value='/routine.do'/>">루틴게시판</a></li>
-									</ul>
-								</li>
-								 -->
+								
 								
 								<c:if test="${empty sessionScope.LoginSuccess}" var="flag">
-									<li><a href="#" data-toggle="modal" data-target="#myModal" class="MyMenu">로그인</a></li>
+								
+									<li><a href="#" data-toggle="modal" data-target="#myModal" class="MyMenu" id="naver">로그인</a></li>
 									<input type="hidden" id="loginckeck" value="ok">
 								</c:if>
 								<c:if test="${not flag }">

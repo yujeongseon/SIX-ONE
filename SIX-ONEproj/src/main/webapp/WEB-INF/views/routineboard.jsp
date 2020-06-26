@@ -40,7 +40,7 @@ $(".hover").mouseleave(
    .scroll(
          function() {
             if ($(window).scrollTop() + 200 < ($(document).height() - $(window).height())) {
-               $('.follow').attr('style',('padding-top :'+ $(window).scrollTop()+'px') );
+               $('.follow').attr('style',('padding-top :'+ $(window).scrollTop()+'px'));
             }
          })
          
@@ -79,6 +79,7 @@ function gudok(no){
 	      dataType:'text',
 	      data:{no:no,id:ID},
 	      success:function(data){
+	    	  
 	    		  id.innerHTML="구독중";
 	    		  alert("구독되었습니다")
 	      },
@@ -675,8 +676,8 @@ a:link {
 											<div class="col-md-1 week"style="cursor:pointer">
 												<h4 style="text: center;" id="roudays1">1일차</h4>
 												<div class="entry-forth" onclick="showin(1)">
-													<p class="icon">
-														<span><i class="flaticon-arm" ></i></span>
+													<p class="icon" id="iconin1">
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount1></span><span>회/</span>
@@ -687,8 +688,8 @@ a:link {
 													</p>
 												</div>
 												<div class="entry-forth" onclick="showin(8)">
-													<p class="icon">
-														<span><i class="flaticon-arm" ></i></span>
+													<p class="icon" id="iconin8">
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount8></span><span>회/</span>
@@ -702,8 +703,8 @@ a:link {
 											<div class="col-md-1 week"style="cursor:pointer">
 												<h4 style="text: center;" id="roudays2">2일차</h4>
 												<div class="entry-forth" onclick="showin(2)">
-													<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+													<p class="icon" id="iconin2">
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount2></span><span>회/</span><span
@@ -714,8 +715,8 @@ a:link {
 													</p>
 												</div>
 												<div class="entry-forth" onclick="showin(9)">
-													<p class="icon">
-														<span><i class="flaticon-arm" ></i></span>
+													<p class="icon" id="iconin9">
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount9></span><span>회/</span>
@@ -729,8 +730,8 @@ a:link {
 											<div class="col-md-1 week"style="cursor:pointer">
 												<h4 style="text: center;" id="roudays3">3일차</h4>
 												<div class="entry-forth" onclick="showin(3)">
-													<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+													<p class="icon" id="iconin3">
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount3></span><span>회/</span><span
@@ -741,8 +742,8 @@ a:link {
 													</p>
 												</div>
 												<div class="entry-forth" onclick="showin(10)">
-													<p class="icon">
-														<span><i class="flaticon-arm" ></i></span>
+													<p class="icon" id="iconin10">
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount10></span><span>회/</span>
@@ -756,8 +757,8 @@ a:link {
 											<div class="col-md-1 week"style="cursor:pointer">
 												<h4 style="text: center;" id="roudays4">4일차</h4>
 												<div class="entry-forth" onclick="showin(4)">
-													<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+													<p class="icon" id="iconin4">
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount4></span><span>회/</span><span
@@ -768,8 +769,8 @@ a:link {
 													</p>
 												</div>
 												<div class="entry-forth" onclick="showin(11)">
-													<p class="icon">
-														<span><i class="flaticon-arm" ></i></span>
+													<p class="icon" id="iconin11">
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount11></span><span>회/</span>
@@ -783,8 +784,8 @@ a:link {
 											<div class="col-md-1 week"style="cursor:pointer">
 												<h4 style="text: center;" id="roudays5">5일차</h4>
 												<div class="entry-forth" onclick="showin(5)">
-													<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+													<p class="icon" id="iconin5">
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount5></span><span>회/</span><span
@@ -795,8 +796,8 @@ a:link {
 													</p>
 												</div>
 												<div class="entry-forth" onclick="showin(12)">
-													<p class="icon">
-														<span><i class="flaticon-arm" ></i></span>
+													<p class="icon" id="iconin12">
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount12></span><span>회/</span>
@@ -810,8 +811,8 @@ a:link {
 											<div class="col-md-1 week"style="cursor:pointer">
 												<h4 style="text: center;" id="roudays6">6일차</h4>
 												<div class="entry-forth" onclick="showin(6)">
-													<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+													<p class="icon" id="iconin6">
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount6></span><span>회/</span><span
@@ -822,8 +823,8 @@ a:link {
 													</p>
 												</div>
 												<div class="entry-forth" onclick="showin(13)">
-													<p class="icon">
-														<span><i class="flaticon-arm" ></i></span>
+													<p class="icon" id="iconin13">
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount13></span><span>회/</span>
@@ -837,8 +838,8 @@ a:link {
 											<div class="col-md-1 week"style="cursor:pointer">
 												<h4 style="text: center;" id="roudays7">7일차</h4>
 												<div class="entry-forth" onclick="showin(7)">
-													<p class="icon">
-														<span><i class="flaticon-arm"></i></span>
+													<p class="icon" id="iconin7">
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount7></span><span>회/</span><span
@@ -849,8 +850,8 @@ a:link {
 													</p>
 												</div>
 												<div class="entry-forth" onclick="showin(14)">
-													<p class="icon">
-														<span><i class="flaticon-arm" ></i></span>
+													<p class="icon" id="iconin14">
+														<span><img src='/sixone/resources/images/rest.png'></img></span>
 													</p>
 													<p class="time">
 														<span id=roucount14></span><span>회/</span>
@@ -1262,7 +1263,7 @@ a:link {
 			document.getElementById("roucountup"+i).innerText = "";
 			document.getElementById("rousetup"+i).innerText = "";
 			var icon=document.getElementById("icon"+i);
-			var reString = "<span><i class='flaticon-arm'></i></span>";
+			var reString = "<span><img src='/sixone/resources/images/rest.png'></img></span>";
 			icon.innerHTML = reString;
 		}
 		
@@ -1592,8 +1593,27 @@ a:link {
 		case "7일차 두번째" : no=14; break;
 		default :
 		}
+		var exername =$('#edit-title option:selected').val();
+		console.log("운동명",exername);
+		
+		$.ajax({
+	        url: "<c:url value='/Ajax/exeimage.do'/>",
+	        data: {name:exername},
+	        dataType:'text',
+	        success:function(data){
+	        	var iconString=""
+	        	var image = document.getElementById("iconin"+no)
+	        	iconString += "<span><img src='"+data+"'></img></span>";
+	        	image.innerHTML=iconString;
+	        },
+	        error:function(request,error){
+					console.log('상태코드:',request.status);
+					console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
+					console.log('에러:',error);
+				}
+	      });
+		
 		//각각의 일차에 자신이 입력한 값 넣어주기
-		console.log("노값:",no);
 		document.getElementById("rouname"+no).innerText = $('#edit-title option:selected').val();//select로 선택된 값 가져오기
 		document.getElementById("rouset"+no).innerText = $('#rouset').val();
 		document.getElementById("roucount"+no).innerText = $('#roucount').val();
@@ -1648,6 +1668,26 @@ a:link {
 		case "7일차 두번째" : no=14; break;
 		default :
 		}
+		
+		var exername = $('#edit-titleup option:selected').val();
+		console.log("운동명",exername);
+		
+		$.ajax({
+	        url: "<c:url value='/Ajax/exeimage.do'/>",
+	        data: {name:exername},
+	        dataType:'text',
+	        success:function(data){
+	        	var iconString=""
+	        	var image = document.getElementById("icon"+no)
+	        	iconString += "<span><img src='"+data+"'></img></span>";
+	        	image.innerHTML=iconString;
+	        },
+	        error:function(request,error){
+					console.log('상태코드:',request.status);
+					console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
+					console.log('에러:',error);
+				}
+	      });
 		//각각의 일차에 자신이 입력한 값 넣어주기
 		console.log("노값:",no);
 		document.getElementById("rounameup"+no).innerText = $('#edit-titleup option:selected').val();//select로 선택된 값 가져오기
@@ -1684,6 +1724,7 @@ a:link {
 		$('#roucount').val("");
 		$('#rouset').val("");
 		$('#edit-title option:first').prop("selected", true);
+		document.getElementById("iconin"+no).innerHTML = "<span><img src='/sixone/resources/images/rest.png'></img></span>";
 		document.getElementById("rouname"+no).innerText = "";
 		document.getElementById("rouset"+no).innerText = "";
 		document.getElementById("roucount"+no).innerText = "";
@@ -1714,6 +1755,7 @@ a:link {
 		$('#roucountup').val("");
 		$('#rousetup').val("");
 		$('#edit-titleup option:first').prop("selected", true);
+		document.getElementById("icon"+no).innerHTML = "<span><img src='/sixone/resources/images/rest.png'></img></span>";
 		document.getElementById("rounameup"+no).innerText = "";
 		document.getElementById("rousetup"+no).innerText = "";
 		document.getElementById("roucountup"+no).innerText = "";
@@ -1945,12 +1987,7 @@ a:link {
 
 	</script>
 </body>
-<script type="text/javascript">
-$('#updateModal').on('hidden.bs.modal',function(){
-	 
-	
-});
-</script>
+
 
 </html>
 

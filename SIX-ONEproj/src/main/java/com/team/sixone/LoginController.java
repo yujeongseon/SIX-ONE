@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,18 +27,37 @@ public class LoginController {
 			String msg = "없는 계정 입니다";
 			return msg;
 		}
-		else {
+		else{
 			session.setAttribute("LoginSuccess", map.get("id"));
 			String msg = "로그인 성공";
 			return msg;
 		}
+		
 	}//////////isLogin
 	
-	@RequestMapping("/Logout.do")
+	@RequestMapping("Logout.do")
 	public String LogOut(HttpSession session) {
-		session.invalidate();
-		return"forward:/";
+		session.removeAttribute("LoginSuccess");
+	    session.removeAttribute("id");
+	    
+	    return"forward:/";
 	}//////////LogOut
 	
+	
+	@RequestMapping("/kakaoisLogin.do")
+	public String iskakaoLogin(@RequestParam Map map,HttpSession session) {
+			String msg = null;
+			int flag = LoginService.iskakaoLogin(map);
+			if(flag == 1) {
+			session.setAttribute("LoginSuccess", map.get("kakaoid"));
+			return "redirect:/home.do";
+			}
+			else {
+				
+			return msg;
+			}
+			
+		
+	}
 	
 }///////////////////class
