@@ -61,8 +61,7 @@
 	</websocket:handlers>
 	
 	<beans:bean id="RefreshHandler" class="com.team.sixone.webSocket.webSocretServer"/>
-	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
-	<beans:bean id="naverLoginBO" class="com.team.sixone.NaverLoginBO" />
+	
 
 
 </beans:beans>
