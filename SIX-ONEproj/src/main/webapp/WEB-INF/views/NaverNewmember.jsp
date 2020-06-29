@@ -6,8 +6,20 @@
    style="width: 100%; height: 100px;" />
         <div class="container"><!-- 좌우측의 공간 확보 -->
 
-            <form class="form-horizontal" id="form" role="form" enctype = "multipart/form-data" method="post" action="<c:url value='/Profile.do'/>"  style="margin-top: 30px;">
+            <form class="form-horizontal" action="<c:url value='/Navermember.do'/>" id="form" role="form" enctype="multipart/form-data" method="POST"   style="margin-top: 30px;">
 
+				<div class="form-group">
+                   <label for="inputHeight" class="col-lg-2 control-label">아이디</label>
+                   <div class="col-lg-10">
+                        <span class="form-control">${id}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                   <label for="inputHeight" class="col-lg-2 control-label">이름</label>
+                   <div class="col-lg-10">
+                        <span class="form-control">${name}</span>
+                    </div>
+                </div>
                 <div class="form-group">
                    <label for="inputHeight" class="col-lg-2 control-label">키</label>
                    <div class="col-lg-10">
@@ -17,9 +29,9 @@
                 <div class="form-group" id="divWeight">
                    <label for="inputWeight" class="col-lg-2 control-label">몸무게</label>
                    <div class="col-lg-10">
-                   		<input type="hidden" name="id" id="naverid" value="${sessionScope.id}">
+                   		<input type="hidden" name="id" value="${id}">
                         <input type="text" class="form-control" name="weight" id="weight" data-rule-required="true" placeholder="몸무게를 입력해주세요." maxlength="15">
-                        <input type="hidden" name="name" id="navername" value="${sessionScope.id}">
+                        <input type="hidden" name="name" value="${name}">
                     </div>
                 </div>
                

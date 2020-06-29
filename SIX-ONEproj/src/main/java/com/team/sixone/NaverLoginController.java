@@ -1,6 +1,10 @@
 package com.team.sixone;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -11,6 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
+
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 /*
@@ -33,6 +40,7 @@ public class NaverLoginController {
 	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
 	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
 			throws IOException, ParseException {
+		BoardDAO dao = new BoardDAO(null);
 		System.out.println("여기는 callback");
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
@@ -57,16 +65,54 @@ public class NaverLoginController {
 		System.out.println(id);
 		System.out.println(name);
 		System.out.println(email);
-		
-		
+		int affected=dao.findid(id);
+		if(affected == 0) {
+			model.addAttribute("id",id);
+			model.addAttribute("name",name);
+			return "/NaverNewmember.tiles";
+		}
 		//4.파싱 닉네임 세션으로 저장
-		session.setAttribute("LoginSuccess", name); // 로그인 활성화
-		session.setAttribute("id", id);
+		session.setAttribute("LoginSuccess", id); // 로그인 활성화
+		session.setAttribute("name", name);
 		model.addAttribute("result", apiResult);
 		
 		
 		return "home.tiles";
 	}
+	
+	@RequestMapping("/Navermember.do")
+	public String Join(HttpServletRequest req,MultipartRequest request,@RequestParam Map map,HttpSession session) throws IllegalStateException, IOException {
+		BoardDAO dao = new BoardDAO(null);
+		MultipartFile upload = (MultipartFile) request.getFile("upload");
+		String phisicalPath = req.getServletContext().getRealPath("/resources/Profile");
+		//String phisicalPath = "C:\\Users\\kosmo_11\\git\\SIX-ONE\\SIX-ONEproj\\src\\main\\webapp\\resources\\Profile";
+		String profile = upload.getOriginalFilename().toString();
+		map.put("id", req.getParameter("id"));
+		map.put("name", req.getParameter("name"));
+		map.put("gender", req.getParameter("gender"));
+		map.put("weight", req.getParameter("weight"));
+		map.put("height", req.getParameter("height"));
+		map.put("goal", req.getParameter("goal"));
+		if(profile.equals("")) {
+			File file = new File(phisicalPath+File.separator+profile);
+			map.put("profile", profile);
+			dao.tomember(map);
+			session.setAttribute("LoginSuccess", map.get("id"));
+			session.setAttribute("LoginSuccess", map.get("name"));
+		}
+		else {
+			String renameFile = FileUpDownUtils.getNewFileName(phisicalPath, upload.getOriginalFilename());
+			File file = new File(phisicalPath+File.separator+renameFile);
+			map.put("profile", renameFile);
+			upload.transferTo(file);
+			dao.tomember(map);
+			session.setAttribute("LoginSuccess", map.get("id"));
+			session.setAttribute("LoginSuccess", map.get("name"));
+		}
+
+		return "home.tiles";
+	}/////NewMember
+	
 
 
 }
