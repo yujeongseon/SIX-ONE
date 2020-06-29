@@ -605,6 +605,7 @@
 	// 구독취소
 	function cancelSubscribe(){
 		subscribeNo = $('#cancel_btn').val();
+		console.log(subscribeNo);
 		if(confirm('달력에 추가된 루틴도 모두 지워집니다\r\n정말로 취소하시겠습니까?')){
 			
 			$.ajax({
@@ -634,12 +635,11 @@
 	function deleteSubscribe(){
 		subCalendarNo = $('#delete_btn').val()
 		
-		
 		if(confirm('이 루틴을 달력에서 제거하시겠습니까?')){
 			
 			$.ajax({
 		        type: "get",
-		        url: "/sixone//schedule.deleteRoutine",
+		        url: "/sixone/schedule.deleteRoutine",
 		        data: {
 		        	'subCalendarNo':subCalendarNo
 		        },

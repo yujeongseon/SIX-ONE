@@ -47,6 +47,11 @@ public class SubscribeDAO implements SubscribeService {
 	public int delete(Map map) {
 		return sqlMapper.delete("subscribeDelete", map);
 	}
+
+	@Override
+	public int deleteCalendar(Map map) {
+		return sqlMapper.delete("subscribeDeleteCalendar", map);
+	}
 	
 
 	

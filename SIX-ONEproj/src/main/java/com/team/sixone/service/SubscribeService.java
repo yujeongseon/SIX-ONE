@@ -15,6 +15,7 @@ public interface SubscribeService {
 	int insert(Map map);
 	int update(Map map);
 	int delete(Map map);
+	int deleteCalendar(Map map);
 	
 	
 	

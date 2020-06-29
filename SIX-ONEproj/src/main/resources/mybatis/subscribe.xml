@@ -13,6 +13,9 @@
 		delete subscribe where subscribe_no = #{subscribeNo}
 	</delete>
 	
+	<delete id="subscribeDeleteCalendar" parameterType="java.util.Map">
+		delete sub_calendar where subscribe_no = #{subscribeNo}
+	</delete>
 	
 	
 </mapper>
