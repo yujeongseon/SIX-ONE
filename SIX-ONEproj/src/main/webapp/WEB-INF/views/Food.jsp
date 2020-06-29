@@ -56,7 +56,7 @@
 
 
 #foodWrap{
-	min-height: 500px; 
+	min-height: 400px; 
 }
 #cart{
 	margin-top:15px;
@@ -65,7 +65,7 @@
 #cart > div {
 	position:relative;
 	background-color:#f9f9f9;
-	min-height: 500px; 
+	min-height: 400px; 
 	padding-bottom:50px;
 }
 #cart > div > p {
@@ -97,6 +97,11 @@
 
 }
 
+
+
+
+
+
 </style>
 
 
@@ -127,7 +132,7 @@
 		  	</ul>
 	  	</div>
 	</aside>
-	<!-- 나중에 크롤링 같은거 배우면 여기에 적용하자 -->
+
 	
 	<div class="colorlib-blog">
 		<div class="container">
@@ -221,20 +226,20 @@
 						<div>
 							<div class="cart_date"><input id="datepicker" style="text-align: center" disabled><!-- 2020-06-10 --></div>
 							<form class="form-horizontal">
+							
 								<label class="radio-inline"> 
-									<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-									<span>아침</span>
+									<input type="radio" name="foodRadio" id="inlineRadio1" value="b">아침
 								</label> 
 								
 								<label class="radio-inline"> 
-									<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">점심
+									<input type="radio" name="foodRadio" id="inlineRadio2" value="l">점심
 								</label> 
 								<label class="radio-inline"> 
-									<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">저녁
+									<input type="radio" name="foodRadio" id="inlineRadio3" value="d">저녁
 								</label>
-
-						</form>
-							<div class="text-left basket"style="min-height: 350px" >
+							
+							</form>
+							<div class="text-left basket"style="min-height: 300px" >
 								<ul class="list-unstyled" id="my_food_list" style="padding-top: 20px">
 								<!-- 
 									<li><a href="javascript:void(0)" onclick="remove_cart(this)"><span class="ex"></span></a><span class="basket_menu">고구마 줄기 나물</span>&nbsp;<span class="kcal">300Kcal</span></li>
@@ -242,11 +247,17 @@
 								 -->
 								</ul>
 							</div>
-						<p><span id="total_kcal">0</span> kcal</p>
+							<p><span id="total_kcal">0</span> kcal</p>
+							
 						</div>
+						<button class="btn btn-warning" style="float:right;" onclick="javascript:foodSave()">저장하기</button>
+					
 					</div>
+					
+					
+					
+					
 				</div>
-				
 			
 			</div>
 			
@@ -365,7 +376,6 @@
 				        success: function(response){
 				        	var query = $('#food_table').html();
 				        	var foodName = response['foodName'];
-				        	console.log(foodName)
 			        		query += '<tr>'
 			        		query += '<td>'+response['foodName']+'</td>'
 			        		query += '<td>'+response['foodOnce']+'</td>'
@@ -431,6 +441,80 @@
 		$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");
 		$( "#datepicker" ).datepicker('setDate', new Date());
 	
+		
+		// 음식 저장하기
+		function foodSave(){
+			foodWhen = $(":input:radio[name=foodRadio]:checked").val();
+			totalKcal = $('#total_kcal').html();
+			var foodLists = $('#my_food_list > li > .basket_menu');
+			var isLogin = ${LoginSuccess == null};
+			if(isLogin){
+				alert('식단을 저장하려먼 로그인이 필요합니다');
+				$('#myModal').modal('show');
+				return false;
+			}
+			if(foodWhen == null){
+				alert('식사시간을 선택하세요');
+				return false;
+			}
+			else if(foodLists.length == 0){
+				alert('추가할 음식이 없습니다');
+				return false;
+			}
+			
+			var foodName = '';
+			for(var i = 0; i < foodLists.length; i++){
+				if(i == foodLists.length -1){
+					foodName += $(foodLists[i]).html()
+				}
+				else{
+					foodName += $(foodLists[i]).html() + ',';
+				}
+			}
+			console.log(foodWhen);
+			console.log(foodName);
+			console.log(totalKcal);	
+			console.log($('#datepicker').val());
+			
+			
+			
+			
+			$.ajax({
+			        type: "get",
+			        url: "/sixone/food.insert",
+			        data: {
+		            	'foodWhen': foodWhen,
+		                'foodName': foodName,
+		                'foodKcal' : totalKcal,
+		                'foodDate': $('#datepicker').val(),
+		            },
+			        success: function(response){
+			        	if(response == 1){
+			        		alert('저장 성공 했습니다');
+			        	}
+			        	else{
+			        		alert('저장 실패 했습니다');
+			        	}
+			        	
+			        },
+			        error:function(request,error){
+							console.log('상태코드:',request.status);
+							console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
+							console.log('에러:',error);
+						
+					}
+			});
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+		
 	</script>
 
 		

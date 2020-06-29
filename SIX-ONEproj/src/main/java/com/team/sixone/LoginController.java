@@ -5,7 +5,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +16,6 @@ import com.team.sixone.service.LoginService;
 
 @Controller
 public class LoginController {
-	
-	
 	//서비스주입
 	@Resource(name = "LoginService")
 	private LoginService LoginService;
@@ -41,8 +38,9 @@ public class LoginController {
 	@RequestMapping("Logout.do")
 	public String LogOut(HttpSession session) {
 		session.removeAttribute("LoginSuccess");
-		session.removeAttribute("id");
-		return "home.tiles";
+	    session.removeAttribute("id");
+	    
+	    return"forward:/";
 	}//////////LogOut
 	
 	

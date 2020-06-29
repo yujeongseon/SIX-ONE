@@ -30,9 +30,9 @@ public class HomeController {
 		this.naverLoginBO = naverLoginBO;
 	}// 네이버 로그인
 	
+	
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	
 	
 	@Resource(name="routineService")
 	private RoutineServiceImpl routineDAO;
@@ -42,7 +42,7 @@ public class HomeController {
 	public String home(@RequestParam Map map, Model model,HttpSession session) {
 		List<RoutineDTO> list = routineDAO.selectOne(map);
 		model.addAttribute("bestRoutine", list);
-		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+		
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 		System.out.println("네이버:" + naverAuthUrl);
 		session.setAttribute("url", naverAuthUrl);

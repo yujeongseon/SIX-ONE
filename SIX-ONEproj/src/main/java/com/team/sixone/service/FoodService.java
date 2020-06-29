@@ -3,9 +3,7 @@ package com.team.sixone.service;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface FoodService {
 
 	// 리스트 가져오기
@@ -18,7 +16,6 @@ public interface FoodService {
 	int foodInsert(Map map);
 	int foodUpdate(Map map);
 	int foodDelete(Map map);
-	
 	int foodreset(Map map);
 	
 	

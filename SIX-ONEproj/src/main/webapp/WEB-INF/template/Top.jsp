@@ -156,7 +156,6 @@ $(function(){
                   </span>
                </div>
                <div class="flex-c-m">
-               <!-- 네이버 로그인 창으로 이동 -->
                   <a href="${url}">
                      <img class="img-circle"  alt="..." src="resources/images/NAVER.PNG" style="width: 53px;height: 53px;">
                   </a>
@@ -164,6 +163,8 @@ $(function(){
                  <a href="#" onclick="javascript:kakaoLogin();">
                      <img class="img-circle"  alt="..." src="resources/images/kokoao.png" style="width: 53px;height: 53px; margin-right: 15px; margin-left: 15px;">
                   </a>
+                  
+   					
 				</div>
                
              

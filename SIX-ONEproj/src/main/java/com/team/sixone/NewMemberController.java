@@ -47,8 +47,12 @@ public class NewMemberController {
 	@RequestMapping("/Profile.do")
 	public String Join(HttpServletRequest req,MultipartRequest request,@RequestParam Map map,HttpSession session) throws IllegalStateException, IOException {
 		MultipartFile upload = (MultipartFile) request.getFile("upload");
+<<<<<<< HEAD
 		//String phisicalPath = "C:\\Users\\kosmo_11\\git\\SIX-ONE\\SIX-ONEproj\\src\\main\\webapp\\resources\\Profile";
 		String phisicalPath = req.getServletContext().getRealPath("/resources/Profile");
+=======
+		String phisicalPath = "C:\\Users\\kosmo_26\\git\\SIX-ONE\\SIX-ONEproj\\src\\main\\webapp\\resources\\Profile";
+>>>>>>> branch 'mergeTest01' of https://github.com/yujeongseon/SIX-ONE.git
 		///SIX-ONEproj/src/main/webapp/resources/Profile
 		String profile = upload.getOriginalFilename().toString();
 		if(profile.equals("")) {
