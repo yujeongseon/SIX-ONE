@@ -50,7 +50,7 @@ public class LoginController {
 			int flag = LoginService.iskakaoLogin(map);
 			if(flag == 1) {
 			session.setAttribute("LoginSuccess", map.get("kakaoid"));
-			return "redirect:/home.do";
+			return"forward:/";
 			}
 			else {
 				

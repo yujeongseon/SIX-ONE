@@ -15,18 +15,14 @@ import com.team.sixone.service.impl.SubscribeServiceImpl;
 @Controller
 public class SubscribeController {
 
-	@Resource(name="calendarService")
-	private CalendarServiceImpl calendarDAO;
-	
 	@Resource(name="subscribeService")
 	private SubscribeServiceImpl subscribeDAO;
-	
 	
 	@RequestMapping(value="/subscribe.cancel")
 	@ResponseBody
 	public String updateCalendarRoutine(@RequestParam Map map) {
 		
-		int result = calendarDAO.deleteCalendarRoutine(map);
+		int result = subscribeDAO.deleteCalendar(map);
 		result = subscribeDAO.delete(map);
 		return String.valueOf(result);
 	}

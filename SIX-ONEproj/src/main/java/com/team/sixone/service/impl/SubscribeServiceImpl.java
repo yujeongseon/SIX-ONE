@@ -43,6 +43,11 @@ public class SubscribeServiceImpl implements SubscribeService {
 		return dao.delete(map);
 	}
 
+	@Override
+	public int deleteCalendar(Map map) {
+		return dao.deleteCalendar(map);
+	}
+
 	
 	
 	
