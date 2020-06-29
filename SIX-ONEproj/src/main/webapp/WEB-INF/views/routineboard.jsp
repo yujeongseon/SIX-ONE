@@ -266,6 +266,10 @@ a:link {
 	text-decoration: none;
 }
 
+.entry-forth{
+	min-height: 190px;
+}
+
 </style>
 
 <style type="text/css">
