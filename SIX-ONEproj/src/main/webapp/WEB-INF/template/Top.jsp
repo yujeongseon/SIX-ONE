@@ -164,8 +164,6 @@ $(function(){
                  <a href="#" onclick="javascript:kakaoLogin();">
                      <img class="img-circle"  alt="..." src="resources/images/kokoao.png" style="width: 53px;height: 53px; margin-right: 15px; margin-left: 15px;">
                   </a>
-                  
-   					
 				</div>
                
              
@@ -196,10 +194,10 @@ function doLogin(){
 	         //$('#msg').html(data);
 	         var msg = data;
 	         if(msg == "로그인 성공"){
-	            window.location.href = "<c:url value='/home.do'/>"
+	            window.location.href = $('#locationUrl').val();
 	         }
 	         else if(msg == "이미있는카카오계정") {
-	        	 window.location.href = "<c:url value='/home.do'/>"
+	        	 window.location.href = $('#locationUrl').val();
 	         }
 	         else{
 	            $('#msg').html(data);
