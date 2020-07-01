@@ -45,13 +45,6 @@ public class BoardController {
       private int blockPage=5;
       
       
-    @RequestMapping("/admin.do")
-  	public String moveHome() {
-
-  		return "admin";
-  	}
-      
-      
       
    //글 불러오기 페이징]
       @RequestMapping("/freeboard.do")
