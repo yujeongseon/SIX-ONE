@@ -163,6 +163,7 @@ function isLogin(el){
 									<ul class="dropdown">
 										<li><a href="#" onclick="javascript:isLogin(this);">자유게시판</a></li>
 										<li><a href="#" onclick="javascript:isLogin(this);">루틴게시판</a></li>
+										<li><a href="<c:url value='/admin.do'/>">관리자</a></li>
 									</ul>
 								</li>
 								
