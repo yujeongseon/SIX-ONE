@@ -48,7 +48,7 @@ public class BoardController {
     @RequestMapping("/admin.do")
   	public String moveHome() {
 
-  		return "dashboard";
+  		return "admin";
   	}
       
       
