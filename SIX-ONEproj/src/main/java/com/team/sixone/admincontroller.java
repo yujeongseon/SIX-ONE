@@ -24,6 +24,12 @@ public class admincontroller {
   		return "adminchart";
   	}
 	
+	@RequestMapping("/icon.do")
+  	public String goicon() {
+
+  		return "adminicon";
+  	}
+	
 	
 	
 }

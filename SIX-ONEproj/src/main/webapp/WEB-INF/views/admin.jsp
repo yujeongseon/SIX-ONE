@@ -17,7 +17,7 @@
     <!-- Bootstrap -->
     <link href='<c:url value="/resources/vendors/bootstrap/bootstrap.min.css"/>' rel='stylesheet' />
     <!-- Font Awesome -->
-    <link href='<c:url value="/resources/vendors/font-awesome/font-awesome.min.css"/>' rel='stylesheet' />
+    <link href='<c:url value="/resources/vendors/fontawesome/fontawesome.min.css"/>' rel='stylesheet' />
     <!-- NProgress -->
     <link href='<c:url value="/resources/vendors/nprogress/nprogress.css"/>' rel='stylesheet' />
     <!-- iCheck -->
@@ -39,7 +39,8 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              <a href='<c:url value="/home.do"/>' class="site_title"><span>SIX-ONE 관리소</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -47,7 +48,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="#" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>어서오세요 관리자님</span>
@@ -61,15 +62,9 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>General</h3>
+                <h3>항목</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="index.html">Dashboard</a></li>
-                      <li><a href="index2.html">Dashboard2</a></li>
-                      <li><a href="index3.html">Dashboard3</a></li>
-                    </ul>
-                  </li>
+                  <li><a href='<c:url value="/admin.do"/>'><i class="fa fa-home"></i> 관리 메인 <span class="fa fa-chevron-down"></span></a></li>
                   <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="form.html">General Form</a></li>
@@ -85,7 +80,7 @@
                       <li><a href="general_elements.html">General Elements</a></li>
                       <li><a href="media_gallery.html">Media Gallery</a></li>
                       <li><a href="typography.html">Typography</a></li>
-                      <li><a href="icons.html">Icons</a></li>
+                      <li><a href='<c:url value="/icon.do"/>'>아이콘확인용</a></li>
                       <li><a href="glyphicons.html">Glyphicons</a></li>
                       <li><a href="widgets.html">Widgets</a></li>
                       <li><a href="invoice.html">Invoice</a></li>
@@ -132,98 +127,7 @@
           </div>
         </div>
 
-        <!-- top navigation -->
-        <div class="top_nav">
-          <div class="nav_menu">
-              <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-              </div>
-              <nav class="nav navbar-nav">
-              <ul class=" navbar-right">
-                <li class="nav-item dropdown open" style="padding-left: 15px;">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
-                  </a>
-                  <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="javascript:;"> Profile</a>
-                      <a class="dropdown-item"  href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                  <a class="dropdown-item"  href="javascript:;">Help</a>
-                    <a class="dropdown-item"  href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
-                  </div>
-                </li>
-
-                <li role="presentation" class="nav-item dropdown open">
-                  <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
-                  </a>
-                  <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                    <li class="nav-item">
-                      <a class="dropdown-item">
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="dropdown-item">
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="dropdown-item">
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="dropdown-item">
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <div class="text-center">
-                        <a class="dropdown-item">
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <!-- /top navigation -->
+        
 
         <!-- page content -->
         <div class="right_col" role="main">
@@ -270,7 +174,7 @@
 
                 <div class="row x_title">
                   <div class="col-md-6">
-                    <h3>Network Activities <small>Graph title sub-title</small></h3>
+                    <h3>월별 가입자 증가<small>여기 적을만한게 있을까</small></h3>
                   </div>
                   <div class="col-md-6">
                     <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
@@ -448,7 +352,7 @@
             <div class="col-md-4 col-sm-4 ">
               <div class="x_panel tile fixed_height_320 overflow_hidden">
                 <div class="x_title">
-                  <h2>Device Usage</h2>
+                  <h2>회원가입 경로</h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -468,52 +372,43 @@
                   <table class="" style="width:100%">
                     <tr>
                       <th style="width:37%;">
-                        <p>Top 5</p>
+                        <p>비율</p>
                       </th>
                       <th>
                         <div class="col-lg-7 col-md-7 col-sm-7 ">
-                          <p class="">Device</p>
+                          <p class="">포털</p>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-5 ">
-                          <p class="">Progress</p>
+                          <p class="">퍼센트</p>
                         </div>
                       </th>
                     </tr>
                     <tr>
                       <td>
-                        <canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                      <!-- 
+                      	<canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                      	-->
+                        <canvas id="portalchart" max-height="140" max-width="140" style="margin: 15px 10px 10px 0"></canvas>
                       </td>
                       <td>
                         <table class="tile_info">
                           <tr>
                             <td>
-                              <p><i class="fa fa-square blue"></i>IOS </p>
+                              <p><i class="fa fa-square green"></i>네이버 </p>
                             </td>
-                            <td>30%</td>
+                            <td>45%</td>
                           </tr>
                           <tr>
                             <td>
-                              <p><i class="fa fa-square green"></i>Android </p>
+                              <p><i class="fa fa-square yellow"></i>카카오</p>
                             </td>
-                            <td>10%</td>
+                            <td>38%</td>
                           </tr>
                           <tr>
                             <td>
-                              <p><i class="fa fa-square purple"></i>Blackberry </p>
+                              <p><i class="fa fa-square aero"></i>six-one</p>
                             </td>
-                            <td>20%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square aero"></i>Symbian </p>
-                            </td>
-                            <td>15%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square red"></i>Others </p>
-                            </td>
-                            <td>30%</td>
+                            <td>17%</td>
                           </tr>
                         </table>
                       </td>
@@ -938,7 +833,10 @@
     <!-- NProgress -->
     <script src='<c:url value="/resources/vendors/nprogress/nprogress.js"/>'></script>
     <!-- Chart.js -->
+    <!-- 
     <script src='<c:url value="/resources/vendors/chart/Chart.min.js"/>'></script>
+     -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <!-- gauge.js -->
     <script src='<c:url value="/resources/vendors/gauge/gauge.min.js"/>'></script>
     <!-- bootstrap-progressbar -->
@@ -971,6 +869,15 @@
 
     <!-- Custom Theme Scripts -->
     <script src='<c:url value="/resources/build/js/custom.min.js"/>'></script>
-	
+	<script> data = { datasets: [{ backgroundColor: ['green','yellow','gray'], data: [45, 38, 17] }],
+			// 각 영역에 커서를 갖다대면 값을 보여줌
+			labels: ['네이버','카카오','six-one'] };
+			// 도넛형 차트
+			var ctx2 = document.getElementById("portalchart");
+			var myDoughnutChart = new Chart(ctx2, { type: 'doughnut',
+				data: data,
+				options: {responsive: false} });//false 안주면 멈추질 않음
+			</script>
+
   </body>
 </html>
