@@ -230,27 +230,32 @@
           <!-- top tiles -->
           <div class="row" style="display: inline-block;" >
           <div class="tile_count">
-            <div class="col-md-3 col-sm-4  tile_stats_count">
+            <div class="col-md-2 col-sm-4  tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i>전체 유저</span>
               <div class="count">1520명</div>
               <span class="count_bottom"><i class="green">4% </i>지난주 대비 증가</span>
             </div>
-            <div class="col-md-3 col-sm-4  tile_stats_count">
+            <div class="col-md-2 col-sm-4  tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i>남성유저 비율</span>
               <div class="count green">840명</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>61%</i> 차지</span>
             </div>
-            <div class="col-md-3 col-sm-4  tile_stats_count">
+            <div class="col-md-2 col-sm-4  tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i>여성유저 비율</span>
               <div class="count">680명</div>
               <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>39%</i> 차지 </span>
             </div>
-            <div class="col-md-3 col-sm-4  tile_stats_count">
+            <div class="col-md-2 col-sm-4  tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Collections</span>
               <div class="count">2,315</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
             </div>
-            <div class="col-md-3 col-sm-4  tile_stats_count">
+            <div class="col-md-2 col-sm-4  tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
+              <div class="count">7,325</div>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+            </div>
+            <div class="col-md-2 col-sm-4  tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
               <div class="count">7,325</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
