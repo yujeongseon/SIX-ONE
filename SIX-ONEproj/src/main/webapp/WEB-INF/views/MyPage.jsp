@@ -82,10 +82,6 @@ $(function(){
 	  	var Sunallcount<%=i%> = Sunset<%=i%>*Suncount<%=i%>;
     	<%}%>
     	
-    	
-    	
-    	
-    	
     	test0 = new Array(11);
     	test0 [0] = 1;
     	
@@ -107,8 +103,6 @@ $(function(){
     	test6 = new Array(11);
     	test6 [0] = 7;
     	
-    	
-		
 		//////////////////////////월요일
 		<%for(int i = 0; i <= 9; i++){%>
 		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
@@ -120,7 +114,6 @@ $(function(){
 		<%}%>
 		<%}%>
 		
-		
 		////////화요일
 		<%for(int i = 0; i <= 9; i++){%>
 		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
@@ -131,7 +124,6 @@ $(function(){
 		}
 		<%}%>
 		<%}%>
-		
 		
 		/////수요일
 		<%for(int i = 0; i <= 9; i++){%>
@@ -188,9 +180,7 @@ $(function(){
 		<%}%>
 		<%}%>
 		
-		
-		
-		//월요일배열
+		///배열에 각 요일별 각각의 운동 총 횟수 넣어주는곳
 		<%for(int i = 0; i <=10; i++) {%>
 		<%for(int y = 0; y <= 6; y++){%>
 			if(test<%=y%>[<%=i%>] == null) {
@@ -198,10 +188,7 @@ $(function(){
 			}
 			<%}%>
 		<%}%>
-		
 
-		
-		
 		<%for(int i = 0; i <= 9; i ++) {%>
 		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
 		if(typeof exercisename<%=i%> != "undefined") {
@@ -212,7 +199,6 @@ $(function(){
 		}
 		<%}%>
 		
-	
       var data = new google.visualization.DataTable();
       data.addColumn('number', '이번주 근력 운동 루틴'); //그래프 타이틀
       
@@ -220,12 +206,6 @@ $(function(){
       data.addColumn('number', exercisename<%=i%>); //운동 컬럼
       <%}%>
       
-		
-      
-      
-      
-          
-        
       data.addRows([
     	  test0,
           test1,
@@ -268,8 +248,6 @@ $(function(){
 	margin-bottom: 30px;
 
 }
-
-
 
 </style>
 
@@ -810,13 +788,11 @@ $(function(){
 								</c:if>
 						</c:forEach>
 						
-						
 						<!-- 그래프 컬럼 이름 -->
 						<c:forEach items="${graphs2}" var="it" varStatus="loop">
 							<input  type="hidden" value="${it.exercisename}"  id="exercisename${loop.index}"/>
 						</c:forEach>
-		
-		
+						<!-- 그래프 컬럼 이름 -->
 <!-- 그래프에 넣어줄 값 저장작업-->
                   
 <script>
@@ -936,8 +912,5 @@ $(function(){
 	
 
 </script>      
-                  
-               
-<!-- 그래프에 뿌려줄값 저장하는 작업 -->
 <script src="<c:url value='/resources/js/MyPageKcal.js'/>"></script>
 </html>
