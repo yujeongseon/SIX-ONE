@@ -1846,15 +1846,6 @@ a:link {
 	      }
 	      
 	      
-	      $('#gogudok').click(function(){//구독순 이동
-	  		window.location.href = "<c:url value='/routinedesc.do'/>";
-	  	});
-	  	
-	  	$('#gochuashin').click(function(){//최신순 이동
-	  		window.location.href = "<c:url value='/routine.do'/>";
-	  	});
-	      
-	      
 	      
 	      $.ajax({
 	             type: "get",
@@ -1920,7 +1911,13 @@ a:link {
     	$('#edit-titleup').html(htmlStringup);
     }
 	
-	
+	 $('#gogudok').click(function(){//구독순 이동
+	  		window.location.href = "<c:url value='/routinedesc.do'/>";
+	  	});
+	  	
+	  	$('#gochuashin').click(function(){//최신순 이동
+	  		window.location.href = "<c:url value='/routine.do'/>";
+	  	});
 	
 	$('#save-event').click(function(){
 		var Title = document.getElementById("rou_title").value;
