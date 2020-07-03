@@ -22,6 +22,8 @@ import org.springframework.web.multipart.MultipartRequest;
 
 import com.team.sixone.service.FoodDTO;
 import com.team.sixone.service.FoodService;
+import com.team.sixone.service.GraphsDTO;
+import com.team.sixone.service.GraphsSerivce;
 import com.team.sixone.service.LoginService;
 import com.team.sixone.service.MemberDTO;
 import com.team.sixone.service.MemberService;
@@ -33,6 +35,8 @@ public class MyPageController {
 		private MemberService MemberService;
 		@Resource(name="foodService")
 		private FoodService FoodService;
+		@Resource(name="GraphsSerivce")
+		private GraphsSerivce GraphsSerivce;
 		
 
 	@RequestMapping("/MyPage.do")
@@ -45,6 +49,8 @@ public class MyPageController {
 		map.put("id", session.getAttribute("LoginSuccess"));
 		List<FoodDTO> food = FoodService.selectFoodList(map);
 		model.addAttribute("food", food);
+		List<GraphsDTO> graphs = GraphsSerivce.exercisecount(map);
+		model.addAttribute("graphs", graphs);
 		return "/MyPage.tiles";
 		}
 		else { //로그인 안된경우

@@ -67,7 +67,7 @@ public class TimelLineCont {
 		return "/ex.tiles";
 	}
 	@RequestMapping(value="/upload.do", method=RequestMethod.POST)
-	public void upload(Locale locale, Model model, HttpServletRequest req, 
+	public String upload(Locale locale, Model model, HttpServletRequest req, 
 			 HttpServletResponse resp) throws ServletException, IOException {
 		Upload upload_ = new Upload();
 		
@@ -76,7 +76,7 @@ public class TimelLineCont {
 		
 
 		resp.sendRedirect("/sixone/TimeLine.do");
-		//return "/TimeLine.tiles:for";
+		return "/TimeLine.tiles";
 	}
 	
 	@RequestMapping(value="/upload.do", method=RequestMethod.GET)
