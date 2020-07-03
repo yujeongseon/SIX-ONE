@@ -103,7 +103,7 @@ $(function(){
     	test6 = new Array(11);
     	test6 [0] = 7;
     	
-		//////////////////////////월요일
+		//////////////////////////월요일 각 운동의 총갯수 저장
 		<%for(int i = 0; i <= 9; i++){%>
 		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
 		var flag = exercisename<%=i%>;
@@ -114,7 +114,7 @@ $(function(){
 		<%}%>
 		<%}%>
 		
-		////////화요일
+		////////화요일 각 운동의 총갯수 저장
 		<%for(int i = 0; i <= 9; i++){%>
 		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
 		var flag = exercisename<%=i%>;
@@ -125,7 +125,7 @@ $(function(){
 		<%}%>
 		<%}%>
 		
-		/////수요일
+		/////수요일 각 운동의 총갯수 저장
 		<%for(int i = 0; i <= 9; i++){%>
 		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
 		var flag = exercisename<%=i%>;
@@ -136,7 +136,7 @@ $(function(){
 		<%}%>
 		<%}%>
 		
-		////목요일
+		////목요일 각 운동의 총갯수 저장
 		<%for(int i = 0; i <= 9; i++){%>
 		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
 		var flag = exercisename<%=i%>;
@@ -147,7 +147,7 @@ $(function(){
 		<%}%>
 		<%}%>
 		
-		////금요일
+		////금요일 각 운동의 총갯수 저장
 		<%for(int i = 0; i <= 9; i++){%>
 		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
 		var flag = exercisename<%=i%>;
@@ -158,7 +158,7 @@ $(function(){
 		<%}%>
 		<%}%>
 		
-		////토요일
+		////토요일 각 운동의 총갯수 저장
 		<%for(int i = 0; i <= 9; i++){%>
 		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
 		var flag = exercisename<%=i%>;
@@ -169,7 +169,7 @@ $(function(){
 		<%}%>
 		<%}%>
 		
-		////일요일
+		////일요일 각 운동의 총갯수 저장
 		<%for(int i = 0; i <= 9; i++){%>
 		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
 		var flag = exercisename<%=i%>;
@@ -188,7 +188,8 @@ $(function(){
 			}
 			<%}%>
 		<%}%>
-
+		
+		//운동이름 글자수 줄이고 ...으로 표시(글자수5~6 이상 가면 깨져서)
 		<%for(int i = 0; i <= 9; i ++) {%>
 		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
 		if(typeof exercisename<%=i%> != "undefined") {
@@ -246,13 +247,8 @@ $(function(){
 	display: block;
 	text-align: center;
 	margin-bottom: 30px;
-
 }
-
 </style>
-
-
-
 <aside id="colorlib-hero">
    <div class="flexslider">
       <ul class="slides">

@@ -50,9 +50,7 @@ public class KakaoLoginController {
 		}
 		else {
 			return "home.tiles";
-		}
-		
-		
+		}	
 	}
 	
 	

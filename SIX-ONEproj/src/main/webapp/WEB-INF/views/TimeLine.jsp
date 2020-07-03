@@ -322,7 +322,7 @@ console.log(ids);
 	) { // 로딩이 끝났을때
 												$(".appendd")
 														.append(
-																'<div class="trainers-entry"><h2>　</h2><h2>페이지의 끝입니다</h2></div></div>');
+																'<div class="trainers-entry"><h2>　</h2><h2>마지막 게시글 입니다.</h2></div></div>');
 												page++
 
 											}
