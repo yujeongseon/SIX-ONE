@@ -53,11 +53,11 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
       List<RoutineDTO> list = new Vector<RoutineDTO>();
       
       //페이징 적용-구간쿼리로 변경
-      String sql="SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT r.*,name FROM routine r JOIN member m ON r.id=m.id ";
+      String sql="SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(*) count from subscribe group by routine_no order by count desc) a right outer join (SELECT r.*,name FROM routine r JOIN member m ON r.id=m.id) b on a.routine_no = b.routine_no ";
       if(map.get("searchWord")!=null) {
          sql+=" WHERE "+map.get("searchColumn")+" LIKE '%"+map.get("searchWord")+"%' ";
       }      
-      sql+=" ORDER BY routine_no DESC) T) WHERE R BETWEEN ? AND ?";
+      sql+=" order by create_at desc) T) WHERE R BETWEEN ? AND ?";
       try {
          psmt = conn.prepareStatement(sql);
          //페이징을 위한 시작 및 종료 rownum설정]
@@ -67,14 +67,18 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
          while(rs.next()) {
             RoutineDTO dto = new RoutineDTO();
             List<RoutineDTO> rou = new Vector<RoutineDTO>();
+            String count = "";
+            dto.setRoutine_no(rs.getString(3));
+            dto.setId(rs.getString(6));
+            dto.setCreate_at(rs.getDate(5));
+            dto.setRoutine_name(rs.getString(4));
+            dto.setName(rs.getString(7));
+            //구독자 수가 없으면 null값이므로 0으로 바꿔준다
+            if(rs.getString(2)==null) count="0";
+            else count= rs.getString(2);
+            dto.setCount(count);
             
-            dto.setRoutine_no(rs.getString(1));
-            dto.setId(rs.getString(4));
-            dto.setCreate_at(rs.getDate(3));
-            dto.setRoutine_name(rs.getString(2));
-            dto.setName(rs.getString(5));
-            
-            String a= rs.getString(1);
+            String a= rs.getString(3);
             String sql2="SELECT e.exercise_name,r.goal_count,r.goal_set,r.routine_days,exercise_motions FROM rou_exe r JOIN exercise e ON r.exercise_no = e.exercise_no  WHERE routine_no=? order by routine_days";
             try {
                psmt = conn.prepareStatement(sql2);
@@ -103,17 +107,17 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
    
    
    /* 구독자순 쿼리
-    * SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(*) count from subscribe group by routine_no order by count desc) a join (SELECT r.*,name FROM routine r JOIN member m ON r.id=m.id) b on a.routine_no = b.routine_no ORDER BY count DESC) T) WHERE R BETWEEN 1 AND 5;
+SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(*) count from subscribe group by routine_no order by count desc) a right outer join (SELECT r.*,name FROM routine r JOIN member m ON r.id=m.id) b on a.routine_no = b.routine_no order by count desc nulls last) T) WHERE R BETWEEN 1 AND 10;
     */
    //구독자 높은순 정렬
    public List<RoutineDTO> gudokupList(Map map,String id){
 	      List<RoutineDTO> list = new Vector<RoutineDTO>();
 	      //페이징 적용-구간쿼리로 변경
-	      String sql="SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(*) count from subscribe group by routine_no order by count desc) a join (SELECT r.*,name FROM routine r JOIN member m ON r.id=m.id) b on a.routine_no = b.routine_no ";
+	      String sql="SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(*) count from subscribe group by routine_no order by count desc) a right outer join (SELECT r.*,name FROM routine r JOIN member m ON r.id=m.id) b on a.routine_no = b.routine_no ";
 	      if(map.get("searchWord")!=null) {
 	         sql+=" WHERE "+map.get("searchColumn")+" LIKE '%"+map.get("searchWord")+"%' ";
 	      }      
-	      sql+=" ORDER BY count DESC) T) WHERE R BETWEEN ? AND ?";
+	      sql+=" ORDER BY count DESC nulls last) T) WHERE R BETWEEN ? AND ?";
 	      try {
 	         psmt = conn.prepareStatement(sql);
 	         //페이징을 위한 시작 및 종료 rownum설정]
@@ -123,16 +127,19 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
 	         while(rs.next()) {
 	            RoutineDTO dto = new RoutineDTO();
 	            List<RoutineDTO> rou = new Vector<RoutineDTO>();
-	            
-	            dto.setRoutine_no(rs.getString(1));
-	            dto.setCount(rs.getString(2));
+	            String count = "";
+	            dto.setRoutine_no(rs.getString(3));
 	            dto.setId(rs.getString(6));
 	            dto.setCreate_at(rs.getDate(5));
 	            dto.setRoutine_name(rs.getString(4));
 	            dto.setName(rs.getString(7));
+	            //구독자 수가 없으면 null값이므로 0으로 바꿔준다
+	            if(rs.getString(2)==null) count="0";
+	            else count= rs.getString(2);
+	            dto.setCount(count);
 	            
 	            //루틴 글 번호 변수 a지정
-	            String a= rs.getString(1);
+	            String a= rs.getString(3);
 	            String sql2="SELECT e.exercise_name,r.goal_count,r.goal_set,r.routine_days,exercise_motions FROM rou_exe r JOIN exercise e ON r.exercise_no = e.exercise_no  WHERE routine_no=? order by routine_days";
 	            try {
 	               psmt = conn.prepareStatement(sql2);
@@ -199,6 +206,23 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
 		catch (Exception e) {e.printStackTrace();}
 	   
 	   return gudok;
+   }
+   
+   //구독자 수 받아오기
+   public String gudoknum(String no) {
+	   String num="";
+	   String sql3="SELECT count(*) FROM subscribe WHERE routine_no LIKE ?";
+	   try {
+			psmt = conn.prepareStatement(sql3);
+			psmt.setString(1, no);
+			rs3 = psmt.executeQuery();
+			if(rs3.next()) {
+				num= rs3.getString(1);
+			}
+		}
+		catch (Exception e) {e.printStackTrace();}
+	   
+	   return num;
    }
    
    //운동아이콘 받기

@@ -73,13 +73,17 @@ function delok(no){
 function gudok(no){
 	var ID = "<%=session.getAttribute("LoginSuccess")%>"
 	var id = document.getElementById("gudokbtn"+no);
+	var gudokno = document.getElementById(no+"no");
 	if(id.innerHTML=="구독"){
 	$.ajax({
 	      url:"<c:url value='/Ajax/gudok.do'/>",
 	      dataType:'text',
 	      data:{no:no,id:ID},
 	      success:function(data){
-	    	  
+	    	  var gudokString = "구독자 ";
+	    	  	  gudokString += data;
+	    	  	  gudokString += "명";
+	    	  	  gudokno.innerHTML=gudokString;
 	    		  id.innerHTML="구독중";
 	    		  alert("구독되었습니다")
 	      },
@@ -96,6 +100,10 @@ function gudok(no){
 		      dataType:'text',
 		      data:{no:no,id:ID},
 		      success:function(data){
+			    	  var gudokString = "구독자 ";
+		    	  	  gudokString += data;
+		    	  	  gudokString += "명";
+		    	  	  gudokno.innerHTML=gudokString;
 		    		  id.innerHTML="구독";
 		    		  alert("구독이 취소되었습니다")
 		      },
@@ -366,13 +374,9 @@ a:link {
 							</table>
 							<br>
 							<div>
-							<a href="<c:url value='/routinedesc.do'/>" class="btn btn-sm animated-button victoria-one"
-								style="height:50px; width: 100px; float : right">구독순</a>
-							<a href="<c:url value='/routine.do'/>" class="btn btn-sm animated-button victoria-one"
-								style="height:50px; width: 100px; float : right">최신순</a>
+							<button class="btn" id="gogudok" style="float:right;background-color:#0080FF; font-weight:blod; color:white;" >구독순</button>
+							<button class="btn" id="gochuashin" style="float:right;background-color:#0080FF; font-weight:blod; color:white;">최신순</button>
 							</div>
-							<br>
-							<br>
 							<br>
 							<br>
 
@@ -384,8 +388,8 @@ a:link {
 									<c:forEach items="${list}" var="item" varStatus="loop">
 										<!-- 아코디언 제목 -->
 										<div>${item.routine_no}
-											<span>${item.routine_name}</span><span>${item.name}</span>
-											<span>구독${item.count}</span><span style="float: right">${item.create_at}</span>
+											<span style="padding-left:15px;">${item.routine_name}</span><span id="${item.routine_no}no" style="float: right;display:inline-block; width:100px; margin-left:50px; text-align:center">구독자 ${item.count}명</span>
+											<span style ="float:right; display:inline-block; width:100px;text-align:center; margin-left:50px">${item.create_at}</span><span style="float:right; display:inline-block; width:100px; text-align:center">${item.name}</span>
 										</div>
 										<!-- 실질 내용 -->
 										<div>
@@ -1842,6 +1846,16 @@ a:link {
 	      }
 	      
 	      
+	      $('#gogudok').click(function(){//구독순 이동
+	  		window.location.href = "<c:url value='/routinedesc.do'/>";
+	  	});
+	  	
+	  	$('#gochuashin').click(function(){//최신순 이동
+	  		window.location.href = "<c:url value='/routine.do'/>";
+	  	});
+	      
+	      
+	      
 	      $.ajax({
 	             type: "get",
 	             url: "/sixone/exercise.insert",
@@ -1917,7 +1931,6 @@ a:link {
 		      dataType:'text',
 		      data:{title:Title,id:ID},
 		      success:function(){
-		    		  alert("루틴 명 먼저 입력됨");
 		    		  for(i=1; i<15; i++){
 		    				console.log("도큐먼트 루네임 이너텍스트:",document.getElementById("rouname"+i).innerText);
 		    				if(document.getElementById("rouname"+i).innerText==""){
@@ -1944,7 +1957,7 @@ a:link {
 		    					   });
 		    				}
 		    			}
-		    		  alert("작성끝");
+		    		  alert("루틴이 작성되었습니다");
 		    		  location.reload();
 		      },
 		      error:function(request,error){
@@ -1964,7 +1977,6 @@ a:link {
 		        url: "<c:url value='/Ajax/roudelete.do'/>",
 		        data: {no:no},
 		        dataType:'text',
-		        success: alert("수정을 위한 먼저 삭제"),
 		        error:function(request,error){
 						console.log('상태코드:',request.status);
 						console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
@@ -1996,7 +2008,7 @@ a:link {
 		    					   });
 		    				}
 		    			}
-		    		  alert("수정끝");
+		    		  alert("수정되었습니다");
 		    		  location.reload();
 		   };
 

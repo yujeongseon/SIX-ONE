@@ -125,12 +125,12 @@ public class BoardController {
       @RequestMapping(value="/Ajax/gudok.do",produces ="text/html; charset=UTF-8")
       @ResponseBody
       public String ajaxgudok(String no, String id) {
-    	  int and;
-    	  String answer;
+    	  String num;
     	  RoutineDAO dao= new RoutineDAO(null);
-    	  and=dao.gudokin(no, id);
-    	  answer="구독완료";
-    	  return answer;
+    	  dao.gudokin(no, id);
+    	  num=dao.gudoknum(no);
+    	  if(num==null) num="0";
+    	  return num;
       }
       
     //ajax 구독취소
@@ -138,11 +138,14 @@ public class BoardController {
       @ResponseBody
       public String ajaxgudno(String no, String id) {
     	  int and;
+    	  String num;
     	  String answer;
     	  RoutineDAO dao= new RoutineDAO(null);
     	  and=dao.gudokout(no, id);
+    	  num=dao.gudoknum(no);
+    	  if(num==null) num="0";
     	  answer="구독완료";
-    	  return answer;
+    	  return num;
       }
       
     //ajax 운동명 이미지파일 값 가져오기
@@ -235,8 +238,8 @@ public class BoardController {
          HttpSession session,
          Model model) {//id는 게시판 구분용으로
       //JSON데이타 타입으로 반환하기위해 JSONObject객체 생성
-      int pageSize = 10;
-      int blockPage = 10;
+      int pageSize = 5;
+      int blockPage = 5;
      
       String id= session.getAttribute("LoginSuccess").toString();
       RoutineDAO dao= new RoutineDAO(null);
@@ -272,8 +275,8 @@ public class BoardController {
          HttpSession session,
          Model model) {//id는 게시판 구분용으로
       //JSON데이타 타입으로 반환하기위해 JSONObject객체 생성
-      int pageSize = 10;
-      int blockPage = 10;
+      int pageSize = 5;
+      int blockPage = 5;
      
       String id= session.getAttribute("LoginSuccess").toString();
       RoutineDAO dao= new RoutineDAO(null);
