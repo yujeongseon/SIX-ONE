@@ -82,6 +82,7 @@ public class RoutineDAO {
                   dto2.setSet(rs2.getString(3));
                   dto2.setDays(rs2.getString(4));
                   dto2.setExercise_motions(rs2.getString(5));
+                  
                   rou.add(dto2);
                }
             } catch (Exception e) {e.printStackTrace();}

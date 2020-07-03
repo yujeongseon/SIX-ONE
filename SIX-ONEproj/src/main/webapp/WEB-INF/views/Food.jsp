@@ -431,6 +431,7 @@
 			
 		}
 		
+		// 데이트피커
 		$( "#datepicker" ).datepicker({
 		      showOn: "button",
 		      buttonImage: "resources/images/calendar-icon.png",

@@ -16,6 +16,8 @@
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+
+
 $(".hover").mouseleave(
 		  function() {
 		    $(this).removeClass("hover");
@@ -24,7 +26,14 @@ $(".hover").mouseleave(
    
    
    jQuery(document).ready(function($) {
-      var followFlag = true;
+	    var followFlag = true;
+	   if(window.innerWidth<970){
+		   console.log('작음');
+			 $('.follow *').hide();
+			 followFlag = false;
+			 
+		 }
+  
       
       
       $( window ).resize( function() {
@@ -39,7 +48,7 @@ $(".hover").mouseleave(
    $(window)
    .scroll(
          function() {
-            if ($(window).scrollTop() + 200 < ($(document).height() - $(window).height())) {
+            if ($(window).scrollTop() + 200 < ($(document).height() - $(window).height()) && followflag) {
                $('.follow').attr('style',('padding-top :'+ $(window).scrollTop()+'px'));
             }
          })
