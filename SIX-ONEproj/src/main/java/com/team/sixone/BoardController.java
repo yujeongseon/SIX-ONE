@@ -227,9 +227,9 @@ public class BoardController {
       
   
    
-   //ajax 루틴뿌려주기
+   //루틴뿌려주기
    @RequestMapping(value="/routine.do",produces ="text/html; charset=UTF-8")
-   public String ajaxRoutine(@RequestParam Map map,//검색어 받기
+   public String Routine(@RequestParam Map map,//검색어 받기
          @RequestParam(required = false,defaultValue = "1") int nowPage,
          HttpServletRequest req,//컨텍스트 루트 얻기용
          HttpSession session,
@@ -261,7 +261,45 @@ public class BoardController {
       //model.addAttribute("rlist",rlist);
       //뷰정보 반환]
       return "/routineboard.tiles";
-   }///////////ajaxJson
+   }///////////루틴게시판 이동
+   
+   
+   //루틴 구독순으로 정렬
+   @RequestMapping(value="/routinedesc.do",produces ="text/html; charset=UTF-8")
+   public String Routinedesc(@RequestParam Map map,//검색어 받기
+         @RequestParam(required = false,defaultValue = "1") int nowPage,
+         HttpServletRequest req,//컨텍스트 루트 얻기용
+         HttpSession session,
+         Model model) {//id는 게시판 구분용으로
+      //JSON데이타 타입으로 반환하기위해 JSONObject객체 생성
+      int pageSize = 10;
+      int blockPage = 10;
+     
+      String id= session.getAttribute("LoginSuccess").toString();
+      RoutineDAO dao= new RoutineDAO(null);
+      //전체 레코드수   
+      int totalRecordCount = dao.getTotalRowCount(map);
+      //전체 페이지수]
+      int totalPage = (int)Math.ceil((double)totalRecordCount/pageSize);
+      
+      //시작 및 끝 ROWNUM구하기]
+      int start = (nowPage-1)*pageSize+1;
+      int end   = nowPage*pageSize;   
+      //페이징을 위한 로직 끝]   
+      map.put("start", start);
+      map.put("end", end);
+      List<RoutineDTO> list=dao.gudokupList(map,id);
+
+      String pagingString= PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,req.getContextPath()+ "/routine.do?");
+      //데이타 저장]
+      
+      model.addAttribute("list", list);
+      model.addAttribute("pagingString", pagingString);
+      //model.addAttribute("rlist",rlist);
+      //뷰정보 반환]
+      return "/routineboarddesc.tiles";
+   }///////////루틴게시판 이동
+   
    
    @RequestMapping(value="/Ajax/selectone.do",produces ="text/html; charset=UTF-8")
    @ResponseBody

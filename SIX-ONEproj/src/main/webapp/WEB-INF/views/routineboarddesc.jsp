@@ -314,6 +314,7 @@ a:link {
 								style="width: 100%; height: 400px;">
 							<div class="carousel-caption"></div>
 						</div>
+
 					</div>
 					<!-- Controls -->
 					<a class="left carousel-control" href="#carousel" data-slide="prev">
@@ -352,13 +353,14 @@ a:link {
 
 					<div class="row">
 						<div class="col-md-12">
-						
+
 							<table id="hell"
 								class="table table-bordered table-hover text-center"
 								style="color: black; font-family: sans-serif;" id="tab">
 								<thead id="tthead">
-									<tr style="text-size: 15px; border-bottom-style: solid; border-bottom-color: black; border-top-style: solid; border-top-color: black">
-										<th class="column1">루틴 목록</th>
+									<tr class="table100-head"
+										style="text-size: 15px; border-bottom-style: solid; border-bottom-color: black; border-top-style: solid; border-top-color: black">
+										<th class="column1">루틴 목록 구독순으로</th>
 									</tr>
 								</thead>
 							</table>
@@ -371,7 +373,9 @@ a:link {
 							</div>
 							<br>
 							<br>
-							
+							<br>
+							<br>
+
 							<div id="accordion">
 								<c:if test="${empty list}" var="isEmpty">
 									<div>등록된 루틴이 없습니다.</div>
@@ -381,7 +385,7 @@ a:link {
 										<!-- 아코디언 제목 -->
 										<div>${item.routine_no}
 											<span>${item.routine_name}</span><span>${item.name}</span>
-											<span style="float: right">${item.create_at}</span>
+											<span>구독${item.count}</span><span style="float: right">${item.create_at}</span>
 										</div>
 										<!-- 실질 내용 -->
 										<div>

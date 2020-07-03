@@ -44,6 +44,11 @@ public class RoutineDAO {
       }catch(SQLException e) {e.printStackTrace();}
    }//////////close
    
+   /* 
+SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(*) count from subscribe group by routine_no order by count desc) a right outer join (SELECT r.*,name FROM routine r JOIN member m ON r.id=m.id) b on a.routine_no = b.routine_no order by create_at desc) T) WHERE R BETWEEN 1 AND 10;
+    */
+   
+   
    public List<RoutineDTO> selectList(Map map,String id){
       List<RoutineDTO> list = new Vector<RoutineDTO>();
       
@@ -95,6 +100,67 @@ public class RoutineDAO {
       catch (SQLException e) {e.printStackTrace();}
       return list;
    }//////////selectList()
+   
+   
+   /* 구독자순 쿼리
+    * SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(*) count from subscribe group by routine_no order by count desc) a join (SELECT r.*,name FROM routine r JOIN member m ON r.id=m.id) b on a.routine_no = b.routine_no ORDER BY count DESC) T) WHERE R BETWEEN 1 AND 5;
+    */
+   //구독자 높은순 정렬
+   public List<RoutineDTO> gudokupList(Map map,String id){
+	      List<RoutineDTO> list = new Vector<RoutineDTO>();
+	      //페이징 적용-구간쿼리로 변경
+	      String sql="SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(*) count from subscribe group by routine_no order by count desc) a join (SELECT r.*,name FROM routine r JOIN member m ON r.id=m.id) b on a.routine_no = b.routine_no ";
+	      if(map.get("searchWord")!=null) {
+	         sql+=" WHERE "+map.get("searchColumn")+" LIKE '%"+map.get("searchWord")+"%' ";
+	      }      
+	      sql+=" ORDER BY count DESC) T) WHERE R BETWEEN ? AND ?";
+	      try {
+	         psmt = conn.prepareStatement(sql);
+	         //페이징을 위한 시작 및 종료 rownum설정]
+	         psmt.setString(1, map.get("start").toString());
+	         psmt.setString(2, map.get("end").toString());
+	         rs=psmt.executeQuery();
+	         while(rs.next()) {
+	            RoutineDTO dto = new RoutineDTO();
+	            List<RoutineDTO> rou = new Vector<RoutineDTO>();
+	            
+	            dto.setRoutine_no(rs.getString(1));
+	            dto.setCount(rs.getString(2));
+	            dto.setId(rs.getString(6));
+	            dto.setCreate_at(rs.getDate(5));
+	            dto.setRoutine_name(rs.getString(4));
+	            dto.setName(rs.getString(7));
+	            
+	            //루틴 글 번호 변수 a지정
+	            String a= rs.getString(1);
+	            String sql2="SELECT e.exercise_name,r.goal_count,r.goal_set,r.routine_days,exercise_motions FROM rou_exe r JOIN exercise e ON r.exercise_no = e.exercise_no  WHERE routine_no=? order by routine_days";
+	            try {
+	               psmt = conn.prepareStatement(sql2);
+	               psmt.setString(1, a);
+	               rs2= psmt.executeQuery();
+	               while(rs2.next()) {
+	              	 RoutineDTO dto2=new RoutineDTO();
+	                  dto2.setExe_no(rs2.getString(1));
+	                  dto2.setCount(rs2.getString(2));
+	                  dto2.setSet(rs2.getString(3));
+	                  dto2.setDays(rs2.getString(4));
+	                  dto2.setExercise_motions(rs2.getString(5));
+	                  rou.add(dto2);
+	               }
+	            } catch (Exception e) {e.printStackTrace();}
+	            dto.setList(rou);
+	            Boolean TF=gudokok(a,id);
+	            dto.setGudok(TF);
+	            
+	            list.add(dto);
+	         }
+	      }
+	      catch (SQLException e) {e.printStackTrace();}
+	      return list;
+	   }//////////구독자 높은 순 정렬
+   
+   
+   
    
    public List<RoutineDTO> selectone(String no){
 	      List<RoutineDTO> list = new Vector<RoutineDTO>();
