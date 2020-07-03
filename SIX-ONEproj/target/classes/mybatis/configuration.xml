@@ -22,7 +22,7 @@
 		<typeAlias alias="routineDTO" type="com.team.sixone.service.RoutineDTO"/>
 		<typeAlias alias="proteinDTO" type="com.team.sixone.service.ProteinDTO"/>
 		<typeAlias alias="foodDTO" type="com.team.sixone.service.FoodDTO"/>
-		
+		<typeAlias alias="GraphsDTO" type="com.team.sixone.service.GraphsDTO"/>
 		<!-- memoCommentDTO 는 결과 Map 에 저장하기때문에 빈 등록 필요 없음 -->
 		<typeAlias alias="LoginDTO" type="com.team.sixone.service.LoginDTO"/>
 		<typeAlias alias="MemberDTO" type="com.team.sixone.service.MemberDTO"/>
@@ -39,7 +39,7 @@
 		<mapper resource="mybatis/routine.xml" />
 		<mapper resource="mybatis/protein.xml" />
 		<mapper resource="mybatis/food.xml" />
-		
+		<mapper resource="mybatis/Graphs.xml" />
 		<!-- <mapper resource="mybatis/OneMemo.xml" /> -->
 		<mapper resource="mybatis/Login.xml"/>
 		<mapper resource="mybatis/Member.xml"/>

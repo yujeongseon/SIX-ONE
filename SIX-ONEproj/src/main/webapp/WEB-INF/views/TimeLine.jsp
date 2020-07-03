@@ -80,6 +80,8 @@ function isSaved(event){ //세이브 체크박스
 	 }
 
 }
+
+
 </script>
 <!--  본문 -->
 <div class="col-md-3 col-md-offset-2 trainers-entry follow"
@@ -109,8 +111,8 @@ function isSaved(event){ //세이브 체크박스
 						<!-- 아이디 연동 제대로(함) -->
 						<input type="hidden" name="id" value="<%=id %>" id="id"/>
 						<div id="image_container"></div>
-						<label for="exampleInputFile">사진 업로드</label> <input type="file"
-							id="image" name="image" onchange="setThumbnail(event);">
+						<label for="exampleInputFile">사진 업로드</label> 
+						<input type="file" id="image" name="image" onchange="setThumbnail(event);" style="width:100%;height:50px">
 						<p class="help-block">이미지 파일만 업로드 가능합니다</p>
 					
 					
@@ -163,7 +165,7 @@ function isSaved(event){ //세이브 체크박스
 	<!-- a href="<c:url value="tl_full.do"/>"-->
 		<div class="trainers-entry">
 			<div class="trainer-img"
-				style="background-image: url('<%=images[0]%>'); height: 600px"></div>
+				style="background-image: url('<%=images[0]%>'),url('https://contents.sixshop.com/thumbnails/uploadedFiles/68194/blogPost/image_1539674114780_1500.jpg') ; height: 600px"></div>
 			<div class="desc">
 				<h3 style="color:black;"><%=ids[0]%> <button class="btn btn-primary" value="sss" style=" float: right" onclick="location.href='del.do?img=<%=images[0]%>' ">del</button> </h3>
 				<span> <%=content[0]%></br> <%=date[0]%>
@@ -221,6 +223,8 @@ function isSaved(event){ //세이브 체크박스
 
 
 jQuery(document).ready(function($) {
+	
+	
 
 	var images = Array();
 	var ids = Array();
@@ -244,9 +248,7 @@ jQuery(document).ready(function($) {
 		fircom[<%=i%>] = '<%=fircom[i]%>';
 		
 <%}%>
-console.log(images);
 console.log(ids);
-console.log(content);
 	var page = 1;
 						var followFlag = true;
 

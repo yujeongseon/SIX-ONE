@@ -171,12 +171,7 @@ public class DAO {
 				"(SELECT id FROM timeline_comments WHERE timeline_no=timeline.timeline_no AND comments_no = (select max(comments_no) from timeline_comments where timeline_no = timeline.timeline_no)) AS firstid " + 
 				"FROM timeline  ORDER BY timeline_no DESC";
 		
-		// SELECT timeline.*, (SELECT COUNT(*) from timeline_comments where timeline_no= timeline.timeline_no)as comcnt, (SELECT content from timeline_comments where rownum=1 and timeline_no=timeline.timeline_no)as firstcontent, (SELECT id from timeline_comments where rownum=1 and timeline_no=timeline.timeline_no)as firstid  FROM timeline  ORDER BY timeline_no desc;
 		
-		
-		//SELECT id, content from timeline_comments where rownum=1 and timeline_no=11 ORDER BY comments_no desc;
-		
-		//SELECT * FROM timeline.* ORDER BY timeline_no desc;
 		/*
 SELECT TO_CHAR(S.SALE_DATE, 'YYYYMM') AS YYYYMM
 	  , G.REGION
@@ -358,8 +353,9 @@ GROUP BY TO_CHAR(S.SALE_DATE,'YYYYMM'), G.REGION;
 
 	public String[] selectone(String tlno) {
 
-		String[] content = new String[5];
-		String sql = "select * from timeline where timeline_no=?";
+		String[] content = new String[6];
+		String sql = "select timeline.*,member.profile from timeline, member where timeline.ID = member.ID and timeline_no=?";
+		//select timeline.*,member.profile from timeline where timeline.id=member.id and timeline_no=
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, tlno);
@@ -370,6 +366,7 @@ GROUP BY TO_CHAR(S.SALE_DATE,'YYYYMM'), G.REGION;
 			content[2] = rs.getString(3);  //이미지
 			content[3] = rs.getString(4);// 시간 
 			content[4] = rs.getString(5);// 아이디
+			content[5] = rs.getString(6);
 	// 11, 12d1d2d21, resources/images/TLImg/marker1.png, 2020-06-14 13:30:13		
 			
 			System.out.printf("ssssss : %s, %s, %s, %s", rs.getString(5), rs.getString(2), rs.getString(3), rs.getString(4));
