@@ -28,4 +28,8 @@
 	<insert id="memberjoin" parameterType="java.util.Map">
 		INSERT INTO MEMBER VALUES(#{newid},#{newpassword},#{name},#{height},#{weight},#{profile},#{gender},#{goal},#{question},#{answer})
 	</insert>
+	
+	<select id="passsearch" parameterType="java.util.Map" resultType="MemberDTO">
+		SELECT * FROM MEMBER WHERE id = #{id} AND QUESTION = #{question} AND answer = #{answer}
+	</select>
 </mapper>

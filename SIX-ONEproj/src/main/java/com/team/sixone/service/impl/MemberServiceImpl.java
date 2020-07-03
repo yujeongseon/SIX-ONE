@@ -1,5 +1,6 @@
 package com.team.sixone.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -47,6 +48,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int memberjoin(Map map) {
 		return dao.memberjoin(map);
+	}
+
+	@Override
+	public List<MemberDTO> passsearch(Map map) {
+		return dao.passsearch(map);
 	}
 	
 

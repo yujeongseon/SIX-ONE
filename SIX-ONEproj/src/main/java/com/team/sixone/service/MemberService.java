@@ -19,4 +19,6 @@ public interface MemberService {
 	int profileupdate(Map map);
 	
 	int memberjoin(Map map);
+	
+	List<MemberDTO> passsearch(Map map);
 }

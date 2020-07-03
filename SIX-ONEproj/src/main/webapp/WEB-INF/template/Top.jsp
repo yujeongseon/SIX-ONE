@@ -140,7 +140,7 @@ $(function(){
                
             <div class="text-right p-t-8 p-b-31">
                <span id="msg" style=" color: red; width: 10%;"></span>
-               <a href="#" style="color: black; text-decoration:underline;">아이디 / 비밀번호 찾기</a>
+               <a href="<c:url value='/passwordsearch.do'/>" style="color: black; text-decoration:underline;">비밀번호 찾기</a>
             </div>
             
             <div class="container-login100-form-btn">

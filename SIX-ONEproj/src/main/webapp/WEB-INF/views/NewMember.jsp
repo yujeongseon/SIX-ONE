@@ -94,6 +94,8 @@
                             <option>자신의 인생 좌우명은?</option>
                             <option>기억에 남는 추억의 장소는?</option>
                             <option>유년시절 가장 생각나는 친구 이름은?</option>
+                            <option>나의 출신 초등학교는?</option>
+                            <option>다른 이메일 주소는?</option>
                         </select>
                     </div>
                 </div>

@@ -53,6 +53,11 @@ public class MemberDAO implements MemberService{
 		return sqlMapper.insert("memberjoin", map);
 	}
 
+	@Override
+	public List<MemberDTO> passsearch(Map map) {
+		return sqlMapper.selectList("passsearch", map);
+	}
+
 	
 	
 	
