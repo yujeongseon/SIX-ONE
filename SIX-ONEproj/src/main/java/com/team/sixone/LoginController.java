@@ -51,7 +51,7 @@ public class LoginController {
    @RequestMapping("/Logout.do")
    public String LogOut(HttpSession session) {
       session.invalidate();
-      return"forward:/";
+      return"redirect:/";
    }//////////LogOut
    
    

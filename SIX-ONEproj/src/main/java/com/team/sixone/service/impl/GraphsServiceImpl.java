@@ -21,6 +21,11 @@ public class GraphsServiceImpl implements GraphsSerivce{
 		return dao.exercisecount(map);
 	}
 
+	@Override
+	public List<GraphsDTO> exerciseonename(Map map) {
+		return dao.exercisecount(map);
+	}
+
 
 	
 	

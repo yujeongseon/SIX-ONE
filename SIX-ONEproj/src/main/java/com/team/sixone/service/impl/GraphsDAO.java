@@ -21,4 +21,9 @@ public class GraphsDAO implements GraphsSerivce{
 		
 	}
 
+	@Override
+	public List<GraphsDTO> exerciseonename(Map map) {
+		return sqlMapper.selectList("exerciseonename", map);
+	}
+
 }

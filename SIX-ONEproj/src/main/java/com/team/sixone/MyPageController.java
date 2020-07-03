@@ -51,6 +51,8 @@ public class MyPageController {
 		model.addAttribute("food", food);
 		List<GraphsDTO> graphs = GraphsSerivce.exercisecount(map);
 		model.addAttribute("graphs", graphs);
+		List<GraphsDTO> graphs2 =  GraphsSerivce.exerciseonename(map);
+		model.addAttribute("graphs2", graphs2);
 		return "/MyPage.tiles";
 		}
 		else { //로그인 안된경우
