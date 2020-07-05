@@ -31,12 +31,12 @@
 </br>
 	
 	
-	<div class="col-md-10 col-md-offset-1" style="border: 0.2px dotted #909090;margin-top:100px"> 
+	<div class="col-md-10 col-md-offset-1" style="border: 0.2px dotted #909090;margin-top:100px;"> 
 	<div class="col-md-8">
-	<img src="${tlone[2] }" style="width:100%; position: static; padding-top: 90px"/>
+	<img src="resources/Profile/${tlone[2]}" style="width:100%; height:700px; position: static; padding-top: 90px"/>
 	</div>
 	<div class="col-md-4 ">
-　	<div style="padding-top: 30px"></div><img src="resources/Profile/${tlone[5]}" style="width:13%"/><span style="font-size: 2.0em">&nbsp;@${tlone[4]} </span>
+　	<div style="padding-top: 30px"></div><img src="/resources/Profile/${tlone[5]}" style="width:13%"/><span style="font-size: 2.0em">&nbsp;${tlone[4]} </span>
 <hr style="padding: 0; margin: 0.2em">
 
 </br>

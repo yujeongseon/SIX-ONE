@@ -5,6 +5,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/common.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/TLstyle.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/new_post.css'/>">
+<link rel="shortcut icon" href="imgs/instagram.png">
+<script>
+$(function(){
+	$('#heartbtn').on('click',function(){
+		if($('#heartbtn').css('color') == 'rgb(255, 0, 0)'){
+		$('#heartbtn').css('color','black');
+		}
+		else{
+			$('#heartbtn').css('color','red');
+		}
+		
+	});
+});
+</script>
 <img src="resources/images/black.jpg"
 	style="width: 100%; height: 100px;" />
 	<style>
@@ -84,12 +103,7 @@ function isSaved(event){ //세이브 체크박스
 
 </script>
 <!--  본문 -->
-<div class="col-md-3 col-md-offset-2 trainers-entry follow"
-	style="padding-top: 100px; width: 250px; background-color: aqua;">
-	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary " data-toggle="modal"
-		data-target="#wirteModal">글 작성하기</button>
-		
+<div class="col-md-3 col-md-offset-2 trainers-entry follow" style="padding-top: 100px; width: 250px; background-color: aqua;">
 
 	<!-- Modal -->
 	<div class="modal fade" id="wirteModal" tabindex="-1" role="dialog"
@@ -144,16 +158,26 @@ function isSaved(event){ //세이브 체크박스
 
 
 
-	<form class="form-inline" style="padding-top: 5px" method="GET">
-		<div class="form-group">
-			<label class="sr-only" for="searchtxt">검색하기</label> 
-			<input type="text" class="form-control" id="searchtxt" placeholder="검색..." name="search" style="width: 85%; height: 33px;"/> 
-			
-			<input type="submit" value="" style="width:27px; height:27px; padding-left:5px; background-image:url(resources/images/icon_search.png);background-size:27px 27px; background-color:white"></input>
+	<section id="container">
+    <div id="main_container">
+        <div class="post_form_container" style="margin-right: 200px;">
+            <form class="form-inline" style="padding-top: 5px" method="GET">
+                <div class="title" style="text-align: center; font-weight: bold; font-size: 20px;">리모컨</div>
+                <p>
+                   <input type="text" class="form-control" id="searchtxt" placeholder="검색..." name="search" style="width: 85%; height: 33px; "/>
+                   <input type="submit" value="" 
+                   style="width:27px; height:27px; padding-left:5px; background-image:url(resources/images/icon_search.png);
+                   background-size:27px 27px; background-color:white"></input>
+                </p>
+             </form>
+                <p style="color: gray;">실시간 인기 검색어 </p>
+                    <textarea name="content" id="text_field" cols="50" rows="5" placeholder="뭐넣지"></textarea>
 
-		</div>
-	</form>
-	<p style="color: gray;">실시간 인기 검색어 </p>
+                <input class="submit_btn" type="button" value="글 작성하기" data-toggle="modal" data-target="#wirteModal">
+            
+        </div>
+    </div>
+</section>
 
 </div>
 
@@ -164,12 +188,10 @@ function isSaved(event){ //세이브 체크박스
 	<div class="animate-box">
 	<!-- a href="<c:url value="tl_full.do"/>"-->
 		<div class="trainers-entry">
-			<div class="trainer-img"
-				style="background-image: url('<%=images[0]%>'),url('https://contents.sixshop.com/thumbnails/uploadedFiles/68194/blogPost/image_1539674114780_1500.jpg') ; height: 600px"></div>
+			<div class="trainer-img" style="background-image: url('<%=images[0]%>'),url('https://contents.sixshop.com/thumbnails/uploadedFiles/68194/blogPost/image_1539674114780_1500.jpg') ; height: 600px"></div>
 			<div class="desc">
 				<h3 style="color:black;"><%=ids[0]%> <button class="btn btn-primary" value="sss" style=" float: right" onclick="location.href='del.do?img=<%=images[0]%>' ">del</button> </h3>
-				<span> <%=content[0]%></br> <%=date[0]%>
-				</span>
+				<span> <%=content[0]%></br> <%=date[0]%></span>
 				</br></br></br>
 		
 				
@@ -203,6 +225,91 @@ function isSaved(event){ //세이브 체크박스
 		</div>
 
 	</div>
+	
+	
+	
+	<section id="container">
+		<section id="main_container">
+			<div class="inner">
+				<div class="contents_box">
+					<article class="contents">
+						<header class="top">
+							<div class="user_container">
+								<div class="profile_img">
+									<img src="resources/Profile/정연.jpg" alt="프로필이미지">
+								</div>
+								<div class="user_name">
+									<div class="nick_name m_text" style="margin-top: 8px;"><%=ids[0]%></div>
+								</div>
+
+							</div>
+
+							<div class="sprite_more_icon" data-name="more">
+								<ul class="toggle_box">
+									<li><input type="submit" class="follow" value="팔로우"
+										data-name="follow"></li>
+									<li>수정</li>
+									<li>삭제</li>
+								</ul>
+							</div>
+						</header>
+
+						<div class="img_section">
+							<div class="trans_inner">
+								<div>
+									<img style="height: 550px;" src="resources/Profile/정연2.jpg" alt="visual01">
+									
+								</div>
+							</div>
+						</div>
+
+						<div class="bottom_icons">
+							<div class="glyphicon glyphicon-heart" id="heartbtn"style="color: red;"><span style="color: gray;">&nbsp;수정</span>&nbsp;<span style="color: gray;"value="sss" onclick="location.href='del.do?img=<%=images[0]%>' ">삭제</span></div>
+						</div>
+						<div style="margin-left: 20px;"><span style="color: black;"><%=content[0]%></span></div>
+
+						<div class="likes m_text">
+							좋아요 <span id="like-count-39">2,346</span> <span id="bookmark-count-39"></span> 개
+						</div>
+
+						<div class="comment_container">
+							<div class="comment" id="comment-list-ajax-post37">
+								<div class="comment-detail">
+									<div class="nick_name m_text"><%=firid[0]%></div> 
+									<div><%=fircom[0] %></div>
+								</div>
+							</div>
+							<div class="small_heart">
+								<div class="sprite_small_heart_icon_outline"></div>
+							</div>
+							<span style="color:red"><a href="./tl_full.do?tlno=<%=nos[0] %>">댓글 <%=comcnt[0] %>개 전체보기....		</a></span> 
+						</div>
+
+						<div class="timer"><%=date[0]%></div>
+						
+
+						<div class="comment_field" id="add-comment-post37">
+							<input type="text" placeholder="댓글달기...">
+							<div class="upload_btn m_text" data-name="comment">게시</div>
+						</div>
+					</article>	
+				</div>
+			</div>
+		</section>
+	</section>
+						
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </div>
 </div>
 
@@ -330,5 +437,7 @@ console.log(ids);
 										});
 					});
 </script>
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>  타임라인 스크립트 넣으면 안떠서 뺐음 혹시 모르니 일단 주석처리-->
+<script src="js/main.js"></script>
 </html>
 
