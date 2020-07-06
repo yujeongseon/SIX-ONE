@@ -173,7 +173,7 @@ public class BoardController {
     	  dao.deleterou(no);
       }
       
-    //ajax 루틴 제목
+    //ajax 루틴 제목 작성
       @RequestMapping(value="/Ajax/writerou.do",produces ="text/html; charset=UTF-8")
       @ResponseBody
       public void ajaxroutinewrite(String title,String id) {
@@ -181,6 +181,7 @@ public class BoardController {
     	  dao.writerou(title, id);
       }
       
+      //루틴 상세내용 작성
       @RequestMapping(value="/Ajax/writedetail.do",produces ="text/html; charset=UTF-8")
       @ResponseBody
       public void ajaxroutinedetailwrite(String exename,String roucount,String rouset, int days) {
@@ -188,7 +189,7 @@ public class BoardController {
     	  if(days > 7) {
     		  days=days-7;
     	  }
-    	  System.out.println("이거 두번만 들어와야 정상인데"+days+"날짜 확인 정상으로 들어오냐");
+    	  
     	  dao.writeroudetail(exename,roucount,rouset,days);
       }
       

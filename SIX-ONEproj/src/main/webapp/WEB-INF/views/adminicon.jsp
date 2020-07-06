@@ -12,7 +12,10 @@
     <!-- Bootstrap -->
     <link href='<c:url value="/resources/vendors/bootstrap/bootstrap.min.css"/>' rel='stylesheet' />
     <!-- Font Awesome -->
-    <link href='<c:url value="/resources/vendors/font-awesome/font-awesome.min.css"/>' rel='stylesheet' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- 
+    <link href='<c:url value="/resources/vendors/fontawesome/font-awesome.css"/>' rel='stylesheet' />
+     -->
     <!-- NProgress -->
     <link href='<c:url value="/resources/vendors/nprogress/nprogress.css"/>' rel='stylesheet' />
     

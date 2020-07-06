@@ -39,7 +39,7 @@ $(".hover").mouseleave(
    $(window)
    .scroll(
          function() {
-            if ($(window).scrollTop() + 200 < ($(document).height() - $(window).height())) {
+            if ($(window).scrollTop() + 200 < ($(document).height() - $(window).height()) &&followflag) {
                $('.follow').attr('style',('padding-top :'+ $(window).scrollTop()+'px'));
             }
          })

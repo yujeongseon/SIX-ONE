@@ -17,7 +17,10 @@
     <!-- Bootstrap -->
     <link href='<c:url value="/resources/vendors/bootstrap/bootstrap.min.css"/>' rel='stylesheet' />
     <!-- Font Awesome -->
-    <link href='<c:url value="/resources/vendors/fontawesome/fontawesome.min.css"/>' rel='stylesheet' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- 
+    <link href='<c:url value="/resources/vendors/fontawesome/font-awesome.css"/>' rel='stylesheet' />
+     -->
     <!-- NProgress -->
     <link href='<c:url value="/resources/vendors/nprogress/nprogress.css"/>' rel='stylesheet' />
     <!-- iCheck -->
@@ -65,17 +68,7 @@
                 <h3>항목</h3>
                 <ul class="nav side-menu">
                   <li><a href='<c:url value="/admin.do"/>'><i class="fa fa-home"></i> 관리 메인 <span class="fa fa-chevron-down"></span></a></li>
-                  <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="form.html">General Form</a></li>
-                      <li><a href="form_advanced.html">Advanced Components</a></li>
-                      <li><a href="form_validation.html">Form Validation</a></li>
-                      <li><a href="form_wizards.html">Form Wizard</a></li>
-                      <li><a href="form_upload.html">Form Upload</a></li>
-                      <li><a href="form_buttons.html">Form Buttons</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i> UI 요소<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="general_elements.html">General Elements</a></li>
                       <li><a href="media_gallery.html">Media Gallery</a></li>
@@ -89,19 +82,8 @@
                     </ul>
                   </li>
                   <li><a href='<c:url value="/moris.do"/>'><i class="fa fa-table"></i>모리스 차트차트 <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="tables.html">Tables</a></li>
-                      <li><a href="tables_dynamic.html">Table Dynamic</a></li>
-                    </ul>
                   </li>
                   <li><a href='<c:url value="/chart.do"/>'><i class="fa fa-bar-chart-o"></i> 차트차트2 <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href='<c:url value="/chart.do"/>'>Chart JS</a></li>
-                      <li><a href="chartjs2.html">Chart JS2</a></li>
-                      <li><a href='<c:url value="/moris.do"/>'>Moris JS</a></li>
-                      <li><a href="echarts.html">ECharts</a></li>
-                      <li><a href="other_charts.html">Other Charts</a></li>
-                    </ul>
                   </li>
                 </ul>
               </div>
@@ -394,19 +376,19 @@
                         <table class="tile_info">
                           <tr>
                             <td>
-                              <p><i class="fa fa-square green"></i>네이버 </p>
+                              <p><i class="fa fa-square" style="color:green;"></i>네이버 </p>
                             </td>
                             <td>45%</td>
                           </tr>
                           <tr>
                             <td>
-                              <p><i class="fa fa-square yellow"></i>카카오</p>
+                              <p><i class="fa fa-square" style="color:yellow;"></i>카카오</p>
                             </td>
                             <td>38%</td>
                           </tr>
                           <tr>
                             <td>
-                              <p><i class="fa fa-square aero"></i>six-one</p>
+                              <p><i class="fa fa-square" style="color:aero;"></i>six-one</p>
                             </td>
                             <td>17%</td>
                           </tr>
