@@ -16,6 +16,9 @@
 	
     <!-- Bootstrap -->
     <link href='<c:url value="/resources/vendors/bootstrap/bootstrap.min.css"/>' rel='stylesheet' />
+    <!-- 중복되서 주석처리함
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     -->
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- 
@@ -31,6 +34,9 @@
     <link href='<c:url value="/resources/vendors/jqvmap/jqvmap.min.css"/>' rel='stylesheet' />
     <!-- bootstrap-daterangepicker -->
     <link href='<c:url value="/resources/vendors/bootstrap-daterangepicker/daterangepicker.css"/>' rel='stylesheet' />
+    
+    
+
 
     <!-- Custom Theme Style -->
     <link href='<c:url value="/resources/build/css/custom.min.css"/>' rel='stylesheet' />
@@ -117,29 +123,29 @@
           <div class="row" style="display: inline-block;" >
           <div class="tile_count">
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i>전체 유저</span>
+              <span class="count_top"><i class="fa fa-user"></i>전체 회원</span>
               <div class="count">1520명</div>
               <span class="count_bottom"><i class="green">4% </i>지난주 대비 증가</span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i>남성유저 비율</span>
+              <span class="count_top"><i class="fa fa-user"></i>남성회원 비율</span>
               <div class="count green">840명</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>61%</i> 차지</span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i>여성유저 비율</span>
+              <span class="count_top"><i class="fa fa-user"></i>여성회원 비율</span>
               <div class="count">680명</div>
               <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>39%</i> 차지 </span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Collections</span>
+              <span class="count_top"><i class="fa fa-user"></i>전체 타임라인</span>
               <div class="count">2,315</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>17%</i>증가</span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
-              <div class="count">7,325</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+              <span class="count_top"><i class="fa fa-user"></i>전체 게시글</span>
+              <div class="count">5,698</div>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>11%</i>증가</span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
@@ -153,31 +159,23 @@
           <div class="row">
             <div class="col-md-12 col-sm-12 ">
               <div class="dashboard_graph">
-
-                <div class="row x_title">
-                  <div class="col-md-6">
-                    <h3>월별 가입자 증가<small>여기 적을만한게 있을까</small></h3>
-                  </div>
-                  <div class="col-md-6">
-                    <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                      <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                      <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                    </div>
-                  </div>
+                <div class="col-md-6 col-sm-6 ">
+	                <div class="container">
+	                <div class="x_title"><h3>월별 가입자 증가 추이</h3></div>
+		                <!-- 여기가 그래프 들어갈곳 -->
+		                <canvas id="linechart" width="750" height="280" style="width:750px;height:280px;"></canvas>
+		                <!-- 여기가 그래프 들어갈곳 -->
+	                 </div>
                 </div>
-
-                <div class="col-md-9 col-sm-9 ">
-                  <div id="chart_plot_01" class="demo-placeholder"></div>
-                </div>
-                <div class="col-md-3 col-sm-3  bg-white">
+                <div class="col-md-6 col-sm-6  bg-white">
                   <div class="x_title">
-                    <h2>Top Campaign Performance</h2>
+                    <h2>운동 부위 선호도</h2>
                     <div class="clearfix"></div>
                   </div>
 
                   <div class="col-md-12 col-sm-12 ">
                     <div>
-                      <p>Facebook Campaign</p>
+                      <p>상체</p>
                       <div class="">
                         <div class="progress progress_sm" style="width: 76%;">
                           <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
@@ -185,17 +183,17 @@
                       </div>
                     </div>
                     <div>
-                      <p>Twitter Campaign</p>
+                      <p>하체</p>
                       <div class="">
                         <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>
+                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="70"></div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-12 col-sm-12 ">
                     <div>
-                      <p>Conventional Media</p>
+                      <p>전신</p>
                       <div class="">
                         <div class="progress progress_sm" style="width: 76%;">
                           <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="40"></div>
@@ -203,10 +201,10 @@
                       </div>
                     </div>
                     <div>
-                      <p>Bill boards</p>
+                      <p>유산소</p>
                       <div class="">
                         <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
+                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="20"></div>
                         </div>
                       </div>
                     </div>
@@ -224,8 +222,8 @@
           <div class="row">
 
 
-            <div class="col-md-4 col-sm-4 ">
-              <div class="x_panel tile fixed_height_320">
+            <div class="col-md-6 col-sm-6 ">
+              <div class="x_panel">
                 <div class="x_title">
                   <h2>App Versions</h2>
                   <ul class="nav navbar-right panel_toolbox">
@@ -331,8 +329,8 @@
               </div>
             </div>
 
-            <div class="col-md-4 col-sm-4 ">
-              <div class="x_panel tile fixed_height_320 overflow_hidden">
+            <div class="col-md-6 col-sm-6 ">
+              <div class="x_panel">
                 <div class="x_title">
                   <h2>회원가입 경로</h2>
                   <ul class="nav navbar-right panel_toolbox">
@@ -354,14 +352,14 @@
                   <table class="" style="width:100%">
                     <tr>
                       <th style="width:37%;">
-                        <p>비율</p>
+                        <h4>비율</h4>
                       </th>
                       <th>
                         <div class="col-lg-7 col-md-7 col-sm-7 ">
-                          <p class="">포털</p>
+                          <h4 class="">포털</h4>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-5 ">
-                          <p class="">퍼센트</p>
+                          <h4 class="">퍼센트</h4>
                         </div>
                       </th>
                     </tr>
@@ -370,83 +368,32 @@
                       <!-- 
                       	<canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
                       	-->
-                        <canvas id="portalchart" max-height="140" max-width="140" style="margin: 15px 10px 10px 0"></canvas>
+                        <canvas id="portalchart" max-height="254" max-width="508" style="width:508px; height:254px;   margin: 15px 10px 10px 0;"></canvas>
                       </td>
                       <td>
                         <table class="tile_info">
                           <tr>
                             <td>
-                              <p><i class="fa fa-square" style="color:green;"></i>네이버 </p>
+                              <h3><i class="fa fa-square" style="font-size:24px; color:green;"></i>네이버 </h3>
                             </td>
-                            <td>45%</td>
+                            <td><h3>45%</h3></td>
                           </tr>
                           <tr>
                             <td>
-                              <p><i class="fa fa-square" style="color:yellow;"></i>카카오</p>
+                              <h3><i class="fa fa-square" style="font-size:24px;color:yellow;"></i>카카오</h3>
                             </td>
-                            <td>38%</td>
+                            <td><h3>38%</h3></td>
                           </tr>
                           <tr>
                             <td>
-                              <p><i class="fa fa-square" style="color:aero;"></i>six-one</p>
+                              <h3><i class="fa fa-square" style="font-size:24px;color:aero;"></i>six-one</h3>
                             </td>
-                            <td>17%</td>
+                            <td><h3>17%</h3></td>
                           </tr>
                         </table>
                       </td>
                     </tr>
                   </table>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="col-md-4 col-sm-4 ">
-              <div class="x_panel tile fixed_height_320">
-                <div class="x_title">
-                  <h2>Quick Settings</h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">Settings 1</a>
-                          <a class="dropdown-item" href="#">Settings 2</a>
-                        </div>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <div class="dashboard-widget-content">
-                    <ul class="quick-list">
-                      <li><i class="fa fa-calendar-o"></i><a href="#">Settings</a>
-                      </li>
-                      <li><i class="fa fa-bars"></i><a href="#">Subscription</a>
-                      </li>
-                      <li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
-                      <li><i class="fa fa-line-chart"></i><a href="#">Achievements</a>
-                      </li>
-                      <li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
-                      <li><i class="fa fa-line-chart"></i><a href="#">Achievements</a>
-                      </li>
-                      <li><i class="fa fa-area-chart"></i><a href="#">Logout</a>
-                      </li>
-                    </ul>
-
-                    <div class="sidebar-widget">
-                        <h4>Profile Completion</h4>
-                        <canvas width="150" height="80" id="chart_gauge_01" class="" style="width: 160px; height: 100px;"></canvas>
-                        <div class="goal-wrapper">
-                          <span id="gauge-text" class="gauge-value pull-left">0</span>
-                          <span class="gauge-value pull-left">%</span>
-                          <span id="goal-text" class="goal-value pull-right">100%</span>
-                        </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -810,6 +757,11 @@
     <script src='<c:url value="/resources/vendors/jquery/jquery.min.js"/>'></script>
     <!-- Bootstrap -->
     <script src='<c:url value="/resources/vendors/bootstrap/bootstrap.bundle.min.js"/>'></script>
+    <!-- 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ 	-->
     <!-- FastClick -->
     <script src='<c:url value="/resources/vendors/fastclick/fastclick.js"/>'></script>
     <!-- NProgress -->
@@ -851,15 +803,32 @@
 
     <!-- Custom Theme Scripts -->
     <script src='<c:url value="/resources/build/js/custom.min.js"/>'></script>
-	<script> data = { datasets: [{ backgroundColor: ['green','yellow','gray'], data: [45, 38, 17] }],
+	<script> 
+			data = { datasets: [{ backgroundColor: ['green','yellow','gray'], data: [45, 38, 17] }],
 			// 각 영역에 커서를 갖다대면 값을 보여줌
 			labels: ['네이버','카카오','six-one'] };
 			// 도넛형 차트
 			var ctx2 = document.getElementById("portalchart");
 			var myDoughnutChart = new Chart(ctx2, { type: 'doughnut',
 				data: data,
-				options: {responsive: false} });//false 안주면 멈추질 않음
-			</script>
+				options: {responsive: false} }); //false 안주면 그래프가 계속 커짐
+	</script>
+	<script>
+		var ctx = document.getElementById('linechart').getContext('2d');
+		var chart = new Chart(ctx, { // 챠트 종류를 선택
+			type: 'line',// 챠트를 그릴 데이타
+			data: { labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월'],
+				datasets: [{
+					label: '가입자 그래프',
+					backgroundColor: 'transparent',
+					borderColor: 'green',
+					data: [10, 30, 80, 15, 22, 32, 17]
+				}]
+			}, // 옵션
+			options: {responsive: false}
+			});
+		</script>
+
 
   </body>
 </html>

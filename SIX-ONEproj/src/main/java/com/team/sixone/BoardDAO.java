@@ -185,7 +185,7 @@ public class BoardDAO {
 
 		public int tomember(Map map) {///글쓰기
 			int affected = 0;
-			String sql="INSERT INTO member(id,password,name,height,weight,profile,gender,goal) VALUES(?,'0000',?,?,?,?,?,?)";
+			String sql="INSERT INTO member(id,password,name,height,weight,profile,gender,goal,create_at) VALUES(?,'0000',?,?,?,?,?,?,sysdate)";
 			try {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, map.get("id").toString());
@@ -195,7 +195,7 @@ public class BoardDAO {
 				psmt.setString(5, map.get("profile").toString());
 				psmt.setString(6, map.get("gender").toString());
 				psmt.setString(7, map.get("goal").toString());
-				affected=psmt.executeUpdate();	
+				affected=psmt.executeUpdate();
 				System.out.println("네이버 회원가입 완");
 			} catch (Exception e) {e.printStackTrace();}
 			return affected;

@@ -60,20 +60,17 @@ public class NaverLoginController {
 		//response의 nickname값 파싱
 		String name = (String) response_obj.get("name");//그냥 이름
 		String email = (String) response_obj.get("email");
-		String[] idsplit= email.split("@");//이메일 @앞쪽으로 id 지정
-		String id= idsplit[0];
-		System.out.println(id);
 		System.out.println(name);
 		System.out.println(email);
 		//회원가입이 안돼있을때 회원가입으로 이동
-		int affected=dao.findid(id);
+		int affected=dao.findid(email);
 		if(affected == 0) {
-			model.addAttribute("id",id);
+			model.addAttribute("id",email);
 			model.addAttribute("name",name);
 			return "/NaverNewmember.tiles";
 		}
 		//4.파싱 닉네임 세션으로 저장
-		session.setAttribute("LoginSuccess", id); // 로그인 활성화
+		session.setAttribute("LoginSuccess", email); // 로그인 활성화
 		session.setAttribute("name", name);
 		model.addAttribute("result", apiResult);
 		
