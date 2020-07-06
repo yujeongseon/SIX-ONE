@@ -39,7 +39,7 @@ $(".hover").mouseleave(
    $(window)
    .scroll(
          function() {
-            if ($(window).scrollTop() + 200 < ($(document).height() - $(window).height())) {
+            if ($(window).scrollTop() + 200 < ($(document).height() - $(window).height()) &&followflag) {
                $('.follow').attr('style',('padding-top :'+ $(window).scrollTop()+'px'));
             }
          })
@@ -375,6 +375,7 @@ a:link {
 							<button class="btn" id="gochuashin" style="float:right;background-color:#0080FF; font-weight:blod; color:white;">최신순</button>
 							</div>
 							<br>
+							
 							<br>
 							<div id="accordion">
 								<c:if test="${empty list}" var="isEmpty">
@@ -410,6 +411,7 @@ a:link {
 																		id="gudokbtn${item.routine_no}"
 																		onclick="gudok(${item.routine_no});"
 																		style="height:50px; width: 100px; float : right">구독중</a>
+																		<!-- float지우고 inline -->
 																</div>
 															</c:if>
 															<c:if test="${not gudok}">

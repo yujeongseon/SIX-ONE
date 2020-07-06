@@ -65,6 +65,7 @@ public class NaverLoginController {
 		System.out.println(id);
 		System.out.println(name);
 		System.out.println(email);
+		//회원가입이 안돼있을때 회원가입으로 이동
 		int affected=dao.findid(id);
 		if(affected == 0) {
 			model.addAttribute("id",id);

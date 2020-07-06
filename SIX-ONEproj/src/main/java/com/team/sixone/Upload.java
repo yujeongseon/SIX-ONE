@@ -25,15 +25,9 @@ public class Upload {
 
 		// 2] MultipartRequest 객체 생성자의 인자들을 각각 변수로 만들어주는 작업
 		// 2-1] 업로드할 서버의 물리적 디렉토리를 얻어옴
-<<<<<<< HEAD
 		String saveDirectory =req.getServletContext().getRealPath("/resources/images/TLImg");
 		//String saveDirectory ="C:\\Users\\kosmo_26\\git\\SIX-ONE\\SIX-ONEproj\\src\\main\\webapp\\resources\\images\\TLImg";//강제주소주입
-=======
-	//	String saveDirectory = application.getRealPath("/Upload");
-		//file:///21b431e57ed75d51e45cf0dae13d81f1.png
-		
-		String saveDirectory ="C:/Users/kosmo_09/git/SIX-ONE_marge2/src/main/webapp/resources/images/TLImg";//강제주소주입
->>>>>>> branch 'mergeTest01' of https://github.com/yujeongseon/SIX-ONE.git
+
 		System.out.println(saveDirectory);
 		int maxPostSize = 1024 * 500; // 500Kb
 		String encoding = "UTF-8";
