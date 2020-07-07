@@ -39,6 +39,8 @@ public class RoutineDAO {
    public void close() {
       try {
          if(rs !=null) rs.close();
+         if(rs2 !=null) rs2.close();
+         if(rs3 !=null) rs3.close();
          if(psmt !=null) psmt.close();
          if(conn !=null) conn.close();
       }catch(SQLException e) {e.printStackTrace();}
@@ -94,6 +96,7 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
                   rou.add(dto2);
                }
             } catch (Exception e) {e.printStackTrace();}
+         
             dto.setList(rou);
             Boolean TF=gudokok(a,id);
             dto.setGudok(TF);
@@ -155,10 +158,10 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
 	                  rou.add(dto2);
 	               }
 	            } catch (Exception e) {e.printStackTrace();}
+	       
 	            dto.setList(rou);
 	            Boolean TF=gudokok(a,id);
 	            dto.setGudok(TF);
-	            
 	            list.add(dto);
 	         }
 	      }
@@ -186,6 +189,7 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
                 list.add(dto2);
              }
           } catch (Exception e) {e.printStackTrace();}
+        
 	      return list;
    }
    
@@ -204,6 +208,7 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
 			}
 		}
 		catch (Exception e) {e.printStackTrace();}
+	 
 	   
 	   return gudok;
    }
@@ -221,7 +226,7 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
 			}
 		}
 		catch (Exception e) {e.printStackTrace();}
-	   
+	  
 	   return num;
    }
    
@@ -257,7 +262,7 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
          totalRowCount = rs.getInt(1);
       } 
       catch (SQLException e) {e.printStackTrace();}
-            
+   		
       return totalRowCount;   
             
    }//getTotalRowCount   
@@ -271,6 +276,7 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
 			psmt.executeUpdate();	
 			System.out.println("루틴삭제완료");
 		} catch (Exception e) {e.printStackTrace();}
+	  
    }
    
    public void deletesub(int no) {
@@ -281,6 +287,7 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
 			psmt.executeUpdate();	
 			System.out.println("루틴에 구독된것 삭제완료");
 		} catch (Exception e) {e.printStackTrace();}
+	  
    }
    
    //루틴_exe삭제
@@ -292,6 +299,7 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
 			psmt.executeUpdate();	
 			System.out.println("루틴수정을 위한 삭제번호"+no);
 		} catch (Exception e) {e.printStackTrace();}
+	   
    }
    
    public void writerou(String title,String id) {
@@ -303,6 +311,7 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
 			psmt.executeUpdate();	
 			System.out.println("루틴입력완료");
 		} catch (Exception e) {e.printStackTrace();}
+	   
    }
    
    public void writeroudetail(String exename,String roucount,String rouset,int days) {
@@ -316,6 +325,7 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
 			psmt.executeUpdate();
 			System.out.println("루틴상세정보입력완료");
 		} catch (Exception e) {e.printStackTrace();}
+	   
    }
    public void writerouagain(String exename,String roucount,String rouset,int days,int no) {
 	   String sql="Insert into rou_exe values((select exercise_no from exercise where exercise_name like ?),?,?,?,?)";
@@ -329,6 +339,7 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
 			psmt.executeUpdate();
 			System.out.println("루틴상세정보입력완료");
 		} catch (Exception e) {e.printStackTrace();}
+	   
    }
    
    
@@ -342,6 +353,7 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
 			affected=psmt.executeUpdate();	
 			System.out.println("구독완료");
 		} catch (Exception e) {e.printStackTrace();}
+	   
 		return affected;
    }
    
@@ -355,6 +367,7 @@ SELECT * FROM (SELECT T.*,ROWNUM R FROM (select * from (select routine_no,count(
 			affected=psmt.executeUpdate();	
 			System.out.println("구독취소");
 		} catch (Exception e) {e.printStackTrace();}
+	  
 		return affected;
    }
    

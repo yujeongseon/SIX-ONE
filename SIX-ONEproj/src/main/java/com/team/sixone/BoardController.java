@@ -166,6 +166,7 @@ public class BoardController {
       public void ajaxroudelete(int no) {
     	  RoutineDAO dao= new RoutineDAO(null);
     	  //루틴 rou_exe삭제
+    	  System.out.println("삭제위해 이곳에"+no);
     	  dao.deleterouagain(no);
     	  //구독 삭제
     	  dao.deletesub(no);

@@ -101,7 +101,7 @@ public class BoardDAO {
 				}
 			}
 			catch (SQLException e) {e.printStackTrace();}
-			
+			close();
 			return list;
 		}//////////selectList()
 		
@@ -118,6 +118,7 @@ public class BoardDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			close();
 			return affected;
 		}
 		
@@ -144,6 +145,7 @@ public class BoardDAO {
 					dto.setName(rs.getString(11));
 				}
 			} catch (Exception e) {e.printStackTrace();}
+			close();
 			return dto;
 		}///////////selectOne
 		public BoardDTO updateone(String no) {
@@ -164,6 +166,7 @@ public class BoardDAO {
 					//dto.setName(rs.getString(11));
 				}
 			} catch (Exception e) {e.printStackTrace();}
+			close();
 			return dto;
 		}///////////selectOne
 	
@@ -178,6 +181,7 @@ public class BoardDAO {
 					affected=1;
 				}
 			} catch (Exception e) {e.printStackTrace();}
+			close();
 			return affected;
 		}///////////findid
 		
@@ -198,6 +202,7 @@ public class BoardDAO {
 				affected=psmt.executeUpdate();
 				System.out.println("네이버 회원가입 완");
 			} catch (Exception e) {e.printStackTrace();}
+			close();
 			return affected;
 		}//////////글쓰기
 		
@@ -218,7 +223,7 @@ public class BoardDAO {
 				totalRowCount = rs.getInt(1);
 			} 
 			catch (SQLException e) {e.printStackTrace();}
-			
+			close();
 			return totalRowCount;	
 			
 		}//getTotalRowCount	
@@ -237,6 +242,7 @@ public class BoardDAO {
 				affected=psmt.executeUpdate();	
 				System.out.println("쿼리까지함");
 			} catch (Exception e) {e.printStackTrace();}
+			close();
 			return affected;
 		}//////////글쓰기
 		
@@ -253,6 +259,7 @@ public class BoardDAO {
 				affected=psmt.executeUpdate();	
 				System.out.println("수정함함");
 			} catch (Exception e) {e.printStackTrace();}
+			close();
 			return affected;
 		}//////////글쓰기
 		
@@ -265,7 +272,7 @@ public class BoardDAO {
 				rs= psmt.executeQuery();
 				affected=psmt.executeUpdate();
 			} catch (Exception e) {e.printStackTrace();}
-			
+			close();
 			
 			return affected;
 		}
@@ -287,6 +294,7 @@ public class BoardDAO {
 					dto.setCategory(rs.getString(6));
 				}
 			} catch (Exception e) {e.printStackTrace();}
+			close();
 			return dto;
 		}///////////selectOne
 		

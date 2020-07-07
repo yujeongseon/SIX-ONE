@@ -53,6 +53,7 @@ $(".hover").mouseleave(
 });
 
 function delok(no){
+	console.log('삭제를위해 이곳에 들어옴')
 	$.ajax({
 	      url:"<c:url value='/Ajax/delok.do'/>",
 	      dataType:'text',
@@ -1924,15 +1925,12 @@ a:link {
 		    				console.log("도큐먼트 루네임 이너텍스트:",document.getElementById("rouname"+i).innerText);
 		    				if(document.getElementById("rouname"+i).innerText==""){
 		    					console.log("null확인하고 if문으로 들어옴"+i)
-		    					exename = "휴식";
-		    					roucount = "";
-		    					rouset = "";
+		    					//return;
 		    				}
 		    				else {
 		    					exename = document.getElementById("rouname"+i).innerText;
 		    					roucount = document.getElementById("roucount"+i).innerText;
 		    					rouset = document.getElementById("rouset"+i).innerText;
-		    				}
 		    					days = i;
 		    					$.ajax({//루틴 상세정보 작성
 		    					      url:"<c:url value='/Ajax/writedetail.do'/>",
@@ -1947,7 +1945,7 @@ a:link {
 		    					         console.log('에러:',error);
 		    					      }
 		    					   });
-		    				
+		    				}
 		    			}
 		    		  alert("루틴이 작성되었습니다");
 		    		  location.reload();
