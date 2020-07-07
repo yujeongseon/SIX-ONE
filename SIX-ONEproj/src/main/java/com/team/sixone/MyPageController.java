@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.ws.Response;
@@ -98,9 +99,9 @@ public class MyPageController {
 	}//////////weightUpdate
 	
 	@RequestMapping("ProfileUpdate.do")
-	public String ProfileUpdate(@RequestParam Map map,MultipartRequest request,HttpSession session,Model model) throws IllegalStateException, IOException {
+	public String ProfileUpdate(@RequestParam Map map,MultipartRequest request,HttpServletRequest req ,HttpSession session,Model model,javax.servlet.ServletContext application) throws IllegalStateException, IOException {
 		MultipartFile upload = (MultipartFile) request.getFile("file");
-		String phisicalPath = "C:\\Users\\kosmo_11\\git\\SIX-ONE\\SIX-ONEproj\\src\\main\\webapp\\resources\\Profile";
+		String phisicalPath = req.getServletContext().getRealPath("/resources/Profile");
 		String profile = upload.getOriginalFilename().toString();
 		if(profile.equals("")) {
 			File file = new File(phisicalPath+File.separator+profile);

@@ -45,9 +45,10 @@ public class NewMemberController {
 
 	
 	@RequestMapping("/Profile.do")
-	public String Join(HttpServletRequest req,MultipartRequest request,@RequestParam Map map,HttpSession session) throws IllegalStateException, IOException {
+	public String Join(HttpServletRequest req,MultipartRequest request,@RequestParam Map map,HttpSession session, javax.servlet.ServletContext application) throws IllegalStateException, IOException {
 		MultipartFile upload = (MultipartFile) request.getFile("upload");
-		String phisicalPath = "C:\\Users\\kosmo_11\\git\\SIX-ONE\\SIX-ONEproj\\src\\main\\webapp\\resources\\Profile";
+		String phisicalPath = req.getServletContext().getRealPath("/resources/Profile");
+		System.out.println("phisicalPath : " + phisicalPath);
 		///SIX-ONEproj/src/main/webapp/resources/Profile
 		String profile = upload.getOriginalFilename().toString();
 		if(profile.equals("")) {
@@ -70,9 +71,9 @@ public class NewMemberController {
 	
 	
 	@RequestMapping("/memberjoin.do")
-	public String memberjoin(HttpServletRequest req,MultipartRequest request,@RequestParam Map map,HttpSession session) throws IllegalStateException, IOException {
+	public String memberjoin(HttpServletRequest req,MultipartRequest request,@RequestParam Map map,HttpSession session,  javax.servlet.ServletContext application) throws IllegalStateException, IOException {
 		MultipartFile upload = (MultipartFile) request.getFile("upload");
-		String phisicalPath = "C:\\Users\\kosmo_11\\git\\SIX-ONE\\SIX-ONEproj\\src\\main\\webapp\\resources\\Profile";
+		String phisicalPath = req.getServletContext().getRealPath("/resources/Profile");
 		String profile = upload.getOriginalFilename().toString();
 		if(profile.equals("")) {
 			File file = new File(phisicalPath+File.separator+profile);
