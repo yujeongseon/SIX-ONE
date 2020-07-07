@@ -796,8 +796,8 @@ $(function(){
 						</c:forEach>
 						
 						<!-- 그래프 컬럼 이름 -->
-						<c:forEach items="${graphs2}" var="it" varStatus="loop">
-							<input  type="hidden" value="${it.exercisename}"  id="exercisename${loop.index}"/>
+						<c:forEach items="${exename}" var="exename" varStatus="loop">
+							<input  type="hidden" value="${exename.exercisename}"  id="exercisename${loop.index}"/>
 						</c:forEach>
 						<!-- 그래프 컬럼 이름 -->
 <!-- 그래프에 넣어줄 값 저장작업-->

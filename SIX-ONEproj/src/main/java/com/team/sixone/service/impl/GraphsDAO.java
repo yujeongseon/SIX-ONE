@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.team.sixone.service.ExerciseNameDTO;
 import com.team.sixone.service.GraphsDTO;
 import com.team.sixone.service.GraphsSerivce;
 
@@ -22,7 +23,7 @@ public class GraphsDAO implements GraphsSerivce{
 	}
 
 	@Override
-	public List<GraphsDTO> exerciseonename(Map map) {
+	public List<ExerciseNameDTO> exerciseonename(Map map) {
 		return sqlMapper.selectList("exerciseonename", map);
 	}
 

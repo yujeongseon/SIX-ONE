@@ -10,7 +10,7 @@ WHERE PLAY_AT  BETWEEN (SELECT TRUNC(sysdate,'iw') dt_date FROM dual)
 AND (SELECT TRUNC(sysdate, 'iw') +6 dt_date FROM dual) AND ID = #{id}
 </select>
 
-<select id="exerciseonename" parameterType="java.util.Map" resultType="GraphsDTO">
+<select id="exerciseonename" parameterType="java.util.Map" resultType="ExerciseNameDTO">
 SELECT DISTINCT e.exercise_name FROM play_exe p JOIN exercise e ON p.exercise_no = e.exercise_no WHERE ID = #{id}
 </select>
 	

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
+import com.team.sixone.service.ExerciseNameDTO;
 import com.team.sixone.service.FoodDTO;
 import com.team.sixone.service.FoodService;
 import com.team.sixone.service.GraphsDTO;
@@ -51,8 +52,8 @@ public class MyPageController {
 		model.addAttribute("food", food);
 		List<GraphsDTO> graphs = GraphsSerivce.exercisecount(map);
 		model.addAttribute("graphs", graphs);
-		List<GraphsDTO> graphs2 =  GraphsSerivce.exerciseonename(map);
-		model.addAttribute("graphs2", graphs2);
+		List<ExerciseNameDTO> exename =  GraphsSerivce.exerciseonename(map);
+		model.addAttribute("exename", exename);
 		return "/MyPage.tiles";
 		}
 		else { //로그인 안된경우

@@ -27,6 +27,7 @@
 		<typeAlias alias="LoginDTO" type="com.team.sixone.service.LoginDTO"/>
 		<typeAlias alias="MemberDTO" type="com.team.sixone.service.MemberDTO"/>
 		<typeAlias alias="TimelineDTO" type="com.team.sixone.service.TimelineDTO"/>
+		<typeAlias alias="ExerciseNameDTO" type="com.team.sixone.service.ExerciseNameDTO"/>
 	</typeAliases>
 	
 	
