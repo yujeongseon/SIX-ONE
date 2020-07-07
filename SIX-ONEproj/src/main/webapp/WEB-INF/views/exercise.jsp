@@ -3,174 +3,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=baec786c99350c041ef35a31dcf9afcf&libraries=services"></script>
-
-
-<style>
-.map_wrap, .map_wrap * {
-	margin: 0;
-	padding: 0;
-	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-	font-size: 12px;
-}
-
-.map_wrap a, .map_wrap a:hover, .map_wrap a:active {
-	color: #000;
-	text-decoration: none;
-}
-
-.map_wrap {
-	position: relative;
-	width: 100%;
-	height: 500px;
-}
-
-#menu_wrap {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	width: 250px;
-	margin: 10px 0 30px 10px;
-	padding: 5px;
-	overflow-y: auto;
-	background: rgba(255, 255, 255, 0.7);
-	z-index: 1;
-	font-size: 12px;
-	border-radius: 10px;
-}
-
-.bg_white {
-	background: #fff;
-}
-
-#menu_wrap hr {
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 2px solid #5F5F5F;
-	margin: 3px 0;
-}
-
-#menu_wrap .option {
-	text-align: center;
-}
-
-#menu_wrap .option p {
-	margin: 10px 0;
-}
-
-#menu_wrap .option button {
-	margin-left: 5px;
-}
-
-#placesList li {
-	list-style: none;
-}
-
-#placesList .item {
-	position: relative;
-	border-bottom: 1px solid #888;
-	overflow: hidden;
-	cursor: pointer;
-	min-height: 65px;
-}
-
-#placesList .item span {
-	display: block;
-	margin-top: 4px;
-}
-
-#placesList .item h5, #placesList .item .info {
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-}
-
-#placesList .item .info {
-	padding: 10px 0 10px 55px;
-}
-
-#placesList .info .gray {
-	color: #8a8a8a;
-}
-
-#placesList .info .jibun {
-	padding-left: 26px;
-	background:
-		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
-		no-repeat;
-}
-
-#placesList .info .tel {
-	color: #009900;
-}
-
-#placesList .item .markerbg {
-	float: left;
-	position: absolute;
-	width: 36px;
-	height: 37px;
-	margin: 10px 0 0 10px;
-	background: url(resources/images/gymimg.png) no-repeat;
-}
-
-#placesList .item .marker_1 {
-	background-position: 0 -0px;
-}
-
-#placesList .item .marker_2 {
-	background-position: 0 -36px;
-}
-
-#placesList .item .marker_3 {
-	background-position: 0 -73px
-}
-
-#placesList .item .marker_4 {
-	background-position: 0 -110px;
-}
-
-#placesList .item .marker_5 {
-	background-position: 0 -146px;
-}
-
-#placesList .item .marker_6 {
-	background-position: 0 -182px;
-}
-
-#placesList .item .marker_7 {
-	background-position: 0 -219px;
-}
-
-#placesList .item .marker_8 {
-	background-position: 0 -255px;
-}
-
-#placesList .item .marker_9 {
-	background-position: 0 -325px;
-}
-#placesList .item .marker_10 {
-	background-position: 0 -358px;
-}
-#pagination {
-	margin: 10px auto;
-	text-align: center;
-}
-
-#pagination a {
-	display: inline-block;
-	margin-right: 10px;
-}
-
-#pagination .on {
-	font-weight: bold;
-	cursor: default;
-	color: #777;
-}
-</style>
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=baec786c99350c041ef35a31dcf9afcf&libraries=services"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/exerciseCSS.css'/>" >
+<script src="<c:url value='/resources/js/exerciseJS.js'/>"></script>
 <aside id="colorlib-hero">
 	<div class="flexslider">
 		<ul class="slides">
@@ -198,16 +33,17 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2 row-pb-md animate-box">
-				<iframe width="100%" height="430"
-					src="https://www.youtube.com/embed/8VtkpMGw0hw" frameborder="0"
-					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-					allowfullscreen></iframe>
+				<iframe width="100%" height="430" src="https://www.youtube.com/embed/8VtkpMGw0hw" frameborder="0" 
+				allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+					allowfullscreen>
+					</iframe>
 
 				<!--<div class="video colorlib-video" style="background-image: url(images/img_bg_1.jpg);">
 							<a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo"><i class="icon-play3"></i></a>
 							<div class="overlay"></div>
 						</div>-->
 			</div>
+			
 			<div class="col-md-10 col-md-offset-1 text-center animate-box">
 				<div class="about-wrap">
 					<div class="heading-2">
@@ -241,15 +77,18 @@
 		</div>
 		<div class="row">
 			<!--실내운동 연결 -->
-			<a href="https://www.msn.com/ko-kr/health/strength">
-				<div class="col-md-3 col-sm-3 animate-box">
+			
+				<div class="col-md-3 col-sm-3 animate-box" data-toggle="modal"
+		data-target="#mapModal">
 
 					<div class="trainers-entry">
 						<div class="trainer-img"
-							style="background-image: url(https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBfc6b6/_h400_w284_m1_bwhite.jpg)"></div>
+							style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)"></div>
 						<div class="desc">
-							<h3>실내 운동</h3>
-			</a> <span>실내에서도 간단하게 운동할수 있습니다</span>
+						
+							<h3>가까운 헬스장 찾기</h3>
+			<span>현재 위치를 바탕으로</br>
+가까운 헬스장을 찾습니다</span>
 		</div>
 	</div>
 </div>
@@ -267,30 +106,48 @@
 
 <div class="col-md-3 col-sm-3 animate-box">
 
-	<div class="trainers-entry" id="health" data-toggle="modal"
-		data-target="#mapModal">
+	<div class="trainers-entry" id="health"  >
 
 		<div class="trainer-img" id="healthimg"
-			style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)">
-			<div id='img1' style="height: 50%; background-color: #F0F0F0;;display:none" >
-				<span style="color: red;"> 위치 검색</span>
-				<img src="resources/images/marker_.png" >
+			style="background-image: url(https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBfc6b6/_h400_w284_m1_bwhite.jpg)">
+			<div id='img1' style="height: 50%; background-color: #F0F0F0;display:none" >
+				<span style="color: red;"> 스쿼트</span>
+				<img src="resources/images/sqart.png" >
 			</div>
 			<div id='img2' style="height: 50%; background-color: gray;display:none">
-				<span style="color: red;"> 지도 검색</span>
-				<img src="resources/images/mapimg.png">
+				<span style="color: red;"> 런지</span>
+				<img src="resources/images/Lunge.png">
 			</div>
 			
 		</div>
 		<div class="desc">
-			<h3>가까운 헬스장 찾기</h3>
-			<span>현재 위치를 바탕으로 </br>가까운 헬스장을 찾습니다
+			<h3>실내 운동</h3>
+			<span>실내에서도 간단하게 운동할수 있습니다
 			</span>
 		</div>
 
 
 	</div>
 </div>
+<!-- 스쿼트 모달 
+<div class="modal fade" id="squrtModal" tabindex="-1" role="dialog" > 
+  <div class="modal-dialog modal-lg" style="width: 60%; height: 100%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">SQURT</h4>
+      </div>
+      <div class="modal-body">
+        <iframe src="https://jovial-galileo-7ec103.netlify.app/" style="width:100%; height:600px"> </iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-primary">저장하기</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
 
 
 
@@ -308,8 +165,6 @@
 			</div>
 			<div class="modal-body">
 
-
-
 				<div class="map_wrap">
 
 					<div id="map"
@@ -321,7 +176,7 @@
 					<div class="option">
 						<div>
 							<form onsubmit="searchPlaces(); return false;">
-								찾을 지역 : <input type="text" value="가산동" id="keyword" size="10">
+								찾을 지역 : <input onclick="clearse();" type="text" value="가산동" id="keyword" size="10" style="font-size:1.0em;opacity: 0.9">
 								<button type="submit">검색하기</button>
 							</form>
 						</div>
@@ -332,25 +187,33 @@
 				</div>
 
 				<script>
+					function clearse() {
+						this.value="";
+					}
+				
+				
 					$("#mapModal").on('shown.bs.modal', function() {
 						// id 속성값이 myModal인 element 에 지도를 표시하는 로직
 						console.log('모달나옴');
 						setTimeout(function() {
 							map.relayout();
-						}, 0);
+						}, 1);
 					});
-
+					
+					
 					/*
 					 * 
 					 <div class="col-md-3 col-sm-3 animate-box"><div class="trainers-entry" id="health" data-toggle="modal" data-target="#mapModal"><div class="trainer-img" style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)"></div><div class="desc"><h3>가까운 헬스장 찾기</h3><span>현재 위치를 바탕으로 </br>가까운 헬스장을 찾습니다</span></div></div></div>
 					 */
 					// 마커를 담을 배열입니다
 					var markers = [];
-
+					var url;
 					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 					mapOption = {
-						center : new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-						level : 4
+						center : new kakao.maps.LatLng(37.4801661, 126.8822284), // 지도의 중심좌표
+						//14124587.0606613,4506247.3661922
+						//,
+						level : 5
 					// 지도의 확대 레벨
 					};
 
@@ -419,15 +282,19 @@
 
 						// 지도에 표시되고 있는 마커를 제거합니다
 						removeMarker();
-
 						for (var i = 0; i < places.length; i++) {
-
+								console.log(places[i]);
 							// 마커를 생성하고 지도에 표시합니다
+							console.log(places);
+							url = places[i].place_url;
+							
 							var placePosition = new kakao.maps.LatLng(
 									places[i].y, places[i].x), marker = addMarker(
-									placePosition, i), itemEl = getListItem(i,
+									placePosition, i, places[i].place_url), itemEl = getListItem(i,
 									places[i]); // 검색 결과 항목 Element를 생성합니다
-
+							
+							var namegym = places[i].place_name;
+							
 							// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 							// LatLngBounds 객체에 좌표를 추가합니다
 							//bounds.extend(placePosition);
@@ -440,8 +307,12 @@
 										'mouseover', function() {
 											//  map.setCenter(marker.position);
 											displayInfowindow(marker, title);
-
+										//	map.panTo(placePosition);
 										});
+								
+								//url받아오기 - 마지막거만됨 ㅇ
+								
+								
 
 								kakao.maps.event.addListener(marker,
 										'mouseout', function() {
@@ -452,17 +323,17 @@
 									//map.setCenter(marker.position);
 									displayInfowindow(marker, title);
 									console.log('아이템마우스오버' + title);
-									map.panTo(places[i]);
-
+									
 								};
 
 								itemEl.onmouseout = function() {
 									infowindow.close();
 								};
 							})(marker, places[i].place_name);
-
+				
 							fragment.appendChild(itemEl);
 						}
+						
 
 						// 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
 						listEl.appendChild(fragment);
@@ -508,7 +379,8 @@
 					}
 
 					// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-					function addMarker(position, idx, title) {
+					function addMarker(position, idx, title, url) {
+						var url = this.url;
 						var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
 						imageSize = new kakao.maps.Size(36, 37), // 마커 이미지의 크기
 						imgOptions = {
@@ -522,6 +394,16 @@
 								{
 									position : position, // 마커의 위치
 									image : markerImage
+								});
+						kakao.maps.event.addListener(marker,
+								'click', function() {
+									//  map.setCenter(marker.position);
+									window.open(url, "namegym", "width=925, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes,  top=200, left=500" );  
+									
+									setTimeout(function() {
+										win = window.open(url, "namegym", "width=925, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes,  top=200, left=500");  
+										win.document.body.innerHTML = '<img src ="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png">'
+									}, 30);console.log(url);
 								});
 
 						marker.setMap(map); // 지도 위에 마커를 표출합니다
@@ -595,19 +477,65 @@
 </div>
 
 <!-- 모달끝 -->
-
+<!-- 칼로리 계산 모달창  -->
+<div class="modal fade" id="kcalmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="myModalLabel">칼로리 계산</h4>
+			</div>
+		<div class="modal-body">
+			<select id="selected" size="6" style="width: 80%;">
+		<option value="1">수면</option>
+		<option value="3">달리기</option>
+		<option value="1.5">플랭크</option>
+		<option value="2">철봉매달리기</option>
+		<option value="3.5">줄넘기</option>
+		<option value="4.5">2단줄넘기</option>
+		<option value="3">걷기(시속 3km)</option>
+		<option value="3.5">걷기(시속 4km)</option>
+		<option value="4">걷기(시속 5~6.4km)</option>
+		<option value="6">조깅(시속 6.5~7km)</option>
+		<option value="10">달리기(시속 8km)</option>
+		<option value="8">사이클(시속 15km)</option>
+		<option value="12">사이클(시속 20km)</option>
+		<option value="4">볼링</option>
+		<option value="10">줄넘기</option>
+		<option value="8">계단 오르기</option>
+		<option value="5">훌라우프</option>
+		<option value="8">스쿼트(버티기)</option>
+		<option value="2.5">스트레칭,요가</option>
+		<option value="7">축구</option>
+		<option value="6">국민체조</option>
+		<option value="7">수영</option>
+		<option value="7">버피테스트</option>
+		<option value="7.5">등산</option>
+		<option value="7">실내자전거</option>
+	</select><br/>
+	<input type="text" placeholder="몸무게를 입력" id="kg" style="border: 1px solid #767676;"/>
+	<input type="text" placeholder="운동시간을 입력하세요" id="m" style="border: 1px solid #767676; "/>분
+	<input type="button" value="확인" id="btn"><br/>
+	<span style="color: red;" id="kclavalue"></span>
+		</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 칼로리 계산 모달창  -->
 
 
 
 <div class="col-md-3 col-sm-3 animate-box">
 	<!--칼로리 계산기랑 연결-->
-	<a href="<c:url value='/food.do'/>">
-		<div class="trainers-entry">
+		<div class="trainers-entry" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#kcalmodal">
 			<div class="trainer-img"
 				style="background-image: url(https://cdn.pixabay.com/photo/2016/04/15/17/20/bread-and-butter-1331452_960_720.jpg)"></div>
 			<div class="desc">
-				<h3>칼로리 계산하기</h3>
-				<span>칼로리를 얼마나 소비하는지 간단하게 계산할 수 있습니다.</span>
+				<h3>운동 칼로리 계산하기</h3>
+				<span>운동 후 칼로리를 얼마나 소비하는지 간단하게 계산할 수 있습니다.</span>
 			</div>
 		</div>
 	</a>
@@ -616,8 +544,7 @@
 </div>
 </div>
 </div>
-<button type="button" class="btn btn-primary " data-toggle="modal"
-	data-target="#mapModal">글 작성하기</button>
+<input type="text" id="idsend" />
 <script>
 	jQuery(document).ready(function($) {
 
@@ -686,7 +613,15 @@
 		
 	});
 	$('#img1').click(function(){
-		console.log('클릭 이벤트')
+		openWin = window.open('https://elastic-pare-1dc9f1.netlify.app', "namegym", "width=925, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes,  top=200, left=500" );  
+	
+		
+		openWin.document.myChildForm.idsend = "김성준";
+		
+
+	})
+	$('#img2').click(function(){
+		console.log('클릭 이벤트 런지')
 	})
 	/*
 

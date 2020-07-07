@@ -7,7 +7,8 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<c:url value='/resources/js/MyPageScroll.js'/>"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>
+
+<script type="text/javascript">
 $( function() {
     $( "#accordion" ).accordion({
       heightStyle: "content"
@@ -200,6 +201,16 @@ $(function(){
 		}
 		<%}%>
 		
+		
+		
+		console.log(test0);
+		console.log(test1);
+		console.log(test2);
+		console.log(test3);
+		console.log(test4);
+		console.log(test5);
+		console.log(test6);
+
       var data = new google.visualization.DataTable();
       data.addColumn('number', '이번주 근력 운동 루틴'); //그래프 타이틀
       

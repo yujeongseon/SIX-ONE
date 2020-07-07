@@ -26,7 +26,7 @@
 	</update>
 	
 	<insert id="memberjoin" parameterType="java.util.Map">
-		INSERT INTO MEMBER VALUES(#{newid},#{newpassword},#{name},#{height},#{weight},#{profile},#{gender},#{goal},#{question},#{answer})
+		INSERT INTO MEMBER VALUES(#{newid},#{newpassword},#{name},#{height},#{weight},#{profile},#{gender},#{goal},#{question},#{answer},sysdate)
 	</insert>
 	
 	<select id="passsearch" parameterType="java.util.Map" resultType="MemberDTO">

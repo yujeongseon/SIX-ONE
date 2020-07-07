@@ -13,6 +13,10 @@
 <link rel="shortcut icon" href="imgs/instagram.png">
 <script>
 $(function(){
+	$('#commentbtn').click(function() {
+		$('#commentform').submit(); 
+		});
+	
 	$('#heartbtn').on('click',function(){
 		if($('#heartbtn').css('color') == 'rgb(255, 0, 0)'){
 		$('#heartbtn').css('color','black');
@@ -32,11 +36,10 @@ hr {
  border-top: 0.8px dashed #444444;
  margin: 0.3em
 }
-	</style>
+</style>
 <%
 int j = 0;
 DAO dao = new DAO(request.getSession().getServletContext());
-
 Map map = new HashMap();
 String id = (String)session.getAttribute("LoginSuccess");
 String[] images = new String[1];
@@ -47,6 +50,8 @@ String[] nos = new String[1];
 String[] comcnt = new String[1];
 String[] firid = new String[1];
 String[] fircom = new String[1];
+String[] name = new String[1];//유저 이름 혹시몰라서 넣어둠
+String[] profile = new String[1];//프로필사진
 if(request.getParameter("search")!=null){
 	//뭔가 검색했을때
 	map = dao.Search(request.getParameter("search"));
@@ -58,23 +63,24 @@ if(request.getParameter("search")!=null){
 	comcnt = (String[])(map.get("comcnt"));
 	firid = (String[])(map.get("firid"));
 	fircom = (String[])(map.get("fircom"));
+	name = (String[])(map.get("name"));
+	profile = (String[])(map.get("profile"));
 }else{
 	//String[] comment  = dao.comments();
 	map = dao.timelines();
-	images = (String[])(map.get("images"));
-	ids = (String[])(map.get("ids"));
-	content = (String[])(map.get("content")) ;
-	date = (Date[])(map.get("date"));
-	nos = (String[])(map.get("nos")) ;
-	comcnt = (String[])(map.get("comcnt")) ;
-	firid = (String[])(map.get("firid"));
-	fircom = (String[])(map.get("fircom"));
+	images = (String[])(map.get("images"));//사진이름
+	ids = (String[])(map.get("ids"));//유저아이디
+	content = (String[])(map.get("content")) ; //내용
+	date = (Date[])(map.get("date"));//날짜
+	nos = (String[])(map.get("nos")) ;//번호
+	comcnt = (String[])(map.get("comcnt")) ;//총댓글개수
+	firid = (String[])(map.get("firid"));//댓글단사람 아이디
+	fircom = (String[])(map.get("fircom"));//댓글내용
+	name = (String[])(map.get("name"));
+	profile = (String[])(map.get("profile"));
 }
-
-
 %>
 <script>
-
 //이미지 올리기전 미리보기
 function setThumbnail(event) { 
 	var reader = new FileReader(); 
@@ -188,7 +194,7 @@ function isSaved(event){ //세이브 체크박스
 	<div class="animate-box">
 	<!-- a href="<c:url value="tl_full.do"/>"-->
 		<div class="trainers-entry">
-			<div class="trainer-img" style="background-image: url('<%=images[0]%>'),url('https://contents.sixshop.com/thumbnails/uploadedFiles/68194/blogPost/image_1539674114780_1500.jpg') ; height: 600px"></div>
+			<div class="trainer-img" style="background-image: url('resources/TLImg/<%=images[0]%>'),url('https://contents.sixshop.com/thumbnails/uploadedFiles/68194/blogPost/image_1539674114780_1500.jpg') ; height: 600px"></div>
 			<div class="desc">
 				<h3 style="color:black;"><%=ids[0]%> <button class="btn btn-primary" value="sss" style=" float: right" onclick="location.href='del.do?img=<%=images[0]%>' ">del</button> </h3>
 				<span> <%=content[0]%></br> <%=date[0]%></span>
@@ -236,12 +242,11 @@ function isSaved(event){ //세이브 체크박스
 						<header class="top">
 							<div class="user_container">
 								<div class="profile_img">
-									<img src="resources/Profile/정연.jpg" alt="프로필이미지">
+									<img src="resources/Profile/<%=profile%>" alt="123">
 								</div>
 								<div class="user_name">
 									<div class="nick_name m_text" style="margin-top: 8px;"><%=ids[0]%></div>
 								</div>
-
 							</div>
 
 							<div class="sprite_more_icon" data-name="more">
@@ -257,8 +262,7 @@ function isSaved(event){ //세이브 체크박스
 						<div class="img_section">
 							<div class="trans_inner">
 								<div>
-									<img style="height: 550px;" src="resources/Profile/정연2.jpg" alt="visual01">
-									
+									<img alt="" src="resources/TLImg/<%=images[0]%>" style="height: 400px;">
 								</div>
 							</div>
 						</div>
@@ -284,13 +288,18 @@ function isSaved(event){ //세이브 체크박스
 							</div>
 							<span style="color:red"><a href="./tl_full.do?tlno=<%=nos[0] %>">댓글 <%=comcnt[0] %>개 전체보기....		</a></span> 
 						</div>
-
 						<div class="timer"><%=date[0]%></div>
 						
-
+						
 						<div class="comment_field" id="add-comment-post37">
-							<input type="text" placeholder="댓글달기...">
-							<div class="upload_btn m_text" data-name="comment">게시</div>
+							<div class="form-group">
+							<form action="<c:url value='/tlcom.do'/>"  method="POST" id="commentform">
+							<input type="hidden" name="tlcomid" value="<%=id %>" id="id"/>
+							<input type="hidden" name="tlno" value="<%=nos[0] %>" id="tlno"/>
+							<input type="text" placeholder="댓글달기..." class="col-md-9" name="tlcom" class="ftlcom" id="tlcom" >
+							<div class="upload_btn m_text" id="commentbtn">게시</div>
+							</form>
+						</div>
 						</div>
 					</article>	
 				</div>
@@ -298,8 +307,14 @@ function isSaved(event){ //세이브 체크박스
 		</section>
 	</section>
 						
-	
-	
+						<div class="form-group">
+							<form action="<c:url value='/tlcom.do'/>"  method="POST" id="commentform">
+							<input type="hidden" name="tlcomid" value="<%=id %>" id="id"/>
+							<input type="hidden" name="tlno" value="<%=nos[0] %>" id="tlno"/>
+							<input type="text" class="col-md-9" name="tlcom" class="ftlcom" id="tlcom" placeholder="댓글 입력" style="border-radius:10px;"></input>
+							<input type="submit"/>
+							</form>
+						</div>
 	
 	
 	
@@ -331,8 +346,6 @@ function isSaved(event){ //세이브 체크박스
 
 jQuery(document).ready(function($) {
 	
-	
-
 	var images = Array();
 	var ids = Array();
 	var content = Array();
@@ -341,7 +354,12 @@ jQuery(document).ready(function($) {
 	var comcnt = Array();
 	var firid = Array();
 	var fircom = Array();
+	var name = Array();
+	var profile = Array();
 	var id = "<%=id%>";
+	
+
+
 	
 	//자바코드로 배열받은거 => JS배열로 변환
 	<%for (int i = 0; i < images.length; i++) {%>
@@ -353,11 +371,16 @@ jQuery(document).ready(function($) {
 		comcnt[<%=i%>] = '<%=comcnt[i]%>';
 		firid[<%=i%>] = '<%=firid[i]%>';
 		fircom[<%=i%>] = '<%=fircom[i]%>';
+<%-- 		profile[<%=i%>] = '<%=profile[i]%>'; --%>
+<%-- 		name[<%=i%>] = '<%=name[i]%>'; --%>
+		
+		
+		
 		
 <%}%>
-console.log(ids);
+
 	var page = 1;
-						var followFlag = true;
+	var followFlag = true;
 
 						//화면 크기 줄일때 오른쪽 메뉴 삭제, 늘리면 다시 추가
 						$(window).resize(function() {
@@ -379,35 +402,19 @@ console.log(ids);
 
 						});
 
-						$(window)
-								.scroll(
-										function() {
-									
+						$(window).scroll(function() {
 											//스크롤 따라오는 좌측메뉴 $(window).scrollTop()+30'px' 넣으면 왠진 모르겟는데 애가 미쳐돌아감
-											if (($(window).scrollTop() + 500 < ($(document).height() - $(window).height()) && followFlag)
-													&& $('.follow').is(":visible")) {$('.follow').attr(
-																'style',
-																('padding-top :'
-																		+ ($(
-																				window)
-																				.scrollTop() + 100) + 'px; width: 250px'));
+											if (($(window).scrollTop() + 500 < ($(document).height() - $(window).height()) && followFlag) && $('.follow').is(":visible")) {
+												$('.follow').attr('style',('padding-top :'+ ($(window).scrollTop() + 100) + 'px; width: 250px'));
 											}
-
-											console.log($(window).scrollTop(),
-													$(document).height(), $(
-															window).height(), followFlag);
+											//console.log($(window).scrollTop(),$(document).height(), $(window).height(), followFlag);
 											//페이징 해서 붙이기
-											if (page <
-<%=images.length%>
-	) {
-												if ($(window).scrollTop() + 800 > ($(
-														document).height() - $(
-														window).height())) {
+											if (page < <%=images.length%> ) {
+												if ($(window).scrollTop() + 800 > ($(document).height() - $(window).height())) {
 													if(id==ids[(page)]){
-														
 													$(".appendd")
 															//카루셀도..대응시켜야..하는p
-															.append('<div class="animate-bos" style="padding-top:30px"><div class="trainers-entry"><div class="trainer-img" style="background-image: url('+images[(page)]+'); height: 600px"></div><div class="desc"><h3 style="color:black;">'+ids[(page)]
+															.append('<div class="animate-bos" style="padding-top:30px"><div class="trainers-entry"><div class="trainer-img" style="background-image: url(resources/TLImg/'+images[(page)]+'); height: 600px"></div><div class="desc"><h3 style="color:black;">'+ids[(page)]
 													+'<button class="btn btn-primary" value="sss" style=" float: right">del</button> '
 													+'</h3><span> '+content[(page)]+'</br>'+date[(page)]+'</span></br></br></br><hr><span style=""><h4>　'+firid[page]+'  '+fircom[page]+'</h4></span><h5 style="margin: 0"><span style="color:red"> <a href="./tl_full.do?tlno='+nos[(page)]+'"> 댓글 ('+comcnt[page]+')개 보기...		</a></span> </h5><hr>'
 													+'<div class="form-group"><form action="./tlcom.do"  method="POST" id="commentform"><input type="hidden" name="tlcomid" value="'+id+'" id="id"/><input type="hidden" name="tlno" value="'+nos[(page++)]+'" id="tlno"/>'
@@ -415,7 +422,7 @@ console.log(ids);
 													}else{
 														$(".appendd")
 														//카루셀도..대응시켜야..하는p
-														.append('<div class="animate-bos" style="padding-top:30px"><div class="trainers-entry"><div class="trainer-img" style="background-image: url('+images[(page)]+'); height: 600px"></div><div class="desc"><h3 style="color:black;">'+ids[(page)]
+														.append('<div class="animate-bos" style="padding-top:30px"><div class="trainers-entry"><div class="trainer-img" style="background-image: url(resources/TLImg/'+images[(page)]+'); height: 600px"></div><div class="desc"><h3 style="color:black;">'+ids[(page)]
 												+'</h3><span> '+content[(page)]+'</br>'+date[(page)]+'</span></br></br></br><hr><span style=""><h4>　'+firid[page]+'  '+fircom[page]+'</h4></span><h5 style="margin: 0"><span style="color:red"> <a href="./tl_full.do?tlno='+nos[(page)]+'"> 댓글 ('+comcnt[page]+')개 보기...		</a></span> </h5><hr>'
 												+'<div class="form-group"><form action="./tlcom.do"  method="POST" id="commentform"><input type="hidden" name="tlcomid" value="'+id+'" id="id"/><input type="hidden" name="tlno" value="'+nos[(page++)]+'" id="tlno"/>'
 												+ '<input type="text" class="col-md-9" name="tlcom" class="ftlcom" id="tlcom" placeholder="댓글 입력" style="border-radius:10px;"></input><input type="submit"/></form></div></div></div></div>');
@@ -424,20 +431,15 @@ console.log(ids);
 													
 												}
 
-											} else if (page ==
-<%=images.length%>
-	) { // 로딩이 끝났을때
-												$(".appendd")
-														.append(
-																'<div class="trainers-entry"><h2>　</h2><h2>마지막 게시글 입니다.</h2></div></div>');
+											} else if (page ==<%=images.length%>) { // 로딩이 끝났을때
+												$(".appendd").append('<div class="trainers-entry"><h2>　</h2><h2>마지막 게시글 입니다.</h2></div></div>');
 												page++
-
 											}
 
 										});
 					});
 </script>
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>  타임라인 스크립트 넣으면 안떠서 뺐음 혹시 모르니 일단 주석처리-->
-<script src="js/main.js"></script>
+<!-- <script src="js/main.js"></script> -->
 </html>
 

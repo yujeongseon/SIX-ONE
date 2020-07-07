@@ -5,67 +5,30 @@
 			<div class="container">
 				<div class="row row-pb-md">
 					<div class="col-md-3 colorlib-widget">
-						<h4>About Robust Gym</h4>
-						<p>Far from the c한글ountries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics</p>
+						<h4 style="margin-bottom: 9px;">오늘의 다이어트 꿀팁!</h4>
 						<p>
-							<ul class="colorlib-social-icons">
-								<li><a href="#"><i class="icon-twitter"></i></a></li>
-								<li><a href="#"><i class="icon-facebook"></i></a></li>
-								<li><a href="#"><i class="icon-linkedin"></i></a></li>
-								<li><a href="#"><i class="icon-dribbble"></i></a></li>
-							</ul>
+						<iframe width="100%" height="250px;" src="https://www.youtube.com/embed/bL0hL3UR-8A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 						</p>
 					</div>
 					<div class="col-md-3 colorlib-widget">
-						<h4>Quick Links</h4>
+						<h4  style="margin-bottom: 9px;">오늘의 몸 만들기 꿀팁!</h4>
 						<p>
-							<ul class="colorlib-footer-links">
-								<li><a href="#"><i class="icon-check"></i> About Us</a></li>
-								<li><a href="#"><i class="icon-check"></i> Testimonials</a></li>
-								<li><a href="#"><i class="icon-check"></i> Classes</a></li>
-								<li><a href="#"><i class="icon-check"></i> Blog</a></li>
-								<li><a href="#"><i class="icon-check"></i> Blog</a></li>
-								<li><a href="#"><i class="icon-check"></i> Contact</a></li>
-							</ul>
+							<iframe width="100%" height="250px;" src="https://www.youtube.com/embed/2leoL3yKb4o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 						</p>
 					</div>
 
 					<div class="col-md-3 colorlib-widget">
-						<h4>Recent Post</h4>
-						<div class="f-blog">
-							<a href="blog.html" class="blog-img" style="background-image: url(resources/images/blog-1.jpg);">
-							</a>
-							<div class="desc">
-								<h2><a href="blog.html">Tips for sexy body</a></h2>
-								<p class="admin"><span>18 April 2018</span></p>
-							</div>
-						</div>
-						<div class="f-blog">
-							<a href="blog.html" class="blog-img" style="background-image: url(resources/images/blog-2.jpg);">
-							</a>
-							<div class="desc">
-								<h2><a href="blog.html">Tips for sexy body</a></h2>
-								<p class="admin"><span>18 April 2018</span></p>
-							</div>
-						</div>
-						<div class="f-blog">
-							<a href="blog.html" class="blog-img" style="background-image: url(resources/images/blog-3.jpg);">
-							</a>
-							<div class="desc">
-								<h2><a href="blog.html">Tips for sexy body</a></h2>
-								<p class="admin"><span>18 April 2018</span></p>
-							</div>
-						</div>
+						<h4 style="margin-bottom: 9px;">자신에게 맞는 프로틴 찾기!</h4>
+						<p>
+							<iframe width="100%" height="250px;" src="https://www.youtube.com/embed/1IJB1rKLYKo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</p>
 					</div>
 
 					<div class="col-md-3 colorlib-widget">
-						<h4>Contact Info</h4>
-						<ul class="colorlib-footer-links">
-							<li>291 South 21th Street, <br> Suite 721 New York NY 10016</li>
-							<li><a href="tel://1234567920"><i class="icon-phone"></i> + 1235 2355 98</a></li>
-							<li><a href="mailto:info@yoursite.com"><i class="icon-envelope"></i> info@yoursite.com</a></li>
-							<li><a href="http://luxehotel.com"><i class="icon-location4"></i> yourwebsite.com</a></li>
-						</ul>
+						<h4 style="margin-bottom: 9px;">일타강사 빡쌤의 운동 강의</h4>
+						<p>
+							<iframe width="100%" height="250px;" src="https://www.youtube.com/embed/Q4YHOW4vHCM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</p>			
 					</div>
 				</div>
 			</div>

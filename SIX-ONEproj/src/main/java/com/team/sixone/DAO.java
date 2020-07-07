@@ -38,8 +38,8 @@ public class DAO {
 		int upd;
 		String sql = "insert into timeline values(SEQ_TIMELINE.nextval,'" + content + "', '" + saveDirectory + filename
 				+ "', sysdate, '" + id + "')";
-		System.out.println(saveDirectory);
-		System.out.println(filename);
+//		System.out.println(saveDirectory);
+//		System.out.println(filename);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -53,7 +53,6 @@ public class DAO {
 			e.printStackTrace();
 			upd = 0;
 		}
-
 		return upd;
 	}
 /*
@@ -62,7 +61,6 @@ public class DAO {
  */
 	public Map Search(String searchWord) {
 		// 라이크 사용
-
 		Map map = new HashMap();
 		String[] nos = new String[1];
 		String[] images = new String[1];
@@ -84,7 +82,7 @@ public class DAO {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 
-			System.out.println(columnCount);
+//			System.out.println(columnCount);
 			if (columnCount != 0) {
 				nos = new String[columnCount];
 				images = new String[columnCount];
@@ -100,7 +98,7 @@ public class DAO {
 				ids[i] = rs.getString(5);
 				created_at[i] = rs.getDate(4);
 				images[i] = rs.getString(3);
-				System.out.println(images[i]);
+//				System.out.println(images[i]);
 				i++;
 			}
 			psmt.close();
@@ -195,7 +193,7 @@ GROUP BY TO_CHAR(S.SALE_DATE,'YYYYMM'), G.REGION;
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 
-			System.out.println(columnCount);
+//			System.out.println(columnCount);
 			if (columnCount != 0) {
 				nos = new String[columnCount];
 				images = new String[columnCount];

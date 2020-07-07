@@ -56,10 +56,8 @@
 	
 	<context:component-scan base-package="com.team.sixone" />
 	
-	<websocket:handlers>
-		<websocket:mapping handler="RefreshHandler" path="/chat-ws.do"/>
-	</websocket:handlers>
 	
-	<beans:bean id="RefreshHandler" class="com.team.sixone.webSocket.webSocretServer"/>
+	
+
 	
 </beans:beans>

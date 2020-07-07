@@ -28,7 +28,7 @@ public class Upload {
 	//	String saveDirectory = application.getRealPath("/Upload");
 		//file:///21b431e57ed75d51e45cf0dae13d81f1.png
 		
-		String saveDirectory ="C:/Users/kosmo_09/git/SIX-ONE_marge2/src/main/webapp/resources/images/TLImg";//강제주소주입
+		String saveDirectory ="C:\\Users\\kosmo_11\\git\\SIX-ONE\\SIX-ONEproj\\src\\main\\webapp\\resources\\TLImg";//강제주소주입
 		System.out.println(saveDirectory);
 		int maxPostSize = 1024 * 500; // 500Kb
 		String encoding = "UTF-8";
