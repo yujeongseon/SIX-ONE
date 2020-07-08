@@ -23,7 +23,7 @@
 		<!-- login-processing-url 로그인 처리 -->
 		<!-- username-parameter 로그인 폼에 아이디로 등록한 파라미터 -->
 		<!-- password-parameter 로그인 폼에 비밀번호로 등록한 파라미터 -->
-		<security:form-login login-page="/Login.do" 
+		<security:form-login 
 							 default-target-url="/Login.do"
 							 authentication-failure-url="/Login.do"
 							 login-processing-url="/Login.do"
@@ -45,8 +45,8 @@
 		<!-- invalid-session-url 세션이 끊어졌을 떄 이동할 url -->
 		<!-- max-sessions 최대 허용하는 세션 수 -->
 		<!-- expired-url 만기된 세션 (유효시간이 경과한 경우) -->
-		<security:session-management invalid-session-url="/Login.do">
-			<security:concurrency-control max-sessions="1" expired-url="/Login.do"/>
+		<security:session-management invalid-session-url="/">
+			<security:concurrency-control max-sessions="1" expired-url="/"/>
 		</security:session-management>
 
 		
@@ -65,7 +65,7 @@
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:jdbc-user-service data-source-ref="datasource"
-										users-by-username-query="SELECT m.id username, m.pwd password, enabled FROM member m JOIN auth_security au ON m.id = au.id WHERE m.id = ? "
+										users-by-username-query="SELECT m.id username, m.password password, enabled FROM member m JOIN auth_security au ON m.id = au.id WHERE m.id = ? "
 										authorities-by-username-query="SELECT m.id username, authority FROM member m JOIN auth_security au ON m.id = au.id WHERE m.id = ? "
 			/>
 		

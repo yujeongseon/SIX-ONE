@@ -175,7 +175,7 @@ function isLogin(el){
 								</c:if>
 								<c:if test="${not flag }">
 									<li id="nav-myPage"><a href="<c:url value='/MyPage.do'/>" id="MyButton">${LoginSuccess }님의 페이지</a></li>
-									<li><a href="<c:url value="Logout.do"/>">로그아웃</a></li>
+									<li><a href="<c:url value="/Logout.do"/>">로그아웃</a></li>
 								<input type="hidden" id="loginckeck" value="no">
 								</c:if>
 							</ul>

@@ -241,15 +241,18 @@
 		</div>
 		<div class="row">
 			<!--실내운동 연결 -->
-			<a href="https://www.msn.com/ko-kr/health/strength">
-				<div class="col-md-3 col-sm-3 animate-box">
+			
+				<div class="col-md-3 col-sm-3 animate-box" data-toggle="modal"
+		data-target="#mapModal">
 
 					<div class="trainers-entry">
 						<div class="trainer-img"
-							style="background-image: url(https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBfc6b6/_h400_w284_m1_bwhite.jpg)"></div>
+							style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)"></div>
 						<div class="desc">
-							<h3>실내 운동</h3>
-			</a> <span>실내에서도 간단하게 운동할수 있습니다</span>
+						
+							<h3>가까운 헬스장 찾기</h3>
+			<span>현재 위치를 바탕으로</br>
+가까운 헬스장을 찾습니다</span>
 		</div>
 	</div>
 </div>
@@ -267,30 +270,48 @@
 
 <div class="col-md-3 col-sm-3 animate-box">
 
-	<div class="trainers-entry" id="health" data-toggle="modal"
-		data-target="#mapModal">
+	<div class="trainers-entry" id="health"  >
 
 		<div class="trainer-img" id="healthimg"
-			style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)">
-			<div id='img1' style="height: 50%; background-color: #F0F0F0;;display:none" >
-				<span style="color: red;"> 위치 검색</span>
-				<img src="resources/images/marker_.png" >
+			style="background-image: url(https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBfc6b6/_h400_w284_m1_bwhite.jpg)">
+			<div id='img1' style="height: 50%; background-color: #F0F0F0;display:none" >
+				<span style="color: red;"> 스쿼트</span>
+				<img src="resources/images/sqart.png" >
 			</div>
 			<div id='img2' style="height: 50%; background-color: gray;display:none">
-				<span style="color: red;"> 지도 검색</span>
-				<img src="resources/images/mapimg.png">
+				<span style="color: red;"> 런지</span>
+				<img src="resources/images/Lunge.png">
 			</div>
 			
 		</div>
 		<div class="desc">
-			<h3>가까운 헬스장 찾기</h3>
-			<span>현재 위치를 바탕으로 </br>가까운 헬스장을 찾습니다
+			<h3>실내 운동</h3>
+			<span>실내에서도 간단하게 운동할수 있습니다
 			</span>
 		</div>
 
 
 	</div>
 </div>
+<!-- 스쿼트 모달 
+<div class="modal fade" id="squrtModal" tabindex="-1" role="dialog" > 
+  <div class="modal-dialog modal-lg" style="width: 60%; height: 100%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">SQURT</h4>
+      </div>
+      <div class="modal-body">
+        <iframe src="https://jovial-galileo-7ec103.netlify.app/" style="width:100%; height:600px"> </iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-primary">저장하기</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
 
 
 
@@ -308,8 +329,6 @@
 			</div>
 			<div class="modal-body">
 
-
-
 				<div class="map_wrap">
 
 					<div id="map"
@@ -321,7 +340,7 @@
 					<div class="option">
 						<div>
 							<form onsubmit="searchPlaces(); return false;">
-								찾을 지역 : <input type="text" value="가산동" id="keyword" size="10">
+								찾을 지역 : <input onclick="clearse();" type="text" value="가산동" id="keyword" size="10" style="font-size:1.0em;opacity: 0.9">
 								<button type="submit">검색하기</button>
 							</form>
 						</div>
@@ -332,25 +351,33 @@
 				</div>
 
 				<script>
+					function clearse() {
+						this.value="";
+					}
+				
+				
 					$("#mapModal").on('shown.bs.modal', function() {
 						// id 속성값이 myModal인 element 에 지도를 표시하는 로직
 						console.log('모달나옴');
 						setTimeout(function() {
 							map.relayout();
-						}, 0);
+						}, 1);
 					});
-
+					
+					
 					/*
 					 * 
 					 <div class="col-md-3 col-sm-3 animate-box"><div class="trainers-entry" id="health" data-toggle="modal" data-target="#mapModal"><div class="trainer-img" style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)"></div><div class="desc"><h3>가까운 헬스장 찾기</h3><span>현재 위치를 바탕으로 </br>가까운 헬스장을 찾습니다</span></div></div></div>
 					 */
 					// 마커를 담을 배열입니다
 					var markers = [];
-
+					var url;
 					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 					mapOption = {
-						center : new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-						level : 4
+						center : new kakao.maps.LatLng(37.4801661, 126.8822284), // 지도의 중심좌표
+						//14124587.0606613,4506247.3661922
+						//,
+						level : 5
 					// 지도의 확대 레벨
 					};
 
@@ -419,15 +446,19 @@
 
 						// 지도에 표시되고 있는 마커를 제거합니다
 						removeMarker();
-
 						for (var i = 0; i < places.length; i++) {
-
+								console.log(places[i]);
 							// 마커를 생성하고 지도에 표시합니다
+							console.log(places);
+							url = places[i].place_url;
+							
 							var placePosition = new kakao.maps.LatLng(
 									places[i].y, places[i].x), marker = addMarker(
-									placePosition, i), itemEl = getListItem(i,
+									placePosition, i, places[i].place_url), itemEl = getListItem(i,
 									places[i]); // 검색 결과 항목 Element를 생성합니다
-
+							
+							var namegym = places[i].place_name;
+							
 							// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 							// LatLngBounds 객체에 좌표를 추가합니다
 							//bounds.extend(placePosition);
@@ -440,8 +471,12 @@
 										'mouseover', function() {
 											//  map.setCenter(marker.position);
 											displayInfowindow(marker, title);
-
+										//	map.panTo(placePosition);
 										});
+								
+								//url받아오기 - 마지막거만됨 ㅇ
+								
+								
 
 								kakao.maps.event.addListener(marker,
 										'mouseout', function() {
@@ -452,17 +487,17 @@
 									//map.setCenter(marker.position);
 									displayInfowindow(marker, title);
 									console.log('아이템마우스오버' + title);
-									map.panTo(places[i]);
-
+									
 								};
 
 								itemEl.onmouseout = function() {
 									infowindow.close();
 								};
 							})(marker, places[i].place_name);
-
+				
 							fragment.appendChild(itemEl);
 						}
+						
 
 						// 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
 						listEl.appendChild(fragment);
@@ -508,7 +543,8 @@
 					}
 
 					// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-					function addMarker(position, idx, title) {
+					function addMarker(position, idx, title, url) {
+						var url = this.url;
 						var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
 						imageSize = new kakao.maps.Size(36, 37), // 마커 이미지의 크기
 						imgOptions = {
@@ -522,6 +558,16 @@
 								{
 									position : position, // 마커의 위치
 									image : markerImage
+								});
+						kakao.maps.event.addListener(marker,
+								'click', function() {
+									//  map.setCenter(marker.position);
+									window.open(url, "namegym", "width=925, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes,  top=200, left=500" );  
+									
+									setTimeout(function() {
+										win = window.open(url, "namegym", "width=925, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes,  top=200, left=500");  
+										win.document.body.innerHTML = '<img src ="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png">'
+									}, 30);console.log(url);
 								});
 
 						marker.setMap(map); // 지도 위에 마커를 표출합니다
@@ -616,8 +662,7 @@
 </div>
 </div>
 </div>
-<button type="button" class="btn btn-primary " data-toggle="modal"
-	data-target="#mapModal">글 작성하기</button>
+<input type="text" id="idsend" />
 <script>
 	jQuery(document).ready(function($) {
 
@@ -686,7 +731,15 @@
 		
 	});
 	$('#img1').click(function(){
-		console.log('클릭 이벤트')
+		openWin = window.open('https://elastic-pare-1dc9f1.netlify.app', "namegym", "width=925, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes,  top=200, left=500" );  
+	
+		
+		openWin.document.myChildForm.idsend = "김성준";
+		
+
+	})
+	$('#img2').click(function(){
+		console.log('클릭 이벤트 런지')
 	})
 	/*
 
