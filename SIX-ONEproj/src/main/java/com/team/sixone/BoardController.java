@@ -305,7 +305,7 @@ public class BoardController {
       return "/routineboarddesc.tiles";
    }///////////루틴게시판 이동
    
-   
+   //루틴 상세보기 아이작스
    @RequestMapping(value="/Ajax/selectone.do",produces ="text/html; charset=UTF-8")
    @ResponseBody
    public String ajaxRoutineOne(String no) {

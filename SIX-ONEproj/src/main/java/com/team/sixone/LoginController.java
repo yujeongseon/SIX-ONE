@@ -23,13 +23,19 @@ public class LoginController {
 	@RequestMapping(value="/Login.do",produces ="text/html; charset=UTF-8")
 	public String isLogin(@RequestParam Map map,Model model,HttpSession session) {
 		int flag = LoginService.isLogin(map);
+		
 		if(flag == 0) {
 			String msg = "없는 계정 입니다";
 			return msg;
 		}
 		else{
+			String msg;
 			session.setAttribute("LoginSuccess", map.get("id"));
-			String msg = "로그인 성공";
+			if(map.get("id").equals("admin")) {
+				msg = "admin";
+				return msg;
+			}
+			msg = "로그인 성공";
 			return msg;
 		}
 		
@@ -40,7 +46,7 @@ public class LoginController {
 		session.removeAttribute("LoginSuccess");
 	    session.removeAttribute("id");
 	    
-	    return"forward:/";
+	    return"redirect:/";
 	}//////////LogOut
 	
 	

@@ -57,7 +57,6 @@
 <script>
 
 $(function(){
-	
 
    //768
    $('#myModal').on('show.bs.modal', function () {
@@ -200,10 +199,12 @@ function doLogin(){
 	         else if(msg == "이미있는카카오계정") {
 	        	 window.location.href = $('#locationUrl').val();
 	         }
+	         else if(msg == "admin"){
+	        	 window.location.href = "<c:url value='/admin.do'/>"
+	         }
 	         else{
 	            $('#msg').html(data);
 	         }
-	         
 	      },
 	      error:function(data){
 	      }

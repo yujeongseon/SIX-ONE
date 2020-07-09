@@ -49,7 +49,7 @@
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
             <a id="menu_toggle" style="float:right"><i class="fa fa-bars"></i></a>
-              <a href='<c:url value="/home.do"/>' class="site_title"><span>SIX-ONE 관리소</span></a>
+              <a href='<c:url value="/admin.do"/>' class="site_title"><span>SIX-ONE 관리소</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -73,45 +73,15 @@
               <div class="menu_section">
                 <h3>항목</h3>
                 <ul class="nav side-menu">
-                  <li><a href='<c:url value="/admin.do"/>'><i class="fa fa-home"></i> 관리 메인 <span class="fa fa-chevron-down"></span></a></li>
-                  <li><a><i class="fa fa-desktop"></i> UI 요소<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="general_elements.html">General Elements</a></li>
-                      <li><a href="media_gallery.html">Media Gallery</a></li>
-                      <li><a href="typography.html">Typography</a></li>
-                      <li><a href='<c:url value="/icon.do"/>'>아이콘확인용</a></li>
-                      <li><a href="glyphicons.html">Glyphicons</a></li>
-                      <li><a href="widgets.html">Widgets</a></li>
-                      <li><a href="invoice.html">Invoice</a></li>
-                      <li><a href="inbox.html">Inbox</a></li>
-                      <li><a href="calendar.html">Calendar</a></li>
-                    </ul>
-                  </li>
-                  <li><a href='<c:url value="/moris.do"/>'><i class="fa fa-table"></i>모리스 차트차트 <span class="fa fa-chevron-down"></span></a>
-                  </li>
-                  <li><a href='<c:url value="/chart.do"/>'><i class="fa fa-bar-chart-o"></i> 차트차트2 <span class="fa fa-chevron-down"></span></a>
-                  </li>
+                  <li><a href='<c:url value="/admin.do"/>'><i class="fa fa-home"></i> 관리 메인 </a></li>
+                  <li><a href='<c:url value="/table.do"/>'><i class="fa fa-table"></i>회원정보</a></li>
+                  <li><a href='<c:url value="/icon.do"/>'><i class="fa fa-desktop"></i> UI 아이콘</a></li>
                 </ul>
               </div>
             </div>
             <!-- /sidebar menu -->
 
-            <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
+            
           </div>
         </div>
 
@@ -141,17 +111,17 @@
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i>전체 타임라인</span>
-              <div class="count">2,315</div>
+              <div class="count">${timeline}</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>17%</i>증가</span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i>전체 게시글</span>
+              <span class="count_top"><i class="fa fa-user"></i>전체 루틴</span>
               <div class="count">${routinehap}</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>11%</i>증가</span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
-              <div class="count">7,325</div>
+              <span class="count_top"><i class="fa fa-user"></i>전체 게시글</span>
+              <div class="count">${totalhap}</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
             </div>
           </div>
@@ -251,17 +221,17 @@
                 <div class="x_content">
                   <div class="widget_summary">
                     <div class="w_left w_25">
-                      <span style="font-size:20px;">푸쉬업</span>
+                      <span style="font-size:20px;">${exename0}</span>
                     </div>
                     <div class="w_center w_55">
                       <div class="progress">
-                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 33%;">
+                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${exeper0}%;">
                           <span class="sr-only">60% Complete</span>
                         </div>
                       </div>
                     </div>
                     <div class="w_right w_20">
-                      <span>33%&nbsp;&nbsp;&nbsp;420회</span>
+                      <span>${exeper0}%&nbsp;&nbsp;&nbsp;${execount0}회</span>
                     </div>
                     <div class="clearfix"></div>
                   </div>
@@ -270,17 +240,17 @@
 					
                   <div class="widget_summary">
                     <div class="w_left w_25">
-                      <span style="font-size:20px;">턱걸이</span>
+                      <span style="font-size:20px;">${exename2}</span>
                     </div>
                     <div class="w_center w_55">
                       <div class="progress">
-                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 15%;">
+                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${exeper2}%;">
                           <span class="sr-only">60% Complete</span>
                         </div>
                       </div>
                     </div>
                     <div class="w_right w_20">
-                      <span>15%&nbsp;&nbsp;&nbsp;197회</span>
+                      <span>${exeper2}%&nbsp;&nbsp;&nbsp;${execount2}회</span>
                     </div>
                     <div class="clearfix"></div>
                   </div>
@@ -289,17 +259,17 @@
                   
                   <div class="widget_summary">
                     <div class="w_left w_25">
-                      <span style="font-size:20px;">앞으로 기어</span>
+                      <span style="font-size:20px;">${exename4}</span>
                     </div>
                     <div class="w_center w_55">
                       <div class="progress">
-                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 7%;">
+                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${exeper4}%;">
                           <span class="sr-only">60% Complete</span>
                         </div>
                       </div>
                     </div>
                     <div class="w_right w_20">
-                      <span>7%&nbsp;&nbsp;&nbsp;95회</span>
+                      <span>${exeper4}%&nbsp;&nbsp;&nbsp;${execount4}회</span>
                     </div>
                     <div class="clearfix"></div>
                   </div>
@@ -308,17 +278,17 @@
                   
                   <div class="widget_summary">
                     <div class="w_left w_25">
-                      <span style="font-size:20px;">숨쉬기</span>
+                      <span style="font-size:20px;">${exename6}</span>
                     </div>
                     <div class="w_center w_55">
                       <div class="progress">
-                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
+                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${exeper6}%;">
                           <span class="sr-only">60% Complete</span>
                         </div>
                       </div>
                     </div>
                     <div class="w_right w_20">
-                      <span>5%&nbsp;&nbsp;&nbsp;50회</span>
+                      <span>${exeper6}%&nbsp;&nbsp;&nbsp;${execount6}회</span>
                     </div>
                     <div class="clearfix"></div>
                   </div>
@@ -327,17 +297,17 @@
                   
                   <div class="widget_summary">
                     <div class="w_left w_25">
-                      <span style="font-size:20px;">런지</span>
+                      <span style="font-size:20px;">${exename8}</span>
                     </div>
                     <div class="w_center w_55">
                       <div class="progress">
-                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 2%;">
+                        <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${exeper8}%;">
                           <span class="sr-only">60% Complete</span>
                         </div>
                       </div>
                     </div>
                     <div class="w_right w_20">
-                      <span>2%&nbsp;&nbsp;&nbsp;23회</span>
+                      <span>${exeper8}%&nbsp;&nbsp;&nbsp;${execount8}회</span>
                     </div>
                     <div class="clearfix"></div>
                   </div>
@@ -390,19 +360,19 @@
                             <td>
                               <h3><i class="fa fa-square" style="font-size:24px; color:green;"></i>네이버 </h3>
                             </td>
-                            <td><h3>45%</h3></td>
+                            <td><h3>${naverper}%</h3></td>
                           </tr>
                           <tr>
                             <td>
                               <h3><i class="fa fa-square" style="font-size:24px;color:yellow;"></i>카카오</h3>
                             </td>
-                            <td><h3>38%</h3></td>
+                            <td><h3>${kakaoper}%</h3></td>
                           </tr>
                           <tr>
                             <td>
                               <h3><i class="fa fa-square" style="font-size:24px;color:aero;"></i>six-one</h3>
                             </td>
-                            <td><h3>17%</h3></td>
+                            <td><h3>${sixoneper}%</h3></td>
                           </tr>
                         </table>
                       </td>
@@ -493,56 +463,61 @@
     <!-- Custom Theme Scripts -->
     <script src='<c:url value="/resources/build/js/custom.min.js"/>'></script>
 	<script> 
-			data = { datasets: [{ backgroundColor: ['green','yellow','gray'], data: [45, 38, 17] }],
-			// 각 영역에 커서를 갖다대면 값을 보여줌
-			labels: ['네이버','카카오','six-one'] };
-			// 도넛형 차트
-			var ctx2 = document.getElementById("portalchart");
-			var myDoughnutChart = new Chart(ctx2, { type: 'doughnut',
-				data: data,
-				options: {responsive: false} }); //false 안주면 그래프가 계속 커짐
-	</script>
-	<script>
-		var ctx = document.getElementById('linechart').getContext('2d');
-		var chart = new Chart(ctx, { // 챠트 종류를 선택
+	//회원가입 경로 
+	var ctx2 = document.getElementById("portalchart");
+	//월별 가입자 증가율
+	var ctx = document.getElementById('linechart').getContext('2d');
+	//월별 게시글 증가율
+	var ctx3 = document.getElementById('linechart2').getContext('2d');
+	
+	
+	var chart = new Chart(ctx, { // 챠트 종류를 선택
 			type: 'line',// 챠트를 그릴 데이타
 			data: { labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월'],
 				datasets: [{
 					label: '가입자 그래프',
 					backgroundColor: 'transparent',
 					borderColor: 'green',
-					data: [10, 30, 80, 15, 22, 32, 17]
+					data: [${Jen}, ${Feb}, ${Mar}, ${Apr}, ${May}, ${Jun}, ${Jul}]
 				}]
 			}, // 옵션
 			options: {responsive: false}
 			});
-		
-		
-		
-		var ctx2 = document.getElementById('linechart2').getContext('2d');
-		var chart2 = new Chart(ctx2, { // 챠트 종류를 선택
+	
+	
+			//네이버,카카오,sixone 비율
+			data = { datasets: [{ backgroundColor: ['green','yellow','gray'], data: [${naver}, ${kakao}, ${sixone}] }],
+			// 각 영역에 커서를 갖다대면 값을 보여줌
+			labels: ['네이버','카카오','six-one'] };
+			var myDoughnutChart = new Chart(ctx2, { type: 'doughnut',
+				data: data,
+				options: {responsive: false} }); //false 안주면 그래프가 계속 커짐
+
+				
+		var chart2 = new Chart(ctx3, { // 챠트 종류를 선택
 			type: 'line',// 챠트를 그릴 데이타
 			data: { labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월'],
 				datasets: [{
 					label: '타임라인',
 					backgroundColor: 'transparent',
 					borderColor: 'red',
-					data: [100, 55, 33, 15, 22, 32, 17]
+					data: [${time1}, ${time2}, ${time3}, ${time4}, ${time5}, ${time6}, ${time7}]
 				},
 				{
 					label: '루틴게시판',
 					backgroundColor: 'transparent',
 					borderColor: 'blue',
-					data: [15, 66, 45, 8, 28, 44, 38]
+					data: [${rou1}, ${rou2}, ${rou3}, ${rou4}, ${rou5}, ${rou6}, ${rou7}]
 				}
 				]
 			}, // 옵션
 			options: {responsive: false}
 			});
-		</script>
-		<script>
 		
+		
+	
 		</script>
+		
 
 
   </body>

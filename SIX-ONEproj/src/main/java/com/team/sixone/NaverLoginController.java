@@ -47,7 +47,7 @@ public class NaverLoginController {
 		//1. 로그인 사용자 정보를 읽어온다.
 		apiResult = naverLoginBO.getUserProfile(oauthToken); // String형식의 json데이터
 		System.out.println("api리절트"+apiResult);
-		/**
+		/** 이런식으로 값을 값을받음
 		 * apiResult json 구조 {"resultcode":"00", "message":"success",
 		 * "response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
 		 **/
