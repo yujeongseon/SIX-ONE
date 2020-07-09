@@ -23,7 +23,7 @@
 		<!-- login-processing-url 로그인 처리 -->
 		<!-- username-parameter 로그인 폼에 아이디로 등록한 파라미터 -->
 		<!-- password-parameter 로그인 폼에 비밀번호로 등록한 파라미터 -->
-		<security:form-login 
+		<security:form-login login-page="/"
 							 default-target-url="/Login.do"
 							 authentication-failure-url="/Login.do"
 							 login-processing-url="/Login.do"
