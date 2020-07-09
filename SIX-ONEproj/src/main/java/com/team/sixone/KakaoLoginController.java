@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.sixone.service.LoginService;
 import com.team.sixone.service.MemberService;
 
 @Controller
@@ -18,6 +19,9 @@ public class KakaoLoginController {
 	
 	@Resource(name = "MemberService")
 	private MemberService MemberService;
+	
+	@Resource(name = "LoginService")
+	private LoginService LoginService;
 	
 	@ResponseBody
 	@RequestMapping(value ="/kakaoLogin.do",produces ="text/html; charset=UTF-8" )
@@ -36,6 +40,18 @@ public class KakaoLoginController {
 		}
 	}
 	
+	@RequestMapping(value ="/kakaoisLogin.do",produces ="text/html; charset=UTF-8" )
+	   public String kakaoisLogin(@RequestParam Map map,HttpSession session) {
+	      String kakaoid = map.get("kakaoid").toString();
+	      int flag = LoginService.iskakaoLogin(map);
+	      if(flag != 0) {
+	         session.setAttribute("LoginSuccess", kakaoid);
+	         return "redirect:/";
+	      }
+	      else {
+	         return "redirect:/";
+	      }   
+	   }
 	
 	
 	

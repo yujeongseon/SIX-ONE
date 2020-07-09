@@ -250,8 +250,10 @@
 							<p><span id="total_kcal">0</span> kcal</p>
 							
 						</div>
+						
 						<button class="btn btn-warning" style="float:right;" onclick="javascript:foodSave()">저장하기</button>
-					
+						<button class="btn btn-primary" style="float:right;" onclick="javascript:openFoodModal()">사진올리기</button>
+						
 					</div>
 					
 					
@@ -269,6 +271,33 @@
 				
 		</div><!-- container -->
 	</div>
+	
+	<!-- 음식 사진 모달 -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="foodModal">
+		<div class="modal-dialog" role="document" style="width: 70%;">
+			<div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                          aria-hidden="true">&times;</span></button>
+                  <h4 class="exemodal-title">음식사진등록</h4>
+              </div>
+              <div class="modal-body">
+                  <form id="FILE_FORM">
+                 	<img id="image_section" src="#" alt="your image"/>
+                  	<input type="file" name="file" id="foodFile"/>
+                    <div class="modal-footer">
+	                  <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+	                  <button type="button" class="btn btn-primary" id="predict_food">분석하기</button>
+	              </div>
+                </form>
+              
+            </div>
+          </div><!-- /.modal-content -->
+		</div>
+	</div>
+	
+	
+	
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 	
@@ -431,6 +460,7 @@
 			
 		}
 		
+		// 데이트피커
 		$( "#datepicker" ).datepicker({
 		      showOn: "button",
 		      buttonImage: "resources/images/calendar-icon.png",
@@ -505,12 +535,75 @@
 					}
 			});
 			
-			
-			
+	
+		}
+		
+		// 음식 모달 열기
+		function openFoodModal(){
+			$('#foodModal').modal('show');
+		
 			
 		}
 		
 		
+		$('#predict_food').on('click', function(){
+			predict_food();
+	    });
+
+
+	
+		
+		// 분석버튼 누르기
+		function predict_food(){
+			console.log('확인4');
+			var form = $('#FILE_FORM')[0];
+            var formData = new FormData(form);
+            formData.append("file", jQuery("#foodFile")[0].files[0]);
+        
+            
+			$.ajax({
+				type: "post",
+		        url: "http://192.168.0.36:8282/foodImage",
+		        data: formData,
+	            contentType : false,
+	            processData : false,
+		        success: function(response){
+		        	console.log(response);
+		        	
+		        },
+		        error:function(request,error){
+						console.log('상태코드:',request.status);
+						console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
+						console.log('에러:',error);
+					
+				}
+			
+				
+				
+				
+				
+				
+				
+			}); //ajax
+			
+		}
+		
+		// 사진 미리보기
+		function readURL(input) {
+			 if (input.files && input.files[0]) {
+			  var reader = new FileReader();
+			  
+			  reader.onload = function (e) {
+			   $('#image_section').attr('src', e.target.result);  
+			  }
+			  
+			  reader.readAsDataURL(input.files[0]);
+			  }
+			}
+			  
+			$("#foodFile").change(function(){
+			   readURL(this);
+			});
 		
 		
 		
