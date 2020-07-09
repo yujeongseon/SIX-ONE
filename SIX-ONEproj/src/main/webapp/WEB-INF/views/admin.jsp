@@ -134,7 +134,7 @@
             <div class="col-md-6 col-sm-6 ">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2 style="font-size:25px; font-weight: bold;">가입자 증가 추세</h2>
+                  <h2 style="font-size:25px; font-weight: bold;"><i class="fa fa-line-chart">&nbsp;&nbsp;</i>가입자 증가 추세</h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -165,7 +165,7 @@
             <div class="col-md-6 col-sm-6">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2 style="font-size:25px; font-weight: bold;">게시글 증가 추세</h2>
+                  <h2 style="font-size:25px; font-weight: bold;"><i class="fa fa-line-chart">&nbsp;&nbsp;</i>게시글 증가 추세</h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -201,7 +201,7 @@
             <div class="col-md-6 col-sm-6 ">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>루틴에 가장 많이 포함된 운동 TOP 5</h2>
+                  <h2 style="font-size:25px; font-weight: bold;"><i class="fa fa-align-left">&nbsp;&nbsp;</i>루틴에 가장 많이 포함된 운동</h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -318,7 +318,7 @@
             <div class="col-md-6 col-sm-6 ">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>회원가입 경로</h2>
+                  <h2 style="font-size:25px; font-weight: bold;"><i class="fa fa-pie-chart">&nbsp;&nbsp;</i>회원가입 경로</h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
