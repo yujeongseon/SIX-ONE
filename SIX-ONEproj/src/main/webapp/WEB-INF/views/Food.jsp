@@ -96,6 +96,19 @@
 	font-size:14px !important;
 
 }
+#pred_loading { /*로딩 이미지*/
+	position: fixed;
+	top:50%;
+	left:50%;
+	margin-left: -21px;
+	margin-top: -21px;
+	z-index: 9999;
+}
+.display_none{
+	display: none;
+}
+
+
 
 
 
@@ -274,7 +287,7 @@
 	
 	<!-- 음식 사진 모달 -->
 	<div class="modal fade" tabindex="-1" role="dialog" id="foodModal">
-		<div class="modal-dialog" role="document" style="width: 70%;">
+		<div class="modal-dialog" role="document" style="width: 40%;">
 			<div class="modal-content">
               <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -283,20 +296,35 @@
               </div>
               <div class="modal-body">
                   <form id="FILE_FORM">
-                 	<img id="image_section" src="#" alt="your image"/>
+                 	<img id="image_section" src="#" alt="your image" style="width:100%;height:100%;"/>
                   	<input type="file" name="file" id="foodFile"/>
-                    <div class="modal-footer">
-	                  <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-	                  <button type="button" class="btn btn-primary" id="predict_food">분석하기</button>
-	              </div>
-                </form>
-              
+                  </form>
+                  <div>
+                  	<div class="text-left basket" >
+						<ul class="list-unstyled" id="pred_food_list" style="padding-top: 20px">
+							
+							<li><a href="javascript:void(0)" onclick="remove_cart(this)"><span class="ex"></span></a><span class="basket_menu">고구마 줄기 나물</span>&nbsp;<span class="kcal">300Kcal</span></li>
+							<li><a href="#;"><span class="ex"></span></a><span class="basket_menu">흰쌀밥 1공기</span>&nbsp;<span class="kcal">300Kcal</span></li>
+						  	
+						</ul>
+						<div id="pred_food_kcal"></div>
+					</div>
+					
+                  	<span id="pred_err" style="color:red;"></span>
+                  </div>
+             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-primary" id="predict_food">분석하기</button>
+                <button type="button" class="btn btn-info" onclick="applyPred()">적용하기</button>
             </div>
           </div><!-- /.modal-content -->
 		</div>
 	</div>
 	
-	
+	<div id="pred_loading" class="display_none">
+		<img src="<c:url value='/resources/images/pred_loading.gif'/>"/>
+	</div>
 	
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
@@ -450,14 +478,24 @@
 			
 		}
 		
+		// 카트에서 삭제
 		function remove_cart(e){
-			$(e).parent().remove();		
-			var total_kcal = $('#total_kcal').html();
-			var foodKcal = $(e).closest('li').find('span').eq(2).html();
-			food_kcal = foodKcal.substring(0,foodKcal.length-4)
-			$('#total_kcal').html((parseInt(total_kcal)-parseInt(food_kcal)));
 			
-			
+			console.log('12333')
+			if($(e).parent().parent().attr('id') == 'my_food_list'){
+				var total_kcal = $('#total_kcal').html();
+				var foodKcal = $(e).closest('li').find('span').eq(2).html();
+				food_kcal = foodKcal.substring(0,foodKcal.length-4)
+				$('#total_kcal').html((parseInt(total_kcal)-parseInt(food_kcal)));
+			}
+			else{
+				var total_kcal = $('#pred_total_kcal').html();
+				var foodKcal = $(e).closest('li').find('span').eq(2).html();
+				food_kcal = foodKcal.substring(0,foodKcal.length-4)
+				$('#pred_total_kcal').html((parseInt(total_kcal)-parseInt(food_kcal)));
+			}
+			$(e).parent().remove();
+		
 		}
 		
 		// 데이트피커
@@ -541,7 +579,10 @@
 		// 음식 모달 열기
 		function openFoodModal(){
 			$('#foodModal').modal('show');
-		
+			$('#foodFile').val('');
+			$('#image_section').attr('src', '');
+			$('#pred_food_list').html('');
+			$("#pred_food_kcal").html('');
 			
 		}
 		
@@ -550,17 +591,19 @@
 			predict_food();
 	    });
 
-
 	
 		
 		// 분석버튼 누르기
 		function predict_food(){
-			console.log('확인4');
+			if($("#foodFile").val() == ''){
+        		$('#pred_err').html('사진을 올려주세요');
+				return false;						
+        	}
+			$('#pred_err').html('');
 			var form = $('#FILE_FORM')[0];
             var formData = new FormData(form);
             formData.append("file", jQuery("#foodFile")[0].files[0]);
-        
-            
+        	
 			$.ajax({
 				type: "post",
 		        url: "http://192.168.0.36:8282/foodImage",
@@ -568,9 +611,32 @@
 	            contentType : false,
 	            processData : false,
 		        success: function(response){
-		        	console.log(response);
-		        	
+		        	var food2 = response['food2'];
+		        	//base64 디코딩 인코딩
+		        	var base64Image = atob(btoa(food2));		         
+		        	$('#image_section').prop('src','data:image/jpeg;base64,'+base64Image);
+		        	var datas = response['datas'];
+		        	$('#pred_food_list').html('');
+		        	var query = '';
+		        	var totalKcal = 0;
+		        	datas.forEach(e=> {
+		        		query += '<li><a href="#;" onclick="remove_cart('+"this"+')">'
+						query += '<span class="ex"></span></a>'
+						query += '<span class="basket_menu">'+e[0]+'</span>&nbsp;'
+						query += '<span class="kcal">'+parseInt(e[1])+'kcal</span></li>'
+						totalKcal += e[1];
+						
+		        	})
+		        	var kcalQuery = '<p><span id="pred_total_kcal">'+totalKcal+'</span> kcal</p>'
+		        	$('#pred_food_list').html(query);
+		        	$('#pred_food_kcal').html(kcalQuery);
 		        },
+		        beforeSend: function () {
+		        	$('#pred_loading').removeClass('display_none');
+		        },
+		        complete: function () {
+		        	$('#pred_loading').addClass('display_none');
+     			},
 		        error:function(request,error){
 						console.log('상태코드:',request.status);
 						console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
@@ -578,10 +644,6 @@
 					
 				}
 			
-				
-				
-				
-				
 				
 				
 			}); //ajax
@@ -601,9 +663,31 @@
 			  }
 			}
 			  
-			$("#foodFile").change(function(){
-			   readURL(this);
-			});
+		$("#foodFile").change(function(){
+		   readURL(this);
+		});
+		
+		// 적용하기
+		function applyPred(){
+			console.log('적용하기3');
+			var predFoodList = $('#pred_food_list').html()
+			if(predFoodList == ''){
+				$('#pred_err').html('적용할 데이타가 없습니다');
+				return false;
+				console.log('들어옴')
+			}
+			$('#pred_err').html('');
+			var myFoodList = $('#my_food_list').html();
+			myFoodList += $('#pred_food_list').html();
+			$('#my_food_list').html(myFoodList)
+			
+			var total_kcal = $('#total_kcal').html();
+			total_kcal = parseInt(total_kcal) + parseInt($('#pred_total_kcal').html());
+			$('#total_kcal').html(total_kcal);
+			$('#foodModal').modal('hide');	
+		
+			
+		} // applyPred
 		
 		
 		
