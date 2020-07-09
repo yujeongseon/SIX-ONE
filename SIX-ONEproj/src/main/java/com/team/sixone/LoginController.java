@@ -43,16 +43,22 @@ public class LoginController {
          return msg;
       }
       else {
-         session.setAttribute("LoginSuccess", map.get("id"));
-         String msg = "로그인 성공";
-         return msg;
+    	  String msg;
+			session.setAttribute("LoginSuccess", map.get("id"));
+			if(map.get("id").equals("admin")) {
+				msg = "admin";
+				return msg;
+			}
+			msg = "로그인 성공";
+			return msg;
       }}
    }//////////isLogin
    
    /*
    @RequestMapping("/Logout.do")
    public String LogOut(HttpSession session) {
-      session.invalidate();
+      session.removeAttribute("LoginSuccess");
+	  session.removeAttribute("id");
       return"redirect:/";
    }//////////LogOut
   */
