@@ -70,7 +70,7 @@ public class TimelLineCont {
 	@RequestMapping(value="/upload.do",produces ="text/html; charset=UTF-8")
 	public String upload(HttpServletRequest req,MultipartRequest request,@RequestParam Map map,Map ma) throws IllegalStateException, IOException {
 		MultipartFile upload = (MultipartFile) request.getFile("image");//이미지 값 가져옴
-		String phisicalPath = "C:\\Users\\kosmo_11\\git\\SIX-ONE\\SIX-ONEproj\\src\\main\\webapp\\resources\\TLImg"; //이미지 저장할 주소 
+		String phisicalPath = req.getServletContext().getRealPath("/resources/TLImg");
 		String profile = upload.getOriginalFilename().toString();
 		String renameFile = FileUpDownUtils.getNewFileName(phisicalPath, upload.getOriginalFilename());//같음 이름 이미지 또 업로드 하면 처리해주는 작업
 		File file = new File(phisicalPath+File.separator+renameFile);
@@ -93,8 +93,6 @@ public class TimelLineCont {
 				ma.put("profile", a.getProfile());
 			}
 		}
-		System.out.println("값: "+ma.get("profile"));
-		System.out.println("크기: "+ma.size());
 		return "redirect:/TimeLine.do";
 	}
 

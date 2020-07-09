@@ -99,7 +99,7 @@ public class MyPageController {
 	}//////////weightUpdate
 	
 	@RequestMapping("ProfileUpdate.do")
-	public String ProfileUpdate(@RequestParam Map map,MultipartRequest request,HttpServletRequest req ,HttpSession session,Model model,javax.servlet.ServletContext application) throws IllegalStateException, IOException {
+	public String ProfileUpdate(@RequestParam Map map,MultipartRequest request,HttpServletRequest req ,HttpSession session,Model model) throws IllegalStateException, IOException {
 		MultipartFile upload = (MultipartFile) request.getFile("file");
 		String phisicalPath = req.getServletContext().getRealPath("/resources/Profile");
 		String profile = upload.getOriginalFilename().toString();

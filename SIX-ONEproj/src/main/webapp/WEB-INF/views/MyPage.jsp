@@ -200,17 +200,6 @@ $(function(){
     	}
 		}
 		<%}%>
-		
-		
-		
-		console.log(test0);
-		console.log(test1);
-		console.log(test2);
-		console.log(test3);
-		console.log(test4);
-		console.log(test5);
-		console.log(test6);
-
       var data = new google.visualization.DataTable();
       data.addColumn('number', '이번주 근력 운동 루틴'); //그래프 타이틀
       

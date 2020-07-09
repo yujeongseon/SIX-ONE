@@ -108,8 +108,7 @@
 
 	<div class="trainers-entry" id="health"  >
 
-		<div class="trainer-img" id="healthimg"
-			style="background-image: url(https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBfc6b6/_h400_w284_m1_bwhite.jpg)">
+		<div class="trainer-img" id="healthimg" style="background-image: url(https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBfc6b6/_h400_w284_m1_bwhite.jpg)">
 			<div id='img1' style="height: 50%; background-color: #F0F0F0;display:none" >
 				<span style="color: red;"> 스쿼트</span>
 				<img src="resources/images/sqart.png" >
@@ -513,8 +512,8 @@
 		<option value="7.5">등산</option>
 		<option value="7">실내자전거</option>
 	</select><br/>
-	<input type="text" placeholder="몸무게를 입력" id="kg" style="border: 1px solid #767676;"/>
-	<input type="text" placeholder="운동시간을 입력하세요" id="m" style="border: 1px solid #767676; "/>분
+	<input type="text" placeholder="몸무게를 입력" id="kg" style="border: 1px solid #767676; width: 150px; height: 35px; margin-top: 15px;" />
+	<input type="text" placeholder="운동시간 입력(분)" id="m" style="border: 1px solid #767676; width: 150px; height: 35px;"/>분
 	<input type="button" value="확인" id="btn"><br/>
 	<span style="color: red;" id="kclavalue"></span>
 		</div>
