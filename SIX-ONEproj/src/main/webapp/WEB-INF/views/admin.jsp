@@ -6,7 +6,8 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="#" type="image/ico" />
+	
+	
 
     <title>관리자 페이지</title>
     <!-- 예시
@@ -57,7 +58,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="#" alt="..." class="img-circle profile_img">
+                <img src='<c:url value="/resources/images/관리자.png"/>' alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>어서오세요 관리자님</span>
@@ -95,9 +96,7 @@
             <div class="col-md-2 col-sm-4  tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i>전체 회원</span>
               <div class="count">${memberhap}명</div>
-              <!-- 
-              <span class="count_bottom"><i class="green">4% </i>지난주 대비 증가</span>
-               -->
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>4% </i>지난주 대비 증가</span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i>남성회원 비율</span>
@@ -122,7 +121,7 @@
             <div class="col-md-2 col-sm-4  tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i>전체 게시글</span>
               <div class="count">${totalhap}</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>15% </i>지난주 대비 증가</span>
             </div>
           </div>
         </div>

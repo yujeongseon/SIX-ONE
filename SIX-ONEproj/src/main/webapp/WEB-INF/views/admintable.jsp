@@ -19,15 +19,22 @@
     <!-- iCheck -->
     <link href='<c:url value="/resources/vendors/iCheck/flat/green.css"/>' rel='stylesheet' />
     <!-- Datatables -->
-    <link href='<c:url value="/resources/vendors/datatables/net.bs/bootstrap.min.css"/>' rel='stylesheet' />
-    <link href='<c:url value="/resources/vendors/datatables/net.button/bootstrap.min.css"/>' rel='stylesheet' />
-    <link href='<c:url value="/resources/vendors/datatables/net.fixed/bootstrap.min.css"/>' rel='stylesheet' />
-    <link href='<c:url value="/resources/vendors/datatables/net.response/bootstrap.min.css"/>' rel='stylesheet' />
-    <link href='<c:url value="/resources/vendors/datatables/net.scroller/bootstrap.min.css"/>' rel='stylesheet' />
+    <link href='<c:url value="/resources/vendors/datatables/netbs/dataTables.bootstrap.min.css"/>' rel='stylesheet' />
+    <link href='<c:url value="/resources/vendors/datatables/net.button/buttons.bootstrap.min.css"/>' rel='stylesheet' />
+    <link href='<c:url value="/resources/vendors/datatables/net.fixed/fixedHeader.bootstrap.min.css"/>' rel='stylesheet' />
+    <link href='<c:url value="/resources/vendors/datatables/net.response/responsive.bootstrap.min.css"/>' rel='stylesheet' />
+    <link href='<c:url value="/resources/vendors/datatables/net.scroller/scroller.bootstrap.min.css"/>' rel='stylesheet' />
     
-
     <!-- Custom Theme Style -->
     <link href='<c:url value="/resources/build/css/custom.min.css"/>' rel='stylesheet' />
+<style>
+    tr.aa:hover {
+	text-decoration: underline;
+	font-weight: bold;
+	font-style: normal;
+	cursor : pointer;
+}
+</style>
   </head>
 
   <body class="nav-md">
@@ -35,8 +42,8 @@
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-            <a id="menu_toggle" style="float:right"><i class="fa fa-bars"></i></a>
+            <div class="navbar nav_title" style="border: 0; ">
+            <a id="menu_toggle" ><i class="fa fa-bars"></i></a>
               <a href='<c:url value="/admin.do"/>' class="site_title"><span>SIX-ONE 관리소</span></a>
             </div>
 
@@ -45,7 +52,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="#" alt="..." class="img-circle profile_img">
+                <img src='<c:url value="/resources/images/관리자.png"/>' alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>어서오세요 관리자님</span>
@@ -129,11 +136,16 @@
                       </c:if>
                       <c:if test="${not isEmpty}">
                       	<c:forEach items="${list}" var="item" varStatus="loop">
-		                    <tr onclick="showdetail('${item.id}');">
-		                       <td>${item.id}</td>
+		                    <tr class="aa" onclick="showdetail('${item.id}');">
+		                       <td><i class="fa fa-user">&nbsp;&nbsp;</i>${item.id}</td>
 		                       <td>${item.name}</td>
-		                       <td>${item.gender }</td>
-		                       <td>${item.create_at}</td>
+		                       <c:if test="${item.gender eq '남'}">
+		                       <td><i class="fa fa-male">&nbsp;&nbsp;남</i></td>
+		                       </c:if>
+		                       <c:if test="${item.gender eq '여'}">
+		                       <td><i class="fa fa-female">&nbsp;&nbsp;여</i></td>
+		                       </c:if>
+		                       <td><i class="fa fa-calculator">&nbsp;&nbsp;</i>${item.create_at}</td>
 		                    </tr>
 	                     </c:forEach>
                        </c:if>
@@ -172,7 +184,7 @@
 							<div class="col-md-3">
 							<img id="myprofile" class=img-circle
 								style="margin: 0 auto; height: 150px; width: 150px; margin-top: 50px; margin-bottom: 10px;"
-								src="resources/Profile/${item.profile}" alt="..."
+								src="#" alt="..."
 								onerror="this.src='resources/images/profile.jpg'"
 								data-toggle="modal" data-target="#ProfileModal">
 						</div><!-- col-md-9 -->
@@ -258,8 +270,8 @@
     
     <script src='<c:url value="/resources/vendors/datatables/jquery.dataTables.min.js"/>'></script>
     <script src='<c:url value="/resources/vendors/datatables/netbs/dataTables.bootstrap.min.js"/>'></script>
-    <script src='<c:url value="/resources/vendors/datatables/net.buttion/dataTables.buttons.min.js"/>'></script>
-    <script src='<c:url value="/resources/vendors/datatables/net.buttion/buttons.bootstrap.min.js"/>'></script>
+    <script src='<c:url value="/resources/vendors/datatables/net.button/dataTables.buttons.min.js"/>'></script>
+    <script src='<c:url value="/resources/vendors/datatables/net.button/buttons.bootstrap.min.js"/>'></script>
     <script src='<c:url value="/resources/vendors/datatables/net.button/buttons.flash.min.js"/>'></script>
     <script src='<c:url value="/resources/vendors/datatables/net.button/buttons.html5.min.js"/>'></script>
     <script src='<c:url value="/resources/vendors/datatables/net.button/buttons.print.min.js"/>'></script>

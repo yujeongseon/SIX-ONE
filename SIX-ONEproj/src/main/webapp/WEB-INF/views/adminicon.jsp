@@ -38,7 +38,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="#" alt="..." class="img-circle profile_img">
+                <img src='<c:url value="/resources/images/관리자.png"/>' alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>어서오세요 관리자님</span>

@@ -204,7 +204,7 @@ public class AdminDAO {
 	   public List<AdminMemberDTO> selectmember(Map map){
 			List<AdminMemberDTO> list = new Vector<AdminMemberDTO>();
 			
-			String sql="SELECT id,name,profile,gender,create_at FROM member";
+			String sql="SELECT id,name,profile,gender,TO_CHAR(create_at, 'YYYY-MM-DD') as create_at FROM member";
 			try {
 				psmt = conn.prepareStatement(sql);
 				rs=psmt.executeQuery();
