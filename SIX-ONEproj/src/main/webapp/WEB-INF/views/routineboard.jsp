@@ -16,8 +16,6 @@
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-
-
 $(".hover").mouseleave(
 		  function() {
 		    $(this).removeClass("hover");
@@ -26,14 +24,7 @@ $(".hover").mouseleave(
    
    
    jQuery(document).ready(function($) {
-	    var followFlag = true;
-	   if(window.innerWidth<970){
-		   console.log('작음');
-			 $('.follow *').hide();
-			 followFlag = false;
-			 
-		 }
-  
+      var followFlag = true;
       
       
       $( window ).resize( function() {
@@ -48,7 +39,7 @@ $(".hover").mouseleave(
    $(window)
    .scroll(
          function() {
-            if ($(window).scrollTop() + 200 < ($(document).height() - $(window).height()) && followflag) {
+            if ($(window).scrollTop() + 200 < ($(document).height() - $(window).height()) &&followflag) {
                $('.follow').attr('style',('padding-top :'+ $(window).scrollTop()+'px'));
             }
          })
@@ -62,6 +53,7 @@ $(".hover").mouseleave(
 });
 
 function delok(no){
+	console.log('삭제를위해 이곳에 들어옴')
 	$.ajax({
 	      url:"<c:url value='/Ajax/delok.do'/>",
 	      dataType:'text',
@@ -82,13 +74,17 @@ function delok(no){
 function gudok(no){
 	var ID = "<%=session.getAttribute("LoginSuccess")%>"
 	var id = document.getElementById("gudokbtn"+no);
+	var gudokno = document.getElementById(no+"no");
 	if(id.innerHTML=="구독"){
 	$.ajax({
 	      url:"<c:url value='/Ajax/gudok.do'/>",
 	      dataType:'text',
 	      data:{no:no,id:ID},
 	      success:function(data){
-	    	  
+	    	  var gudokString = "구독자 ";
+	    	  	  gudokString += data;
+	    	  	  gudokString += "명";
+	    	  	  gudokno.innerHTML=gudokString;
 	    		  id.innerHTML="구독중";
 	    		  alert("구독되었습니다")
 	      },
@@ -105,6 +101,10 @@ function gudok(no){
 		      dataType:'text',
 		      data:{no:no,id:ID},
 		      success:function(data){
+			    	  var gudokString = "구독자 ";
+		    	  	  gudokString += data;
+		    	  	  gudokString += "명";
+		    	  	  gudokno.innerHTML=gudokString;
 		    		  id.innerHTML="구독";
 		    		  alert("구독이 취소되었습니다")
 		      },
@@ -275,13 +275,15 @@ a:link {
 	text-decoration: none;
 }
 
+.entry-forth{
+	min-height: 190px;
+}
+
 </style>
 
 <style type="text/css">
 .entry-forth .icon img{
 		width:90px;
-	
-	
 	}
 </style>
 
@@ -319,7 +321,6 @@ a:link {
 								style="width: 100%; height: 400px;">
 							<div class="carousel-caption"></div>
 						</div>
-
 					</div>
 					<!-- Controls -->
 					<a class="left carousel-control" href="#carousel" data-slide="prev">
@@ -358,18 +359,25 @@ a:link {
 
 					<div class="row">
 						<div class="col-md-12">
-
+						
 							<table id="hell"
 								class="table table-bordered table-hover text-center"
 								style="color: black; font-family: sans-serif;" id="tab">
 								<thead id="tthead">
-									<tr class="table100-head"
-										style="text-size: 15px; border-bottom-style: solid; border-bottom-color: black; border-top-style: solid; border-top-color: black">
+									<tr style="text-size: 15px; border-bottom-style: solid; border-bottom-color: black; border-top-style: solid; border-top-color: black">
 										<th class="column1">루틴 목록</th>
 									</tr>
 								</thead>
 							</table>
-
+							<br>
+							
+							<div>
+							<button class="btn" id="gogudok" style="float:right;background-color:#0080FF; font-weight:blod; color:white;" >구독순</button>
+							<button class="btn" id="gochuashin" style="float:right;background-color:#0080FF; font-weight:blod; color:white;">최신순</button>
+							</div>
+							<br>
+							
+							<br>
 							<div id="accordion">
 								<c:if test="${empty list}" var="isEmpty">
 									<div>등록된 루틴이 없습니다.</div>
@@ -377,9 +385,12 @@ a:link {
 								<c:if test="${not isEmpty}">
 									<c:forEach items="${list}" var="item" varStatus="loop">
 										<!-- 아코디언 제목 -->
-										<div>${item.routine_name}
-											<span>${item.routine_no}</span> <span>${item.name}</span> <span
-												style="float: right">${item.create_at}</span>
+										<div>
+											<span style="display:inline-block; width:10%;">${item.routine_no}</span>
+											<span style="display:inline-block; width:40%;">${item.routine_name}</span>
+											<span style="display:inline-block; width:15%; text-align:center">${item.name}</span>
+											<span style ="display:inline-block; width:20%;text-align:center;">${item.create_at}</span>
+											<span id="${item.routine_no}no" style="display:inline-block; width:10%; text-align:center">구독자 ${item.count}명</span>
 										</div>
 										<!-- 실질 내용 -->
 										<div>
@@ -404,6 +415,7 @@ a:link {
 																		id="gudokbtn${item.routine_no}"
 																		onclick="gudok(${item.routine_no});"
 																		style="height:50px; width: 100px; float : right">구독중</a>
+																		<!-- float지우고 inline -->
 																</div>
 															</c:if>
 															<c:if test="${not gudok}">
@@ -1326,15 +1338,7 @@ a:link {
 	         
 	      });
 	   }
-	 /*
-		<div class="entry-forth" onclick="showup(1)">
-			<p class="icon">
-				<span><i class="flaticon-arm" ></i></span>
-			</p>
-			<p class="time"><span id=roucountup1></span><span>회/</span><span id="rousetup1"></span><span>세트</span></p>
-			<p class="trainer"><span id="rounameup1"></span></p>
-		</div>
-	*/
+	
 	function showup(no){
 		$('#disp2').show();
 			switch(no){
@@ -1900,7 +1904,13 @@ a:link {
     	$('#edit-titleup').html(htmlStringup);
     }
 	
+	$('#gogudok').click(function(){
+		window.location.href = "<c:url value='/routinedesc.do'/>";
+	});
 	
+	$('#gochuashin').click(function(){
+		window.location.href = "<c:url value='/routine.do'/>";
+	});
 	
 	$('#save-event').click(function(){
 		var Title = document.getElementById("rou_title").value;
@@ -1911,7 +1921,6 @@ a:link {
 		      dataType:'text',
 		      data:{title:Title,id:ID},
 		      success:function(){
-		    		  alert("루틴 명 먼저 입력됨");
 		    		  for(i=1; i<15; i++){
 		    				console.log("도큐먼트 루네임 이너텍스트:",document.getElementById("rouname"+i).innerText);
 		    				if(document.getElementById("rouname"+i).innerText==""){
@@ -1938,7 +1947,7 @@ a:link {
 		    					   });
 		    				}
 		    			}
-		    		  alert("작성끝");
+		    		  alert("루틴이 작성되었습니다");
 		    		  location.reload();
 		      },
 		      error:function(request,error){
@@ -1958,7 +1967,6 @@ a:link {
 		        url: "<c:url value='/Ajax/roudelete.do'/>",
 		        data: {no:no},
 		        dataType:'text',
-		        success: alert("수정을 위한 먼저 삭제"),
 		        error:function(request,error){
 						console.log('상태코드:',request.status);
 						console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
@@ -1990,7 +1998,7 @@ a:link {
 		    					   });
 		    				}
 		    			}
-		    		  alert("수정끝");
+		    		  alert("수정되었습니다");
 		    		  location.reload();
 		   };
 

@@ -44,6 +44,8 @@ public class BoardController {
       private int pageSize=5;
       private int blockPage=5;
       
+      
+      
    //글 불러오기 페이징]
       @RequestMapping("/freeboard.do")
       public String list(
@@ -123,12 +125,12 @@ public class BoardController {
       @RequestMapping(value="/Ajax/gudok.do",produces ="text/html; charset=UTF-8")
       @ResponseBody
       public String ajaxgudok(String no, String id) {
-    	  int and;
-    	  String answer;
+    	  String num;
     	  RoutineDAO dao= new RoutineDAO(null);
-    	  and=dao.gudokin(no, id);
-    	  answer="구독완료";
-    	  return answer;
+    	  dao.gudokin(no, id);
+    	  num=dao.gudoknum(no);
+    	  if(num==null) num="0";
+    	  return num;
       }
       
     //ajax 구독취소
@@ -136,11 +138,14 @@ public class BoardController {
       @ResponseBody
       public String ajaxgudno(String no, String id) {
     	  int and;
+    	  String num;
     	  String answer;
     	  RoutineDAO dao= new RoutineDAO(null);
     	  and=dao.gudokout(no, id);
+    	  num=dao.gudoknum(no);
+    	  if(num==null) num="0";
     	  answer="구독완료";
-    	  return answer;
+    	  return num;
       }
       
     //ajax 운동명 이미지파일 값 가져오기
@@ -161,6 +166,7 @@ public class BoardController {
       public void ajaxroudelete(int no) {
     	  RoutineDAO dao= new RoutineDAO(null);
     	  //루틴 rou_exe삭제
+    	  System.out.println("삭제위해 이곳에"+no);
     	  dao.deleterouagain(no);
     	  //구독 삭제
     	  dao.deletesub(no);
@@ -168,7 +174,7 @@ public class BoardController {
     	  dao.deleterou(no);
       }
       
-    //ajax 루틴 제목
+    //ajax 루틴 제목 작성
       @RequestMapping(value="/Ajax/writerou.do",produces ="text/html; charset=UTF-8")
       @ResponseBody
       public void ajaxroutinewrite(String title,String id) {
@@ -176,6 +182,7 @@ public class BoardController {
     	  dao.writerou(title, id);
       }
       
+      //루틴 상세내용 작성
       @RequestMapping(value="/Ajax/writedetail.do",produces ="text/html; charset=UTF-8")
       @ResponseBody
       public void ajaxroutinedetailwrite(String exename,String roucount,String rouset, int days) {
@@ -183,7 +190,7 @@ public class BoardController {
     	  if(days > 7) {
     		  days=days-7;
     	  }
-    	  System.out.println("이거 두번만 들어와야 정상인데"+days+"날짜 확인 정상으로 들어오냐");
+    	  
     	  dao.writeroudetail(exename,roucount,rouset,days);
       }
       
@@ -225,16 +232,16 @@ public class BoardController {
       
   
    
-   //ajax 루틴뿌려주기
+   //루틴뿌려주기
    @RequestMapping(value="/routine.do",produces ="text/html; charset=UTF-8")
-   public String ajaxRoutine(@RequestParam Map map,//검색어 받기
+   public String Routine(@RequestParam Map map,//검색어 받기
          @RequestParam(required = false,defaultValue = "1") int nowPage,
          HttpServletRequest req,//컨텍스트 루트 얻기용
          HttpSession session,
          Model model) {//id는 게시판 구분용으로
       //JSON데이타 타입으로 반환하기위해 JSONObject객체 생성
-      int pageSize = 10;
-      int blockPage = 10;
+      int pageSize = 5;
+      int blockPage = 5;
      
       String id= session.getAttribute("LoginSuccess").toString();
       RoutineDAO dao= new RoutineDAO(null);
@@ -259,8 +266,46 @@ public class BoardController {
       //model.addAttribute("rlist",rlist);
       //뷰정보 반환]
       return "/routineboard.tiles";
-   }///////////ajaxJson
+   }///////////루틴게시판 이동
    
+   
+   //루틴 구독순으로 정렬
+   @RequestMapping(value="/routinedesc.do",produces ="text/html; charset=UTF-8")
+   public String Routinedesc(@RequestParam Map map,//검색어 받기
+         @RequestParam(required = false,defaultValue = "1") int nowPage,
+         HttpServletRequest req,//컨텍스트 루트 얻기용
+         HttpSession session,
+         Model model) {//id는 게시판 구분용으로
+      //JSON데이타 타입으로 반환하기위해 JSONObject객체 생성
+      int pageSize = 5;
+      int blockPage = 5;
+     
+      String id= session.getAttribute("LoginSuccess").toString();
+      RoutineDAO dao= new RoutineDAO(null);
+      //전체 레코드수   
+      int totalRecordCount = dao.getTotalRowCount(map);
+      //전체 페이지수]
+      int totalPage = (int)Math.ceil((double)totalRecordCount/pageSize);
+      
+      //시작 및 끝 ROWNUM구하기]
+      int start = (nowPage-1)*pageSize+1;
+      int end   = nowPage*pageSize;   
+      //페이징을 위한 로직 끝]   
+      map.put("start", start);
+      map.put("end", end);
+      List<RoutineDTO> list=dao.gudokupList(map,id);
+
+      String pagingString= PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,req.getContextPath()+ "/routine.do?");
+      //데이타 저장]
+      
+      model.addAttribute("list", list);
+      model.addAttribute("pagingString", pagingString);
+      //model.addAttribute("rlist",rlist);
+      //뷰정보 반환]
+      return "/routineboarddesc.tiles";
+   }///////////루틴게시판 이동
+   
+   //루틴 상세보기 아이작스
    @RequestMapping(value="/Ajax/selectone.do",produces ="text/html; charset=UTF-8")
    @ResponseBody
    public String ajaxRoutineOne(String no) {

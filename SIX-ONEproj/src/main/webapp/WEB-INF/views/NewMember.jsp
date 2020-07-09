@@ -62,8 +62,8 @@
                     <div class="col-lg-10">
                         <select class="form-control" id="gender" name="gender">
                         	<option value="">성별을 선택하세요</option>
-                            <option value="man">남</option>
-                            <option value="woman">여</option>
+                            <option value="남">남</option>
+                            <option value="여">여</option>
                         </select>
                     </div>
                 </div>

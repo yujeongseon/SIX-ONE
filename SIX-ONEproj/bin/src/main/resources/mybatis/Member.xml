@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.Member">
+	<select id="MyPage" resultType="MemberDTO" parameterType="java.lang.String">
+		SELECT * FROM MEMBER WHERE id = #{SessionID}
+	</select>
+	
+	<update id="weightUpdate" parameterType="java.util.Map">
+		UPDATE MEMBER SET weight = ${weight} WHERE id = #{userid}
+	</update>
+	
+	<select id="kakaoCheck" parameterType="java.util.Map" resultType="int">
+		SELECT count(*) FROM MEMBER WHERE  id = #{id}
+	</select>
+	
+	<insert id="kakaomemberinsert" parameterType="java.util.Map">
+		INSERT INTO MEMBER (id,password,name) VALUES(#{id},#{id},#{name})
+	</insert>
+	
+	<update id="kakaomemberlastinsert" parameterType="java.util.Map">
+		UPDATE MEMBER SET height = #{height}, weight = #{weight}, profile =#{profile},gender = #{gender},goal = #{goal}, question = #{question}, answer = #{answer} WHERE id = #{kakaoid}
+	</update>
+	
+	<update id="profileupdate" parameterType="java.util.Map">
+		UPDATE MEMBER SET profile = #{file} WHERE id = #{id}
+	</update>
+</mapper>

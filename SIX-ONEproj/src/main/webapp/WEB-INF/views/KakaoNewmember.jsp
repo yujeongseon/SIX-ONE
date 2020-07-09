@@ -7,7 +7,20 @@
         <div class="container"><!-- 좌우측의 공간 확보 -->
 
             <form class="form-horizontal" action="<c:url value='/Profile.do'/>" id="form" role="form" enctype="multipart/form-data" method="POST"   style="margin-top: 30px;">
-
+				
+				
+				<div class="form-group">
+                   <label for="inputHeight" class="col-lg-2 control-label">아이디</label>
+                   <div class="col-lg-10">
+                        <span class="form-control" id="id">${param.kakaoid}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                   <label for="inputHeight" class="col-lg-2 control-label">이름</label>
+                   <div class="col-lg-10">
+                        <span class="form-control" id="id">${param.kakaoname}</span>
+                    </div>
+                </div>
                 <div class="form-group">
                    <label for="inputHeight" class="col-lg-2 control-label">키</label>
                    <div class="col-lg-10">

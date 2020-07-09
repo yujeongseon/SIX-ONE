@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.team.sixone.service.ExerciseDTO;
+import com.team.sixone.service.ExerciseService;
 import com.team.sixone.service.FoodDTO;
 import com.team.sixone.service.FoodService;
 

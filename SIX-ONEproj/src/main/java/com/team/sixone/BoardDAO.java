@@ -101,7 +101,7 @@ public class BoardDAO {
 				}
 			}
 			catch (SQLException e) {e.printStackTrace();}
-			
+			close();
 			return list;
 		}//////////selectList()
 		
@@ -118,6 +118,7 @@ public class BoardDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			close();
 			return affected;
 		}
 		
@@ -144,6 +145,7 @@ public class BoardDAO {
 					dto.setName(rs.getString(11));
 				}
 			} catch (Exception e) {e.printStackTrace();}
+			close();
 			return dto;
 		}///////////selectOne
 		public BoardDTO updateone(String no) {
@@ -164,9 +166,45 @@ public class BoardDAO {
 					//dto.setName(rs.getString(11));
 				}
 			} catch (Exception e) {e.printStackTrace();}
+			close();
 			return dto;
 		}///////////selectOne
 	
+		public int findid(String id) {
+			int affected =0;
+			String sql="SELECT * FROM member WHERE id LIKE ?";
+			try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, id);
+				rs = psmt.executeQuery();
+				if(rs.next()) {
+					affected=1;
+				}
+			} catch (Exception e) {e.printStackTrace();}
+			close();
+			return affected;
+		}///////////findid
+		
+		
+
+		public int tomember(Map map) {///글쓰기
+			int affected = 0;
+			String sql="INSERT INTO member(id,password,name,height,weight,profile,gender,goal,create_at) VALUES(?,'0000',?,?,?,?,?,?,sysdate)";
+			try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, map.get("id").toString());
+				psmt.setString(2, map.get("name").toString());
+				psmt.setString(3, map.get("height").toString());
+				psmt.setString(4,map.get("weight").toString());
+				psmt.setString(5, map.get("profile").toString());
+				psmt.setString(6, map.get("gender").toString());
+				psmt.setString(7, map.get("goal").toString());
+				affected=psmt.executeUpdate();
+				System.out.println("네이버 회원가입 완");
+			} catch (Exception e) {e.printStackTrace();}
+			close();
+			return affected;
+		}//////////글쓰기
 		
 		
 		//총 레코드 수 얻기용]
@@ -185,7 +223,7 @@ public class BoardDAO {
 				totalRowCount = rs.getInt(1);
 			} 
 			catch (SQLException e) {e.printStackTrace();}
-			
+			close();
 			return totalRowCount;	
 			
 		}//getTotalRowCount	
@@ -204,6 +242,7 @@ public class BoardDAO {
 				affected=psmt.executeUpdate();	
 				System.out.println("쿼리까지함");
 			} catch (Exception e) {e.printStackTrace();}
+			close();
 			return affected;
 		}//////////글쓰기
 		
@@ -220,6 +259,7 @@ public class BoardDAO {
 				affected=psmt.executeUpdate();	
 				System.out.println("수정함함");
 			} catch (Exception e) {e.printStackTrace();}
+			close();
 			return affected;
 		}//////////글쓰기
 		
@@ -232,7 +272,7 @@ public class BoardDAO {
 				rs= psmt.executeQuery();
 				affected=psmt.executeUpdate();
 			} catch (Exception e) {e.printStackTrace();}
-			
+			close();
 			
 			return affected;
 		}
@@ -254,6 +294,7 @@ public class BoardDAO {
 					dto.setCategory(rs.getString(6));
 				}
 			} catch (Exception e) {e.printStackTrace();}
+			close();
 			return dto;
 		}///////////selectOne
 		

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 매퍼파일의 완전한 경로 : xml생략 -->
+<mapper namespace="mybatis.routine">
+	
+	<select id="routineSelectList" parameterType="java.util.Map" resultType="routineDTO">
+		select ro.routine_no, routine_name, id, goal_count, goal_set, exercise_name, routine_days, exercise_motions
+		from routine ro join rou_exe r on ro.routine_no = r.routine_no 
+			join exercise e on r.exercise_no = e.exercise_no 
+		where ro.routine_no = #{routineNo}
+	</select>
+	
+	<select id="routineSelectOne" parameterType="java.util.Map" resultType="routineDTO">
+		select r.routine_no, routine_name,create_at, id, goal_count, goal_set, routine_days, exercise_name, exercise_motions
+		from routine r join rou_exe ro on r.routine_no = ro.routine_no join exercise e on ro.exercise_no = e.exercise_no
+		where r.routine_no = 
+		    (select routine_no
+		    from
+		        (select routine_no,count(*) as routine_count from subscribe group by routine_no order by routine_count desc)
+		    where ROWNUM = 1)
+	</select>
+	
+	
+	
+</mapper>
