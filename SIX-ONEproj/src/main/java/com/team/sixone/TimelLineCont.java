@@ -103,6 +103,7 @@ public class TimelLineCont {
 			 HttpServletResponse resp, HttpSession session) throws ServletException, IOException {
 		
 		DAO dao = new DAO(req.getServletContext());
+		System.out.println(session.getAttribute("LoginSuccess").toString()+"아이디 넘버"+req.getParameter("no"));
 		
 		int goodcount = dao.good(session.getAttribute("LoginSuccess").toString(), req.getParameter("no"));
 		

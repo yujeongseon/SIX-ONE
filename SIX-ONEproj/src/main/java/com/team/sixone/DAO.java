@@ -237,7 +237,7 @@ public class DAO {
             firid[i] = rs.getString(8);
             }
             likes[i] = rs.getString(9);
-            System.out.println("앞 " +rs.getString(8) + "뒤");
+           
             i++;
          }
          psmt.close();
@@ -399,7 +399,7 @@ public class DAO {
 
    public int good(String id, String no) {
       int goodZO = 0;
-      String sql = "INSERT INTO likey VALUES (?, ?)";
+      String sql = "INSERT INTO timeline_like VALUES (?, ?)";
       try {
          psmt = conn.prepareStatement(sql);
          psmt.setString(1, id);
