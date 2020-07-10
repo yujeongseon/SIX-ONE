@@ -38,12 +38,12 @@ public class DAO {
       int upd;
       String sql = "insert into timeline values(SEQ_TIMELINE.nextval,'" + content + "', '" + filename
             + "', sysdate, '" + id + "')";
-      System.out.println(filename);
+  
 
       try {
          psmt = conn.prepareStatement(sql);
          upd = psmt.executeUpdate();
-         System.out.println("영향받은 행수 : " + upd);
+    
 
          psmt.close();
          conn.close();
@@ -91,7 +91,7 @@ public class DAO {
          psmt = conn.prepareStatement(sql);
          rs = psmt.executeQuery();
 
-         System.out.println(columnCount);
+        
          if (columnCount != 0) {
             nos = new String[columnCount];
             images = new String[columnCount];
@@ -119,7 +119,7 @@ public class DAO {
             fircom[i] = rs.getString(7);
             firid[i] = rs.getString(8);
             }
-            System.out.println(images[i]);
+ 
             i++;
          }
          psmt.close();
@@ -160,7 +160,7 @@ public class DAO {
          psmt.setString(2, id);
          psmt.setString(3, timeline_no);
          upd = psmt.executeUpdate();
-         System.out.println("댓글입력 영향받은개수 " + upd);
+         
 
          psmt.close();
          conn.close();
@@ -209,7 +209,7 @@ public class DAO {
          psmt = conn.prepareStatement(sql);
          rs = psmt.executeQuery();
 
-         System.out.println(columnCount);
+
          if (columnCount != 0) {
             nos = new String[columnCount];
             images = new String[columnCount];
@@ -243,7 +243,7 @@ public class DAO {
             firid[i] = rs.getString(8);
             }
             likes[i] = rs.getString(9);
-            System.out.println("앞 " +rs.getString(8) + "뒤");
+ 
             i++;
          }
          psmt.close();
@@ -289,7 +289,7 @@ public class DAO {
          rs = psmt.executeQuery();
          rs.next();
          String no = rs.getString(1);
-         System.out.println("no = " + no);
+   
 
          psmt.close();
 
@@ -303,7 +303,7 @@ public class DAO {
          psmt.setString(1, imagename);
 
          int del = psmt.executeUpdate();
-         System.out.println("영향받은 행수 : " + del);
+
 
          psmt.close();
          conn.close();
@@ -346,12 +346,11 @@ public class DAO {
          
          
          
-         System.out.println("댓글 개수" + columnCount);
+  
          psmt.close();
          psmt = conn.prepareStatement(sql);
          psmt.setString(1, tlno);
          rs = psmt.executeQuery();
-         System.out.println(columnCount);
          while (rs.next()) {
             id[i] = rs.getString(3);
             comment[i] = rs.getString(2);
@@ -396,7 +395,6 @@ public class DAO {
          System.out.printf("ssssss : %s, %s, %s, %s", rs.getString(5), rs.getString(2), rs.getString(3), rs.getString(4));
          psmt.close();
          conn.close();
-         System.out.println(content.toString());
       
       } catch (Exception e) {
          e.printStackTrace();
@@ -415,7 +413,7 @@ public class DAO {
          goodZO = psmt.executeUpdate();
          
       }catch(Exception e) {
-         System.out.println("나올까요?");
+
       }
       
       return goodZO;

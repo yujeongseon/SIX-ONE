@@ -72,6 +72,29 @@ public class TimelLineCont {
 		MultipartFile upload = (MultipartFile) request.getFile("image");//이미지 값 가져옴
 		String phisicalPath = req.getServletContext().getRealPath("/resources/TLImg");
 		String profile = upload.getOriginalFilename().toString();
+		if(profile.equals("")) {
+			File file = new File(phisicalPath+File.separator+profile);
+			map.put("profile", file);
+			TimelineService.NoImagetimeline(map);
+			List<TimelineDTO> list =  TimelineService.timelinecontent(map);
+			for(TimelineDTO a : list) {
+				ma.put("images", a.getTimelineno());
+				ma.put("ids", a.getId());
+				ma.put("date", a.getCreatedatdate());
+				ma.put("content", a.getContent());
+				ma.put("name", a.getName());
+				ma.put("profile", a.getProfile());
+				ma.put("name", a.getName());
+				if(a.getProfile() == null) {
+					ma.put("profile", "profile.jpg");
+				}
+				else {
+					ma.put("profile", a.getProfile());
+				}
+			}
+			return "redirect:/TimeLine.do";
+		}//////if
+		
 		String renameFile = FileUpDownUtils.getNewFileName(phisicalPath, upload.getOriginalFilename());//같음 이름 이미지 또 업로드 하면 처리해주는 작업
 		File file = new File(phisicalPath+File.separator+renameFile);
 		map.put("id", map.get("id"));//아이디

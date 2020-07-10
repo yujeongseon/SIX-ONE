@@ -26,4 +26,9 @@ public class TimelineDAO implements TimelineService{
 		return sqlMapper.selectList("timelinecontent", map);
 	}
 
+	@Override
+	public int NoImagetimeline(Map map) {
+		return sqlMapper.insert("NoImagetimeline", map);
+	}
+
 }

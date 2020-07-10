@@ -313,7 +313,7 @@ jQuery(document).ready(function($) {
       profile[<%=i%>] = '<%=profile[i]%>';
       name[<%=i%>] = '<%=name[i]%>';
 <%}%>
-console.log(ids);
+
    var page = 1;
 
                   //화면 크기 줄일때 오른쪽 메뉴 삭제, 늘리면 다시 추가

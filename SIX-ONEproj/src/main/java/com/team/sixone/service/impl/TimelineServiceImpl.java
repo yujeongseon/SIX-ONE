@@ -25,4 +25,9 @@ public class TimelineServiceImpl implements TimelineService {
 		return dao.timelinecontent(map);
 	}
 
+	@Override
+	public int NoImagetimeline(Map map) {
+		return dao.NoImagetimeline(map);
+	}
+
 }

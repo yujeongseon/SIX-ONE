@@ -13,7 +13,9 @@ SELECT t.timeline_no,t.content, t.image_name, t.created_at, t.id,m.name,m.profil
 FROM timeline t join member m on t.id=m.id
 </select>
 	
-	
+<insert id="NoImagetimeline" parameterType="java.util.Map">
+INSERT INTO timeline (timeline_no,content,created_at,id) VALUES (SEQ_TIMELINE.nextval,#{inscontent},sysdate,#{id})
+</insert>
 	
 	
 	

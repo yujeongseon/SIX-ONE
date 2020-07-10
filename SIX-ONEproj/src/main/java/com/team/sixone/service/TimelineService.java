@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface TimelineService {
 	int timeline(Map map);
 	List<TimelineDTO> timelinecontent (Map map);
+	int NoImagetimeline(Map map);
 }
