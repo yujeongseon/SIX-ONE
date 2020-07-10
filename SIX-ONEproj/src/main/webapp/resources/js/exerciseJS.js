@@ -3,7 +3,6 @@
  *  */
 $(function(){
 	$('#btn').click(function(){
-
 		var exercise = $('#selected').val();
 		var intexercise = parseFloat(exercise);
 		var kg = $('#kg').val();
@@ -11,7 +10,6 @@ $(function(){
 		var m = $('#m').val();
 		var intm = parseInt(m);
 		var kcal = 0;
-		
 		if(!exercise) {
 			$('#kclavalue').html("운동을 선택 하세요.");
 			return;

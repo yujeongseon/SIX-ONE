@@ -7,7 +7,39 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<c:url value='/resources/js/MyPageScroll.js'/>"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<style>
+.wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.button {
+  width: 140px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+
+.button:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+ 
+}
+</style>
 <script type="text/javascript">
 $( function() {
     $( "#accordion" ).accordion({
@@ -425,7 +457,7 @@ $(function(){
 
                      <div class="panel-footer">
                         <c:forEach items="${list}" var="item">
-                           <span style="color: black; width: 280px;"
+                           <span style="color: black; width: 280;"
                               class="glyphicon glyphicon-scale"> ${item.name}님의현재몸무게-<span
                               id="weight">${item.weight}</span>kg
                            </span>
@@ -434,10 +466,10 @@ $(function(){
                               <button id="kgdown" style="color: black;">▼</button>
                               <form style="display: inline;"
                                  action="<c:url value='/weightUpdate.do'/>">
-                                 <input type="hidden" name="weight" value="${item.weight}"
-                                    id="weightid" /> <input type="hidden" name="userid"
-                                    value="${item.id}" />
-                                 <button type="submit" class="btn btn-warning">수정</button>
+                                 <input type="hidden" name="weight" value="${item.weight}" id="weightid" /> <input type="hidden" name="userid" value="${item.id}" />
+                                <div class="wrap" style="display: inline;">
+  									<button class="button" id="btn" style=" width: 70px; font-size: 15px;">수정</button>
+								</div>
                               </form>
                            </div>
                         </c:forEach>

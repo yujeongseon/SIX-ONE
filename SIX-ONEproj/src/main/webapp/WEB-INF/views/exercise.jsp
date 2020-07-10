@@ -6,6 +6,38 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=baec786c99350c041ef35a31dcf9afcf&libraries=services"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/exerciseCSS.css'/>" >
 <script src="<c:url value='/resources/js/exerciseJS.js'/>"></script>
+<style>
+.wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  width: 140px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+
+.button:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+}
+</style>
 <aside id="colorlib-hero">
 	<div class="flexslider">
 		<ul class="slides">
@@ -514,7 +546,9 @@
 	</select><br/>
 	<input type="text" placeholder="몸무게를 입력" id="kg" style="border: 1px solid #767676; width: 150px; height: 35px; margin-top: 15px;" />
 	<input type="text" placeholder="운동시간 입력(분)" id="m" style="border: 1px solid #767676; width: 150px; height: 35px;"/>분
-	<input type="button" value="확인" id="btn"><br/>
+	<div class="wrap" style="display: inline;">
+  <button class="button" id="btn"  style=" width: 70px; font-size: 15px;">확인</button>
+	</div><br/>
 	<span style="color: red;" id="kclavalue"></span>
 		</div>
 			<div class="modal-footer">
@@ -524,9 +558,6 @@
 	</div>
 </div>
 <!-- 칼로리 계산 모달창  -->
-
-
-
 <div class="col-md-3 col-sm-3 animate-box">
 	<!--칼로리 계산기랑 연결-->
 		<div class="trainers-entry" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#kcalmodal">

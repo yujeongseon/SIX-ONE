@@ -86,6 +86,8 @@ public class TimelLineCont {
 			ma.put("date", a.getCreatedatdate());
 			ma.put("content", a.getContent());
 			ma.put("name", a.getName());
+			ma.put("profile", a.getProfile());
+			ma.put("name", a.getName());
 			if(a.getProfile() == null) {
 				ma.put("profile", "profile.jpg");
 			}
