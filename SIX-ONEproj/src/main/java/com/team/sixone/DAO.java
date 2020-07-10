@@ -392,7 +392,7 @@ public class DAO {
 
    public int good(String id, String no) {
       int goodZO = 0;
-      String sql = "INSERT INTO likey VALUES (?, ?)";
+      String sql = "INSERT INTO timeline_like VALUES (?, ?)";
       try {
          psmt = conn.prepareStatement(sql);
          psmt.setString(1, id);

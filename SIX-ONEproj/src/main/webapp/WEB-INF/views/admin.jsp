@@ -352,7 +352,7 @@
                     </tr>
                     <tr>
                       <td>
-                        <canvas id="portalchart" max-height="254" max-width="508" style="width:508px; height:254px;   margin: 15px 10px 10px 0;"></canvas>
+                        <canvas id="portalchart"  style="width:100%;height:280px;">></canvas>
                       </td>
                       <td>
                         <table class="tile_info">
