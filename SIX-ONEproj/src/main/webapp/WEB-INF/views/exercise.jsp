@@ -3,174 +3,41 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=baec786c99350c041ef35a31dcf9afcf&libraries=services"></script>
-
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=baec786c99350c041ef35a31dcf9afcf&libraries=services"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/exerciseCSS.css'/>" >
+<script src="<c:url value='/resources/js/exerciseJS.js'/>"></script>
 <style>
-.map_wrap, .map_wrap * {
-	margin: 0;
-	padding: 0;
-	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-	font-size: 12px;
+.wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.map_wrap a, .map_wrap a:hover, .map_wrap a:active {
-	color: #000;
-	text-decoration: none;
-}
+.button {
+  width: 140px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
 
-.map_wrap {
-	position: relative;
-	width: 100%;
-	height: 500px;
-}
-
-#menu_wrap {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	width: 250px;
-	margin: 10px 0 30px 10px;
-	padding: 5px;
-	overflow-y: auto;
-	background: rgba(255, 255, 255, 0.7);
-	z-index: 1;
-	font-size: 12px;
-	border-radius: 10px;
-}
-
-.bg_white {
-	background: #fff;
-}
-
-#menu_wrap hr {
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 2px solid #5F5F5F;
-	margin: 3px 0;
-}
-
-#menu_wrap .option {
-	text-align: center;
-}
-
-#menu_wrap .option p {
-	margin: 10px 0;
-}
-
-#menu_wrap .option button {
-	margin-left: 5px;
-}
-
-#placesList li {
-	list-style: none;
-}
-
-#placesList .item {
-	position: relative;
-	border-bottom: 1px solid #888;
-	overflow: hidden;
-	cursor: pointer;
-	min-height: 65px;
-}
-
-#placesList .item span {
-	display: block;
-	margin-top: 4px;
-}
-
-#placesList .item h5, #placesList .item .info {
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-}
-
-#placesList .item .info {
-	padding: 10px 0 10px 55px;
-}
-
-#placesList .info .gray {
-	color: #8a8a8a;
-}
-
-#placesList .info .jibun {
-	padding-left: 26px;
-	background:
-		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
-		no-repeat;
-}
-
-#placesList .info .tel {
-	color: #009900;
-}
-
-#placesList .item .markerbg {
-	float: left;
-	position: absolute;
-	width: 36px;
-	height: 37px;
-	margin: 10px 0 0 10px;
-	background: url(resources/images/gymimg.png) no-repeat;
-}
-
-#placesList .item .marker_1 {
-	background-position: 0 -0px;
-}
-
-#placesList .item .marker_2 {
-	background-position: 0 -36px;
-}
-
-#placesList .item .marker_3 {
-	background-position: 0 -73px
-}
-
-#placesList .item .marker_4 {
-	background-position: 0 -110px;
-}
-
-#placesList .item .marker_5 {
-	background-position: 0 -146px;
-}
-
-#placesList .item .marker_6 {
-	background-position: 0 -182px;
-}
-
-#placesList .item .marker_7 {
-	background-position: 0 -219px;
-}
-
-#placesList .item .marker_8 {
-	background-position: 0 -255px;
-}
-
-#placesList .item .marker_9 {
-	background-position: 0 -325px;
-}
-#placesList .item .marker_10 {
-	background-position: 0 -358px;
-}
-#pagination {
-	margin: 10px auto;
-	text-align: center;
-}
-
-#pagination a {
-	display: inline-block;
-	margin-right: 10px;
-}
-
-#pagination .on {
-	font-weight: bold;
-	cursor: default;
-	color: #777;
+.button:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
 }
 </style>
-
 <aside id="colorlib-hero">
 	<div class="flexslider">
 		<ul class="slides">
@@ -198,16 +65,17 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2 row-pb-md animate-box">
-				<iframe width="100%" height="430"
-					src="https://www.youtube.com/embed/8VtkpMGw0hw" frameborder="0"
-					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-					allowfullscreen></iframe>
+				<iframe width="100%" height="430" src="https://www.youtube.com/embed/8VtkpMGw0hw" frameborder="0" 
+				allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+					allowfullscreen>
+					</iframe>
 
 				<!--<div class="video colorlib-video" style="background-image: url(images/img_bg_1.jpg);">
 							<a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo"><i class="icon-play3"></i></a>
 							<div class="overlay"></div>
 						</div>-->
 			</div>
+			
 			<div class="col-md-10 col-md-offset-1 text-center animate-box">
 				<div class="about-wrap">
 					<div class="heading-2">
@@ -272,8 +140,7 @@
 
 	<div class="trainers-entry" id="health"  >
 
-		<div class="trainer-img" id="healthimg"
-			style="background-image: url(https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBfc6b6/_h400_w284_m1_bwhite.jpg)">
+		<div class="trainer-img" id="healthimg" style="background-image: url(https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBfc6b6/_h400_w284_m1_bwhite.jpg)">
 			<div id='img1' style="height: 50%; background-color: #F0F0F0;display:none" >
 				<span style="color: red;"> 스쿼트</span>
 				<img src="resources/images/sqart.png" >
@@ -641,19 +508,64 @@
 </div>
 
 <!-- 모달끝 -->
-
-
-
-
+<!-- 칼로리 계산 모달창  -->
+<div class="modal fade" id="kcalmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="myModalLabel">칼로리 계산</h4>
+			</div>
+		<div class="modal-body">
+			<select id="selected" size="6" style="width: 80%;">
+		<option value="1">수면</option>
+		<option value="3">달리기</option>
+		<option value="1.5">플랭크</option>
+		<option value="2">철봉매달리기</option>
+		<option value="3.5">줄넘기</option>
+		<option value="4.5">2단줄넘기</option>
+		<option value="3">걷기(시속 3km)</option>
+		<option value="3.5">걷기(시속 4km)</option>
+		<option value="4">걷기(시속 5~6.4km)</option>
+		<option value="6">조깅(시속 6.5~7km)</option>
+		<option value="10">달리기(시속 8km)</option>
+		<option value="8">사이클(시속 15km)</option>
+		<option value="12">사이클(시속 20km)</option>
+		<option value="4">볼링</option>
+		<option value="10">줄넘기</option>
+		<option value="8">계단 오르기</option>
+		<option value="5">훌라우프</option>
+		<option value="8">스쿼트(버티기)</option>
+		<option value="2.5">스트레칭,요가</option>
+		<option value="7">축구</option>
+		<option value="6">국민체조</option>
+		<option value="7">수영</option>
+		<option value="7">버피테스트</option>
+		<option value="7.5">등산</option>
+		<option value="7">실내자전거</option>
+	</select><br/>
+	<input type="text" placeholder="몸무게를 입력" id="kg" style="border: 1px solid #767676; width: 150px; height: 35px; margin-top: 15px;" />
+	<input type="text" placeholder="운동시간 입력(분)" id="m" style="border: 1px solid #767676; width: 150px; height: 35px;"/>분
+	<div class="wrap" style="display: inline;">
+  <button class="button" id="btn"  style=" width: 70px; font-size: 15px;">확인</button>
+	</div><br/>
+	<span style="color: red;" id="kclavalue"></span>
+		</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 칼로리 계산 모달창  -->
 <div class="col-md-3 col-sm-3 animate-box">
 	<!--칼로리 계산기랑 연결-->
-	<a href="<c:url value='/food.do'/>">
-		<div class="trainers-entry">
+		<div class="trainers-entry" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#kcalmodal">
 			<div class="trainer-img"
 				style="background-image: url(https://cdn.pixabay.com/photo/2016/04/15/17/20/bread-and-butter-1331452_960_720.jpg)"></div>
 			<div class="desc">
-				<h3>칼로리 계산하기</h3>
-				<span>칼로리를 얼마나 소비하는지 간단하게 계산할 수 있습니다.</span>
+				<h3>운동 칼로리 계산하기</h3>
+				<span>운동 후 칼로리를 얼마나 소비하는지 간단하게 계산할 수 있습니다.</span>
 			</div>
 		</div>
 	</a>

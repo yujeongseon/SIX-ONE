@@ -26,6 +26,8 @@
 		<!-- memoCommentDTO 는 결과 Map 에 저장하기때문에 빈 등록 필요 없음 -->
 		<typeAlias alias="LoginDTO" type="com.team.sixone.service.LoginDTO"/>
 		<typeAlias alias="MemberDTO" type="com.team.sixone.service.MemberDTO"/>
+		<typeAlias alias="TimelineDTO" type="com.team.sixone.service.TimelineDTO"/>
+		<typeAlias alias="ExerciseNameDTO" type="com.team.sixone.service.ExerciseNameDTO"/>
 	</typeAliases>
 	
 	
@@ -43,5 +45,6 @@
 		<!-- <mapper resource="mybatis/OneMemo.xml" /> -->
 		<mapper resource="mybatis/Login.xml"/>
 		<mapper resource="mybatis/Member.xml"/>
+		<mapper resource="mybatis/Timeline.xml"/>
 	</mappers>
 </configuration>

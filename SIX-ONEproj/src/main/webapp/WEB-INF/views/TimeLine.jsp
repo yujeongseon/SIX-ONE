@@ -38,6 +38,8 @@ String[] firid = new String[1];
 String[] fircom = new String[1];
 String[] likes = new String[1];
 Date[] date = new Date[1];
+String[] name = new String[1];//유저 이름 혹시몰라서 넣어둠
+String[] profile = new String[1];//프로필사진
 if(request.getParameter("search")!=null){
 	//뭔가 검색했을때
 	map = dao.Search(request.getParameter("search"));
@@ -50,6 +52,8 @@ if(request.getParameter("search")!=null){
 	firid = (String[])(map.get("firid"));
 	fircom = (String[])(map.get("fircom"));
 	likes = (String[])(map.get("likes"));
+	name = (String[])(map.get("name"));
+	profile = (String[])(map.get("profile"));
 }else{
 	//String[] comment  = dao.comments();
 	map = dao.timelines();
@@ -62,6 +66,8 @@ if(request.getParameter("search")!=null){
 	firid = (String[])(map.get("firid"));
 	fircom = (String[])(map.get("fircom"));
 	likes = (String[])(map.get("likes"));
+	name = (String[])(map.get("name"));
+	profile = (String[])(map.get("profile"));
 }
 
 
@@ -182,10 +188,10 @@ function isSaved(event){ //세이브 체크박스
                   <header class="top">
                      <div class="user_container">
                         <div class="profile_img">
-                           <img src="resources/Profile/a.jpg" alt="123">
+                           <img src="resources/Profile/<%=profile[0]%>" alt="..." onerror="this.src='resources/images/profile.jpg'">
                         </div>
                         <div class="user_name">
-                           <div class="nick_name m_text" style="margin-top: 8px;"><%=ids[0]%></div>
+                           <div class="nick_name m_text" style="margin-top: 8px;"><%=name[0]%></div>
                         </div>
                      </div>
 
@@ -292,7 +298,8 @@ jQuery(document).ready(function($) {
 	var fircom = Array();
 	var likes = Array();
 	var id = "<%=id%>";
-	
+	var profile = Array();
+	var name = Array();
 	//자바코드로 배열받은거 => JS배열로 변환
 	<%for (int i = 0; i < images.length; i++) {%>
 		images[<%=i%>] = '<%=images[i]%>';
@@ -304,9 +311,11 @@ jQuery(document).ready(function($) {
 		firid[<%=i%>] = '<%=firid[i]%>';
 		fircom[<%=i%>] = '<%=fircom[i]%>';
 		likes[<%=i%>] = '<%=likes[i]%>';
+		profile[<%=i%>] = '<%=profile[i]%>';
+	    name[<%=i%>] = '<%=name[i]%>';
 		
 <%}%>
-console.log(ids);
+
 	var page = 1;
 
 						//화면 크기 줄일때 오른쪽 메뉴 삭제, 늘리면 다시 추가
@@ -361,22 +370,22 @@ console.log(ids);
 													+'<div class="form-group"><form action="./tlcom.do"  method="POST" id="commentform"><input type="hidden" name="tlcomid" value="'+id+'" id="id"/><input type="hidden" name="tlno" value="'+nos[(page++)]+'" id="tlno"/>'
 													+ '<input type="text" class="col-md-9" name="tlcom" class="ftlcom" id="tlcom" placeholder="댓글 입력" style="border-radius:10px;"></input><input type="submit"/></form></div></div></div></div>');
 													*/
-													$(".appendd").append('<section id="container"><section id="main_container" style="padding-top: 0px"> <div class="inner"><div class="contents_box"><article class="contents"> <header class="top">  <div class="user_container"> <div class="profile_img">  <img src="'+'resources/Profile/a.jpg'+'" alt="프로필 사진"> </div> <div class="user_name">  <div class="nick_name m_text" style="margin-top: 8px;">'+ids[page]+'></div>  </div> </div>'
-													+' <div class="sprite_more_icon" data-name="more"><ul class="toggle_box"> <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li> <li>수정</li> <li>삭제</li> </ul>  </div>  </header> <div class="img_section"><div class="trans_inner"> <div>'
-													+' <div alt="sdasacascasc" style="height: 600px;  background-image:url(/sixone'+images[page]+');background-repeat : no-repeat;background-size : cover;"> </div </div> </div> </div>   <div class="bottom_icons">  <div class="glyphicon glyphicon-heart" id="heartbtn"style="color: red;" onclick="location.href=\'tlgood.do?no='+nos[page]+'\'" ><span style="color: gray;">&nbsp;수정</span>&nbsp;<span style="color: gray;"value="sss" onclick="location.href=\'del.do?img='+images[page]+'\'">삭제</span></div> </div> <div style="margin-left: 20px;"><span style="color: black;">'+content[page]+'</span></div>'
-													+' <div class="likes m_text">좋아요 <span id="like-count-39">'+likes[page]+'</span> <span id="bookmark-count-39"></span> 개 </div> <div class="comment_container"><div class="comment" id="comment-list-ajax-post37"> <div class="comment-detail"><div class="nick_name m_text">'+firid[page]+'</div>  <div>'+fircom[page]+' </div>   </div></div><div class="small_heart"> <div class="sprite_small_heart_icon_outline"></div> </div>'
-													+' <span style="color:red"><a href="./tl_full.do?tlno='+nos[page]+'">댓글 '+comcnt[page]+' 개 전체보기....      </a></span> </div>  <div class="timer">'+date[page]+'</div>     <div class="comment_field" id="add-comment-post37">   <div class="form-group">  <form action="./tlcom.do"  method="POST" id="commentform"> <input type="hidden" name="tlcomid" value="<%=id %>" id="id"/>'
-															+'<input type="hidden" name="tlno" value="'+nos[page++]+'" id="tlno"/> <input type="text" placeholder="댓글달기..." class="col-md-9" name="tlcom" class="ftlcom" id="tlcom" > <div class="upload_btn m_text" id="commentbtn">게시</div></form> </div></div></article>    </div></div> </section> </section>');
-													
+													$(".appendd").append('<section id="container"><section id="main_container" style="padding-top: 0px"> <div class="inner"><div class="contents_box"><article class="contents"> <header class="top">  <div class="user_container"> <div class="profile_img">  <img src="resources/Profile/'+profile[page]+'" alt="프로필 사진" onerror='+"this.src='resources/images/profile.jpg'"+'> </div> <div class="user_name">  <div class="nick_name m_text" style="margin-top: 8px;">'+name[page]+'</div>  </div> </div>'
+						                                       +' <div class="sprite_more_icon" data-name="more"><ul class="toggle_box"> <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li> <li>수정</li> <li>삭제</li> </ul>  </div>  </header> <div class="img_section"><div class="trans_inner"> <div>'
+						                                       +' <div alt="sdasacascasc" style="height: 600px;  background-image:url(resources/TLImg/'+images[page]+');background-repeat : no-repeat;background-size : cover;"> </div </div> </div> </div>   <div class="bottom_icons">  <div class="glyphicon glyphicon-heart" id="heartbtn"style="color: red;" onclick="location.href=\'tlgood.do?no='+nos[page]+'\'" ><span style="color: gray;">&nbsp;수정</span>&nbsp;<span style="color: gray;"value="sss" onclick="location.href=\'del.do?img='+images[page]+'\'">삭제</span></div> </div> <div style="margin-left: 20px;"><span style="color: black;">'+content[page]+'</span></div>'
+						                                       +' <div class="likes m_text">좋아요 <span id="like-count-39">'+likes[page]+'</span> <span id="bookmark-count-39"></span> 개 </div> <div class="comment_container"><div class="comment" id="comment-list-ajax-post37"> <div class="comment-detail"><div class="nick_name m_text">'+firid[page]+'</div>  <div>'+fircom[page]+' </div>   </div></div><div class="small_heart"> <div class="sprite_small_heart_icon_outline"></div> </div>'
+						                                       +' <span style="color:red"><a href="./tl_full.do?tlno='+nos[page]+'">댓글 '+comcnt[page]+' 개 전체보기....      </a></span> </div>  <div class="timer">'+date[page]+'</div>     <div class="comment_field" id="add-comment-post37">   <div class="form-group">  <form action="./tlcom.do"  method="POST" id="commentform"> <input type="hidden" name="tlcomid" value="<%=id %>" id="id"/>'
+						                                             +'<input type="hidden" name="tlno" value="'+nos[page++]+'" id="tlno"/> <input type="text" placeholder="댓글달기..." class="col-md-9" name="tlcom" class="ftlcom" id="tlcom" > <div class="upload_btn m_text" id="commentbtn">게시</div></form> </div></div></article>    </div></div> </section> </section>');
+						                                       
 													
 													}else{
-														$(".appendd").append('<section id="container"><section id="main_container" style="padding-top: 0px"> <div class="inner"><div class="contents_box"><article class="contents"> <header class="top">  <div class="user_container"> <div class="profile_img">  <img src="'+'resources/Profile/a.jpg'+'" alt="프로필 사진"> </div> <div class="user_name">  <div class="nick_name m_text" style="margin-top: 8px;">'+ids[page]+'></div>  </div> </div>'
-																+' <div class="sprite_more_icon" data-name="more"><ul class="toggle_box"> <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li> </ul>  </div>  </header> <div class="img_section"><div class="trans_inner"> <div>'
-																+' <div style="height: 600px; background-image:url(/sixone'+images[page]+');background-repeat : no-repeat;background-size : cover;"></div>  </div> </div> </div>   <div class="bottom_icons">  <div class="glyphicon glyphicon-heart" id="heartbtn"style="color: red;"></div> </div> <div style="margin-left: 20px;"><span style="color: black;">'+content[page]+'</span></div>'
-																+' <div class="likes m_text">좋아요 <span id="like-count-39">'+likes[page]+'</span> <span id="bookmark-count-39"></span> 개 </div> <div class="comment_container"><div class="comment" id="comment-list-ajax-post37"> <div class="comment-detail"><div class="nick_name m_text">'+firid[page]+'</div>  <div>'+fircom[page]+' </div>   </div></div><div class="small_heart"> <div class="sprite_small_heart_icon_outline"></div> </div>'
-																+' <span style="color:red"><a href="./tl_full.do?tlno='+nos[page]+'">댓글 '+comcnt[page]+' 개 전체보기....      </a></span> </div>  <div class="timer">'+date[page]+'</div>     <div class="comment_field" id="add-comment-post37">   <div class="form-group">  <form action="./tlcom.do"  method="POST" id="commentform"> <input type="hidden" name="tlcomid" value="<%=id %>" id="id"/>'
-																		+'<input type="hidden" name="tlno" value="'+nos[page++]+'" id="tlno"/> <input type="text" placeholder="댓글달기..." class="col-md-9" name="tlcom" class="ftlcom" id="tlcom" > <div class="upload_btn m_text" id="commentbtn">게시</div></form> </div></div></article>    </div></div> </section> </section>');
-																}
+														$(".appendd").append('<section id="container"><section id="main_container" style="padding-top: 0px"> <div class="inner"><div class="contents_box"><article class="contents"> <header class="top">  <div class="user_container"> <div class="profile_img">  <img src="resources/Profile/'+profile[page]+'" alt="프로필 사진" onerror='+"this.src='resources/images/profile.jpg'"+'> </div> <div class="user_name">  <div class="nick_name m_text" style="margin-top: 8px;">'+name[page]+'</div>  </div> </div>'
+				                                                +' <div class="sprite_more_icon" data-name="more"><ul class="toggle_box"> <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li> </ul>  </div>  </header> <div class="img_section"><div class="trans_inner"> <div>'
+				                                                +' <div style="height: 600px; background-image:url(resources/TLImg/'+images[page]+');background-repeat : no-repeat;background-size : cover;"></div>  </div> </div> </div>   <div class="bottom_icons">  <div class="glyphicon glyphicon-heart" id="heartbtn"style="color: red;"></div> </div> <div style="margin-left: 20px;"><span style="color: black;">'+content[page]+'</span></div>'
+				                                                +' <div class="likes m_text">좋아요 <span id="like-count-39">'+likes[page]+'</span> <span id="bookmark-count-39"></span> 개 </div> <div class="comment_container"><div class="comment" id="comment-list-ajax-post37"> <div class="comment-detail"><div class="nick_name m_text">'+firid[page]+'</div>  <div>'+fircom[page]+' </div>   </div></div><div class="small_heart"> <div class="sprite_small_heart_icon_outline"></div> </div>'
+				                                                +' <span style="color:red"><a href="./tl_full.do?tlno='+nos[page]+'">댓글 '+comcnt[page]+' 개 전체보기....      </a></span> </div>  <div class="timer">'+date[page]+'</div>     <div class="comment_field" id="add-comment-post37">   <div class="form-group">  <form action="./tlcom.do"  method="POST" id="commentform"> <input type="hidden" name="tlcomid" value="<%=id %>" id="id"/>'
+				                                                      +'<input type="hidden" name="tlno" value="'+nos[page++]+'" id="tlno"/> <input type="text" placeholder="댓글달기..." class="col-md-9" name="tlcom" class="ftlcom" id="tlcom" > <div class="upload_btn m_text" id="commentbtn">게시</div></form> </div></div></article>    </div></div> </section> </section>');
+				                                                }
 													
 													
 												}

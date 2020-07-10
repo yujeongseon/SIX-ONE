@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.team.sixone.service.ExerciseNameDTO;
 import com.team.sixone.service.GraphsDTO;
 import com.team.sixone.service.GraphsSerivce;
 
@@ -19,6 +20,11 @@ public class GraphsServiceImpl implements GraphsSerivce{
 	@Override
 	public List<GraphsDTO> exercisecount(Map map) {
 		return dao.exercisecount(map);
+	}
+
+	@Override
+	public List<ExerciseNameDTO> exerciseonename(Map map) {
+		return dao.exerciseonename(map);
 	}
 
 
