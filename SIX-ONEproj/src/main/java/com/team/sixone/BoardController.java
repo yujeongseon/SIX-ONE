@@ -295,7 +295,7 @@ public class BoardController {
       map.put("end", end);
       List<RoutineDTO> list=dao.gudokupList(map,id);
 
-      String pagingString= PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,req.getContextPath()+ "/routine.do?");
+      String pagingString= PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,req.getContextPath()+ "/routinedesc.do?");
       //데이타 저장]
       
       model.addAttribute("list", list);

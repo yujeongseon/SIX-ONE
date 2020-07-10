@@ -24,27 +24,29 @@ public class LoginController {
    @ResponseBody
    @RequestMapping(value="/Login.do",produces ="text/html; charset=UTF-8")
    public String isLogin(@RequestParam Map map,Model model,HttpSession session, HttpServletResponse resp,Authentication auth) throws IOException {
-	  int flag = LoginService.isLogin(map);
+	  String flag = LoginService.isLogin(map);
       if (map.containsKey("phone")) {
-         if (flag == 0) {
+         if (flag == null) {
             String msg = "login fail";
             resp.sendRedirect("/sixone/home.do");
             return "home.tiles";
          } else {
             session.setAttribute("LoginSuccess", map.get("id"));
+            session.setAttribute("Name", flag);
             String msg = "login success";
             resp.sendRedirect("/sixone/home.do");
             return "home.tiles";
          }
       } else {
       
-      if(flag == 0) {
+      if(flag == null) {
          String msg = "없는 계정 입니다";
          return msg;
       }
       else {
     	  String msg;
 			session.setAttribute("LoginSuccess", map.get("id"));
+			session.setAttribute("Name", flag);
 			if(map.get("id").equals("admin")) {
 				msg = "admin";
 				return msg;

@@ -43,7 +43,6 @@ public class DAO {
       try {
          psmt = conn.prepareStatement(sql);
          upd = psmt.executeUpdate();
-         System.out.println("영향받은 행수 : " + upd);
 
          psmt.close();
          conn.close();

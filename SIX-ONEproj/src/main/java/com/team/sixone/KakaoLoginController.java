@@ -43,9 +43,10 @@ public class KakaoLoginController {
 	@RequestMapping(value ="/kakaoisLogin.do",produces ="text/html; charset=UTF-8" )
 	   public String kakaoisLogin(@RequestParam Map map,HttpSession session) {
 	      String kakaoid = map.get("kakaoid").toString();
-	      int flag = LoginService.iskakaoLogin(map);
-	      if(flag != 0) {
+	      String flag = LoginService.iskakaoLogin(map);
+	      if(flag != null) {
 	         session.setAttribute("LoginSuccess", kakaoid);
+	         session.setAttribute("Name", flag);
 	         return "redirect:/";
 	      }
 	      else {
