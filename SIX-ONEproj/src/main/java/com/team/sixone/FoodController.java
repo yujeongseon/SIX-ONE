@@ -35,9 +35,15 @@ public class FoodController {
 		String id = session.getAttribute("LoginSuccess").toString();
 		map.put("id",id);
 		
+		String[] foodNames = map.get("foodName").toString().split(",");
+		String[] foodKcals = map.get("foodKcal").toString().split(",");
 		
-		int result = foodDAO.foodInsert(map);
-		
+		int result = 0;
+		for(int i = 0 ; i < foodNames.length; i++) {
+			map.put("foodName", foodNames[i]);
+			map.put("foodKcal", foodKcals[i]);
+			result = foodDAO.foodInsert(map);		
+		}
 		return String.valueOf(result);
 	}
 	

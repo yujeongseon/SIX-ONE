@@ -1,5 +1,6 @@
 package com.team.sixone;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,9 +24,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
 
 import javafx.application.Application;
 
@@ -66,12 +70,26 @@ public class TimelLineCont {
 	public String blog(Locale locale, Model model) {
 		return "/ex.tiles";
 	}
-	@RequestMapping(value="/upload.do", method=RequestMethod.POST)
-	public String upload(Locale locale, Model model, HttpServletRequest req, 
-			 HttpServletResponse resp) throws ServletException, IOException {
-		Upload upload_ = new Upload();
+	@RequestMapping(value="/upload.do")
+	public String upload(HttpServletRequest req,MultipartRequest request,@RequestParam Map map,HttpSession session, HttpServletResponse resp) throws ServletException, IOException {
+		MultipartFile upload = (MultipartFile)request.getFile("image");
+		String phisicalPath = req.getServletContext().getRealPath("/resources/images/TLImg");
+		String profile = upload.getOriginalFilename().toString();
+		String content = map.get("inscontent").toString();
+		String id = map.get("id").toString();
+		String renameFile = FileUpDownUtils.getNewFileName(phisicalPath, upload.getOriginalFilename());
+		File file = new File(phisicalPath+File.separator+renameFile);
+		System.out.println("파일 겟앱솔루트"+file.getAbsolutePath());
+		System.out.println("파일 겟패스"+file.getPath());
+		upload.transferTo(file);
 		
-		upload_.upload(req, resp, req.getSession().getServletContext());
+		DAO dao = new DAO(req.getServletContext());
+		dao.uploadtest("/resources/images/TLImg/"+renameFile, content, id);
+		
+		
+		//Upload upload_ = new Upload();
+		
+		//upload_.upload(req, resp, req.getSession().getServletContext());
 		
 		
 
@@ -79,11 +97,17 @@ public class TimelLineCont {
 		return "/TimeLine.tiles";
 	}
 	
-	@RequestMapping(value="/upload.do", method=RequestMethod.GET)
-	public String delete(Locale locale, Model model, HttpServletRequest req, 
-			 HttpServletResponse resp) throws ServletException, IOException {
+	
+	@RequestMapping(value="/tlgood.do", method=RequestMethod.GET)
+	public String tlgood(Locale locale, Model model, HttpServletRequest req, 
+			 HttpServletResponse resp, HttpSession session) throws ServletException, IOException {
+		
+		DAO dao = new DAO(req.getServletContext());
+		
+		int goodcount = dao.good(session.getAttribute("LoginSuccess").toString(), req.getParameter("no"));
+		
+		resp.sendRedirect("/sixone/TimeLine.do");
 		return "/TimeLine.tiles";
-		//return "/TimeLine.tiles:for";
 	}
 	
 
