@@ -325,7 +325,7 @@ console.log(ids);
 						});
 						//클릭할때 사진보여줄예정(SelectOne)
 						$('.appendd').click(function() {
-							console.log($(this).attr());
+							
 
 						});
 

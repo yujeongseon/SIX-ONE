@@ -39,6 +39,11 @@ public class DAO {
 	      String sql = "insert into timeline values(SEQ_TIMELINE.nextval,'" + content + "', '" + filename
 	            + "', sysdate, '" + id + "')";
 	      System.out.println(filename);
+   public int uploadtest(String filename, String content, String id) {
+      int upd;
+      String sql = "insert into timeline values(SEQ_TIMELINE.nextval,'" + content + "', '" + filename
+            + "', sysdate, '" + id + "')";
+      System.out.println(filename);
 
 	      try {
 	         psmt = conn.prepareStatement(sql);

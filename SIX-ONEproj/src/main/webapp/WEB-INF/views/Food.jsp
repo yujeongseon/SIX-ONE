@@ -96,36 +96,33 @@
 	font-size:14px !important;
 
 }
-#pred_loading { /*로딩 이미지*/
+#pred_loading div { /*로딩 이미지*/
 	position: fixed;
-	top:50%;
-	left:50%;
-	margin-left: -21px;
-	margin-top: -21px;
+	top:45%;
+	left:45%;
+	/*margin-left: -21px;
+	margin-top: -21px;*/
 	z-index: 9999;
 }
 .display_none{
 	display: none;
 }
 
-
-
-
-
-
-
+.hiddenImage{
+	visibility: hidden;
+}
+#pred_loading{
+	position: fixed;
+	top:0;
+	width:100%;
+	height:100%;
+	background-color:red;
+	z-index: 8888;
+	background-color: rgba(128, 128, 128,0.2);
+}
 
 </style>
 
-
-
-
-
-
-
-
-
-	
 	<aside id="colorlib-hero">
 		<div class="flexslider">
 			<ul class="slides">
@@ -145,7 +142,6 @@
 		  	</ul>
 	  	</div>
 	</aside>
-
 	
 	<div class="colorlib-blog">
 		<div class="container">
@@ -226,12 +222,9 @@
 			        		<td>100</td>
 			        		<td class="kcal">100kcal</td>
 			        		<td><a href="#;" onclick="javascript:add_cart(this)">
-		        			<img src="<c:url value="/resources/images/bt_cart.jpg"/>"/></a></td></tr> --%>
-							
-							
-							
-						</table>
-						
+		        			<img src="<c:url value="/resources/images/bt_cart.jpg"/>"/></a></td></tr> --%>						
+													
+						</table>						
 						
 					</div>
 					
@@ -267,21 +260,10 @@
 						<button class="btn btn-warning" style="float:right;" onclick="javascript:foodSave()">저장하기</button>
 						<button class="btn btn-primary" style="float:right;" onclick="javascript:openFoodModal()">사진올리기</button>
 						
-					</div>
-					
-					
-					
-					
-				</div>
-			
+					</div>														
+				</div>			
 			</div>
-			
-			
-				
-				
-				
-				
-				
+										
 		</div><!-- container -->
 	</div>
 	
@@ -323,20 +305,14 @@
 	</div>
 	
 	<div id="pred_loading" class="display_none">
-		<img src="<c:url value='/resources/images/pred_loading.gif'/>"/>
+		
+		<div><img src="<c:url value='/resources/images/pred_loading.gif'/>"/></div>
 	</div>
 	
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
-	
-	
-	
-	
-	
-	
-	
 	<script>
-		
+		//음식 불러오기
 		$.ajax({
 	        type: "get",
 	        url: "http://192.168.0.36:9090/restapi/foodGroup",
@@ -458,11 +434,10 @@
 			
 		});
 		
-		
+		// 카트에 담기
 		function add_cart(ss){
 			var foodName = $(ss).closest('tr').find('td').eq(0).html();
-			var foodKcal = $(ss).closest('tr').find('td').eq(2).html();
-		
+			var foodKcal = $(ss).closest('tr').find('td').eq(2).html();		
 			
 			var query = $('#my_food_list').html();
 			query += '<li><a href="#;" onclick="remove_cart('+"this"+')">'
@@ -513,8 +488,9 @@
 		// 음식 저장하기
 		function foodSave(){
 			foodWhen = $(":input:radio[name=foodRadio]:checked").val();
-			totalKcal = $('#total_kcal').html();
 			var foodLists = $('#my_food_list > li > .basket_menu');
+			var kcalLists = $('#my_food_list > li > .kcal');
+			
 			var isLogin = ${LoginSuccess == null};
 			if(isLogin){
 				alert('식단을 저장하려먼 로그인이 필요합니다');
@@ -532,28 +508,35 @@
 			
 			var foodName = '';
 			for(var i = 0; i < foodLists.length; i++){
-				if(i == foodLists.length -1){
-					foodName += $(foodLists[i]).html()
+				if(i == foodLists.length-1){
+					foodName += $(foodLists[i]).html();
 				}
 				else{
 					foodName += $(foodLists[i]).html() + ',';
 				}
 			}
-			console.log(foodWhen);
+			
+			var foodKcal = '';
+			for(var i = 0; i < kcalLists.length; i++){
+				if(i == kcalLists.length-1){
+					foodKcal += $(kcalLists[i]).html().substring(0,$(kcalLists[i]).html().length-4);
+				}
+				else{
+					foodKcal += $(kcalLists[i]).html().substring(0,$(kcalLists[i]).html().length-4) + ',';
+				}
+			}
+			
 			console.log(foodName);
-			console.log(totalKcal);	
-			console.log($('#datepicker').val());
-			
-			
-			
+			console.log(foodKcal);
 			
 			$.ajax({
 			        type: "get",
 			        url: "/sixone/food.insert",
+			        traditional : true,
 			        data: {
 		            	'foodWhen': foodWhen,
 		                'foodName': foodName,
-		                'foodKcal' : totalKcal,
+		                'foodKcal' : foodKcal,
 		                'foodDate': $('#datepicker').val(),
 		            },
 			        success: function(response){
@@ -583,7 +566,7 @@
 			$('#image_section').attr('src', '');
 			$('#pred_food_list').html('');
 			$("#pred_food_kcal").html('');
-			
+			$('#image_section').addClass('hiddenImage');			
 		}
 		
 		
@@ -664,7 +647,8 @@
 			}
 			  
 		$("#foodFile").change(function(){
-		   readURL(this);
+			$('#image_section').removeClass('hiddenImage');
+			readURL(this);
 		});
 		
 		// 적용하기
