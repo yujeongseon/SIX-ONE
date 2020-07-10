@@ -12,11 +12,11 @@ public class LoginServiceImpl implements LoginService{
 	@Resource(name = "loginDAO")
 	private LoginDAO dao;
 	@Override
-	public int isLogin(Map map) {
+	public String isLogin(Map map) {
 		return  dao.isLogin(map);
 	}
 	@Override
-	public int iskakaoLogin(Map map) {
+	public String iskakaoLogin(Map map) {
 		return dao.iskakaoLogin(map);
 	}
 

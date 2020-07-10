@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LoginService {
-	int isLogin(Map map);
+	String isLogin(Map map);
 	
-	int iskakaoLogin(Map map);
+	String iskakaoLogin(Map map);
 }

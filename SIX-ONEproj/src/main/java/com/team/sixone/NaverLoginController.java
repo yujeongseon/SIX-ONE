@@ -71,7 +71,7 @@ public class NaverLoginController {
 		}
 		//4.파싱 닉네임 세션으로 저장
 		session.setAttribute("LoginSuccess", email); // 로그인 활성화
-		session.setAttribute("name", name);
+		session.setAttribute("Name", name);
 		model.addAttribute("result", apiResult);
 		
 		

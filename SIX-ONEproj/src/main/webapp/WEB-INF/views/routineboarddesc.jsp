@@ -387,9 +387,12 @@ a:link {
 								<c:if test="${not isEmpty}">
 									<c:forEach items="${list}" var="item" varStatus="loop">
 										<!-- 아코디언 제목 -->
-										<div>${item.routine_no}
-											<span style="padding-left:15px;">${item.routine_name}</span><span id="${item.routine_no}no" style="float: right;display:inline-block; width:100px; margin-left:50px; text-align:center">구독자 ${item.count}명</span>
-											<span style ="float:right; display:inline-block; width:100px;text-align:center; margin-left:50px">${item.create_at}</span><span style="float:right; display:inline-block; width:100px; text-align:center">${item.name}</span>
+										<div>
+											<span style="display:inline-block; width:10%;">${item.routine_no}</span>
+											<span style="display:inline-block; width:40%;">${item.routine_name}</span>
+											<span style="display:inline-block; width:15%; text-align:center">${item.name}</span>
+											<span style ="display:inline-block; width:20%;text-align:center;">${item.create_at}</span>
+											<span id="${item.routine_no}no" style="display:inline-block; width:10%; text-align:center">구독자 ${item.count}명</span>
 										</div>
 										<!-- 실질 내용 -->
 										<div>

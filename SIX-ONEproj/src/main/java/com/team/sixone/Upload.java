@@ -64,7 +64,7 @@ public class Upload {
          
          String AAAADir = "resources/images/TLImg/"; //강제주입한 주소 테스트
          
-         dao.uploadtest(AAAADir, filename, content, id);
+         dao.uploadtest(filename, content, id);
          
          String image = mr.getParameter("image");
          buffer.append(image);

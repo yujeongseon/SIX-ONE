@@ -15,12 +15,12 @@ public class LoginDAO implements LoginService{
 	private SqlSessionTemplate sqlMapper;
 
 	@Override
-	public int isLogin(Map map) {
+	public String isLogin(Map map) {
 		return sqlMapper.selectOne("isLogin",map);
 	}
 
 	@Override
-	public int iskakaoLogin(Map map) {
+	public String iskakaoLogin(Map map) {
 		return sqlMapper.selectOne("iskakaoLogin",map);
 	}
 	
