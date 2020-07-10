@@ -35,31 +35,25 @@ public class DAO {
    }
 
    public int uploadtest(String filename, String content, String id) {
-	      int upd;
-	      String sql = "insert into timeline values(SEQ_TIMELINE.nextval,'" + content + "', '" + filename
-	            + "', sysdate, '" + id + "')";
-	      System.out.println(filename);
-   public int uploadtest(String filename, String content, String id) {
       int upd;
       String sql = "insert into timeline values(SEQ_TIMELINE.nextval,'" + content + "', '" + filename
             + "', sysdate, '" + id + "')";
       System.out.println(filename);
 
-	      try {
-	         psmt = conn.prepareStatement(sql);
-	         upd = psmt.executeUpdate();
-	         System.out.println("영향받은 행수 : " + upd);
+      try {
+         psmt = conn.prepareStatement(sql);
+         upd = psmt.executeUpdate();
 
-	         psmt.close();
-	         conn.close();
+         psmt.close();
+         conn.close();
 
-	      } catch (Exception e) {
-	         e.printStackTrace();
-	         upd = 0;
-	      }
+      } catch (Exception e) {
+         e.printStackTrace();
+         upd = 0;
+      }
 
-	      return upd;
-	   }
+      return upd;
+   }
 /*
  * String cntSql = "SELECT COUNT(*) FROM timeline WHERE IMAGE_NAME LIKE '%s%'"; // 배열 선언함
       String sql = "SELECT * FROM timeline WHERE IMAGE_NAME LIKE '%s%'"; // 사진긁어옴
@@ -124,7 +118,6 @@ public class DAO {
             fircom[i] = rs.getString(7);
             firid[i] = rs.getString(8);
             }
-            System.out.println(images[i]);
             i++;
          }
          psmt.close();
@@ -196,7 +189,7 @@ public class DAO {
       //sql = "SELECT timeline.*, (SELECT COUNT(*) FROM timeline_comments WHERE timeline_no= timeline.timeline_no)AS comcnt, (SELECT content FROM timeline_comments WHERE rownum=1 AND timeline_no=timeline.timeline_no)AS firstcontent, (SELECT id FROM timeline_comments WHERE rownum=1 AND timeline_no=timeline.timeline_no)AS firstid  FROM timeline  ORDER BY timeline_no DESC";
       String sql = "SELECT timeline.*, (SELECT COUNT(*) FROM timeline_comments WHERE timeline_no= timeline.timeline_no)AS comcnt, " + 
             "(SELECT content FROM timeline_comments WHERE timeline_no=timeline.timeline_no AND comments_no = (select max(comments_no) from timeline_comments where timeline_no = timeline.timeline_no) ) AS firstcontent, " + 
-            "(SELECT id FROM timeline_comments WHERE timeline_no=timeline.timeline_no AND comments_no = (select max(comments_no) from timeline_comments where timeline_no = timeline.timeline_no)) AS firstid, (select  COUNT(DISTINCT id) from likey where timeline_no = timeline.timeline_no) as tlgood " + 
+            "(SELECT id FROM timeline_comments WHERE timeline_no=timeline.timeline_no AND comments_no = (select max(comments_no) from timeline_comments where timeline_no = timeline.timeline_no)) AS firstid, (select  COUNT(DISTINCT id) from timeline_like where timeline_no = timeline.timeline_no) as tlgood " + 
             "FROM timeline  ORDER BY timeline_no DESC";
       
       //String commentcnt = "SELECT COUNT(*) FROM timeline_comments where timeline_no=?";
@@ -242,7 +235,6 @@ public class DAO {
             firid[i] = rs.getString(8);
             }
             likes[i] = rs.getString(9);
-            System.out.println("앞 " +rs.getString(8) + "뒤");
             i++;
          }
          psmt.close();
@@ -286,7 +278,6 @@ public class DAO {
          rs = psmt.executeQuery();
          rs.next();
          String no = rs.getString(1);
-         System.out.println("no = " + no);
 
          psmt.close();
 
@@ -300,7 +291,6 @@ public class DAO {
          psmt.setString(1, imagename);
 
          int del = psmt.executeUpdate();
-         System.out.println("영향받은 행수 : " + del);
 
          psmt.close();
          conn.close();
@@ -343,7 +333,6 @@ public class DAO {
          
          
          
-         System.out.println("댓글 개수" + columnCount);
          psmt.close();
          psmt = conn.prepareStatement(sql);
          psmt.setString(1, tlno);
@@ -390,7 +379,6 @@ public class DAO {
          content[5] = rs.getString(6);
    // 11, 12d1d2d21, resources/images/TLImg/marker1.png, 2020-06-14 13:30:13      
          
-         System.out.printf("ssssss : %s, %s, %s, %s", rs.getString(5), rs.getString(2), rs.getString(3), rs.getString(4));
          psmt.close();
          conn.close();
          System.out.println(content.toString());

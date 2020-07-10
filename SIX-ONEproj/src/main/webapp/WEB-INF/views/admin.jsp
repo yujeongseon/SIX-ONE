@@ -77,6 +77,7 @@
                   <li><a href='<c:url value="/admin.do"/>'><i class="fa fa-home"></i> 관리 메인 </a></li>
                   <li><a href='<c:url value="/table.do"/>'><i class="fa fa-table"></i>회원정보</a></li>
                   <li><a href='<c:url value="/icon.do"/>'><i class="fa fa-desktop"></i> UI 아이콘</a></li>
+                  <li><a href='<c:url value="/Logout.do"/>'><i class="fa fa-power-off"></i>six-one 메인페이지로</a></li>
                 </ul>
               </div>
             </div>

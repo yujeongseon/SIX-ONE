@@ -389,7 +389,7 @@ a:link {
 										<!-- 아코디언 제목 -->
 										<div>
 											<span style="display:inline-block; width:10%;">${item.routine_no}</span>
-											<span style="display:inline-block; width:40%;">${item.routine_name}</span>
+											<span style="display:inline-block; width:35%;">${item.routine_name}</span>
 											<span style="display:inline-block; width:15%; text-align:center">${item.name}</span>
 											<span style ="display:inline-block; width:20%;text-align:center;">${item.create_at}</span>
 											<span id="${item.routine_no}no" style="display:inline-block; width:10%; text-align:center">구독자 ${item.count}명</span>
