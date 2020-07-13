@@ -829,7 +829,7 @@ $(function(){
 		
 		$.ajax({
 			type : "get",
-			url : "http://127.0.0.1:8282/ajax",
+			url : "http://192.168.0.36:8282/ajax",
 			data : {
 				"id" : "${list[0].id}",
 				"height" : "${list[0].height}",
