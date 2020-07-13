@@ -6,7 +6,8 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GraphsSerivce {
-	List<GraphsDTO> exercisecount(Map map);
-	List<ExerciseNameDTO> exerciseonename(Map map);
+public interface TimelineService {
+	int timeline(Map map);
+	List<TimelineDTO> timelinecontent (Map map);
+	int NoImagetimeline(Map map);
 }

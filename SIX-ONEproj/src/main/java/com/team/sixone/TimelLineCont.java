@@ -7,9 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.servlet.RequestDispatcher;
@@ -30,7 +32,8 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartRequest;
-
+import com.team.sixone.service.TimelineDTO;
+import com.team.sixone.service.TimelineService;
 import javafx.application.Application;
 
 
@@ -40,6 +43,8 @@ public class TimelLineCont {
    private PreparedStatement psmt;
    private ResultSet rs;
    private ServletContext context;
+   @Resource(name="TimelineService")
+private TimelineService TimelineService;
    
    
    @RequestMapping(value = "/TimeLine.do", method = RequestMethod.GET)
@@ -60,7 +65,6 @@ public class TimelLineCont {
    }
    
    
-   
    @RequestMapping(value = "/exercise.do", method = RequestMethod.GET)
    public String exec(Locale locale, Model model) {
       return "/exercise.tiles";
@@ -70,6 +74,8 @@ public class TimelLineCont {
    public String blog(Locale locale, Model model) {
       return "/ex.tiles";
    }
+   
+   
    @RequestMapping(value="/upload.do")
    public String upload(HttpServletRequest req,MultipartRequest request,@RequestParam Map map,HttpSession session, HttpServletResponse resp) throws ServletException, IOException {
       MultipartFile upload = (MultipartFile)request.getFile("image");
@@ -97,7 +103,6 @@ public class TimelLineCont {
       return "/TimeLine.tiles";
    }
    
-   
    @RequestMapping(value="/tlgood.do", method=RequestMethod.GET)
    public String tlgood(Locale locale, Model model, HttpServletRequest req, 
           HttpServletResponse resp, HttpSession session) throws ServletException, IOException {
@@ -110,6 +115,7 @@ public class TimelLineCont {
       return "/TimeLine.tiles";
    }
    
+
 
    @RequestMapping(value = "/del.do", method = RequestMethod.GET)
    public String del(Locale locale, Model model, HttpServletRequest req) {

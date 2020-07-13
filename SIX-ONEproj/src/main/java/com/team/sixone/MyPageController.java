@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
+import com.team.sixone.service.ExerciseNameDTO;
 import com.team.sixone.service.FoodDTO;
 import com.team.sixone.service.FoodService;
 import com.team.sixone.service.GraphsDTO;
@@ -52,6 +53,8 @@ public class MyPageController {
 		model.addAttribute("food", food);
 		List<GraphsDTO> graphs = GraphsSerivce.exercisecount(map);
 		model.addAttribute("graphs", graphs);
+		List<ExerciseNameDTO> exename =  GraphsSerivce.exerciseonename(map);
+		model.addAttribute("exename", exename);
 		return "/MyPage.tiles";
 		}
 		else { //로그인 안된경우
@@ -96,9 +99,9 @@ public class MyPageController {
 	}//////////weightUpdate
 	
 	@RequestMapping("ProfileUpdate.do")
-	public String ProfileUpdate(HttpServletRequest req, @RequestParam Map map,MultipartRequest request,HttpSession session,Model model) throws IllegalStateException, IOException {
+	public String ProfileUpdate(@RequestParam Map map,MultipartRequest request,HttpServletRequest req ,HttpSession session,Model model) throws IllegalStateException, IOException {
 		MultipartFile upload = (MultipartFile) request.getFile("file");
-		String phisicalPath = req.getServletContext().getRealPath("/resources/Profile");;
+		String phisicalPath = req.getServletContext().getRealPath("/resources/Profile");
 		String profile = upload.getOriginalFilename().toString();
 		if(profile.equals("")) {
 			File file = new File(phisicalPath+File.separator+profile);

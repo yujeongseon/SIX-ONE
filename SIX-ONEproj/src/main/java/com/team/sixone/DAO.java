@@ -118,6 +118,7 @@ public class DAO {
             fircom[i] = rs.getString(7);
             firid[i] = rs.getString(8);
             }
+            System.out.println(images[i]);
             i++;
          }
          psmt.close();
@@ -184,13 +185,16 @@ public class DAO {
       String[] firid = new String[1];
       String[] fircom = new String[1];
       String[] likes = new String[1];
+      String[] profile = new String[1];
+      String[] name = new String[1];
       String cntSql = "SELECT COUNT(*) FROM timeline "/* where id='id'" */; // 배열 선언함
       //비상용 sql
       //sql = "SELECT timeline.*, (SELECT COUNT(*) FROM timeline_comments WHERE timeline_no= timeline.timeline_no)AS comcnt, (SELECT content FROM timeline_comments WHERE rownum=1 AND timeline_no=timeline.timeline_no)AS firstcontent, (SELECT id FROM timeline_comments WHERE rownum=1 AND timeline_no=timeline.timeline_no)AS firstid  FROM timeline  ORDER BY timeline_no DESC";
-      String sql = "SELECT timeline.*, (SELECT COUNT(*) FROM timeline_comments WHERE timeline_no= timeline.timeline_no)AS comcnt, " + 
-            "(SELECT content FROM timeline_comments WHERE timeline_no=timeline.timeline_no AND comments_no = (select max(comments_no) from timeline_comments where timeline_no = timeline.timeline_no) ) AS firstcontent, " + 
-            "(SELECT id FROM timeline_comments WHERE timeline_no=timeline.timeline_no AND comments_no = (select max(comments_no) from timeline_comments where timeline_no = timeline.timeline_no)) AS firstid, (select  COUNT(DISTINCT id) from timeline_like where timeline_no = timeline.timeline_no) as tlgood " + 
-            "FROM timeline  ORDER BY timeline_no DESC";
+      String sql = "SELECT timeline.*,(SELECT COUNT(*) FROM timeline_comments WHERE timeline_no= timeline.timeline_no)AS comcnt,\r\n" + 
+        		"(SELECT content FROM timeline_comments  WHERE timeline_no=timeline.timeline_no AND comments_no = (select max(comments_no)  from timeline_comments where timeline_no = timeline.timeline_no) ) AS firstcontent,\r\n" + 
+        		"(SELECT id FROM timeline_comments WHERE timeline_no=timeline.timeline_no AND comments_no = (select max(comments_no)  from timeline_comments where timeline_no = timeline.timeline_no)) AS firstid,\r\n" + 
+        		"(select COUNT(DISTINCT id) from timeline_like where timeline_no = timeline.timeline_no) as tlgood,m.profile, m.name\r\n" + 
+        		"FROM timeline timeline join member m on timeline.id = m.id ORDER BY timeline_no DESC";
       
       //String commentcnt = "SELECT COUNT(*) FROM timeline_comments where timeline_no=?";
       int i = 0;
@@ -216,6 +220,8 @@ public class DAO {
             firid = new String[columnCount];
             fircom = new String[columnCount];
             likes = new String[columnCount];
+            profile = new String[columnCount];
+            name = new String[columnCount];
             
          }
 
@@ -226,6 +232,8 @@ public class DAO {
             created_at[i] = rs.getDate(4);
             images[i] = rs.getString(3);
             comcnt[i] = rs.getString(6);
+            profile[i] = rs.getString(10);
+            name[i] = rs.getString(11);
             if(rs.getString(8) == null) {
                fircom[i] = "없습니다";
                firid[i] = "댓글이";
@@ -235,6 +243,7 @@ public class DAO {
             firid[i] = rs.getString(8);
             }
             likes[i] = rs.getString(9);
+           
             i++;
          }
          psmt.close();
@@ -257,6 +266,8 @@ public class DAO {
       map.put("firid", firid);
       map.put("fircom", fircom);
       map.put("likes", likes);
+      map.put("profile", profile);
+      map.put("name", name);
 
       /*
        * 
@@ -278,6 +289,7 @@ public class DAO {
          rs = psmt.executeQuery();
          rs.next();
          String no = rs.getString(1);
+         System.out.println("no = " + no);
 
          psmt.close();
 
@@ -291,6 +303,7 @@ public class DAO {
          psmt.setString(1, imagename);
 
          int del = psmt.executeUpdate();
+         System.out.println("영향받은 행수 : " + del);
 
          psmt.close();
          conn.close();
@@ -333,6 +346,7 @@ public class DAO {
          
          
          
+         System.out.println("댓글 개수" + columnCount);
          psmt.close();
          psmt = conn.prepareStatement(sql);
          psmt.setString(1, tlno);
@@ -379,6 +393,7 @@ public class DAO {
          content[5] = rs.getString(6);
    // 11, 12d1d2d21, resources/images/TLImg/marker1.png, 2020-06-14 13:30:13      
          
+         System.out.printf("ssssss : %s, %s, %s, %s", rs.getString(5), rs.getString(2), rs.getString(3), rs.getString(4));
          psmt.close();
          conn.close();
          System.out.println(content.toString());
