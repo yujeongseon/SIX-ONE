@@ -125,16 +125,7 @@
 	</div>
 </div>
 
-<div class="col-md-3 col-sm-3 animate-box">
-	<div class="trainers-entry">
-		<div class="trainer-img"
-			style="background-image: url(https://cdn.pixabay.com/photo/2016/03/26/22/47/blur-1281675_960_720.jpg)"></div>
-		<div class="desc">
-			<h3>야외운동</h3>
-			<span>신선한 공기를 마시며 운동해보세요 </span>
-		</div>
-	</div>
-</div>
+
 
 <div class="col-md-3 col-sm-3 animate-box">
 
@@ -178,6 +169,20 @@
     </div>
   </div>
 </div> -->
+<div class="col-md-3 col-sm-3 animate-box">
+   <!--칼로리 계산기랑 연결-->
+   <a href="<c:url value='/food.do'/>">
+      <div class="trainers-entry">
+         <div class="trainer-img"
+            style="background-image: url(https://cdn.pixabay.com/photo/2016/04/15/17/20/bread-and-butter-1331452_960_720.jpg)"></div>
+         <div class="desc">
+            <h3>내가 먹은 칼로리 계산하기</h3>
+            <span>내가 오늘 먹은 음식의 칼로리를 간단하게 계산할 수 있습니다.</span>
+         </div>
+      </div>
+   </a>
+
+</div>
 
 
 
