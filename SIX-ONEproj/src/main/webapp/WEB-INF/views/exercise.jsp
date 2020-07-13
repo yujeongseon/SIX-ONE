@@ -174,7 +174,7 @@
    <a href="<c:url value='/food.do'/>">
       <div class="trainers-entry">
          <div class="trainer-img"
-            style="background-image: url(https://cdn.pixabay.com/photo/2016/04/15/17/20/bread-and-butter-1331452_960_720.jpg)"></div>
+            style="background-image: url(resources/images/calc_exercise_kcal.png)"></div>
          <div class="desc">
             <h3>내가 먹은 칼로리 계산하기</h3>
             <span>내가 오늘 먹은 음식의 칼로리를 간단하게 계산할 수 있습니다.</span>

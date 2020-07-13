@@ -135,7 +135,7 @@ function isLogin(el){
 		
 	<div class="colorlib-loader"></div>
 
-	<div id="page">
+	<div id="page" style="overflow: hidden;">
 		<nav class="colorlib-nav" role="navigation"  >
 			<div class="top-menu">
 				<div class="container" >

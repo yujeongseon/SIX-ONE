@@ -1,3 +1,4 @@
+<%@page import="com.team.sixone.AesUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -7,6 +8,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<c:url value='/resources/js/MyPageScroll.js'/>"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <style>
 .wrap {
   height: 100%;
@@ -58,180 +60,180 @@ $(function(){
       google.charts.load('current', {'packages':['line']});
       google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
-    	
-    	//월요일 운동이름,세트갯수,세트당갯수,총갯수
-    	<%for(int i=0; i <= 9; i++) {%>
-    	var Msport<%=i%> = $('#Msport<%=i%>').val();
-	  	var Mset<%=i%> = parseInt($('#Mset<%=i%>').val());
-	  	var Mcount<%=i%> = parseInt($('#Mcount<%=i%>').val());
-	  	var Mallcount<%=i%> = Mset<%=i%>*Mcount<%=i%>;
-    	<%}%>
-    	
-    	//화요일 운동이름,세트갯수,세트당갯수,총갯수
-    	<%for(int i=0; i <= 9; i++) {%>
-    	var Tsport<%=i%> = $('#Tsport<%=i%>').val();
-	  	var Tset<%=i%> = parseInt($('#Tset<%=i%>').val());
-	  	var Tcount<%=i%> = parseInt($('#Tcount<%=i%>').val());
-	  	var Tallcount<%=i%> = Tset<%=i%>*Tcount<%=i%>;
-    	<%}%>
-    	
-    	//수요일 운동이름,세트갯수,세트당갯수,총갯수
-    	<%for(int i=0; i <= 9; i++) {%>
-    	var Wsport<%=i%> = $('#Wsport<%=i%>').val();
-	  	var Wset<%=i%> = parseInt($('#Wset<%=i%>').val());
-	  	var Wcount<%=i%> = parseInt($('#Wcount<%=i%>').val());
-	  	var Wallcount<%=i%> = Wset<%=i%>*Wcount<%=i%>;
-    	<%}%>
-    	
-    	//목요일 운동이름,세트갯수,세트당갯수,총갯수
-    	<%for(int i=0; i <= 9; i++) {%>
-    	var Thsport<%=i%> = $('#Thsport<%=i%>').val();
-	  	var Thset<%=i%> = parseInt($('#Thset<%=i%>').val());
-	  	var Thcount<%=i%> = parseInt($('#Thcount<%=i%>').val());
-	  	var Thallcount<%=i%> = Thset<%=i%>*Thcount<%=i%>;
-    	<%}%>
-    	
-    	//금요일 운동이름,세트갯수,세트당갯수,총갯수
-    	<%for(int i=0; i <= 9; i++) {%>
-    	var Fsport<%=i%> = $('#Fsport<%=i%>').val();
-	  	var Fset<%=i%> = parseInt($('#Fset<%=i%>').val());
-	  	var Fcount<%=i%> = parseInt($('#Fcount<%=i%>').val());
-	  	var Fallcount<%=i%> = Fset<%=i%>*Fcount<%=i%>;
-    	<%}%>
-		
-    	//토요일 운동이름,세트갯수,세트당갯수,총갯수
-    	<%for(int i=0; i <= 9; i++) {%>
-    	var Ssport<%=i%> = $('#Ssport<%=i%>').val();
-	  	var Sset<%=i%> = parseInt($('#Sset<%=i%>').val());
-	  	var Scount<%=i%> = parseInt($('#Scount<%=i%>').val());
-	  	var Sallcount<%=i%> = Sset<%=i%>*Scount<%=i%>;
-    	<%}%>
-    	
-    	//일요일 운동이름,세트갯수,세트당갯수,총갯수
-    	<%for(int i=0; i <= 9; i++) {%>
-    	var Sunsport<%=i%> = $('#Sunsport<%=i%>').val();
-	  	var Sunset<%=i%> = parseInt($('#Sunset<%=i%>').val());
-	  	var Suncount<%=i%> = parseInt($('#Suncount<%=i%>').val());
-	  	var Sunallcount<%=i%> = Sunset<%=i%>*Suncount<%=i%>;
-    	<%}%>
-    	
-    	test0 = new Array(11);
-    	test0 [0] = 1;
-    	
-    	test1 = new Array(11);
-    	test1 [0] = 2;
-    	
-    	test2 = new Array(11);
-    	test2 [0] = 3;
-    	
-    	test3 = new Array(11);
-    	test3 [0] = 4;
-    	
-    	test4 = new Array(11);
-    	test4 [0] = 5;
-    	
-    	test5 = new Array(11);
-    	test5 [0] = 6;
-    	
-    	test6 = new Array(11);
-    	test6 [0] = 7;
-    	
-		//////////////////////////월요일 각 운동의 총갯수 저장
-		<%for(int i = 0; i <= 9; i++){%>
-		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
-		var flag = exercisename<%=i%>;
-		<%for(int y = 0; y <= 9; y++){%>	
-		if(Msport<%=y%> == flag) {
-			test0 [<%=i%>+1] = Mallcount<%=y%>;
-		}
-		<%}%>
-		<%}%>
-		
-		////////화요일 각 운동의 총갯수 저장
-		<%for(int i = 0; i <= 9; i++){%>
-		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
-		var flag = exercisename<%=i%>;
-		<%for(int y = 0; y <= 9; y++){%>
-		if(Tsport<%=y%> == flag) {
-			test1 [<%=i%>+1] = Tallcount<%=y%>;
-		}
-		<%}%>
-		<%}%>
-		
-		/////수요일 각 운동의 총갯수 저장
-		<%for(int i = 0; i <= 9; i++){%>
-		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
-		var flag = exercisename<%=i%>;
-		<%for(int y = 0; y <= 9; y++){%>
-		if(Wsport<%=y%> == flag) {
-			test2 [<%=i%>+1] = Wallcount<%=y%>;
-		}
-		<%}%>
-		<%}%>
-		
-		////목요일 각 운동의 총갯수 저장
-		<%for(int i = 0; i <= 9; i++){%>
-		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
-		var flag = exercisename<%=i%>;
-		<%for(int y = 0; y <= 9; y++){%>
-		if(Thsport<%=y%> == flag) {
-			test3 [<%=i%>+1] = Thallcount<%=y%>;
-		}
-		<%}%>
-		<%}%>
-		
-		////금요일 각 운동의 총갯수 저장
-		<%for(int i = 0; i <= 9; i++){%>
-		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
-		var flag = exercisename<%=i%>;
-		<%for(int y = 0; y <= 9; y++){%>
-		if(Fsport<%=y%> == flag) {
-			test4 [<%=i%>+1] = Fallcount<%=y%>;
-		}
-		<%}%>
-		<%}%>
-		
-		////토요일 각 운동의 총갯수 저장
-		<%for(int i = 0; i <= 9; i++){%>
-		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
-		var flag = exercisename<%=i%>;
-		<%for(int y = 0; y <= 9; y++){%>
-		if(Ssport<%=y%> == flag) {
-			test5 [<%=i%>+1] = Sallcount<%=y%>;
-		}
-		<%}%>
-		<%}%>
-		
-		////일요일 각 운동의 총갯수 저장
-		<%for(int i = 0; i <= 9; i++){%>
-		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
-		var flag = exercisename<%=i%>;
-		<%for(int y = 0; y <= 9; y++){%>
-		if(Sunsport<%=y%> == flag) {
-			test6 [<%=i%>+1] = Sunallcount<%=y%>;
-		}
-		<%}%>
-		<%}%>
-		
-		///배열에 각 요일별 각각의 운동 총 횟수 넣어주는곳
-		<%for(int i = 0; i <=10; i++) {%>
-		<%for(int y = 0; y <= 6; y++){%>
-			if(test<%=y%>[<%=i%>] == null) {
-				test<%=y%>[<%=i%>] = 0;
-			}
-			<%}%>
-		<%}%>
-		
-		//운동이름 글자수 줄이고 ...으로 표시(글자수5~6 이상 가면 깨져서)
-		<%for(int i = 0; i <= 9; i ++) {%>
-		var exercisename<%=i%> = $('#exercisename<%=i%>').val();
-		if(typeof exercisename<%=i%> != "undefined") {
-		if(exercisename<%=i%>.length >= 5) {
-    		exercisename<%=i%> = exercisename<%=i%>.substring(0,4);
-    		exercisename<%=i%> = exercisename<%=i%>.concat("...");
-    	}
-		}
-		<%}%>
+       
+       //월요일 운동이름,세트갯수,세트당갯수,총갯수
+       <%for(int i=0; i <= 9; i++) {%>
+       var Msport<%=i%> = $('#Msport<%=i%>').val();
+        var Mset<%=i%> = parseInt($('#Mset<%=i%>').val());
+        var Mcount<%=i%> = parseInt($('#Mcount<%=i%>').val());
+        var Mallcount<%=i%> = Mset<%=i%>*Mcount<%=i%>;
+       <%}%>
+       
+       //화요일 운동이름,세트갯수,세트당갯수,총갯수
+       <%for(int i=0; i <= 9; i++) {%>
+       var Tsport<%=i%> = $('#Tsport<%=i%>').val();
+        var Tset<%=i%> = parseInt($('#Tset<%=i%>').val());
+        var Tcount<%=i%> = parseInt($('#Tcount<%=i%>').val());
+        var Tallcount<%=i%> = Tset<%=i%>*Tcount<%=i%>;
+       <%}%>
+       
+       //수요일 운동이름,세트갯수,세트당갯수,총갯수
+       <%for(int i=0; i <= 9; i++) {%>
+       var Wsport<%=i%> = $('#Wsport<%=i%>').val();
+        var Wset<%=i%> = parseInt($('#Wset<%=i%>').val());
+        var Wcount<%=i%> = parseInt($('#Wcount<%=i%>').val());
+        var Wallcount<%=i%> = Wset<%=i%>*Wcount<%=i%>;
+       <%}%>
+       
+       //목요일 운동이름,세트갯수,세트당갯수,총갯수
+       <%for(int i=0; i <= 9; i++) {%>
+       var Thsport<%=i%> = $('#Thsport<%=i%>').val();
+        var Thset<%=i%> = parseInt($('#Thset<%=i%>').val());
+        var Thcount<%=i%> = parseInt($('#Thcount<%=i%>').val());
+        var Thallcount<%=i%> = Thset<%=i%>*Thcount<%=i%>;
+       <%}%>
+       
+       //금요일 운동이름,세트갯수,세트당갯수,총갯수
+       <%for(int i=0; i <= 9; i++) {%>
+       var Fsport<%=i%> = $('#Fsport<%=i%>').val();
+        var Fset<%=i%> = parseInt($('#Fset<%=i%>').val());
+        var Fcount<%=i%> = parseInt($('#Fcount<%=i%>').val());
+        var Fallcount<%=i%> = Fset<%=i%>*Fcount<%=i%>;
+       <%}%>
+      
+       //토요일 운동이름,세트갯수,세트당갯수,총갯수
+       <%for(int i=0; i <= 9; i++) {%>
+       var Ssport<%=i%> = $('#Ssport<%=i%>').val();
+        var Sset<%=i%> = parseInt($('#Sset<%=i%>').val());
+        var Scount<%=i%> = parseInt($('#Scount<%=i%>').val());
+        var Sallcount<%=i%> = Sset<%=i%>*Scount<%=i%>;
+       <%}%>
+       
+       //일요일 운동이름,세트갯수,세트당갯수,총갯수
+       <%for(int i=0; i <= 9; i++) {%>
+       var Sunsport<%=i%> = $('#Sunsport<%=i%>').val();
+        var Sunset<%=i%> = parseInt($('#Sunset<%=i%>').val());
+        var Suncount<%=i%> = parseInt($('#Suncount<%=i%>').val());
+        var Sunallcount<%=i%> = Sunset<%=i%>*Suncount<%=i%>;
+       <%}%>
+       
+       test0 = new Array(11);
+       test0 [0] = 1;
+       
+       test1 = new Array(11);
+       test1 [0] = 2;
+       
+       test2 = new Array(11);
+       test2 [0] = 3;
+       
+       test3 = new Array(11);
+       test3 [0] = 4;
+       
+       test4 = new Array(11);
+       test4 [0] = 5;
+       
+       test5 = new Array(11);
+       test5 [0] = 6;
+       
+       test6 = new Array(11);
+       test6 [0] = 7;
+       
+      //////////////////////////월요일 각 운동의 총갯수 저장
+      <%for(int i = 0; i <= 9; i++){%>
+      var exercisename<%=i%> = $('#exercisename<%=i%>').val();
+      var flag = exercisename<%=i%>;
+      <%for(int y = 0; y <= 9; y++){%>   
+      if(Msport<%=y%> == flag) {
+         test0 [<%=i%>+1] = Mallcount<%=y%>;
+      }
+      <%}%>
+      <%}%>
+      
+      ////////화요일 각 운동의 총갯수 저장
+      <%for(int i = 0; i <= 9; i++){%>
+      var exercisename<%=i%> = $('#exercisename<%=i%>').val();
+      var flag = exercisename<%=i%>;
+      <%for(int y = 0; y <= 9; y++){%>
+      if(Tsport<%=y%> == flag) {
+         test1 [<%=i%>+1] = Tallcount<%=y%>;
+      }
+      <%}%>
+      <%}%>
+      
+      /////수요일 각 운동의 총갯수 저장
+      <%for(int i = 0; i <= 9; i++){%>
+      var exercisename<%=i%> = $('#exercisename<%=i%>').val();
+      var flag = exercisename<%=i%>;
+      <%for(int y = 0; y <= 9; y++){%>
+      if(Wsport<%=y%> == flag) {
+         test2 [<%=i%>+1] = Wallcount<%=y%>;
+      }
+      <%}%>
+      <%}%>
+      
+      ////목요일 각 운동의 총갯수 저장
+      <%for(int i = 0; i <= 9; i++){%>
+      var exercisename<%=i%> = $('#exercisename<%=i%>').val();
+      var flag = exercisename<%=i%>;
+      <%for(int y = 0; y <= 9; y++){%>
+      if(Thsport<%=y%> == flag) {
+         test3 [<%=i%>+1] = Thallcount<%=y%>;
+      }
+      <%}%>
+      <%}%>
+      
+      ////금요일 각 운동의 총갯수 저장
+      <%for(int i = 0; i <= 9; i++){%>
+      var exercisename<%=i%> = $('#exercisename<%=i%>').val();
+      var flag = exercisename<%=i%>;
+      <%for(int y = 0; y <= 9; y++){%>
+      if(Fsport<%=y%> == flag) {
+         test4 [<%=i%>+1] = Fallcount<%=y%>;
+      }
+      <%}%>
+      <%}%>
+      
+      ////토요일 각 운동의 총갯수 저장
+      <%for(int i = 0; i <= 9; i++){%>
+      var exercisename<%=i%> = $('#exercisename<%=i%>').val();
+      var flag = exercisename<%=i%>;
+      <%for(int y = 0; y <= 9; y++){%>
+      if(Ssport<%=y%> == flag) {
+         test5 [<%=i%>+1] = Sallcount<%=y%>;
+      }
+      <%}%>
+      <%}%>
+      
+      ////일요일 각 운동의 총갯수 저장
+      <%for(int i = 0; i <= 9; i++){%>
+      var exercisename<%=i%> = $('#exercisename<%=i%>').val();
+      var flag = exercisename<%=i%>;
+      <%for(int y = 0; y <= 9; y++){%>
+      if(Sunsport<%=y%> == flag) {
+         test6 [<%=i%>+1] = Sunallcount<%=y%>;
+      }
+      <%}%>
+      <%}%>
+      
+      ///배열에 각 요일별 각각의 운동 총 횟수 넣어주는곳
+      <%for(int i = 0; i <=10; i++) {%>
+      <%for(int y = 0; y <= 6; y++){%>
+         if(test<%=y%>[<%=i%>] == null) {
+            test<%=y%>[<%=i%>] = 0;
+         }
+         <%}%>
+      <%}%>
+      
+      //운동이름 글자수 줄이고 ...으로 표시(글자수5~6 이상 가면 깨져서)
+      <%for(int i = 0; i <= 9; i ++) {%>
+      var exercisename<%=i%> = $('#exercisename<%=i%>').val();
+      if(typeof exercisename<%=i%> != "undefined") {
+      if(exercisename<%=i%>.length >= 5) {
+          exercisename<%=i%> = exercisename<%=i%>.substring(0,4);
+          exercisename<%=i%> = exercisename<%=i%>.concat("...");
+       }
+      }
+      <%}%>
       var data = new google.visualization.DataTable();
       data.addColumn('number', '이번주 근력 운동 루틴'); //그래프 타이틀
       
@@ -240,7 +242,7 @@ $(function(){
       <%}%>
       
       data.addRows([
-    	  test0,
+         test0,
           test1,
           test2,
           test3,
@@ -263,9 +265,9 @@ $(function(){
       };
       var chart = new google.charts.Line(document.getElementById('line_top_x'));
       chart.draw(data, google.charts.Line.convertOptions(options));
-		$(window).resize(function(){
-			chart.draw(data, google.charts.Line.convertOptions(options));
-		});
+      $(window).resize(function(){
+         chart.draw(data, google.charts.Line.convertOptions(options));
+      });
       
     }
 });
@@ -273,12 +275,12 @@ $(function(){
 <!-- 시작 -->
 <style>
 #rRtitle{
-	color: black;
-	font-size:25px;
-	font-weight:400;
-	display: block;
-	text-align: center;
-	margin-bottom: 30px;
+   color: black;
+   font-size:25px;
+   font-weight:400;
+   display: block;
+   text-align: center;
+   margin-bottom: 30px;
 }
 </style>
 <aside id="colorlib-hero">
@@ -351,6 +353,21 @@ $(function(){
 
                   </div>
                </div>
+
+
+               <div class="thumbnail">
+                
+                     <img 
+                        src="https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=kosmo://intro?id=${qrcode }" alt="QR">
+                 
+                  <div class="caption">
+
+                        <h3 style="text-align: center;">QR 로그인</h3>
+                   
+                     <hr style="color: black;">
+
+                  </div>
+               </div>
             </div>
          </div>
       </div>
@@ -382,63 +399,63 @@ $(function(){
                         <div id="line_top_x"></div>
                         <hr/>
                         <div class="panel-body">
-	                        <div>
-								<span id="rRtitle">
-									${list[0].name}님과 비슷한 회원이 구독중인 운동 루틴<br/>
-								</span>
-								<div id="rRbody">
-									<span id="rRname" style="color: black;font-size:25px">
-									</span>
-									<span id="rRno" style="visibility: hidden;"></span>
-									<button id="rRsub" onclick="subscribe();" style="float:right;">
-										<span class="glyphicon glyphicon-thumbs-up" style="color: black;">구독하기</span>
-									</button>
-									<button id="rRsubC" onclick="subscribeCancel();" style="float:right;display: none;">
-										<span class="glyphicon glyphicon-thumbs-down" style="color: black;">구독취소</span>
-									</button>
-								</div>
-							</div>
-							
-							<div id="recommendRoutine">
-								<div class="col-md-1 week">
-									<div>1일차</div>
-									<div id="rRdays1"></div>
-								</div>
-								
-								<div class="col-md-1 week">
-									<div>2일차</div>
-									<div id="rRdays2"></div>
-								</div>
-								
-								<div class="col-md-1 week">
-									<div>3일차</div>
-									<div id="rRdays3"></div>
-								</div>
-								
-								<div class="col-md-1 week">
-									<div>4일차</div>
-									<div id="rRdays4"></div>
-								</div>
-								
-								<div class="col-md-1 week">
-									<div>5일차</div>
-									<div id="rRdays5"></div>
-								</div>
-								
-								<div class="col-md-1 week">
-									<div>6일차</div>
-									<div id="rRdays6"></div>
-								</div>
-								
-								<div class="col-md-1 week">
-									<div>7일차</div>
-									<div id="rRdays7"></div>
-								</div>
-								
-							</div>
-						
-						
-						</div>
+                           <div>
+                        <span id="rRtitle">
+                           ${list[0].name}님과 비슷한 회원이 구독중인 운동 루틴<br/>
+                        </span>
+                        <div id="rRbody">
+                           <span id="rRname" style="color: black;font-size:25px">
+                           </span>
+                           <span id="rRno" style="visibility: hidden;"></span>
+                           <button id="rRsub" onclick="subscribe();" style="float:right;">
+                              <span class="glyphicon glyphicon-thumbs-up" style="color: black;">구독하기</span>
+                           </button>
+                           <button id="rRsubC" onclick="subscribeCancel();" style="float:right;display: none;">
+                              <span class="glyphicon glyphicon-thumbs-down" style="color: black;">구독취소</span>
+                           </button>
+                        </div>
+                     </div>
+                     
+                     <div id="recommendRoutine">
+                        <div class="col-md-1 week">
+                           <div>1일차</div>
+                           <div id="rRdays1"></div>
+                        </div>
+                        
+                        <div class="col-md-1 week">
+                           <div>2일차</div>
+                           <div id="rRdays2"></div>
+                        </div>
+                        
+                        <div class="col-md-1 week">
+                           <div>3일차</div>
+                           <div id="rRdays3"></div>
+                        </div>
+                        
+                        <div class="col-md-1 week">
+                           <div>4일차</div>
+                           <div id="rRdays4"></div>
+                        </div>
+                        
+                        <div class="col-md-1 week">
+                           <div>5일차</div>
+                           <div id="rRdays5"></div>
+                        </div>
+                        
+                        <div class="col-md-1 week">
+                           <div>6일차</div>
+                           <div id="rRdays6"></div>
+                        </div>
+                        
+                        <div class="col-md-1 week">
+                           <div>7일차</div>
+                           <div id="rRdays7"></div>
+                        </div>
+                        
+                     </div>
+                  
+                  
+                  </div>
                      </div>
                   </div>
                </div>
@@ -468,8 +485,8 @@ $(function(){
                                  action="<c:url value='/weightUpdate.do'/>">
                                  <input type="hidden" name="weight" value="${item.weight}" id="weightid" /> <input type="hidden" name="userid" value="${item.id}" />
                                 <div class="wrap" style="display: inline;">
-  									<button class="button" id="btn" style=" width: 70px; font-size: 15px;">수정</button>
-								</div>
+                             <button class="button" id="btn" style=" width: 70px; font-size: 15px;">수정</button>
+                        </div>
                               </form>
                            </div>
                         </c:forEach>
@@ -746,81 +763,81 @@ $(function(){
 
 
 <!--그래프에 넣어줄 값 저장작업-->
-						<c:forEach items="${graphs}" var="item" varStatus="status">
-							<c:set var="day" value="${item.playat }" />
-							<fmt:formatDate value="${day}" pattern="E" var="day" />
-								<c:if test="${day eq '월' and item.exercisepartials != '유산소'}">
-									<input type="hidden" value="${item.exercisename}" id="Msport${status.index}"/>
-									<input type="hidden" value="${item.setcount}" id="Mset${status.index}"/>
-									<input type="hidden" value="${item.count}" id="Mcount${status.index}"/>
-								</c:if>
-						</c:forEach>
-						
-						<c:forEach items="${graphs}" var="item2" varStatus="status2">
-							<c:set var="day" value="${item2.playat }" />
-							<fmt:formatDate value="${day}" pattern="E" var="day2" />
-								<c:if test="${day2 eq '화' and item.exercisepartials != '유산소'}"> 
-									<input type="hidden" value="${item2.exercisename}" id="Tsport${status2.index %3}"/>
-									<input type="hidden" value="${item2.setcount}" id="Tset${status2.index%3}"/>
-									<input type="hidden" value="${item2.count}" id="Tcount${status2.index%3}"/>
-								</c:if>
-								
-						</c:forEach>
-						<c:forEach items="${graphs}" var="item2" varStatus="status2">
-							<c:set var="day" value="${item2.playat }" />
-							<fmt:formatDate value="${day}" pattern="E" var="day2" />
-								<c:if test="${day2 eq '수' and item.exercisepartials != '유산소'}"> 
-									<input type="hidden" value="${item2.exercisename}" id="Wsport${status2.index %3}"/>
-									<input type="hidden" value="${item2.setcount}" id="Wset${status2.index%3}"/>
-									<input type="hidden" value="${item2.count}" id="Wcount${status2.index%3}"/>
-								</c:if>
-								
-						</c:forEach>
-						<c:forEach items="${graphs}" var="item2" varStatus="status2">
-							<c:set var="day" value="${item2.playat }" />
-							<fmt:formatDate value="${day}" pattern="E" var="day2" />
-								<c:if test="${day2 eq '목' and item.exercisepartials != '유산소'}"> 
-									<input type="hidden" value="${item2.exercisename}" id="Thsport${status2.index %3}"/>
-									<input type="hidden" value="${item2.setcount}" id="Thset${status2.index%3}"/>
-									<input type="hidden" value="${item2.count}" id="Thcount${status2.index%3}"/>
-								</c:if>
-								
-						</c:forEach>
-						<c:forEach items="${graphs}" var="item2" varStatus="status2">
-							<c:set var="day" value="${item2.playat }" />
-							<fmt:formatDate value="${day}" pattern="E" var="day2" />
-								<c:if test="${day2 eq '금' and item.exercisepartials != '유산소'}"> 
-									<input type="hidden" value="${item2.exercisename}" id="Fsport${status2.index %3}"/>
-									<input type="hidden" value="${item2.setcount}" id="Fset${status2.index%3}"/>
-									<input type="hidden" value="${item2.count}" id="Fcount${status2.index%3}"/>
-								</c:if>
-								
-						</c:forEach>
-						<c:forEach items="${graphs}" var="item2" varStatus="status2">
-							<c:set var="day" value="${item2.playat }" />
-							<fmt:formatDate value="${day}" pattern="E" var="day2" />
-								<c:if test="${day2 eq '토' and item.exercisepartials != '유산소'}"> 
-									<input type="hidden" value="${item2.exercisename}" id="Ssport${status2.index %3}"/>
-									<input type="hidden" value="${item2.setcount}" id="Sset${status2.index%3}"/>
-									<input type="hidden" value="${item2.count}" id="Scount${status2.index%3}"/>
-								</c:if>
-								
-						</c:forEach>
-						<c:forEach items="${graphs}" var="item2" varStatus="status2">
-							<c:set var="day" value="${item2.playat }" />
-							<fmt:formatDate value="${day}" pattern="E" var="day2" />
-								<c:if test="${day2 eq '일' and item.exercisepartials != '유산소'}"> 
-									<input type="hidden" value="${item2.exercisename}" id="Sunsport${status2.index %3}"/>
-									<input type="hidden" value="${item2.setcount}" id="Sunset${status2.index%3}"/>
-									<input type="hidden" value="${item2.count}" id="Suncount${status2.index%3}"/>
-								</c:if>
-						</c:forEach>
-						
-						<!-- 그래프 컬럼 이름 -->
-						<c:forEach items="${exename}" var="exename" varStatus="loop">
-							<input  type="hidden" value="${exename.exercisename}"  id="exercisename${loop.index}"/>
-						</c:forEach>
-						<!-- 그래프 컬럼 이름 -->
+                  <c:forEach items="${graphs}" var="item" varStatus="status">
+                     <c:set var="day" value="${item.playat }" />
+                     <fmt:formatDate value="${day}" pattern="E" var="day" />
+                        <c:if test="${day eq '월' and item.exercisepartials != '유산소'}">
+                           <input type="hidden" value="${item.exercisename}" id="Msport${status.index}"/>
+                           <input type="hidden" value="${item.setcount}" id="Mset${status.index}"/>
+                           <input type="hidden" value="${item.count}" id="Mcount${status.index}"/>
+                        </c:if>
+                  </c:forEach>
+                  
+                  <c:forEach items="${graphs}" var="item2" varStatus="status2">
+                     <c:set var="day" value="${item2.playat }" />
+                     <fmt:formatDate value="${day}" pattern="E" var="day2" />
+                        <c:if test="${day2 eq '화' and item.exercisepartials != '유산소'}"> 
+                           <input type="hidden" value="${item2.exercisename}" id="Tsport${status2.index %3}"/>
+                           <input type="hidden" value="${item2.setcount}" id="Tset${status2.index%3}"/>
+                           <input type="hidden" value="${item2.count}" id="Tcount${status2.index%3}"/>
+                        </c:if>
+                        
+                  </c:forEach>
+                  <c:forEach items="${graphs}" var="item2" varStatus="status2">
+                     <c:set var="day" value="${item2.playat }" />
+                     <fmt:formatDate value="${day}" pattern="E" var="day2" />
+                        <c:if test="${day2 eq '수' and item.exercisepartials != '유산소'}"> 
+                           <input type="hidden" value="${item2.exercisename}" id="Wsport${status2.index %3}"/>
+                           <input type="hidden" value="${item2.setcount}" id="Wset${status2.index%3}"/>
+                           <input type="hidden" value="${item2.count}" id="Wcount${status2.index%3}"/>
+                        </c:if>
+                        
+                  </c:forEach>
+                  <c:forEach items="${graphs}" var="item2" varStatus="status2">
+                     <c:set var="day" value="${item2.playat }" />
+                     <fmt:formatDate value="${day}" pattern="E" var="day2" />
+                        <c:if test="${day2 eq '목' and item.exercisepartials != '유산소'}"> 
+                           <input type="hidden" value="${item2.exercisename}" id="Thsport${status2.index %3}"/>
+                           <input type="hidden" value="${item2.setcount}" id="Thset${status2.index%3}"/>
+                           <input type="hidden" value="${item2.count}" id="Thcount${status2.index%3}"/>
+                        </c:if>
+                        
+                  </c:forEach>
+                  <c:forEach items="${graphs}" var="item2" varStatus="status2">
+                     <c:set var="day" value="${item2.playat }" />
+                     <fmt:formatDate value="${day}" pattern="E" var="day2" />
+                        <c:if test="${day2 eq '금' and item.exercisepartials != '유산소'}"> 
+                           <input type="hidden" value="${item2.exercisename}" id="Fsport${status2.index %3}"/>
+                           <input type="hidden" value="${item2.setcount}" id="Fset${status2.index%3}"/>
+                           <input type="hidden" value="${item2.count}" id="Fcount${status2.index%3}"/>
+                        </c:if>
+                        
+                  </c:forEach>
+                  <c:forEach items="${graphs}" var="item2" varStatus="status2">
+                     <c:set var="day" value="${item2.playat }" />
+                     <fmt:formatDate value="${day}" pattern="E" var="day2" />
+                        <c:if test="${day2 eq '토' and item.exercisepartials != '유산소'}"> 
+                           <input type="hidden" value="${item2.exercisename}" id="Ssport${status2.index %3}"/>
+                           <input type="hidden" value="${item2.setcount}" id="Sset${status2.index%3}"/>
+                           <input type="hidden" value="${item2.count}" id="Scount${status2.index%3}"/>
+                        </c:if>
+                        
+                  </c:forEach>
+                  <c:forEach items="${graphs}" var="item2" varStatus="status2">
+                     <c:set var="day" value="${item2.playat }" />
+                     <fmt:formatDate value="${day}" pattern="E" var="day2" />
+                        <c:if test="${day2 eq '일' and item.exercisepartials != '유산소'}"> 
+                           <input type="hidden" value="${item2.exercisename}" id="Sunsport${status2.index %3}"/>
+                           <input type="hidden" value="${item2.setcount}" id="Sunset${status2.index%3}"/>
+                           <input type="hidden" value="${item2.count}" id="Suncount${status2.index%3}"/>
+                        </c:if>
+                  </c:forEach>
+                  
+                  <!-- 그래프 컬럼 이름 -->
+                  <c:forEach items="${exename}" var="exename" varStatus="loop">
+                     <input  type="hidden" value="${exename.exercisename}"  id="exercisename${loop.index}"/>
+                  </c:forEach>
+                  <!-- 그래프 컬럼 이름 -->
 <!-- 그래프에 넣어줄 값 저장작업-->
                   
 <script>

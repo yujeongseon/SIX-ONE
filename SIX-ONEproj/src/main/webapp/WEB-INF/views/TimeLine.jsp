@@ -351,7 +351,8 @@ jQuery(document).ready(function($) {
 																				window)
 																				.scrollTop() + 100) + 'px; width: 250px'));
 											}
-
+											
+											// 로그확인
 											console.log($(window).scrollTop(),
 													$(document).height(), $(
 															window).height(), followFlag);
