@@ -28,4 +28,12 @@
 	<insert id="memberjoin" parameterType="java.util.Map">
 		INSERT INTO MEMBER VALUES(#{newid},#{newpassword},#{name},#{height},#{weight},#{profile},#{gender},#{goal},#{question},#{answer},sysdate)
 	</insert>
+	
+	<update id="kgUpdate" parameterType="java.util.Map">
+		UPDATE MEMBER SET weight = #{weight} WHERE id = #{id}
+	</update>
+	
+	<update id="kgDown" parameterType="java.util.Map">
+		UPDATE MEMBER SET weight = #{weight} WHERE id = #{id}
+	</update>
 </mapper>

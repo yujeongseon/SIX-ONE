@@ -4,10 +4,10 @@
 
 <img src="resources/images/black.jpg"
    style="width: 100%; height: 100px;" />
-        <div class="container"><!-- 좌우측의 공간 확보 -->
+        <div class="container "><!-- 좌우측의 공간 확보 -->
 
 
-         
+         <div class="col-md-8">
             <form class="form-horizontal"  id="form" role="form" enctype = "multipart/form-data" method="post" action="<c:url value='/memberjoin.do'/>"  style="margin-top: 30px;">
        
                   
@@ -111,7 +111,7 @@
                     </div>
                 </div>
             </form>
-            
+            </div>
 <script>
 $(function(){
 	var pattern_num = /[0-9]/; //숫자

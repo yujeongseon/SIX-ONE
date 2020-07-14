@@ -48,6 +48,16 @@ public class MemberServiceImpl implements MemberService{
 	public int memberjoin(Map map) {
 		return dao.memberjoin(map);
 	}
+
+	@Override
+	public int kgUpdate(Map map) {
+		return dao.kgUpdate(map);
+	}
+
+	@Override
+	public int kgDown(Map map) {
+		return dao.kgDown(map);
+	}
 	
 
 }

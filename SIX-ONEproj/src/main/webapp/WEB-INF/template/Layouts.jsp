@@ -152,8 +152,8 @@ function isLogin(el){
 								<li id="nav-exercise" class="has-dropdown ">
 									<a id="exerciseButton"href="<c:url value='/exercise.do'/>">운동</a>
 									<ul class="dropdown">
-										<li><a href="<c:url value='/exercise.do'/>">운동</a></li>
-										<li><a href="<c:url value='/protein.do'/>">보충제</a></li>
+										<li><a href="<c:url value='/exercise.do'/>">운동 & 보충제</a></li>
+										<!-- <li><a href="<c:url value='/protein.do'/>">보충제</a></li> -->
 										<li><a href="<c:url value='/food.do'/>">식단</a></li>
 									</ul>
 								</li>

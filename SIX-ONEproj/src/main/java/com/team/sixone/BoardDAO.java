@@ -30,7 +30,7 @@ public class BoardDAO {
 		//[생성자]
 		public BoardDAO(ServletContext context) {
 			//커넥션 풀 사용하기
-			System.out.println("좀 떠라");
+			
 			try {
 				Context ctx=new InitialContext();
 			DataSource source =(DataSource)ctx.lookup("java:comp/env/sixone");
@@ -52,7 +52,7 @@ public class BoardDAO {
 		}//////////DAO
 		
 		
-		public void close() {
+		private void close() {
 			try {
 				if(rs !=null) rs.close();
 				if(psmt !=null) psmt.close();

@@ -19,4 +19,8 @@ public interface MemberService {
 	int profileupdate(Map map);
 	
 	int memberjoin(Map map);
+	
+	int kgUpdate(Map map);
+	
+	int kgDown(Map map);
 }

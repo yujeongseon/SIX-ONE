@@ -53,6 +53,16 @@ public class MemberDAO implements MemberService{
 		return sqlMapper.insert("memberjoin", map);
 	}
 
+	@Override
+	public int kgUpdate(Map map) {
+		return sqlMapper.update("kgUpdate", map);
+	}
+
+	@Override
+	public int kgDown(Map map) {
+		return sqlMapper.update("kgDown", map);
+	}
+
 	
 	
 	

@@ -32,8 +32,12 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartRequest;
+
+import com.team.sixone.service.ProteinDTO;
 import com.team.sixone.service.TimelineDTO;
 import com.team.sixone.service.TimelineService;
+import com.team.sixone.service.impl.ProteinDAO;
+
 import javafx.application.Application;
 
 
@@ -44,7 +48,10 @@ public class TimelLineCont {
    private ResultSet rs;
    private ServletContext context;
    @Resource(name="TimelineService")
-private TimelineService TimelineService;
+   private TimelineService TimelineService;
+   
+   @Resource(name="proteinDAO")
+	private ProteinDAO dao;
    
    
    @RequestMapping(value = "/TimeLine.do", method = RequestMethod.GET)
@@ -67,6 +74,9 @@ private TimelineService TimelineService;
    
    @RequestMapping(value = "/exercise.do", method = RequestMethod.GET)
    public String exec(Locale locale, Model model) {
+	   	List<ProteinDTO> list = dao.selectProtein();
+	   	model.addAttribute("list", list);
+		
       return "/exercise.tiles";
    }
    

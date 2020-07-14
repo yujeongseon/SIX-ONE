@@ -199,8 +199,6 @@
                     
                    
                    <div class="form-group">
-                        
-                         <label id="uesKcal" class="col-sm-12 control-label" >사용한 칼로리 900kcal</label>
                     </div>
                    
                 </div>

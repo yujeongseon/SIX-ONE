@@ -26,7 +26,6 @@ public class RoutineDAO {
    //[생성자]
    public RoutineDAO(ServletContext context) {
    //커넥션 풀 사용하기
-   System.out.println("루틴ao");
       try {
          Context ctx=new InitialContext();
          DataSource source =(DataSource)ctx.lookup("java:comp/env/sixone");

@@ -50,8 +50,6 @@ public class NewMemberController {
 
 		//String phisicalPath = "C:\\Users\\kosmo_11\\git\\SIX-ONE\\SIX-ONEproj\\src\\main\\webapp\\resources\\Profile";
 		String phisicalPath = req.getServletContext().getRealPath("/resources/Profile");
-
-		///SIX-ONEproj/src/main/webapp/resources/Profile
 		String profile = upload.getOriginalFilename().toString();
 		if(profile.equals("")) {
 			File file = new File(phisicalPath+File.separator+profile);
