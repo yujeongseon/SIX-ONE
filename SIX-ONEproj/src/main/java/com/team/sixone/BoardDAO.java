@@ -38,17 +38,6 @@ public class BoardDAO {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			/*try {
-				
-				//드라이버 로딩]
-				Class.forName(context.getInitParameter("ORACLE_DRIVER"));
-				//데이타베이스 연결]
-				conn = DriverManager.getConnection(context.getInitParameter("ORACLE_URL"),"JSP","JSP");
-				
-			}
-			catch(ClassNotFoundException | SQLException e) {
-				e.printStackTrace();
-			}*/
 		}//////////DAO
 		
 		
@@ -64,21 +53,12 @@ public class BoardDAO {
 		 
 		public List<BoardDTO> selectList(Map map){
 			List<BoardDTO> list = new Vector<BoardDTO>();
-			//페이징 적용 前 쿼리- 전체 쿼리
-			/*
-			String sql="SELECT b.*,name FROM bbs b JOIN member m ON b.id=m.id ";
-			if(map.get("keyword")!=null) {
-				sql+=" WHERE "+map.get("columnName")+" LIKE '%"+map.get("keyword")+"%' ";
-			}
-			sql+=" ORDER BY no DESC";
-			*/
 			//페이징 적용-구간쿼리로 변경
 			String sql="SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT b.*,name FROM board b JOIN member m ON b.id=m.id ";
 			if(map.get("searchWord")!=null) {
 				sql+=" WHERE "+map.get("searchColumn")+" LIKE '%"+map.get("searchWord")+"%' ";
 			}		
 			sql+=" ORDER BY board_no DESC) T) WHERE R BETWEEN ? AND ?";
-			
 			
 			try {
 				psmt = conn.prepareStatement(sql);
@@ -101,7 +81,7 @@ public class BoardDAO {
 				}
 			}
 			catch (SQLException e) {e.printStackTrace();}
-			close();
+			
 			return list;
 		}//////////selectList()
 		
@@ -118,7 +98,7 @@ public class BoardDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			close();
+			
 			return affected;
 		}
 		
@@ -145,7 +125,7 @@ public class BoardDAO {
 					dto.setName(rs.getString(11));
 				}
 			} catch (Exception e) {e.printStackTrace();}
-			close();
+			
 			return dto;
 		}///////////selectOne
 		public BoardDTO updateone(String no) {
@@ -166,7 +146,7 @@ public class BoardDAO {
 					//dto.setName(rs.getString(11));
 				}
 			} catch (Exception e) {e.printStackTrace();}
-			close();
+			
 			return dto;
 		}///////////selectOne
 	
@@ -181,7 +161,7 @@ public class BoardDAO {
 					affected=1;
 				}
 			} catch (Exception e) {e.printStackTrace();}
-			close();
+			
 			return affected;
 		}///////////findid
 		
@@ -202,7 +182,7 @@ public class BoardDAO {
 				affected=psmt.executeUpdate();
 				System.out.println("네이버 회원가입 완");
 			} catch (Exception e) {e.printStackTrace();}
-			close();
+			
 			return affected;
 		}//////////글쓰기
 		
@@ -223,7 +203,7 @@ public class BoardDAO {
 				totalRowCount = rs.getInt(1);
 			} 
 			catch (SQLException e) {e.printStackTrace();}
-			close();
+			
 			return totalRowCount;	
 			
 		}//getTotalRowCount	
@@ -242,7 +222,7 @@ public class BoardDAO {
 				affected=psmt.executeUpdate();	
 				System.out.println("쿼리까지함");
 			} catch (Exception e) {e.printStackTrace();}
-			close();
+			
 			return affected;
 		}//////////글쓰기
 		
@@ -259,7 +239,7 @@ public class BoardDAO {
 				affected=psmt.executeUpdate();	
 				System.out.println("수정함함");
 			} catch (Exception e) {e.printStackTrace();}
-			close();
+			
 			return affected;
 		}//////////글쓰기
 		
@@ -272,8 +252,6 @@ public class BoardDAO {
 				rs= psmt.executeQuery();
 				affected=psmt.executeUpdate();
 			} catch (Exception e) {e.printStackTrace();}
-			close();
-			
 			return affected;
 		}
 		
@@ -285,7 +263,6 @@ public class BoardDAO {
 				psmt.setString(1, no);
 				rs= psmt.executeQuery();
 				if(rs.next()) {
-					
 					dto.setBoard_no(rs.getString(1));
 					dto.setId(rs.getString(8));
 					dto.setTitle(rs.getString(2));
@@ -294,7 +271,6 @@ public class BoardDAO {
 					dto.setCategory(rs.getString(6));
 				}
 			} catch (Exception e) {e.printStackTrace();}
-			close();
 			return dto;
 		}///////////selectOne
 		

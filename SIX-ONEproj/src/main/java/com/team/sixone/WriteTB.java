@@ -82,7 +82,7 @@ public class WriteTB {
 			// 에러내용을 리퀘스트 영역에 저장
 			e.printStackTrace();
 			req.setAttribute("error", "최대파일 용량을(500KB)초과하였습니다.");
-			req.getRequestDispatcher("http://localhost:7070/sixone").forward(req, resp);
+			req.getRequestDispatcher("http://localhost:8080/sixone").forward(req, resp);
 		}
 	}
 }
