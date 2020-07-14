@@ -132,7 +132,7 @@ $(function(){
                
          <div class="form-group wrap-input100 validate-input" data-validate="Password is required">
                   <span class="label-input100">비밀번호</span>
-                  <input onkeydown="javascript: if(event.keyCode == 13) {doLogin()}" class="input100" type="password" name="password" id="pass" placeholder="비밀번호를 입력하세요">
+                  <input onkeydown="javascript: if(event.keyCode == 13) {doLogin()}" class="input100" type="password" name="password" id="password" placeholder="비밀번호를 입력하세요">
                   <span class="focus-input100" data-symbol="&#xf190;"></span>
                </div>
                
