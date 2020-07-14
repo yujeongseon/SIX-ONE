@@ -30,7 +30,6 @@ public class BoardDAO {
 		//[생성자]
 		public BoardDAO(ServletContext context) {
 			//커넥션 풀 사용하기
-			System.out.println("좀 떠라");
 			try {
 				Context ctx=new InitialContext();
 			DataSource source =(DataSource)ctx.lookup("java:comp/env/sixone");
@@ -112,16 +111,16 @@ public class BoardDAO {
 				if(rs.next()) {
 					
 					dto.setBoard_no(rs.getString(1));
-					dto.setId(rs.getString(8));
 					dto.setTitle(rs.getString(2));
 					dto.setContent(rs.getString(3));
+					dto.setCreate_at(rs.getDate(4));
 					dto.setImage_name(rs.getString(5));
 					dto.setCategory(rs.getString(6));
 					int count= rs.getInt(7);
 					count++;
 					Count(count, no);
 					dto.setCount(rs.getString(7));
-					dto.setCreate_at(rs.getDate(4));
+					dto.setId(rs.getString(8));
 					dto.setName(rs.getString(11));
 				}
 			} catch (Exception e) {e.printStackTrace();}
@@ -189,7 +188,6 @@ public class BoardDAO {
 		
 		//총 레코드 수 얻기용]
 		public int getTotalRowCount(Map map) {
-			
 			int totalRowCount=0;
 			String sql="SELECT COUNT(*) FROM board b JOIN member m ON m.id=b.id ";
 			//검색시 아래 쿼리문 연결
@@ -209,33 +207,33 @@ public class BoardDAO {
 		}//getTotalRowCount	
 		
 		//글쓰기
-		public int write(String category, String title, String filename, String content, String id) {///글쓰기
+		public int write(Map map) {///글쓰기
 			int affected = 0;
 			String sql="INSERT INTO board VALUES(SEQ_board.nextval,?,?,sysdate,?,?,'0',?)";
 			try {
 				psmt = conn.prepareStatement(sql);
-				psmt.setString(1, title);
-				psmt.setString(2, content);
-				psmt.setString(3, filename);//사진명
-				psmt.setString(4,category);//카테고리
-				psmt.setString(5, id);
+				psmt.setString(1, (String) map.get("title"));
+				psmt.setString(2, (String) map.get("content"));
+				psmt.setString(3, (String) map.get("upload"));//사진명
+				psmt.setString(4,(String) map.get("category"));//카테고리
+				psmt.setString(5, (String) map.get("id"));
 				affected=psmt.executeUpdate();	
-				System.out.println("쿼리까지함");
+				System.out.println("글쓰기");
 			} catch (Exception e) {e.printStackTrace();}
 			
 			return affected;
 		}//////////글쓰기
 		
-		public int update(String category, String title, String filename, String content,String no) {///수정
+		public int update(Map map) {///수정
 			int affected = 0;
 			String sql="UPDATE board SET category=?,title=?,image_name=?,content=? where board_no=?";
 			try {
 				psmt = conn.prepareStatement(sql);
-				psmt.setString(2, title);
-				psmt.setString(4, content);
-				psmt.setString(3, filename);//사진명
-				psmt.setString(1,category);//카테고리
-				psmt.setString(5, no);
+				psmt.setString(2, (String) map.get("title"));
+				psmt.setString(4, (String) map.get("content"));
+				psmt.setString(3, (String) map.get("upload"));//사진명
+				psmt.setString(1,(String) map.get("category"));//카테고리
+				psmt.setString(5, (String) map.get("no"));
 				affected=psmt.executeUpdate();	
 				System.out.println("수정함함");
 			} catch (Exception e) {e.printStackTrace();}

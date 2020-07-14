@@ -46,12 +46,6 @@ $(".hover").mouseleave(
          
       });
    
-   $(function(){
-       $( "#accordion" ).accordion({
-            collapsible: true
-          });
-});
-
 function delok(no){
 	$.ajax({
 	      url:"<c:url value='/Ajax/delok.do'/>",
@@ -2011,7 +2005,11 @@ a:link {
 		    		  alert("수정되었습니다");
 		    		  location.reload();
 		   };
-
+		   
+		   $( "#accordion" ).accordion({
+	       		active : false,
+		   		collapsible: true
+	        })
 	</script>
 </body>
 

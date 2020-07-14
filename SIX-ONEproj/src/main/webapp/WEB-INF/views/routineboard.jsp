@@ -46,11 +46,9 @@ $(".hover").mouseleave(
          
       });
    
-   $(function(){
-       $( "#accordion" ).accordion({
-            collapsible: true
-          });
-});
+  
+      
+
 
 function delok(no){
 	console.log('삭제를위해 이곳에 들어옴')
@@ -2001,7 +1999,13 @@ a:link {
 		    		  alert("수정되었습니다");
 		    		  location.reload();
 		   };
-
+		   
+		   
+		   $( "#accordion" ).accordion({
+	       		active : false,
+		   		collapsible: true
+	        })
+		   
 	</script>
 </body>
 

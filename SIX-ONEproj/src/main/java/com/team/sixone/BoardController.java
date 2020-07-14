@@ -41,7 +41,7 @@ public class BoardController {
    
    //리소스파일(resource.properties)에서 읽어오기
       
-      private int pageSize=5;
+      private int pageSize=10;
       private int blockPage=5;
       
       
@@ -63,7 +63,7 @@ public class BoardController {
          int totalRecordCount = dao.getTotalRowCount(map);
          //전체 페이지수]
          int totalPage = (int)Math.ceil((double)totalRecordCount/pageSize);
-         
+         System.out.println("여기 뜨냐");
          //시작 및 끝 ROWNUM구하기]
          int start = (nowPage-1)*pageSize+1;
          int end   = nowPage*pageSize;   
@@ -240,7 +240,7 @@ public class BoardController {
          HttpSession session,
          Model model) {//id는 게시판 구분용으로
       //JSON데이타 타입으로 반환하기위해 JSONObject객체 생성
-      int pageSize = 5;
+      int pageSize = 10;
       int blockPage = 5;
      
       String id= session.getAttribute("LoginSuccess").toString();
@@ -277,7 +277,7 @@ public class BoardController {
          HttpSession session,
          Model model) {//id는 게시판 구분용으로
       //JSON데이타 타입으로 반환하기위해 JSONObject객체 생성
-      int pageSize = 5;
+      int pageSize = 10;
       int blockPage = 5;
      
       String id= session.getAttribute("LoginSuccess").toString();
@@ -350,32 +350,4 @@ public class BoardController {
    }
    
    
-   
-   @RequestMapping(value="/WriteOK.do", method=RequestMethod.POST)
-   public void upload(Locale locale, Model model, HttpServletRequest req, 
-          HttpServletResponse resp) throws ServletException, IOException {
-      WriteTB write = new WriteTB();
-      write.upload(req, resp, req.getSession().getServletContext());
-      resp.sendRedirect("/sixone/freeboard.do");
-
-      //return "/TimeLine.tiles:for";
-   }
-   
-   
-   
-   
-   
-   @RequestMapping(value="/UpdateOK.do", method=RequestMethod.POST)
-   public void update(Locale locale, Model model, HttpServletRequest req, 
-          HttpServletResponse resp) throws ServletException, IOException {
-      WriteTB write = new WriteTB();
-      write.upload(req, resp, req.getSession().getServletContext());
-      resp.sendRedirect("/sixone/freeboard.do");
-
-      
-   }
-
-   
-   
-
 }
