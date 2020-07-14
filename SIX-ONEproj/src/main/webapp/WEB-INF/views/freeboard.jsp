@@ -6,16 +6,7 @@
 <!DOCTYPE HTML>
 <html>
    <head>
-   <!-- 
-   <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-   <link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/vendor/bootstrap/css/bootstrap.min.css"/>'>
-   <link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>'>
-   <link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/vendor/animate/animate.css"/>'>
-   <link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/vendor/select2/select2.min.css"/>'>
-   <link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/vendor/perfect-scrollbar/perfect-scrollbar.css"/>'>
-   <link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/css/util.css"/>'>
-   <link rel="stylesheet" href='<c:url value="/resources/Table_Responsive/css/main.css"/>'>
-    -->
+  
    <meta charset="utf-8">
    <title>모두다짐</title>
    
@@ -252,7 +243,6 @@ a:link {
                         <th class="column3">작성자</th>
                         <th class="column4">작성일</th>
                         <th class="column5">조회수</th>
-                        <th class="column6">추천</th>
                      </tr>
                      </thead>
                      <tbody id="ttbody">
@@ -263,15 +253,6 @@ a:link {
                            </c:if>
                            
                            <c:if test="${not isEmpty}">
-                           <tr class="hoo">
-                              <td><span class="blink" style="font-family: Fantasy">HOT</span></td>
-                              <td class="text-left"><a class="aa"
-                                 href="<c:url value='#'/>">초보자 루틴 추천해준다</a></td>
-                              <td>다짐하자</td>
-                              <td>20-05-15</td>
-                              <td>27</td>
-                              <td>5</td>
-                           </tr>
                               <c:forEach items="${list}" var="item" varStatus="loop">
                                  <tr class="hoo">
                                     <td>${item.board_no}</td>
@@ -281,7 +262,6 @@ a:link {
                                     <td>${item.name}</td>
                                     <td>${item.create_at}</td>
                                     <td>${item.count}</td>
-                                    <td>0</td>
                                  </tr>
                               </c:forEach>
                            </c:if>

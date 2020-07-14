@@ -49,7 +49,6 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-            <a id="menu_toggle" style="float:right"><i class="fa fa-bars"></i></a>
               <a href='<c:url value="/admin.do"/>' class="site_title"><span>SIX-ONE 관리소</span></a>
             </div>
 
@@ -83,11 +82,18 @@
             </div>
             <!-- /sidebar menu -->
 
-            
           </div>
         </div>
 
-        
+        <!-- 왼쪽 메뉴 토글 -->
+        <div class="top_nav">
+          <div class="nav_menu">
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+          </div>
+        </div>
+        <!-- 왼쪽 메뉴 토글 -->
 
         <!-- page content -->
         <div class="right_col" role="main">
@@ -338,7 +344,7 @@
                 <div class="x_content">
                   <table class="" style="width:100%">
                     <tr>
-                      <th style="width:37%;">
+                      <th style="width:50%;">
                         <h4>비율</h4>
                       </th>
                       <th>
@@ -352,27 +358,29 @@
                     </tr>
                     <tr>
                       <td>
-                        <canvas id="portalchart" max-height="254" max-width="508" style="width:508px; height:254px;   margin: 15px 10px 10px 0;"></canvas>
+                        <canvas id="portalchart"  style="width:100%;height:280px;">></canvas>
                       </td>
                       <td>
                         <table class="tile_info">
                           <tr>
                             <td>
-                              <h3><i class="fa fa-square" style="font-size:24px; color:green;"></i>네이버 </h3>
+                              <p style="font-size:25px;"><i class="fa fa-square" style="font-size:25px;color:green;"></i>네이버 </p>
                             </td>
-                            <td><h3>${naverper}%</h3></td>
+                            <td><p style="font-size:25px;">${naverper}%</p></td>
                           </tr>
+                          <tr><td><i class="fa fa-square" style="font-size:18px;color:white;"></i></td></tr>
                           <tr>
                             <td>
-                              <h3><i class="fa fa-square" style="font-size:24px;color:yellow;"></i>카카오</h3>
+                              <p style="font-size:25px;"><i class="fa fa-square" style="font-size:25px;color:yellow;"></i>카카오</p>
                             </td>
-                            <td><h3>${kakaoper}%</h3></td>
+                            <td><p style="font-size:25px;">${kakaoper}%</p></td>
                           </tr>
+                          <tr><td><i class="fa fa-square" style="font-size:18px;color:white;"></i></td></tr>
                           <tr>
                             <td>
-                              <h3><i class="fa fa-square" style="font-size:24px;color:aero;"></i>six-one</h3>
+                              <p style="font-size:25px;"><i class="fa fa-square" style="font-size:25px;color:aero;"></i>six-one</p>
                             </td>
-                            <td><h3>${sixoneper}%</h3></td>
+                            <td><p style="font-size:25px;">${sixoneper}%</p></td>
                           </tr>
                         </table>
                       </td>

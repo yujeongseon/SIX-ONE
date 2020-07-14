@@ -39,13 +39,19 @@ $(".hover").mouseleave(
    $(window)
    .scroll(
          function() {
-            if ($(window).scrollTop() + 200 < ($(document).height() - $(window).height()) &&followflag) {
+            if ($(window).scrollTop() + 200 < ($(document).height() - $(window).height()) &&followFlag) {
                $('.follow').attr('style',('padding-top :'+ $(window).scrollTop()+'px'));
             }
          })
          
       });
    
+<<<<<<< HEAD
+=======
+  
+      
+
+>>>>>>> branch 'songnew' of https://github.com/yujeongseon/SIX-ONE.git
 
 function delok(no){
 	console.log('삭제를위해 이곳에 들어옴')
@@ -2002,6 +2008,7 @@ a:link {
 			    active: false,
 			    collapsible: true            
 			})
+
 
 	</script>
 </body>

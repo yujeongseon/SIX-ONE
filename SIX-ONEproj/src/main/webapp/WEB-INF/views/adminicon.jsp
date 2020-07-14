@@ -29,7 +29,6 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-            <a id="menu_toggle" style="float:right"><i class="fa fa-bars"></i></a>
               <a href='<c:url value="/admin.do"/>' class="site_title"><span>SIX-ONE 관리소</span></a>
             </div>
 
@@ -62,11 +61,18 @@
               </div>
             </div>
             <!-- /sidebar menu -->
-            
-            
             </div>
             </div>
             
+            <!-- 왼쪽 메뉴 토글 -->
+        <div class="top_nav">
+          <div class="nav_menu">
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+          </div>
+        </div>
+        <!-- 왼쪽 메뉴 토글 -->
             
         <!-- page content -->
         <div class="right_col" role="main">

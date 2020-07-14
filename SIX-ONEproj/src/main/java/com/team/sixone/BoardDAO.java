@@ -30,7 +30,7 @@ public class BoardDAO {
 		//[생성자]
 		public BoardDAO(ServletContext context) {
 			//커넥션 풀 사용하기
-			
+
 			try {
 				Context ctx=new InitialContext();
 			DataSource source =(DataSource)ctx.lookup("java:comp/env/sixone");
@@ -38,17 +38,6 @@ public class BoardDAO {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			/*try {
-				
-				//드라이버 로딩]
-				Class.forName(context.getInitParameter("ORACLE_DRIVER"));
-				//데이타베이스 연결]
-				conn = DriverManager.getConnection(context.getInitParameter("ORACLE_URL"),"JSP","JSP");
-				
-			}
-			catch(ClassNotFoundException | SQLException e) {
-				e.printStackTrace();
-			}*/
 		}//////////DAO
 		
 		
@@ -64,21 +53,12 @@ public class BoardDAO {
 		 
 		public List<BoardDTO> selectList(Map map){
 			List<BoardDTO> list = new Vector<BoardDTO>();
-			//페이징 적용 前 쿼리- 전체 쿼리
-			/*
-			String sql="SELECT b.*,name FROM bbs b JOIN member m ON b.id=m.id ";
-			if(map.get("keyword")!=null) {
-				sql+=" WHERE "+map.get("columnName")+" LIKE '%"+map.get("keyword")+"%' ";
-			}
-			sql+=" ORDER BY no DESC";
-			*/
 			//페이징 적용-구간쿼리로 변경
 			String sql="SELECT * FROM (SELECT T.*,ROWNUM R FROM (SELECT b.*,name FROM board b JOIN member m ON b.id=m.id ";
 			if(map.get("searchWord")!=null) {
 				sql+=" WHERE "+map.get("searchColumn")+" LIKE '%"+map.get("searchWord")+"%' ";
 			}		
 			sql+=" ORDER BY board_no DESC) T) WHERE R BETWEEN ? AND ?";
-			
 			
 			try {
 				psmt = conn.prepareStatement(sql);
@@ -101,7 +81,7 @@ public class BoardDAO {
 				}
 			}
 			catch (SQLException e) {e.printStackTrace();}
-			close();
+			
 			return list;
 		}//////////selectList()
 		
@@ -118,7 +98,7 @@ public class BoardDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			close();
+			
 			return affected;
 		}
 		
@@ -132,20 +112,20 @@ public class BoardDAO {
 				if(rs.next()) {
 					
 					dto.setBoard_no(rs.getString(1));
-					dto.setId(rs.getString(8));
 					dto.setTitle(rs.getString(2));
 					dto.setContent(rs.getString(3));
+					dto.setCreate_at(rs.getDate(4));
 					dto.setImage_name(rs.getString(5));
 					dto.setCategory(rs.getString(6));
 					int count= rs.getInt(7);
 					count++;
 					Count(count, no);
 					dto.setCount(rs.getString(7));
-					dto.setCreate_at(rs.getDate(4));
+					dto.setId(rs.getString(8));
 					dto.setName(rs.getString(11));
 				}
 			} catch (Exception e) {e.printStackTrace();}
-			close();
+			
 			return dto;
 		}///////////selectOne
 		public BoardDTO updateone(String no) {
@@ -166,7 +146,7 @@ public class BoardDAO {
 					//dto.setName(rs.getString(11));
 				}
 			} catch (Exception e) {e.printStackTrace();}
-			close();
+			
 			return dto;
 		}///////////selectOne
 	
@@ -181,7 +161,7 @@ public class BoardDAO {
 					affected=1;
 				}
 			} catch (Exception e) {e.printStackTrace();}
-			close();
+			
 			return affected;
 		}///////////findid
 		
@@ -202,14 +182,13 @@ public class BoardDAO {
 				affected=psmt.executeUpdate();
 				System.out.println("네이버 회원가입 완");
 			} catch (Exception e) {e.printStackTrace();}
-			close();
+			
 			return affected;
 		}//////////글쓰기
 		
 		
 		//총 레코드 수 얻기용]
 		public int getTotalRowCount(Map map) {
-			
 			int totalRowCount=0;
 			String sql="SELECT COUNT(*) FROM board b JOIN member m ON m.id=b.id ";
 			//검색시 아래 쿼리문 연결
@@ -223,43 +202,43 @@ public class BoardDAO {
 				totalRowCount = rs.getInt(1);
 			} 
 			catch (SQLException e) {e.printStackTrace();}
-			close();
+			
 			return totalRowCount;	
 			
 		}//getTotalRowCount	
 		
 		//글쓰기
-		public int write(String category, String title, String filename, String content, String id) {///글쓰기
+		public int write(Map map) {///글쓰기
 			int affected = 0;
 			String sql="INSERT INTO board VALUES(SEQ_board.nextval,?,?,sysdate,?,?,'0',?)";
 			try {
 				psmt = conn.prepareStatement(sql);
-				psmt.setString(1, title);
-				psmt.setString(2, content);
-				psmt.setString(3, filename);//사진명
-				psmt.setString(4,category);//카테고리
-				psmt.setString(5, id);
+				psmt.setString(1, (String) map.get("title"));
+				psmt.setString(2, (String) map.get("content"));
+				psmt.setString(3, (String) map.get("upload"));//사진명
+				psmt.setString(4,(String) map.get("category"));//카테고리
+				psmt.setString(5, (String) map.get("id"));
 				affected=psmt.executeUpdate();	
-				System.out.println("쿼리까지함");
+				System.out.println("글쓰기");
 			} catch (Exception e) {e.printStackTrace();}
-			close();
+			
 			return affected;
 		}//////////글쓰기
 		
-		public int update(String category, String title, String filename, String content,String no) {///수정
+		public int update(Map map) {///수정
 			int affected = 0;
 			String sql="UPDATE board SET category=?,title=?,image_name=?,content=? where board_no=?";
 			try {
 				psmt = conn.prepareStatement(sql);
-				psmt.setString(2, title);
-				psmt.setString(4, content);
-				psmt.setString(3, filename);//사진명
-				psmt.setString(1,category);//카테고리
-				psmt.setString(5, no);
+				psmt.setString(2, (String) map.get("title"));
+				psmt.setString(4, (String) map.get("content"));
+				psmt.setString(3, (String) map.get("upload"));//사진명
+				psmt.setString(1,(String) map.get("category"));//카테고리
+				psmt.setString(5, (String) map.get("no"));
 				affected=psmt.executeUpdate();	
 				System.out.println("수정함함");
 			} catch (Exception e) {e.printStackTrace();}
-			close();
+			
 			return affected;
 		}//////////글쓰기
 		
@@ -272,8 +251,6 @@ public class BoardDAO {
 				rs= psmt.executeQuery();
 				affected=psmt.executeUpdate();
 			} catch (Exception e) {e.printStackTrace();}
-			close();
-			
 			return affected;
 		}
 		
@@ -285,7 +262,6 @@ public class BoardDAO {
 				psmt.setString(1, no);
 				rs= psmt.executeQuery();
 				if(rs.next()) {
-					
 					dto.setBoard_no(rs.getString(1));
 					dto.setId(rs.getString(8));
 					dto.setTitle(rs.getString(2));
@@ -294,7 +270,6 @@ public class BoardDAO {
 					dto.setCategory(rs.getString(6));
 				}
 			} catch (Exception e) {e.printStackTrace();}
-			close();
 			return dto;
 		}///////////selectOne
 		

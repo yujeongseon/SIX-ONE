@@ -39,19 +39,13 @@ $(".hover").mouseleave(
    $(window)
    .scroll(
          function() {
-            if ($(window).scrollTop() + 200 < ($(document).height() - $(window).height()) &&followflag) {
+            if ($(window).scrollTop() + 200 < ($(document).height() - $(window).height()) &&followFlag) {
                $('.follow').attr('style',('padding-top :'+ $(window).scrollTop()+'px'));
             }
          })
          
       });
    
-   $(function(){
-       $( "#accordion" ).accordion({
-            collapsible: true
-          });
-});
-
 function delok(no){
 	$.ajax({
 	      url:"<c:url value='/Ajax/delok.do'/>",
@@ -2011,7 +2005,11 @@ a:link {
 		    		  alert("수정되었습니다");
 		    		  location.reload();
 		   };
-
+		   
+		   $( "#accordion" ).accordion({
+	       		active : false,
+		   		collapsible: true
+	        })
 	</script>
 </body>
 

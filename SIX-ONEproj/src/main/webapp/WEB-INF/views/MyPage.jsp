@@ -841,6 +841,7 @@ $(function(){
 <!-- 그래프에 넣어줄 값 저장작업-->
                   
 <script>
+
    // 추천 루틴
    window.onload=function(){
       
@@ -1353,6 +1354,8 @@ $(function(){
     });
 	$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");
 	$( "#datepicker" ).datepicker('setDate', new Date());
+
+	
 	
 
 </script>      
