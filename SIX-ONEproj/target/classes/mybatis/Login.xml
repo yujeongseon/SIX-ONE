@@ -3,9 +3,15 @@
 <mapper namespace="mybatis.Login">
 	<select id="isLogin" resultType="java.util.Map" parameterType="java.util.Map">
 		
-		SELECT name,password FROM MEMBER WHERE id = #{id} AND password = #{password}
+		SELECT name,password FROM MEMBER WHERE id = #{id}
 	</select>
 	<select id="iskakaoLogin" resultType="String" parameterType="java.util.Map">
 		SELECT name FROM MEMBER WHERE id = #{kakaoid}
 	</select>
+	
+	<select id="isLoginPhone" resultType="String" parameterType="java.util.Map">	
+		SELECT name FROM MEMBER WHERE id = #{id} and password = #{password}
+	</select>
+	
+	
 </mapper>

@@ -24,9 +24,6 @@ public class LoginController {
    @Resource(name = "LoginService")
    private LoginService LoginService;
    
-   @Inject
-   PasswordEncoder passwordEncoder;
-   
    @ResponseBody
    @RequestMapping(value="/Login.do",produces ="text/html; charset=UTF-8")
    public String isLogin(@RequestParam Map map,Model model,HttpSession session, HttpServletResponse resp,Authentication auth) throws IOException {
