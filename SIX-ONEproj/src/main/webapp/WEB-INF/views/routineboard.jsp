@@ -46,15 +46,7 @@ $(".hover").mouseleave(
          
       });
    
-<<<<<<< HEAD
-=======
-  
-      
-
->>>>>>> branch 'songnew' of https://github.com/yujeongseon/SIX-ONE.git
-
 function delok(no){
-	console.log('삭제를위해 이곳에 들어옴')
 	$.ajax({
 	      url:"<c:url value='/Ajax/delok.do'/>",
 	      dataType:'text',
@@ -400,7 +392,6 @@ a:link {
 													<div class="col-md-12">
 														<div class="routine">
 															<!-- 이 안에 넣기 -->
-
 															<c:if test="${item.gudok}" var="gudok">
 																<div class="col-md-12">
 																<c:if test="${item.id==sessionScope.LoginSuccess}">
@@ -1917,18 +1908,17 @@ a:link {
 		var Title = document.getElementById("rou_title").value;
 		var ID = "<%=session.getAttribute("LoginSuccess")%>";
 		
-		$.ajax({//루틴 글부터 작성
+		$.ajax({//루틴 작성
 		      url:"<c:url value='/Ajax/writerou.do'/>",
 		      dataType:'text',
 		      data:{title:Title,id:ID},
 		      success:function(){
-		    		  for(i=1; i<15; i++){
-		    				console.log("도큐먼트 루네임 이너텍스트:",document.getElementById("rouname"+i).innerText);
+		    		  for(i=1; i<15; i++){ // 입력한 루틴상세 데이터 처리
 		    				if(document.getElementById("rouname"+i).innerText==""){
 		    					console.log("null확인하고 if문으로 들어옴"+i)
-		    					//return;
 		    				}
 		    				else {
+		    					//JS로 각각 입력한 루틴데이터 가져오기
 		    					exename = document.getElementById("rouname"+i).innerText;
 		    					roucount = document.getElementById("roucount"+i).innerText;
 		    					rouset = document.getElementById("rouset"+i).innerText;

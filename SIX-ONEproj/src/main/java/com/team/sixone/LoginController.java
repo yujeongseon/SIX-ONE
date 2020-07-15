@@ -45,6 +45,13 @@ public class LoginController {
       }
       else {
     	  String msg;
+    	  String rea;
+    	  	AdminDAO dao = new AdminDAO(null);
+    	  	rea=dao.band(map.get("id").toString());
+    	  	if(!(rea.equals("1"))) {
+    	  		session.setAttribute("ban", rea);
+    	  		return "ban";
+    	  	}
 			session.setAttribute("LoginSuccess", map.get("id"));
 			session.setAttribute("Name", flag);
 			if(map.get("id").equals("admin")) {

@@ -202,6 +202,10 @@ function doLogin(){
 	         else if(msg == "admin"){
 	        	 window.location.href = "<c:url value='/admin.do'/>"
 	         }
+	         else if(msg == "ban"){
+	        	 window.location.href = "<c:url value='/ban.do'/>"
+	         }
+	         
 	         else{
 	            $('#msg').html(data);
 	         }

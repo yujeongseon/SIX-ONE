@@ -191,11 +191,19 @@
 					<div class="modal-body">
 						<div class="form-horizontal">
 							<div class="col-md-3">
+							<div>
 							<img id="myprofile" class=img-circle
 								style="margin: 0 auto; height: 150px; width: 150px; margin-top: 50px; margin-bottom: 10px;"
 								src="#" alt="..."
 								onerror="this.src='resources/images/profile.jpg'"
 								data-toggle="modal" data-target="#ProfileModal">
+							</div>
+							<br/>
+							<br/>
+							<br/>
+							<div id="tf">
+								<i class="fa fa-ban" style="font-size:30px; text-align:center;" onclick="showban();"><span id="ban">회원 제재</span></i>
+							</div>
 						</div><!-- col-md-9 -->
 							
 							<div class="col-md-9">
@@ -234,16 +242,6 @@
 							</div>
 						</div>
 						</div><!-- col-md-9 -->
-						
-						
-						<!-- 모달 푸터
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">닫기</button>
-							<button type="button" class="btn btn-danger" id="delete-exe">삭제</button>
-							<button type="button" class="btn btn-primary" id="save-exe">저장</button>
-						</div>
-						 -->
 					</div>
 				</div>
 				<!-- /.modal-content -->
@@ -253,9 +251,34 @@
 		<!-- /.modal -->
 
 
+ <!--  수정/삭제시 사용할 모달창 시작 -->
+	<div class="modal fade" id="sayagainModal" data-backdrop="static">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">사용자의 제제사유를 입력하세요</h4>
+					<button class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="form-group">
+						<input class="form-control" type="text" name="edit-reason" id="reason" />
+				</div>
+				<div class="modal-body" style="float: right">
+					<button type="button" class="btn btn-danger">취소</button>
+					<button type="button" class="btn btn-info" id="delbtn"
+						onclick="doban();">확인</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
 
 
-        <!-- footer content -->
+
+
+
+	<!-- footer content -->
         <footer>
           <div class="pull-right">
             Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
@@ -296,6 +319,52 @@
     <!-- Custom Theme Scripts -->
     <script src='<c:url value="/resources/build/js/custom.min.js"/>'></script>
     <script>
+    
+    function showban(){
+   		$('#sayagainModal').modal('show');
+   	}
+    
+    function offban(){
+    	var id = $('#id').text();
+    	$.ajax({//회원 벤 풀기
+		      url:"<c:url value='/Ajax/offBan.do'/>",
+		      dataType:'text',
+		      data:{id:id},
+		      success:function(data){
+		    	  alert("해당 회원의 벤을 해제했습니다");
+		    	  location.reload();
+		      },
+		      error:function(request,error){
+		         console.log('상태코드:',request.status);
+		         console.log('서버로부터 받은 HTML데이타:',request.responseText);
+		         console.log('에러:',error);
+		      }
+		   });
+   	}
+    
+    
+	   function	doban(){
+  		var id = $('#id').text();
+  		var reason = $('#reason').val();
+  		
+  		$.ajax({//회원 벤 처리
+		      url:"<c:url value='/Ajax/Ban.do'/>",
+		      dataType:'text',
+		      data:{id:id,reason:reason},
+		      success:function(data){
+		    	  alert("해당 회원을 벤하였습니다");
+		    	  location.reload();
+		      },
+		      error:function(request,error){
+		         console.log('상태코드:',request.status);
+		         console.log('서버로부터 받은 HTML데이타:',request.responseText);
+		         console.log('에러:',error);
+		      }
+		   });
+  		
+  	}
+   
+   
    
     function showdetail(id){
     	
@@ -305,6 +374,26 @@
 		      data:{id:id},
 		      success:function(data){
 		    	  successOneAjax(data,'list');
+		    	  $.ajax({//회원 벤여부 확인
+				      url:"<c:url value='/Ajax/isBan.do'/>",
+				      dataType:'text',
+				      data:{id:id},
+				      success:function(data){
+				    	  if(data!=1){
+				    		  var banString="<i class='fa fa-ban' style='font-size:30px; text-align:center;' onclick='offban();''><span id='ban'>벤된 유저</span></i>"
+				    		  $('#tf').html(banString)
+				    	  }
+				    	  else{
+				    		  var banString="<i class='fa fa-ban' style='font-size:30px; text-align:center;' onclick='showban();''><span id='ban'>벤 하기</span></i>"
+					    		  $('#tf').html(banString)
+				    	  }
+				      },
+				      error:function(request,error){
+				         console.log('상태코드:',request.status);
+				         console.log('서버로부터 받은 HTML데이타:',request.responseText);
+				         console.log('에러:',error);
+				      }
+				   });
 		    	  $('#ShowdetailModal').modal('show'); //회원정보 모달 띄우기
 		      },
 		      error:function(request,error){
@@ -313,7 +402,6 @@
 		         console.log('에러:',error);
 		      }
 		   });
-    	//$('#ShowdetailModal').modal('show'); //회원정보 모달 띄우기
     	
     }
     

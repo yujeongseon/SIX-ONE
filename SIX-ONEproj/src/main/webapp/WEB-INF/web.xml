@@ -12,11 +12,7 @@
 		</param-value>
 	</context-param>
 	
-	<!-- Creates the Spring Container shared by all Servlets and Filters -->
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
+	
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
@@ -54,27 +50,30 @@
 	<!-- security -->
 	<!-- 나중에 시큐리티 추가 -->
 	<!-- spring-security filter -->
-    	<!-- 필터명은 반드시 springSecurityFilterChain으로-->
-    	 <filter>
-  <filter-name>multipart</filter-name>
-    <filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
- </filter>
-
- <filter-mapping>
-    <filter-name>multipart</filter-name>
-    <url-pattern>*.do</url-pattern>
-  </filter-mapping>
-    
-   
 	<filter>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
+	<filter-name>springSecurityFilterChain</filter-name>
+	<filter-class>org.springframework.web.filter.DelegatingFilterProxy
+	</filter-class>
+</filter>
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-	 
+	<!-- 필터명은 반드시 springSecurityFilterChain으로 -->
+	<filter>
+		<filter-name>multipart</filter-name>
+		<filter-class>org.springframework.web.multipart.support.MultipartFilter
+		</filter-class>
+	</filter>
 
+	<filter-mapping>
+		<filter-name>multipart</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
 </web-app>
