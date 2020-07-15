@@ -45,6 +45,11 @@ public class FoodServiceImpl implements FoodService {
 	public int foodreset(Map map) {
 		return dao.foodreset(map);
 	}
+
+	@Override
+	public List<FoodDTO> DateFood(Map map) {
+		return dao.DateFood(map);
+	}
 	
 	
 	

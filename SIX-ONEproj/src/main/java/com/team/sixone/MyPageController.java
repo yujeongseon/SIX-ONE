@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -163,6 +164,20 @@ public class MyPageController {
 			json.put("weight", Iweight);
 			return json.toJSONString();
 		}/////////kgUpdate
+		
+		@ResponseBody
+		@RequestMapping("/fooddate.do")
+		public List<FoodDTO> fooddate(@RequestParam String dateText,HttpSession session,Map map) {
+			map.put("id", session.getAttribute("LoginSuccess"));
+			map.put("dateText", dateText);
+			List<FoodDTO> food =  FoodService.DateFood(map);
+				return food;
+
+		}
+		
+		
+		
+		
 	
 	
 	

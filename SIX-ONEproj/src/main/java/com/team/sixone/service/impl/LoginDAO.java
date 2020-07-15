@@ -16,6 +16,11 @@ public class LoginDAO implements LoginService{
 
 	@Override
 	public String isLogin(Map map) {
+		
+		System.out.println(sqlMapper.selectOne("isLogin",map));
+		
+		
+	
 		return sqlMapper.selectOne("isLogin",map);
 	}
 

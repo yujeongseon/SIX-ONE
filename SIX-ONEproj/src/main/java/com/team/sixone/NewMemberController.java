@@ -5,11 +5,14 @@ import java.io.IOException;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.tiles.autotag.core.runtime.annotation.Parameter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +30,8 @@ public class NewMemberController {
 	@Resource(name="MemberService")
 	private MemberService MemberService;
 	
+	@Inject
+	PasswordEncoder passwordEncoder;
 
 	
 	@RequestMapping("/NewMember.do")
@@ -47,7 +52,7 @@ public class NewMemberController {
 	@RequestMapping("/Profile.do")
 	public String Join(HttpServletRequest req,MultipartRequest request,@RequestParam Map map,HttpSession session) throws IllegalStateException, IOException {
 		MultipartFile upload = (MultipartFile) request.getFile("upload");
-
+				
 		//String phisicalPath = "C:\\Users\\kosmo_11\\git\\SIX-ONE\\SIX-ONEproj\\src\\main\\webapp\\resources\\Profile";
 		String phisicalPath = req.getServletContext().getRealPath("/resources/Profile");
 		String profile = upload.getOriginalFilename().toString();
@@ -72,6 +77,12 @@ public class NewMemberController {
 	
 	@RequestMapping("/memberjoin.do")
 	public String memberjoin(HttpServletRequest req,MultipartRequest request,@RequestParam Map map,HttpSession session) throws IllegalStateException, IOException {
+		
+		String pps = passwordEncoder.encode("1234");
+		System.out.println(pps);
+		map.put("newpassword", passwordEncoder.encode(map.get("newpassword").toString()));
+		
+		
 		MultipartFile upload = (MultipartFile) request.getFile("upload");
 		String phisicalPath = req.getServletContext().getRealPath("/resources/Profile");
 		String profile = upload.getOriginalFilename().toString();

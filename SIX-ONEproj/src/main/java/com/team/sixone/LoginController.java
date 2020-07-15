@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +23,16 @@ public class LoginController {
    //서비스주입
    @Resource(name = "LoginService")
    private LoginService LoginService;
+   
+   @Inject
+   PasswordEncoder passwordEncoder;
+   
    @ResponseBody
    @RequestMapping(value="/Login.do",produces ="text/html; charset=UTF-8")
    public String isLogin(@RequestParam Map map,Model model,HttpSession session, HttpServletResponse resp,Authentication auth) throws IOException {
-	  String flag = LoginService.isLogin(map);
-      if (map.containsKey("phone")) {
+	  
+	  String flag = LoginService.isLogin(map);      
+	  if (map.containsKey("phone")) {
          if (flag == null) {
             String msg = "login fail";
             resp.sendRedirect("/sixone/home.do");

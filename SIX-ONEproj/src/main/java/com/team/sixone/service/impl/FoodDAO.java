@@ -52,6 +52,11 @@ public class FoodDAO implements FoodService{
 		return sqlMapper.delete("foodreset",map);
 	}
 
+	@Override
+	public List<FoodDTO> DateFood(Map map) {
+		return sqlMapper.selectList("DateFood", map);
+	}
+
 	
 	
 	

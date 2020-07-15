@@ -18,5 +18,6 @@ public interface FoodService {
 	int foodDelete(Map map);
 	int foodreset(Map map);
 	
+	List<FoodDTO> DateFood(Map map);
 	
 }
