@@ -140,8 +140,9 @@
     </div>
   </div>
 </div> -->
+
+
 <div class="col-md-3 col-sm-3 animate-box">
-   <!--칼로리 계산기랑 연결-->
    <a href="<c:url value='/food.do'/>">
       <div class="trainers-entry">
          <div class="trainer-img"

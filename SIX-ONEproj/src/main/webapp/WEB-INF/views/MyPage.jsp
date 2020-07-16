@@ -41,6 +41,16 @@
   color: #fff;
  
 }
+
+@media screen and (max-width: 800px) {
+	.week div:last-child div:last-child {
+		display: block;
+		border-bottom: 1px solid;
+		margin-bottom: 5px;
+	}
+}
+
+
 </style>
 <script type="text/javascript">
 $( function() {

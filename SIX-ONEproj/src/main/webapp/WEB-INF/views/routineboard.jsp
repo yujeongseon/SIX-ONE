@@ -45,13 +45,7 @@ $(".hover").mouseleave(
          })
          
       });
-   
-<<<<<<< HEAD
-=======
-  
-      
 
->>>>>>> branch 'songnew' of https://github.com/yujeongseon/SIX-ONE.git
 
 function delok(no){
 	console.log('삭제를위해 이곳에 들어옴')
