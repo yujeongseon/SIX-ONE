@@ -381,7 +381,7 @@
 				      data:{id:id},
 				      success:function(data){
 				    	  if(data!=1){
-				    		  var banString="<i class='fa fa-ban' style='font-size:30px; text-align:center;' onclick='offban();'><span id='ban'>벤된 유저</span></i>";
+				    		  var banString="<i class='fa fa-ban' style='font-size:30px; text-align:center;' onclick='offban();'><span id='ban'>벤 해제</span></i>";
 				    		  banString += "<br/><br/>"
 				    		  banString += "<div style='font-size:20px'><span>사유 :</span><span>";
 				    		  banString += data;

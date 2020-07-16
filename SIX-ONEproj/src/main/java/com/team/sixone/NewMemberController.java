@@ -91,6 +91,7 @@ public class NewMemberController {
 			map.put("profile", profile);
 			MemberService.memberjoin(map);
 			session.setAttribute("LoginSuccess", map.get("newid"));
+			session.setAttribute("Name", map.get("name"));
 		}
 		else {
 			String renameFile = FileUpDownUtils.getNewFileName(phisicalPath, upload.getOriginalFilename());
@@ -99,9 +100,10 @@ public class NewMemberController {
 			upload.transferTo(file);
 			MemberService.memberjoin(map);
 			session.setAttribute("LoginSuccess", map.get("newid"));
+			session.setAttribute("Name", map.get("name"));
 		}
 		
-		return "home.tiles";
+		return "redirect:/";
 	}
 	
 }
