@@ -321,18 +321,13 @@
 	        	var query;
 	        	response.forEach(function(el){
 	        		query += '<option value="'+el['foodGroup']+'">'+el['foodGroup']+'</option>'
-	        		
 	        	});
-	        	
-	        	
 	        	$('#foodGroup').html(query)
-	        	
 	        },
 	        error:function(request,error){
 					console.log('상태코드:',request.status);
 					console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
 					console.log('에러:',error);
-				
 			}
 		});
 		
@@ -348,29 +343,22 @@
 		        	var query;
 		        	response.forEach(function(el){
 		        		query += '<option value="'+el['foodBrand']+'">'+el['foodBrand']+'</option>'
-		        		
 		        	});
-		        	
 		        	$('#foodBrand').html(query)
-		        	
 		        },
 		        error:function(request,error){
 						console.log('상태코드:',request.status);
 						console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
 						console.log('에러:',error);
-					
 				}
 			});
-			
 			$('#foodName').html('<option value="">브랜드를 선택하세요</option>');
-			
 		});
 		
 		$('#foodBrand').change(function(){
 			var foodBrand = $(this).val()[0];
 			var foodGroup = $('#foodGroup').val();
 			if(foodBrand != ''){
-				
 				$.ajax({
 			        type: "get",
 			        url: "http://192.168.0.36:9090/restapi/foodName/"+foodGroup+"/"+foodBrand,
@@ -379,29 +367,23 @@
 			        	var query;
 			        	response.forEach(function(el){
 			        		query += '<option value="'+el['foodName']+'">'+el['foodName']+'</option>'
-			        		
 			        	});
 			        	$('#foodName').html(query)
-			        	
 			        },
 			        error:function(request,error){
 							console.log('상태코드:',request.status);
 							console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
 							console.log('에러:',error);
-						
 					}
 				});
 			}
-			
 		});
 		
 		var index = 1;
 		$('#foodName').change(function(){
 			var foodName = $(this).val()[0];
 			var foodBrand = $('#foodBrand').val();
-			
 			if(foodName != ''){
-			
 				$.ajax({
 				        type: "get",
 				        url: "http://192.168.0.36:9090/restapi/food/"+foodBrand+'/'+foodName,
@@ -415,31 +397,24 @@
 			        		query += '<td class="kcal">'+response['foodKcal']+'kcal</td>'
 			        		query += '<td><a href="#;" onclick="javascript:add_cart('+"this"+')">'
 		        			query += '<img src="<c:url value="/resources/images/bt_cart.jpg"/>"/></a></td></tr>'
-							
 				        	$('#food_table').html(query);
 		        			index +=1;
-				        	
 				        },
 				        error:function(request,error){
 								console.log('상태코드:',request.status);
 								console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
 								console.log('에러:',error);
-							
 						}
 				});
-			
 			}
-			
-			
-			
 		});
 		
 		// 카트에 담기
 		function add_cart(ss){
 			var foodName = $(ss).closest('tr').find('td').eq(0).html();
 			var foodKcal = $(ss).closest('tr').find('td').eq(2).html();		
-			
 			var query = $('#my_food_list').html();
+			
 			query += '<li><a href="#;" onclick="remove_cart('+"this"+')">'
 			query += '<span class="ex"></span></a>'
 			query += '<span class="basket_menu">'+foodName+'</span>&nbsp;'
@@ -455,8 +430,6 @@
 		
 		// 카트에서 삭제
 		function remove_cart(e){
-			
-			console.log('12333')
 			if($(e).parent().parent().attr('id') == 'my_food_list'){
 				var total_kcal = $('#total_kcal').html();
 				var foodKcal = $(e).closest('li').find('span').eq(2).html();
@@ -470,7 +443,6 @@
 				$('#pred_total_kcal').html((parseInt(total_kcal)-parseInt(food_kcal)));
 			}
 			$(e).parent().remove();
-		
 		}
 		
 		// 데이트피커
@@ -483,14 +455,12 @@
 		    });
 		$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");
 		$( "#datepicker" ).datepicker('setDate', new Date());
-	
 		
 		// 음식 저장하기
 		function foodSave(){
 			foodWhen = $(":input:radio[name=foodRadio]:checked").val();
 			var foodLists = $('#my_food_list > li > .basket_menu');
 			var kcalLists = $('#my_food_list > li > .kcal');
-			
 			var isLogin = ${LoginSuccess == null};
 			if(isLogin){
 				alert('식단을 저장하려먼 로그인이 필요합니다');
@@ -526,9 +496,6 @@
 				}
 			}
 			
-			console.log(foodName);
-			console.log(foodKcal);
-			
 			$.ajax({
 			        type: "get",
 			        url: "/sixone/food.insert",
@@ -552,11 +519,8 @@
 							console.log('상태코드:',request.status);
 							console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
 							console.log('에러:',error);
-						
 					}
 			});
-			
-	
 		}
 		
 		// 음식 모달 열기
@@ -568,7 +532,6 @@
 			$("#pred_food_kcal").html('');
 			$('#image_section').addClass('hiddenImage');			
 		}
-		
 		
 		$('#predict_food').on('click', function(){
 			predict_food();
@@ -602,7 +565,7 @@
 		        	$('#pred_food_list').html('');
 		        	var query = '';
 		        	var totalKcal = 0;
-		        	datas.forEach(e=> {
+		        	datas.forEach(e => {
 		        		query += '<li><a href="#;" onclick="remove_cart('+"this"+')">'
 						query += '<span class="ex"></span></a>'
 						query += '<span class="basket_menu">'+e[0]+'</span>&nbsp;'
@@ -624,24 +587,17 @@
 						console.log('상태코드:',request.status);
 						console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
 						console.log('에러:',error);
-					
 				}
-			
-				
-				
 			}); //ajax
-			
 		}
 		
 		// 사진 미리보기
 		function readURL(input) {
 			 if (input.files && input.files[0]) {
 			  var reader = new FileReader();
-			  
 			  reader.onload = function (e) {
 			   $('#image_section').attr('src', e.target.result);  
 			  }
-			  
 			  reader.readAsDataURL(input.files[0]);
 			  }
 			}
@@ -653,12 +609,10 @@
 		
 		// 적용하기
 		function applyPred(){
-			console.log('적용하기3');
 			var predFoodList = $('#pred_food_list').html()
 			if(predFoodList == ''){
 				$('#pred_err').html('적용할 데이타가 없습니다');
 				return false;
-				console.log('들어옴')
 			}
 			$('#pred_err').html('');
 			var myFoodList = $('#my_food_list').html();
@@ -670,7 +624,6 @@
 			$('#total_kcal').html(total_kcal);
 			$('#foodModal').modal('hide');	
 		
-			
 		} // applyPred
 		
 		

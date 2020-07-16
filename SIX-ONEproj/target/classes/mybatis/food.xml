@@ -10,7 +10,7 @@
 	</insert>
 	
 	<select id="selectFoodList" parameterType="java.util.Map" resultType="FoodDTO">
-		SELECT * FROM food WHERE id=#{id}
+		SELECT * FROM food WHERE id = #{id} AND FOOD_DATE = TO_CHAR(SYSDATE,'YYYY-MM-DD')
 	</select>
 	
 	
@@ -19,7 +19,9 @@
 	</delete>
 	
 	
-	
+	<select id="DateFood" parameterType="java.util.Map" resultType="FoodDTO">
+		SELECT * FROM food WHERE id = #{id} AND FOOD_DATE = #{dateText}
+	</select>
 	
 	
 	

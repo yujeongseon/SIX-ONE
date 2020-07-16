@@ -66,9 +66,9 @@
 	<div class="container">
 		<div class="row">
 		
-			<div class="col-md-12 text-center">
+			<div class="col-md-10 col-md-offset-1 text-center">
 				<!-- 워드 클라우드 -->
-				<img id="proteinMain" src="<c:url value="/resources/images/protein_word_cloud.png"/>"style="margin-bottom: 30px;" alt=""/>
+				<img id="proteinMain" src="<c:url value="/resources/images/protein_word_cloud.png"/>"style="margin-bottom: 30px;width:100%;" alt=""/>
 			
 			</div>
 			<div

@@ -619,7 +619,7 @@ $(function(){
                               ${item.name}님의식단리스트</span><input id="datepicker" style="text-align: center" disabled>
                         </c:forEach>
                      </div>
-                     <div class="panel-footer">
+                     <div class="panel-footer" id="pf">
                         <c:if test="${not empty food }" var="flag">
                            <c:forEach items="${food}" var="item" begin="1" end="1">
                               <fmt:parseDate var="data" value="${item.foodDate}"
@@ -640,14 +640,12 @@ $(function(){
                                        <c:if test="${item.foodWhen == 'b'}">
                                           <c:set value="${item.foodKcal}" var="bkc" />
                                           <c:set value="${bkc+bkcal}" var="bkcal" />
-                                          <li style="font-weight: bold;">●&nbsp;&nbsp;${item.foodName}
-                                             - ${item.foodKcal}kcal</li>
+                                          <li style="font-weight: bold;"id ="morning">●&nbsp;&nbsp;${item.foodName} - ${item.foodKcal}kcal</li>
                                        </c:if>
                                     </c:forEach>
                                     <fmt:parseNumber var="bkcal" integerOnly="true"
                                        value="${bkcal}" />
-                                    <li style="font-weight: bold;">●&nbsp;&nbsp;아침식단 총 칼로리
-                                       - <c:out value="${bkcal}" />kcal
+                                    <li style="font-weight: bold;">●&nbsp;&nbsp;아침식단 총 칼로리 - <c:out value="${bkcal}" />kcal
                                     </li>
                                  </ul>
                               </div>
@@ -689,7 +687,7 @@ $(function(){
                               </div>
                               <h3>총 식단 칼로리</h3>
                               <div>
-                                 <ul style="margin-left: -60px; list-style: disc;">
+                                 <ul style="margin-left: -60px; list-style: disc;" id ="t">
                                     <c:forEach items="${food}" var="item">
                                        <c:set value="${item.foodKcal}" var="kc" />
                                        <c:set value="${kc+kcal}" var="kcal" />
@@ -708,7 +706,7 @@ $(function(){
 
                         <c:if test="${not flag}">
                            <h3
-                              style="text-align: center; padding-top: 25px; color: #DCDCDC">아직
+                              style="text-align: center; padding-top: 25px; color: #DCDCDC" id="h3h3">아직
                               식단이 없습니다</h3>
 
                         </c:if>
@@ -763,70 +761,42 @@ $(function(){
 
 
 <!--그래프에 넣어줄 값 저장작업-->
-                  <c:forEach items="${graphs}" var="item" varStatus="status">
-                     <c:set var="day" value="${item.playat }" />
-                     <fmt:formatDate value="${day}" pattern="E" var="day" />
-                        <c:if test="${day eq '월' and item.exercisepartials != '유산소'}">
-                           <input type="hidden" value="${item.exercisename}" id="Msport${status.index}"/>
-                           <input type="hidden" value="${item.setcount}" id="Mset${status.index}"/>
-                           <input type="hidden" value="${item.count}" id="Mcount${status.index}"/>
-                        </c:if>
-                  </c:forEach>
+               
                   
                   <c:forEach items="${graphs}" var="item2" varStatus="status2">
                      <c:set var="day" value="${item2.playat }" />
                      <fmt:formatDate value="${day}" pattern="E" var="day2" />
+                     <c:if test="${day eq '월' and item.exercisepartials != '유산소'}">
+                           <input type="hidden" value="${item2.exercisename}" id="Msport${status2.index}"/>
+                           <input type="hidden" value="${item2.setcount}" id="Mset${status2.index}"/>
+                           <input type="hidden" value="${item2.count}" id="Mcount${status2.index}"/>
+                        </c:if>
                         <c:if test="${day2 eq '화' and item.exercisepartials != '유산소'}"> 
                            <input type="hidden" value="${item2.exercisename}" id="Tsport${status2.index %3}"/>
                            <input type="hidden" value="${item2.setcount}" id="Tset${status2.index%3}"/>
                            <input type="hidden" value="${item2.count}" id="Tcount${status2.index%3}"/>
                         </c:if>
-                        
-                  </c:forEach>
-                  <c:forEach items="${graphs}" var="item2" varStatus="status2">
-                     <c:set var="day" value="${item2.playat }" />
-                     <fmt:formatDate value="${day}" pattern="E" var="day2" />
                         <c:if test="${day2 eq '수' and item.exercisepartials != '유산소'}"> 
                            <input type="hidden" value="${item2.exercisename}" id="Wsport${status2.index %3}"/>
                            <input type="hidden" value="${item2.setcount}" id="Wset${status2.index%3}"/>
                            <input type="hidden" value="${item2.count}" id="Wcount${status2.index%3}"/>
                         </c:if>
-                        
-                  </c:forEach>
-                  <c:forEach items="${graphs}" var="item2" varStatus="status2">
-                     <c:set var="day" value="${item2.playat }" />
-                     <fmt:formatDate value="${day}" pattern="E" var="day2" />
-                        <c:if test="${day2 eq '목' and item.exercisepartials != '유산소'}"> 
+                         <c:if test="${day2 eq '목' and item.exercisepartials != '유산소'}"> 
                            <input type="hidden" value="${item2.exercisename}" id="Thsport${status2.index %3}"/>
                            <input type="hidden" value="${item2.setcount}" id="Thset${status2.index%3}"/>
                            <input type="hidden" value="${item2.count}" id="Thcount${status2.index%3}"/>
                         </c:if>
-                        
-                  </c:forEach>
-                  <c:forEach items="${graphs}" var="item2" varStatus="status2">
-                     <c:set var="day" value="${item2.playat }" />
-                     <fmt:formatDate value="${day}" pattern="E" var="day2" />
-                        <c:if test="${day2 eq '금' and item.exercisepartials != '유산소'}"> 
+                         <c:if test="${day2 eq '금' and item.exercisepartials != '유산소'}"> 
                            <input type="hidden" value="${item2.exercisename}" id="Fsport${status2.index %3}"/>
                            <input type="hidden" value="${item2.setcount}" id="Fset${status2.index%3}"/>
                            <input type="hidden" value="${item2.count}" id="Fcount${status2.index%3}"/>
                         </c:if>
-                        
-                  </c:forEach>
-                  <c:forEach items="${graphs}" var="item2" varStatus="status2">
-                     <c:set var="day" value="${item2.playat }" />
-                     <fmt:formatDate value="${day}" pattern="E" var="day2" />
-                        <c:if test="${day2 eq '토' and item.exercisepartials != '유산소'}"> 
+                         <c:if test="${day2 eq '토' and item.exercisepartials != '유산소'}"> 
                            <input type="hidden" value="${item2.exercisename}" id="Ssport${status2.index %3}"/>
                            <input type="hidden" value="${item2.setcount}" id="Sset${status2.index%3}"/>
                            <input type="hidden" value="${item2.count}" id="Scount${status2.index%3}"/>
                         </c:if>
-                        
-                  </c:forEach>
-                  <c:forEach items="${graphs}" var="item2" varStatus="status2">
-                     <c:set var="day" value="${item2.playat }" />
-                     <fmt:formatDate value="${day}" pattern="E" var="day2" />
-                        <c:if test="${day2 eq '일' and item.exercisepartials != '유산소'}"> 
+                         <c:if test="${day2 eq '일' and item.exercisepartials != '유산소'}"> 
                            <input type="hidden" value="${item2.exercisename}" id="Sunsport${status2.index %3}"/>
                            <input type="hidden" value="${item2.setcount}" id="Sunset${status2.index%3}"/>
                            <input type="hidden" value="${item2.count}" id="Suncount${status2.index%3}"/>
@@ -841,7 +811,6 @@ $(function(){
 <!-- 그래프에 넣어줄 값 저장작업-->
                   
 <script>
-
    // 추천 루틴
    window.onload=function(){
       
@@ -955,408 +924,444 @@ $(function(){
    
    $(function(){
 
-		$(document).ready(function () { $('head').append('<style type="text/css">.modal .modal-body {max-height: ' + ($('body').height() * .4) + 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>'); });
+      $(document).ready(function () { $('head').append('<style type="text/css">.modal .modal-body {max-height: ' + ($('body').height() * .4) + 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>'); });
 
-		
-		$("#myinformation").trigger("click");
-		
-		
-		
-	});
+      
+      $("#myinformation").trigger("click");
+      
+      
+      
+   });
 
-	var weight = $('#weight').html();
-	var Intweight = parseFloat(weight);
-			var weight = Intweight;
-			var heightCM = 172;
-			var age = 24;
-			var heightM = heightCM * 0.01;
-			
-			// BMI 지수 = 체중 ÷ (키 x 키)
-			var bmiResult = (weight / (heightM * heightM)).toFixed(2);
-			bmiResult = parseFloat(bmiResult);
-			var bmiResult = bmiResult.toFixed(2);
-			if(bmiResult <= 18.5) {
-				$('#target').after('<span class="label label-success" id="bmi"><span id="bmiResult" style="font-weight: bold;"></span> kg/m2</span>');
-				$('#bmiResult').html(bmiResult);
-			}
-			else if(bmiResult <= 24.8) {
-				$('#target').after('<span class="label label-primary" id="bmi"><span id="bmiResult" style="font-weight: bold;"></span> kg/m2</span>');
-				$('#bmiResult').html(bmiResult);
-			}
-			else if(bmiResult <= 29.8) {
-				$('#target').after('<span class="label label-warning" id="bmi"><span id="bmiResult" style="font-weight: bold;"></span> kg/m2</span>');
-				$('#bmiResult').html(bmiResult);
-			}
-			else {
-				$('#target').after('<span class="label label-danger" id="bmi"><span id="bmiResult" style="font-weight: bold;"></span> kg/m2</span>');
-				$('#bmiResult').html(bmiResult);
-			}
-			
-			
-			
+   var weight = $('#weight').html();
+   var Intweight = parseFloat(weight);
+         var weight = Intweight;
+         var heightCM = 172;
+         var age = 24;
+         var heightM = heightCM * 0.01;
+         
+         // BMI 지수 = 체중 ÷ (키 x 키)
+         var bmiResult = (weight / (heightM * heightM)).toFixed(2);
+         bmiResult = parseFloat(bmiResult);
+         var bmiResult = bmiResult.toFixed(2);
+         if(bmiResult <= 18.5) {
+            $('#target').after('<span class="label label-success" id="bmi"><span id="bmiResult" style="font-weight: bold;"></span> kg/m2</span>');
+            $('#bmiResult').html(bmiResult);
+         }
+         else if(bmiResult <= 24.8) {
+            $('#target').after('<span class="label label-primary" id="bmi"><span id="bmiResult" style="font-weight: bold;"></span> kg/m2</span>');
+            $('#bmiResult').html(bmiResult);
+         }
+         else if(bmiResult <= 29.8) {
+            $('#target').after('<span class="label label-warning" id="bmi"><span id="bmiResult" style="font-weight: bold;"></span> kg/m2</span>');
+            $('#bmiResult').html(bmiResult);
+         }
+         else {
+            $('#target').after('<span class="label label-danger" id="bmi"><span id="bmiResult" style="font-weight: bold;"></span> kg/m2</span>');
+            $('#bmiResult').html(bmiResult);
+         }
+         
+         
+         
 
-			// 18.5 미만	저체중
-			// 18.6 ~ 22.9	표준
-			// 23.0 ~ 24.9	과체중
-			// 25.0 ~ 29.9	중도비만
-			// 30.0 이상	고도비만
-			//남성 체지방량kg = (1.10 x 본인체중kg) - (128 x (본인체중kg ÷ 본인키cm))
-			//여성 체지방량kg = (1.07 x 본인체중kg) - (128 x (본인체중kg ÷ 본인키cm))
-			//var fatResult = (1.07 * weight) - (128 * (weight / heightCM)).toFixed(2);   // 여자
-			var fatResult = (1.10 * weight) - (128 * (weight / heightCM)).toFixed(2);  //남자
-			fatResult = parseFloat(fatResult);
-			fatResult = fatResult.toFixed(2);
-			if(fatResult <= 18.5) {
-				$('#calor').after('<span class="label label-success" id="CResult"><span id="fatResult" style="font-weight: bold;"></span> kg</span>');
-				$('#fatResult').html(fatResult);
-			}
-			else if(fatResult <= 22.9) {
-				$('#calor').after('<span class="label label-primary" id="CResult"><span id="fatResult" style="font-weight: bold;"></span> kg</span>');
-				$('#fatResult').html(fatResult);
-			}
-			else if(fatResult <= 24.9) {
-				$('#calor').after('<span class="label label-info" id="CResult"><span id="fatResult" style="font-weight: bold;"></span> kg</span>');
-				$('#fatResult').html(fatResult);
-			}
-			else if(fatResult <= 29.9) {
-				$('#calor').after('<span class="label label-warning" id="CResult"><span id="fatResult" style="font-weight: bold;"></span> kg</span>');
-				$('#fatResult').html(fatResult);
-			}
-			else{
-				$('#calor').after('<span class="label label-danger" id="CResult"><span id="fatResult" style="font-weight: bold;"></span> kg</span>');
-				$('#fatResult').html(fatResult);
-			}
-			
-			
-			
-			
-			//var fatResult = fatResult.toFixed(2);
-			
-			
-			
-			// 17.0 이하	저체중	20.0 이하	저체중
-			// 17.1 ~ 22.9	표준	20.1 ~ 26.9	표준
-			//23.0 ~ 27.9	과체중	27.0 ~ 32.9	과체중
-			// 28.0 ~ 37.9	중도비만	33.0 ~ 42.9	중도비만
-			// 38.0 이상		고도비만	43.0 이상		고도비만
+         // 18.5 미만   저체중
+         // 18.6 ~ 22.9   표준
+         // 23.0 ~ 24.9   과체중
+         // 25.0 ~ 29.9   중도비만
+         // 30.0 이상   고도비만
+         //남성 체지방량kg = (1.10 x 본인체중kg) - (128 x (본인체중kg ÷ 본인키cm))
+         //여성 체지방량kg = (1.07 x 본인체중kg) - (128 x (본인체중kg ÷ 본인키cm))
+         //var fatResult = (1.07 * weight) - (128 * (weight / heightCM)).toFixed(2);   // 여자
+         var fatResult = (1.10 * weight) - (128 * (weight / heightCM)).toFixed(2);  //남자
+         fatResult = parseFloat(fatResult);
+         fatResult = fatResult.toFixed(2);
+         if(fatResult <= 18.5) {
+            $('#calor').after('<span class="label label-success" id="CResult"><span id="fatResult" style="font-weight: bold;"></span> kg</span>');
+            $('#fatResult').html(fatResult);
+         }
+         else if(fatResult <= 22.9) {
+            $('#calor').after('<span class="label label-primary" id="CResult"><span id="fatResult" style="font-weight: bold;"></span> kg</span>');
+            $('#fatResult').html(fatResult);
+         }
+         else if(fatResult <= 24.9) {
+            $('#calor').after('<span class="label label-info" id="CResult"><span id="fatResult" style="font-weight: bold;"></span> kg</span>');
+            $('#fatResult').html(fatResult);
+         }
+         else if(fatResult <= 29.9) {
+            $('#calor').after('<span class="label label-warning" id="CResult"><span id="fatResult" style="font-weight: bold;"></span> kg</span>');
+            $('#fatResult').html(fatResult);
+         }
+         else{
+            $('#calor').after('<span class="label label-danger" id="CResult"><span id="fatResult" style="font-weight: bold;"></span> kg</span>');
+            $('#fatResult').html(fatResult);
+         }
+         
+         
+         
+         
+         //var fatResult = fatResult.toFixed(2);
+         
+         
+         
+         // 17.0 이하   저체중   20.0 이하   저체중
+         // 17.1 ~ 22.9   표준   20.1 ~ 26.9   표준
+         //23.0 ~ 27.9   과체중   27.0 ~ 32.9   과체중
+         // 28.0 ~ 37.9   중도비만   33.0 ~ 42.9   중도비만
+         // 38.0 이상      고도비만   43.0 이상      고도비만
 
 
 
-			//비만도
-			//표준체중(남) = (신장 - 100) * 0.9
-			//표준체중(여) = (신장 - 105) * 0.9
-			//비만도 = (실제체중 / 표준체중) * 100
-			var ratioResult = ((weight / ((heightCM - 100) * 0.9)) * 100).toFixed(2); //남자
-			//var ratioResult = ((weight / ((heightCM - 105) * 0.9)) * 100).toFixed(2); // 여자
-			ratioResult = parseFloat(ratioResult);
-			ratioResult = ratioResult.toFixed(2);
-			
-			if(ratioResult <= 94) {
-				$('#Beman').after('<span class="label label-success" id="ratio"><span id="ratioResult" style="font-weight: bold;"></span></span>');
-				$('#ratioResult').html(ratioResult);
-			}
-			else if(ratioResult <= 119) {
-				console.log(ratioResult);
-				$('#Beman').after('<span class="label label-primary" id="ratio"><span id="ratioResult" style="font-weight: bold;"></span></span>');
-				$('#ratioResult').html(ratioResult);
-			}
-			else if(ratioResult <= 129) {
-				$('#Beman').after('<span class="label label-info" id="ratio"><span id="ratioResult" style="font-weight: bold;"></span></span>');
-				$('#ratioResult').html(ratioResult);
-			}
-			else if(ratioResult <= 149) {
-				$('#Beman').after('<span class="label label-warning" id="ratio"><span id="ratioResult" style="font-weight: bold;"></span></span>');
-				$('#ratioResult').html(ratioResult);
-			}
-			else{
-				$('#Beman').after('<span class="label label-danger"><span id="ratioResult" style="font-weight: bold;"></span></span>');
-				$('#ratioResult').html(ratioResult);
-			}
+         //비만도
+         //표준체중(남) = (신장 - 100) * 0.9
+         //표준체중(여) = (신장 - 105) * 0.9
+         //비만도 = (실제체중 / 표준체중) * 100
+         var ratioResult = ((weight / ((heightCM - 100) * 0.9)) * 100).toFixed(2); //남자
+         //var ratioResult = ((weight / ((heightCM - 105) * 0.9)) * 100).toFixed(2); // 여자
+         ratioResult = parseFloat(ratioResult);
+         ratioResult = ratioResult.toFixed(2);
+         
+         if(ratioResult <= 94) {
+            $('#Beman').after('<span class="label label-success" id="ratio"><span id="ratioResult" style="font-weight: bold;"></span></span>');
+            $('#ratioResult').html(ratioResult);
+         }
+         else if(ratioResult <= 119) {
+            console.log(ratioResult);
+            $('#Beman').after('<span class="label label-primary" id="ratio"><span id="ratioResult" style="font-weight: bold;"></span></span>');
+            $('#ratioResult').html(ratioResult);
+         }
+         else if(ratioResult <= 129) {
+            $('#Beman').after('<span class="label label-info" id="ratio"><span id="ratioResult" style="font-weight: bold;"></span></span>');
+            $('#ratioResult').html(ratioResult);
+         }
+         else if(ratioResult <= 149) {
+            $('#Beman').after('<span class="label label-warning" id="ratio"><span id="ratioResult" style="font-weight: bold;"></span></span>');
+            $('#ratioResult').html(ratioResult);
+         }
+         else{
+            $('#Beman').after('<span class="label label-danger"><span id="ratioResult" style="font-weight: bold;"></span></span>');
+            $('#ratioResult').html(ratioResult);
+         }
 
-			// 90 ~ 110%	저체중
-			// 110 ~ 119 %	표준
-			// 120 ~ 129%	과체중
-			// 130 ~ 149%	중도비만
-			// 150%	고도비만
+         // 90 ~ 110%   저체중
+         // 110 ~ 119 %   표준
+         // 120 ~ 129%   과체중
+         // 130 ~ 149%   중도비만
+         // 150%   고도비만
 
-			//기초대사량
-			//남자 = 66.47+(13.75 x 체중)+(5 x 키) - (6.76 x 나이)
-			//여자 = 655.1+(9.56 x 체중)+(1.85 x 키) - (4.68 x 나이)
-			var kcalResult = (66.47 +(13.75 * weight) + (5 * heightCM) - (6.76 * age)).toFixed(2);//남자
-			//var kcalResult = (655.1 +(9.56 * weight) + (1.85 * heightCM) - (4.68 * age)).toFixed(2); //여자
-			kcalResult = parseFloat(kcalResult);
-			kcalResult = kcalResult.toFixed(2);
-			
-			$('#daesalyang').after('<span class="label label-primary" id="Result"><span id="kcalResult" style="font-weight: bold;"></span>kcal</span>');
-			$('#kcalResult').html(kcalResult);
-				
-			
+         //기초대사량
+         //남자 = 66.47+(13.75 x 체중)+(5 x 키) - (6.76 x 나이)
+         //여자 = 655.1+(9.56 x 체중)+(1.85 x 키) - (4.68 x 나이)
+         var kcalResult = (66.47 +(13.75 * weight) + (5 * heightCM) - (6.76 * age)).toFixed(2);//남자
+         //var kcalResult = (655.1 +(9.56 * weight) + (1.85 * heightCM) - (4.68 * age)).toFixed(2); //여자
+         kcalResult = parseFloat(kcalResult);
+         kcalResult = kcalResult.toFixed(2);
+         
+         $('#daesalyang').after('<span class="label label-primary" id="Result"><span id="kcalResult" style="font-weight: bold;"></span>kcal</span>');
+         $('#kcalResult').html(kcalResult);
+            
+         
 
-			//		남자 						여자
-			// 나이	평균 기초대사량				 나이	평균 기초대사량
-			// 20 ~ 29세	1728 ± 368.2 ㎉		20 ~ 29세	1311.5 ± 233.0 ㎉
-			// 30 ~ 49세	1669.5 ± 302.1 ㎉	30 ~ 49세	1316.8 ± 225.9 ㎉
-			// 50세 이상	1493.8 ± 315.3 ㎉	50세 이상	1252.5 ± 228.6 ㎉	
-			
-			
-			$(function(){
-				$('#tb').hide();
-				$('#Result').on('mouseenter',function(){
-					$('#tb').show();
-				});
-				
-				$('#Result').on('mouseleave',function(){
-					$('#tb').hide();
-				});
-				
-				$('#tb').hide();
-				$('#daesalyang').on('mouseenter',function(){
-					$('#tb').show();
-				});
-				
-				$('#daesalyang').on('mouseleave',function(){
-					$('#tb').hide();
-				});
-				
-			});
-			
-			
-			
-			
-			$('#kgup').on('click',function(){
-				var weight = $('#weight').html();
-				var Intweight = parseFloat(weight);
-				var aa = $('#weight').html(Intweight + 1);
-				$.ajax({
-					url:"<c:url value='/kgUpdate.do'/>",
-					type:'get',
-					data:{weight:Intweight},
-					dataType:'json',
-					success:function(data){
-						$.each(data,function(key,value){
-							$('#weight').val(value);
-							var weight = Intweight;
-							var heightCM = 172;
-							var age = 24;
-							var heightM = heightCM * 0.01;
-							///BMI
-							var bmiResult = (value / (heightM * heightM)).toFixed(2);
-							bmiResult = parseFloat(bmiResult);
-							var bmiResult = bmiResult.toFixed(2);
-							if(bmiResult <= 18.5) {
-								$('#bmi').attr('class','label label-success');
-								$('#bmiResult').html(bmiResult);
-							}
-							else if(bmiResult <= 24.8) {
-								$('#bmi').attr('class','label label-primary');
-								$('#bmiResult').html(bmiResult);
-							}
-							else if(bmiResult <= 29.8) {
-								$('#bmi').attr('class','label label-warning');
-								$('#bmiResult').html(bmiResult);
-							}
-							else {
-								$('#bmi').attr('class','label label-danger');
-								$('#bmiResult').html(bmiResult);
-							}
-							
-							//체지방률
-							var fatResult = (1.10 * value) - (128 * (value / heightCM)).toFixed(2);  //남자
-							fatResult = parseFloat(fatResult);
-							fatResult = fatResult.toFixed(2);
-							if(fatResult <= 18.5) {
-								$('#CResult').attr('class','label label-success');
-								$('#fatResult').html(fatResult);
-							}
-							else if(fatResult <= 22.9) {
-								$('#CResult').attr('class','label label-primary');
-								$('#fatResult').html(fatResult);
-							}
-							else if(fatResult <= 24.9) {
-								$('#CResult').attr('class','label label-info');
-								$('#fatResult').html(fatResult);
-							}
-							else if(fatResult <= 29.9) {
-								$('#CResult').attr('class','label label-warning');
-								$('#fatResult').html(fatResult);
-							}
-							else{
-								$('#CResult').attr('class','label label-danger');
-								$('#fatResult').html(fatResult);
-							}
-							
-							
-							var ratioResult = ((value / ((heightCM - 100) * 0.9)) * 100).toFixed(2); //남자
-							//var ratioResult = ((weight / ((heightCM - 105) * 0.9)) * 100).toFixed(2); // 여자
-							ratioResult = parseFloat(ratioResult);
-							ratioResult = ratioResult.toFixed(2);
-							
-							if(ratioResult <= 94) {
-								$('#ratio').attr('class','label label-success');
-								$('#ratioResult').html(ratioResult);
-							}
-							else if(ratioResult <= 119) {
-								$('#ratio').attr('class','label label-primary');
-								$('#ratioResult').html(ratioResult);
-							}
-							else if(ratioResult <= 129) {
-								$('#ratio').attr('class','label label-info');
-								$('#ratioResult').html(ratioResult);
-							}
-							else if(ratioResult <= 149) {
-								$('#ratio').attr('class','label label-warning');
-								$('#ratioResult').html(ratioResult);
-							}
-							else{
-								$('#ratio').attr('class','label label-danger');
-								$('#ratioResult').html(ratioResult);
-							}
-							
-							var kcalResult = (66.47 +(13.75 * value) + (5 * heightCM) - (6.76 * age)).toFixed(2);//남자
-							//var kcalResult = (655.1 +(9.56 * weight) + (1.85 * heightCM) - (4.68 * age)).toFixed(2); //여자
-							kcalResult = parseFloat(kcalResult);
-							kcalResult = kcalResult.toFixed(2);
-							
-							
-							$('#kcalResult').html(kcalResult);
-							
-							
-						});
-					},
-					error:function(data){}
-				});
-				
-			});
-			
-			
-			
-			$('#kgdown').on('click',function(){
-				var weight = $('#weight').html();
-				var Intweight = parseFloat(weight);
-				var aa = $('#weight').html(Intweight - 1);
-				$.ajax({
-					url:"<c:url value='/kgDown.do'/>",
-					type:'get',
-					data:{weight:Intweight},
-					dataType:'json',
-					success:function(data){
-						$.each(data,function(key,value){
-							$('#weight').val(value);
-							var weight = Intweight;
-							var heightCM = 172;
-							var age = 24;
-							var heightM = heightCM * 0.01;
-							///BMI
-							var bmiResult = (value / (heightM * heightM)).toFixed(2);
-							bmiResult = parseFloat(bmiResult);
-							var bmiResult = bmiResult.toFixed(2);
-							if(bmiResult <= 18.5) {
-								$('#bmi').attr('class','label label-success');
-								$('#bmiResult').html(bmiResult);
-							}
-							else if(bmiResult <= 24.8) {
-								$('#bmi').attr('class','label label-primary');
-								$('#bmiResult').html(bmiResult);
-							}
-							else if(bmiResult <= 29.8) {
-								$('#bmi').attr('class','label label-warning');
-								$('#bmiResult').html(bmiResult);
-							}
-							else {
-								$('#bmi').attr('class','label label-danger');
-								$('#bmiResult').html(bmiResult);
-							}
-							
-							//체지방률
-							var fatResult = (1.10 * value) - (128 * (value / heightCM)).toFixed(2);  //남자
-							fatResult = parseFloat(fatResult);
-							fatResult = fatResult.toFixed(2);
-							if(fatResult <= 18.5) {
-								$('#CResult').attr('class','label label-success');
-								$('#fatResult').html(fatResult);
-							}
-							else if(fatResult <= 22.9) {
-								$('#CResult').attr('class','label label-primary');
-								$('#fatResult').html(fatResult);
-							}
-							else if(fatResult <= 24.9) {
-								$('#CResult').attr('class','label label-info');
-								$('#fatResult').html(fatResult);
-							}
-							else if(fatResult <= 29.9) {
-								$('#CResult').attr('class','label label-warning');
-								$('#fatResult').html(fatResult);
-							}
-							else{
-								$('#CResult').attr('class','label label-danger');
-								$('#fatResult').html(fatResult);
-							}
-							
-							
-							var ratioResult = ((value / ((heightCM - 100) * 0.9)) * 100).toFixed(2); //남자
-							//var ratioResult = ((weight / ((heightCM - 105) * 0.9)) * 100).toFixed(2); // 여자
-							ratioResult = parseFloat(ratioResult);
-							ratioResult = ratioResult.toFixed(2);
-							
-							if(ratioResult <= 94) {
-								$('#ratio').attr('class','label label-success');
-								$('#ratioResult').html(ratioResult);
-							}
-							else if(ratioResult <= 119) {
-								$('#ratio').attr('class','label label-primary');
-								$('#ratioResult').html(ratioResult);
-							}
-							else if(ratioResult <= 129) {
-								$('#ratio').attr('class','label label-info');
-								$('#ratioResult').html(ratioResult);
-							}
-							else if(ratioResult <= 149) {
-								$('#ratio').attr('class','label label-warning');
-								$('#ratioResult').html(ratioResult);
-							}
-							else{
-								$('#ratio').attr('class','label label-danger');
-								$('#ratioResult').html(ratioResult);
-							}
-							
-							var kcalResult = (66.47 +(13.75 * value) + (5 * heightCM) - (6.76 * age)).toFixed(2);//남자
-							//var kcalResult = (655.1 +(9.56 * weight) + (1.85 * heightCM) - (4.68 * age)).toFixed(2); //여자
-							kcalResult = parseFloat(kcalResult);
-							kcalResult = kcalResult.toFixed(2);
-							
-							
-							$('#kcalResult').html(kcalResult);
-							
-							
-						});
-					},
-					error:function(data){}
-				});
-				
-			});
-			   
+         //      남자                   여자
+         // 나이   평균 기초대사량             나이   평균 기초대사량
+         // 20 ~ 29세   1728 ± 368.2 ㎉      20 ~ 29세   1311.5 ± 233.0 ㎉
+         // 30 ~ 49세   1669.5 ± 302.1 ㎉   30 ~ 49세   1316.8 ± 225.9 ㎉
+         // 50세 이상   1493.8 ± 315.3 ㎉   50세 이상   1252.5 ± 228.6 ㎉   
+         
+         
+         $(function(){
+            $('#tb').hide();
+            $('#Result').on('mouseenter',function(){
+               $('#tb').show();
+            });
+            
+            $('#Result').on('mouseleave',function(){
+               $('#tb').hide();
+            });
+            
+            $('#tb').hide();
+            $('#daesalyang').on('mouseenter',function(){
+               $('#tb').show();
+            });
+            
+            $('#daesalyang').on('mouseleave',function(){
+               $('#tb').hide();
+            });
+            
+         });
+         
+         
+         
+         
+         $('#kgup').on('click',function(){
+            var weight = $('#weight').html();
+            var Intweight = parseFloat(weight);
+            var aa = $('#weight').html(Intweight + 1);
+            $.ajax({
+               url:"<c:url value='/kgUpdate.do'/>",
+               type:'get',
+               data:{weight:Intweight},
+               dataType:'json',
+               success:function(data){
+                  $.each(data,function(key,value){
+                     $('#weight').val(value);
+                     var weight = Intweight;
+                     var heightCM = 172;
+                     var age = 24;
+                     var heightM = heightCM * 0.01;
+                     ///BMI
+                     var bmiResult = (value / (heightM * heightM)).toFixed(2);
+                     bmiResult = parseFloat(bmiResult);
+                     var bmiResult = bmiResult.toFixed(2);
+                     if(bmiResult <= 18.5) {
+                        $('#bmi').attr('class','label label-success');
+                        $('#bmiResult').html(bmiResult);
+                     }
+                     else if(bmiResult <= 24.8) {
+                        $('#bmi').attr('class','label label-primary');
+                        $('#bmiResult').html(bmiResult);
+                     }
+                     else if(bmiResult <= 29.8) {
+                        $('#bmi').attr('class','label label-warning');
+                        $('#bmiResult').html(bmiResult);
+                     }
+                     else {
+                        $('#bmi').attr('class','label label-danger');
+                        $('#bmiResult').html(bmiResult);
+                     }
+                     
+                     //체지방률
+                     var fatResult = (1.10 * value) - (128 * (value / heightCM)).toFixed(2);  //남자
+                     fatResult = parseFloat(fatResult);
+                     fatResult = fatResult.toFixed(2);
+                     if(fatResult <= 18.5) {
+                        $('#CResult').attr('class','label label-success');
+                        $('#fatResult').html(fatResult);
+                     }
+                     else if(fatResult <= 22.9) {
+                        $('#CResult').attr('class','label label-primary');
+                        $('#fatResult').html(fatResult);
+                     }
+                     else if(fatResult <= 24.9) {
+                        $('#CResult').attr('class','label label-info');
+                        $('#fatResult').html(fatResult);
+                     }
+                     else if(fatResult <= 29.9) {
+                        $('#CResult').attr('class','label label-warning');
+                        $('#fatResult').html(fatResult);
+                     }
+                     else{
+                        $('#CResult').attr('class','label label-danger');
+                        $('#fatResult').html(fatResult);
+                     }
+                     
+                     
+                     var ratioResult = ((value / ((heightCM - 100) * 0.9)) * 100).toFixed(2); //남자
+                     //var ratioResult = ((weight / ((heightCM - 105) * 0.9)) * 100).toFixed(2); // 여자
+                     ratioResult = parseFloat(ratioResult);
+                     ratioResult = ratioResult.toFixed(2);
+                     
+                     if(ratioResult <= 94) {
+                        $('#ratio').attr('class','label label-success');
+                        $('#ratioResult').html(ratioResult);
+                     }
+                     else if(ratioResult <= 119) {
+                        $('#ratio').attr('class','label label-primary');
+                        $('#ratioResult').html(ratioResult);
+                     }
+                     else if(ratioResult <= 129) {
+                        $('#ratio').attr('class','label label-info');
+                        $('#ratioResult').html(ratioResult);
+                     }
+                     else if(ratioResult <= 149) {
+                        $('#ratio').attr('class','label label-warning');
+                        $('#ratioResult').html(ratioResult);
+                     }
+                     else{
+                        $('#ratio').attr('class','label label-danger');
+                        $('#ratioResult').html(ratioResult);
+                     }
+                     
+                     var kcalResult = (66.47 +(13.75 * value) + (5 * heightCM) - (6.76 * age)).toFixed(2);//남자
+                     //var kcalResult = (655.1 +(9.56 * weight) + (1.85 * heightCM) - (4.68 * age)).toFixed(2); //여자
+                     kcalResult = parseFloat(kcalResult);
+                     kcalResult = kcalResult.toFixed(2);
+                     
+                     
+                     $('#kcalResult').html(kcalResult);
+                     
+                     
+                  });
+               },
+               error:function(data){}
+            });
+            
+         });
+         
+         
+         
+         $('#kgdown').on('click',function(){
+            var weight = $('#weight').html();
+            var Intweight = parseFloat(weight);
+            var aa = $('#weight').html(Intweight - 1);
+            $.ajax({
+               url:"<c:url value='/kgDown.do'/>",
+               type:'get',
+               data:{weight:Intweight},
+               dataType:'json',
+               success:function(data){
+                  $.each(data,function(key,value){
+                     $('#weight').val(value);
+                     var weight = Intweight;
+                     var heightCM = 172;
+                     var age = 24;
+                     var heightM = heightCM * 0.01;
+                     ///BMI
+                     var bmiResult = (value / (heightM * heightM)).toFixed(2);
+                     bmiResult = parseFloat(bmiResult);
+                     var bmiResult = bmiResult.toFixed(2);
+                     if(bmiResult <= 18.5) {
+                        $('#bmi').attr('class','label label-success');
+                        $('#bmiResult').html(bmiResult);
+                     }
+                     else if(bmiResult <= 24.8) {
+                        $('#bmi').attr('class','label label-primary');
+                        $('#bmiResult').html(bmiResult);
+                     }
+                     else if(bmiResult <= 29.8) {
+                        $('#bmi').attr('class','label label-warning');
+                        $('#bmiResult').html(bmiResult);
+                     }
+                     else {
+                        $('#bmi').attr('class','label label-danger');
+                        $('#bmiResult').html(bmiResult);
+                     }
+                     
+                     //체지방률
+                     var fatResult = (1.10 * value) - (128 * (value / heightCM)).toFixed(2);  //남자
+                     fatResult = parseFloat(fatResult);
+                     fatResult = fatResult.toFixed(2);
+                     if(fatResult <= 18.5) {
+                        $('#CResult').attr('class','label label-success');
+                        $('#fatResult').html(fatResult);
+                     }
+                     else if(fatResult <= 22.9) {
+                        $('#CResult').attr('class','label label-primary');
+                        $('#fatResult').html(fatResult);
+                     }
+                     else if(fatResult <= 24.9) {
+                        $('#CResult').attr('class','label label-info');
+                        $('#fatResult').html(fatResult);
+                     }
+                     else if(fatResult <= 29.9) {
+                        $('#CResult').attr('class','label label-warning');
+                        $('#fatResult').html(fatResult);
+                     }
+                     else{
+                        $('#CResult').attr('class','label label-danger');
+                        $('#fatResult').html(fatResult);
+                     }
+                     
+                     
+                     var ratioResult = ((value / ((heightCM - 100) * 0.9)) * 100).toFixed(2); //남자
+                     //var ratioResult = ((weight / ((heightCM - 105) * 0.9)) * 100).toFixed(2); // 여자
+                     ratioResult = parseFloat(ratioResult);
+                     ratioResult = ratioResult.toFixed(2);
+                     
+                     if(ratioResult <= 94) {
+                        $('#ratio').attr('class','label label-success');
+                        $('#ratioResult').html(ratioResult);
+                     }
+                     else if(ratioResult <= 119) {
+                        $('#ratio').attr('class','label label-primary');
+                        $('#ratioResult').html(ratioResult);
+                     }
+                     else if(ratioResult <= 129) {
+                        $('#ratio').attr('class','label label-info');
+                        $('#ratioResult').html(ratioResult);
+                     }
+                     else if(ratioResult <= 149) {
+                        $('#ratio').attr('class','label label-warning');
+                        $('#ratioResult').html(ratioResult);
+                     }
+                     else{
+                        $('#ratio').attr('class','label label-danger');
+                        $('#ratioResult').html(ratioResult);
+                     }
+                     
+                     var kcalResult = (66.47 +(13.75 * value) + (5 * heightCM) - (6.76 * age)).toFixed(2);//남자
+                     //var kcalResult = (655.1 +(9.56 * weight) + (1.85 * heightCM) - (4.68 * age)).toFixed(2); //여자
+                     kcalResult = parseFloat(kcalResult);
+                     kcalResult = kcalResult.toFixed(2);
+                     
+                     
+                     $('#kcalResult').html(kcalResult);
+                     
+                     
+                  });
+               },
+               error:function(data){}
+            });
+            
+         });
+            
    
    
    
    
    // 데이트 피커
-   	$( "#datepicker" ).datepicker({
-	      showOn: "button",
-	      buttonImage: "resources/images/calendar-icon.png",
-	      buttonImageOnly: true,
-	      showButtonPanel: true,
-	      buttonText: "Select date",
-	      onSelect:function(dateText) {  
-
-	    		console.log(dateText)
-	    		
-	      }
+      $( "#datepicker" ).datepicker({
+         showOn: "button",
+         buttonImage: "resources/images/calendar-icon.png",
+         buttonImageOnly: true,
+         showButtonPanel: true,
+         buttonText: "Select date",
+         onSelect:function(dateText) {  
+         $.ajax({
+            url:"<c:url value='/fooddate.do'/>",
+            type:'get',
+            dataType:'json',
+            data:{dateText:dateText},
+            success:function(data){
+               $('#h3').html(dateText+' 식단표');
+               $('#b ').html("");
+               $('#l ').html("");
+               $('#d ').html("");
+               $('#t ').html("");
+               var a = 0, b=0, c=0;
+            
+            
+               $.each(data,function(key,value){
+                        if(value['foodWhen'] == 'b') {
+                           $('#b').append("<li><b>●&nbsp;&nbsp;"+value['foodName']+" - "+value['foodKcal']+"kcal</b></li>\r\n");
+                           a = a+parseInt(value['foodKcal']);
+                           $('#t').append("<li><b>●&nbsp;&nbsp;"+value['foodName']+" - "+value['foodKcal']+"kcal</b></li>\r\n");
+                        }else if(value['foodWhen'] == 'l') {
+                           $('#l').append("<li><b>●&nbsp;&nbsp;"+value['foodName']+" - "+value['foodKcal']+"kcal</b></li>\r\n");
+                           b = a+parseInt(value['foodKcal']);
+                           $('#t').append("<li><b>●&nbsp;&nbsp;"+value['foodName']+" - "+value['foodKcal']+"kcal</b></li>\r\n");
+                        }else if(value['foodWhen'] == 'd') {
+                           $('#d').append("<li><b>●&nbsp;&nbsp;"+value['foodName']+" - "+value['foodKcal']+"kcal</b></li>\r\n");
+                           c = a+parseInt(value['foodKcal']);
+                           $('#t').append("<li><b>●&nbsp;&nbsp;"+value['foodName']+" - "+value['foodKcal']+"kcal</b></li>\r\n");
+                        }
+                       
+               });//////each
+                $('#b').append('<li style="font-weight: bold;">●&nbsp;&nbsp;아침식단 총 칼로리 - '+a+'kcal</li>');
+                $('#l').append('<li style="font-weight: bold;">●&nbsp;&nbsp;점심식단 총 칼로리 - '+b+'kcal</li>');
+                $('#d').append('<li style="font-weight: bold;">●&nbsp;&nbsp;저녁식단 총 칼로리 - '+c+'kcal</li>');
+                
+                $('#t').append('<li style="font-weight: bold;">●&nbsp;&nbsp;저녁식단 총 칼로리 - '+(a+b+c)+'kcal</li>');
+            },
+            error:function(){
+               alert('에러 010-8457-0048로 카톡 주세요.');
+            }
+         });
+             
+             
+         }
     });
-	$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");
-	$( "#datepicker" ).datepicker('setDate', new Date());
-
-	
-	
+   $( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");
+   $( "#datepicker" ).datepicker('setDate', new Date());
 
 </script>      
 
