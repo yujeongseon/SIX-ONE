@@ -11,13 +11,13 @@
 				<div class="form-group">
                    <label for="inputHeight" class="col-lg-2 control-label">아이디</label>
                    <div class="col-lg-10">
-                        <span class="form-control">${id}</span>
+                        <span class="form-control" id="id">${id}</span>
                     </div>
                 </div>
                 <div class="form-group">
                    <label for="inputHeight" class="col-lg-2 control-label">이름</label>
                    <div class="col-lg-10">
-                        <span class="form-control">${name}</span>
+                        <span class="form-control" id="name">${name}</span>
                     </div>
                 </div>
                 <div class="form-group">

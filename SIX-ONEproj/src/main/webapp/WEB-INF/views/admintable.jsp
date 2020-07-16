@@ -34,6 +34,10 @@
 	font-style: normal;
 	cursor : pointer;
 }
+	i:hover{
+	font-weight: bold;
+	cursor: Pointer;
+	}
 </style>
   </head>
 
@@ -190,7 +194,7 @@
 					</div>
 					<div class="modal-body">
 						<div class="form-horizontal">
-							<div class="col-md-3">
+							<div class="col-md-4" style="text-align:center">
 							<div>
 							<img id="myprofile" class=img-circle
 								style="margin: 0 auto; height: 150px; width: 150px; margin-top: 50px; margin-bottom: 10px;"
@@ -200,45 +204,44 @@
 							</div>
 							<br/>
 							<br/>
-							<br/>
 							<div id="tf">
-								<i class="fa fa-ban" style="font-size:30px; text-align:center;" onclick="showban();"><span id="ban">회원 제재</span></i>
+								<i class="fa fa-ban" style="font-size:20px; text-align:center;" onclick="showban();"><span id="ban">회원 제재</span></i>
 							</div>
 						</div><!-- col-md-9 -->
 							
-							<div class="col-md-9">
+							<div class="col-md-8">
 							<div class="form-group">
-								<label class="col-sm-5 control-label" for="exe-name"><h4>ID</h4></label>
-								<label class="col-sm-7 control-label" for="exe-name"><h4 id="id">kilddong</h4></label>
+								<label class="col-sm-6 control-label" for="exe-name"><h4>ID</h4></label>
+								<label class="col-sm-6 control-label" for="exe-name"><h4 id="id">kilddong</h4></label>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-5 control-label" for="exe-part"><h4>비밀번호</h4></label>
-								<label class="col-sm-7 control-label" for="exe-name"><h4>******</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4>비밀번호</h4></label>
+								<label class="col-sm-6 control-label" for="exe-name"><h4>******</h4></label>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-5 control-label" for="exe-part"><h4>이름</h4></label>
-								<label class="col-sm-7 control-label" for="exe-name"><h4 id="name">김길동</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4>이름</h4></label>
+								<label class="col-sm-6 control-label" for="exe-name"><h4 id="name">김길동</h4></label>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-5 control-label" for="exe-part"><h4>성별</h4></label>
-								<label class="col-sm-7 control-label" for="exe-name"><h4 id="gender">남</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4>성별</h4></label>
+								<label class="col-sm-6 control-label" for="exe-name"><h4 id="gender">남</h4></label>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-5 control-label" for="exe-part"><h4>가입일</h4></label>
-								<label class="col-sm-7 control-label" for="exe-name"><h4 id="create_at">2020-06-07</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4>가입일</h4></label>
+								<label class="col-sm-6 control-label" for="exe-name"><h4 id="create_at">2020-06-07</h4></label>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-5 control-label" for="exe-part"><h4>작성한 타임라인</h4></label>
-								<label class="col-sm-7 control-label" for="exe-part"><h4 id="time">5개</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4>작성한 타임라인</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4 id="time">5개</h4></label>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-5 control-label" for="exe-part"><h4>작성한 댓글</h4></label>
-								<label class="col-sm-7 control-label" for="exe-part"><h4 id="comment">5개</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4>작성한 댓글</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4 id="comment">5개</h4></label>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-5 control-label" for="exe-part"><h4>작성한 루틴</h4></label>
-								<label class="col-sm-7 control-label" for="exe-part"><h4 id="routine">5개</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4>작성한 루틴</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4 id="routine">5개</h4></label>
 							</div>
 						</div>
 						</div><!-- col-md-9 -->
@@ -332,7 +335,7 @@
 		      data:{id:id},
 		      success:function(data){
 		    	  alert("해당 회원의 벤을 해제했습니다");
-		    	  location.reload();
+		    	  $('#ShowdetailModal').modal('hide');
 		      },
 		      error:function(request,error){
 		         console.log('상태코드:',request.status);
@@ -342,18 +345,18 @@
 		   });
    	}
     
-    
 	   function	doban(){
   		var id = $('#id').text();
   		var reason = $('#reason').val();
-  		
   		$.ajax({//회원 벤 처리
 		      url:"<c:url value='/Ajax/Ban.do'/>",
 		      dataType:'text',
 		      data:{id:id,reason:reason},
 		      success:function(data){
 		    	  alert("해당 회원을 벤하였습니다");
-		    	  location.reload();
+		    	  $('#reason').val("");
+		    	  $('#sayagainModal').modal('hide');
+		    	  $('#ShowdetailModal').modal('hide');
 		      },
 		      error:function(request,error){
 		         console.log('상태코드:',request.status);
@@ -361,13 +364,11 @@
 		         console.log('에러:',error);
 		      }
 		   });
-  		
   	}
    
    
    
     function showdetail(id){
-    	
     	$.ajax({//회원 상세정보 받아오기
 		      url:"<c:url value='/Ajax/profile.do'/>",
 		      dataType:'json',
@@ -380,7 +381,11 @@
 				      data:{id:id},
 				      success:function(data){
 				    	  if(data!=1){
-				    		  var banString="<i class='fa fa-ban' style='font-size:30px; text-align:center;' onclick='offban();''><span id='ban'>벤된 유저</span></i>"
+				    		  var banString="<i class='fa fa-ban' style='font-size:30px; text-align:center;' onclick='offban();'><span id='ban'>벤된 유저</span></i>";
+				    		  banString += "<br/><br/>"
+				    		  banString += "<div style='font-size:20px'><span>사유 :</span><span>";
+				    		  banString += data;
+				    		  banString += "</span></div>";
 				    		  $('#tf').html(banString)
 				    	  }
 				    	  else{

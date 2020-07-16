@@ -111,7 +111,7 @@ public class admincontroller {
 	
 	@RequestMapping("/ban.do")
   	public String isban() {
-  		return "banpage";
+  		return "banpage.tiles";
   	}
 	
 	@RequestMapping("/chart.do")

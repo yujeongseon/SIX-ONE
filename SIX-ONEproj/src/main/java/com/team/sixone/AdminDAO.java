@@ -294,7 +294,7 @@ public class AdminDAO {
 		   try {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, id);
-				rs=psmt.executeQuery();	
+				rs=psmt.executeQuery();
 				if(rs.next()) {
 					reason=rs.getString(1);
 				}

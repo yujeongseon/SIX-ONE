@@ -91,7 +91,7 @@ public class NaverLoginController {
 			map.put("profile", profile);
 			dao.tomember(map);
 			session.setAttribute("LoginSuccess", map.get("id"));
-			session.setAttribute("name", map.get("Name"));
+			session.setAttribute("Name", map.get("name"));
 		}
 		else {
 			String renameFile = FileUpDownUtils.getNewFileName(phisicalPath, upload.getOriginalFilename());
@@ -100,10 +100,10 @@ public class NaverLoginController {
 			upload.transferTo(file);
 			dao.tomember(map);
 			session.setAttribute("LoginSuccess", map.get("id"));
-			session.setAttribute("name", map.get("Name"));
+			session.setAttribute("Name", map.get("name"));
 		}
 
-		return "home.tiles";
+		return "redirect:/";
 	}/////NewMember
 	
 
