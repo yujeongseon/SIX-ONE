@@ -34,6 +34,10 @@
 	font-style: normal;
 	cursor : pointer;
 }
+	i:hover{
+	font-weight: bold;
+	cursor: Pointer;
+	}
 </style>
   </head>
 
@@ -190,60 +194,57 @@
 					</div>
 					<div class="modal-body">
 						<div class="form-horizontal">
-							<div class="col-md-3">
+							<div class="col-md-4" style="text-align:center">
+							<div>
 							<img id="myprofile" class=img-circle
 								style="margin: 0 auto; height: 150px; width: 150px; margin-top: 50px; margin-bottom: 10px;"
 								src="#" alt="..."
 								onerror="this.src='resources/images/profile.jpg'"
 								data-toggle="modal" data-target="#ProfileModal">
+							</div>
+							<br/>
+							<br/>
+							<div id="tf">
+								<i class="fa fa-ban" style="font-size:20px; text-align:center;" onclick="showban();"><span id="ban">회원 제재</span></i>
+							</div>
 						</div><!-- col-md-9 -->
 							
-							<div class="col-md-9">
+							<div class="col-md-8">
 							<div class="form-group">
-								<label class="col-sm-5 control-label" for="exe-name"><h4>ID</h4></label>
-								<label class="col-sm-7 control-label" for="exe-name"><h4 id="id">kilddong</h4></label>
+								<label class="col-sm-6 control-label" for="exe-name"><h4>ID</h4></label>
+								<label class="col-sm-6 control-label" for="exe-name"><h4 id="id">kilddong</h4></label>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-5 control-label" for="exe-part"><h4>비밀번호</h4></label>
-								<label class="col-sm-7 control-label" for="exe-name"><h4>******</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4>비밀번호</h4></label>
+								<label class="col-sm-6 control-label" for="exe-name"><h4>******</h4></label>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-5 control-label" for="exe-part"><h4>이름</h4></label>
-								<label class="col-sm-7 control-label" for="exe-name"><h4 id="name">김길동</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4>이름</h4></label>
+								<label class="col-sm-6 control-label" for="exe-name"><h4 id="name">김길동</h4></label>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-5 control-label" for="exe-part"><h4>성별</h4></label>
-								<label class="col-sm-7 control-label" for="exe-name"><h4 id="gender">남</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4>성별</h4></label>
+								<label class="col-sm-6 control-label" for="exe-name"><h4 id="gender">남</h4></label>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-5 control-label" for="exe-part"><h4>가입일</h4></label>
-								<label class="col-sm-7 control-label" for="exe-name"><h4 id="create_at">2020-06-07</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4>가입일</h4></label>
+								<label class="col-sm-6 control-label" for="exe-name"><h4 id="create_at">2020-06-07</h4></label>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-5 control-label" for="exe-part"><h4>작성한 타임라인</h4></label>
-								<label class="col-sm-7 control-label" for="exe-part"><h4 id="time">5개</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4>작성한 타임라인</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4 id="time">5개</h4></label>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-5 control-label" for="exe-part"><h4>작성한 댓글</h4></label>
-								<label class="col-sm-7 control-label" for="exe-part"><h4 id="comment">5개</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4>작성한 댓글</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4 id="comment">5개</h4></label>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-5 control-label" for="exe-part"><h4>작성한 루틴</h4></label>
-								<label class="col-sm-7 control-label" for="exe-part"><h4 id="routine">5개</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4>작성한 루틴</h4></label>
+								<label class="col-sm-6 control-label" for="exe-part"><h4 id="routine">5개</h4></label>
 							</div>
 						</div>
 						</div><!-- col-md-9 -->
-						
-						
-						<!-- 모달 푸터
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">닫기</button>
-							<button type="button" class="btn btn-danger" id="delete-exe">삭제</button>
-							<button type="button" class="btn btn-primary" id="save-exe">저장</button>
-						</div>
-						 -->
 					</div>
 				</div>
 				<!-- /.modal-content -->
@@ -253,9 +254,34 @@
 		<!-- /.modal -->
 
 
+ <!--  수정/삭제시 사용할 모달창 시작 -->
+	<div class="modal fade" id="sayagainModal" data-backdrop="static">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">사용자의 제제사유를 입력하세요</h4>
+					<button class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="form-group">
+						<input class="form-control" type="text" name="edit-reason" id="reason" />
+				</div>
+				<div class="modal-body" style="float: right">
+					<button type="button" class="btn btn-danger">취소</button>
+					<button type="button" class="btn btn-info" id="delbtn"
+						onclick="doban();">확인</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
 
 
-        <!-- footer content -->
+
+
+
+	<!-- footer content -->
         <footer>
           <div class="pull-right">
             Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
@@ -296,15 +322,83 @@
     <!-- Custom Theme Scripts -->
     <script src='<c:url value="/resources/build/js/custom.min.js"/>'></script>
     <script>
+    
+    function showban(){
+   		$('#sayagainModal').modal('show');
+   	}
+    
+    function offban(){
+    	var id = $('#id').text();
+    	$.ajax({//회원 벤 풀기
+		      url:"<c:url value='/Ajax/offBan.do'/>",
+		      dataType:'text',
+		      data:{id:id},
+		      success:function(data){
+		    	  alert("해당 회원의 벤을 해제했습니다");
+		    	  $('#ShowdetailModal').modal('hide');
+		      },
+		      error:function(request,error){
+		         console.log('상태코드:',request.status);
+		         console.log('서버로부터 받은 HTML데이타:',request.responseText);
+		         console.log('에러:',error);
+		      }
+		   });
+   	}
+    
+	   function	doban(){
+  		var id = $('#id').text();
+  		var reason = $('#reason').val();
+  		$.ajax({//회원 벤 처리
+		      url:"<c:url value='/Ajax/Ban.do'/>",
+		      dataType:'text',
+		      data:{id:id,reason:reason},
+		      success:function(data){
+		    	  alert("해당 회원을 벤하였습니다");
+		    	  $('#reason').val("");
+		    	  $('#sayagainModal').modal('hide');
+		    	  $('#ShowdetailModal').modal('hide');
+		      },
+		      error:function(request,error){
+		         console.log('상태코드:',request.status);
+		         console.log('서버로부터 받은 HTML데이타:',request.responseText);
+		         console.log('에러:',error);
+		      }
+		   });
+  	}
+   
+   
    
     function showdetail(id){
-    	
     	$.ajax({//회원 상세정보 받아오기
 		      url:"<c:url value='/Ajax/profile.do'/>",
 		      dataType:'json',
 		      data:{id:id},
 		      success:function(data){
 		    	  successOneAjax(data,'list');
+		    	  $.ajax({//회원 벤여부 확인
+				      url:"<c:url value='/Ajax/isBan.do'/>",
+				      dataType:'text',
+				      data:{id:id},
+				      success:function(data){
+				    	  if(data!=1){
+				    		  var banString="<i class='fa fa-ban' style='font-size:30px; text-align:center;' onclick='offban();'><span id='ban'>벤 해제</span></i>";
+				    		  banString += "<br/><br/>"
+				    		  banString += "<div style='font-size:20px'><span>사유 :</span><span>";
+				    		  banString += data;
+				    		  banString += "</span></div>";
+				    		  $('#tf').html(banString)
+				    	  }
+				    	  else{
+				    		  var banString="<i class='fa fa-ban' style='font-size:30px; text-align:center;' onclick='showban();''><span id='ban'>벤 하기</span></i>"
+					    		  $('#tf').html(banString)
+				    	  }
+				      },
+				      error:function(request,error){
+				         console.log('상태코드:',request.status);
+				         console.log('서버로부터 받은 HTML데이타:',request.responseText);
+				         console.log('에러:',error);
+				      }
+				   });
 		    	  $('#ShowdetailModal').modal('show'); //회원정보 모달 띄우기
 		      },
 		      error:function(request,error){
@@ -313,7 +407,6 @@
 		         console.log('에러:',error);
 		      }
 		   });
-    	//$('#ShowdetailModal').modal('show'); //회원정보 모달 띄우기
     	
     }
     

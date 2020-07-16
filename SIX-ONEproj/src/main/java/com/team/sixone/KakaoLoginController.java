@@ -44,6 +44,13 @@ public class KakaoLoginController {
 	   public String kakaoisLogin(@RequestParam Map map,HttpSession session) {
 	      String kakaoid = map.get("kakaoid").toString();
 	      String flag = LoginService.iskakaoLogin(map);
+	      String rea;
+		  	AdminDAO admin = new AdminDAO(null);
+		  	rea=admin.band(kakaoid);
+		  	if(!(rea.equals("1"))) {//벤 여부 확인
+		  		session.setAttribute("ban", rea);
+		  		return "banpage";
+		  	}
 	      if(flag != null) {
 	         session.setAttribute("LoginSuccess", kakaoid);
 	         session.setAttribute("Name", flag);

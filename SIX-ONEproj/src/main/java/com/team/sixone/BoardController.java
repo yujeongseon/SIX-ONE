@@ -242,7 +242,6 @@ public class BoardController {
       //JSON데이타 타입으로 반환하기위해 JSONObject객체 생성
       int pageSize = 10;
       int blockPage = 5;
-     
       String id= session.getAttribute("LoginSuccess").toString();
       RoutineDAO dao= new RoutineDAO(null);
       //전체 레코드수   
@@ -277,9 +276,6 @@ public class BoardController {
          HttpSession session,
          Model model) {//id는 게시판 구분용으로
       //JSON데이타 타입으로 반환하기위해 JSONObject객체 생성
-      int pageSize = 10;
-      int blockPage = 5;
-     
       String id= session.getAttribute("LoginSuccess").toString();
       RoutineDAO dao= new RoutineDAO(null);
       //전체 레코드수   

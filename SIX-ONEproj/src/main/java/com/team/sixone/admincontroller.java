@@ -1,5 +1,6 @@
 package com.team.sixone;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -108,6 +109,11 @@ public class admincontroller {
   		return "adminmoris";
   	}
 	
+	@RequestMapping("/ban.do")
+  	public String isban() {
+  		return "banpage.tiles";
+  	}
+	
 	@RequestMapping("/chart.do")
   	public String gochart() {
 
@@ -119,7 +125,7 @@ public class admincontroller {
 
   		return "adminicon";
   	}
-	
+	//회원관리를 위한 회원정보 데이터 불러오기
 	@RequestMapping("/table.do")
   	public String gotable( @RequestParam Map map, Model model) {
 		AdminDAO dao = new AdminDAO(null);
@@ -127,7 +133,7 @@ public class admincontroller {
 		model.addAttribute("list",list);
   		return "admintable";
   	}
-	
+	 //각 회원별 상세정보 아이작스 처리
 	 @RequestMapping(value="/Ajax/profile.do",produces ="text/html; charset=UTF-8")
 	   @ResponseBody
 	   public String ajaxRoutineOne(String id) {
@@ -147,6 +153,32 @@ public class admincontroller {
 	         record.put("timelinecount", dto.getTimelinecount());//작성한 루틴 수
 	         collections.add(record);
 	      }
+	      
 	      return JSONArray.toJSONString(collections);
 	   }
+	 
+	 @RequestMapping(value="/Ajax/Ban.do",produces ="text/html; charset=UTF-8")
+	   @ResponseBody
+	   public String Ban(String reason,String id) {
+		 AdminDAO dao= new AdminDAO(null);
+			dao.Ban(reason,id);
+		 return "ban";
+	 }
+	 
+	 @RequestMapping(value="/Ajax/isBan.do",produces ="text/html; charset=UTF-8")
+	   @ResponseBody
+	   public String isBan(String id) {
+		 AdminDAO dao= new AdminDAO(null);
+			String ban=dao.band(id);
+		 return ban;
+	 }
+	 
+	 @RequestMapping(value="/Ajax/offBan.do",produces ="text/html; charset=UTF-8")
+	   @ResponseBody
+	   public String offBan(String id) {
+		 AdminDAO dao= new AdminDAO(null);
+			dao.offband(id);
+		 return "ban";
+	 }
+	 
 }

@@ -491,17 +491,14 @@
 			}, // 옵션
 			options: {responsive: false}
 			});
-	
-	
 			//네이버,카카오,sixone 비율
 			data = { datasets: [{ backgroundColor: ['green','yellow','gray'], data: [${naver}, ${kakao}, ${sixone}] }],
-			// 각 영역에 커서를 갖다대면 값을 보여줌
+			// 각 영역 hover 활성화
 			labels: ['네이버','카카오','six-one'] };
 			var myDoughnutChart = new Chart(ctx2, { type: 'doughnut',
 				data: data,
-				options: {responsive: false} }); //false 안주면 그래프가 계속 커짐
+				options: {responsive: false} }); //크기 자동변환 설정
 
-				
 		var chart2 = new Chart(ctx3, { // 챠트 종류를 선택
 			type: 'line',// 챠트를 그릴 데이타
 			data: { labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월'],

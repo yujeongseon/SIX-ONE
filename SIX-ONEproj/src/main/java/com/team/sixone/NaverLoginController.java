@@ -34,47 +34,42 @@ public class NaverLoginController {
 	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
 		this.naverLoginBO = naverLoginBO;
 	}
-
-
-//네이버 로그인 성공시 callback호출 메소드
+	//네이버 로그인 성공시 callback호출 메소드
 	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
 	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
 			throws IOException, ParseException {
 		BoardDAO dao = new BoardDAO(null);
-		System.out.println("여기는 callback");
-		OAuth2AccessToken oauthToken;
+		OAuth2AccessToken oauthToken;//네이버 API에서 제공하는 토근을 받아오기위해 토큰선언
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		//1. 로그인 사용자 정보를 읽어온다.
 		apiResult = naverLoginBO.getUserProfile(oauthToken); // String형식의 json데이터
-		System.out.println("api리절트"+apiResult);
-		/** 이런식으로 값을 값을받음
-		 * apiResult json 구조 {"resultcode":"00", "message":"success",
-		 * "response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
-		 **/
 		//2. String형식인 apiResult를 json형태로 바꿈
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(apiResult);
 		JSONObject jsonObj = (JSONObject) obj;
 		//3. 데이터 파싱 Top레벨 단계 _response 파싱
 		JSONObject response_obj = (JSONObject) jsonObj.get("response");
-		//response의 nickname값 파싱
-		String name = (String) response_obj.get("name");//그냥 이름
+		//4. response의 name과 email값 파싱
+		String name = (String) response_obj.get("name");
 		String email = (String) response_obj.get("email");
-		System.out.println(name);
-		System.out.println(email);
 		//회원가입이 안돼있을때 회원가입으로 이동
 		int affected=dao.findid(email);
+		String rea;
+	  	AdminDAO admin = new AdminDAO(null);
+	  	rea=admin.band(email);
+	  	if(!(rea.equals("1"))) {//벤 여부 확인
+	  		session.setAttribute("ban", rea);
+	  		return "banpage";
+	  	}
 		if(affected == 0) {
 			model.addAttribute("id",email);
 			model.addAttribute("name",name);
 			return "/NaverNewmember.tiles";
 		}
-		//4.파싱 닉네임 세션으로 저장
+		//5. 파싱 닉네임 세션으로 저장
 		session.setAttribute("LoginSuccess", email); // 로그인 활성화
 		session.setAttribute("Name", name);
 		model.addAttribute("result", apiResult);
-		
-		
 		return "redirect:/";
 	}
 	
@@ -96,7 +91,7 @@ public class NaverLoginController {
 			map.put("profile", profile);
 			dao.tomember(map);
 			session.setAttribute("LoginSuccess", map.get("id"));
-			session.setAttribute("name", map.get("Name"));
+			session.setAttribute("Name", map.get("name"));
 		}
 		else {
 			String renameFile = FileUpDownUtils.getNewFileName(phisicalPath, upload.getOriginalFilename());
@@ -105,10 +100,10 @@ public class NaverLoginController {
 			upload.transferTo(file);
 			dao.tomember(map);
 			session.setAttribute("LoginSuccess", map.get("id"));
-			session.setAttribute("name", map.get("Name"));
+			session.setAttribute("Name", map.get("name"));
 		}
 
-		return "home.tiles";
+		return "redirect:/";
 	}/////NewMember
 	
 

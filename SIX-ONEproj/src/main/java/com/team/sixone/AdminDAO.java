@@ -275,7 +275,43 @@ public class AdminDAO {
 		return list;
 	}
 	
-	
+	//회원 벤
+	   public void Ban(String reason,String id) {
+		   String sql="INSERT INTO auth_security VALUES(SEQ_AUTH_SECURITY.nextval,1,?,?)";
+		   try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, reason);
+				psmt.setString(2, id);
+				psmt.executeUpdate();	
+				System.out.println("회원 제제 완료");
+			} catch (Exception e) {e.printStackTrace();}
+		  
+	   }
+	   //벤 여부 확인
+	   public String band(String id) {
+		   String reason="1";
+		   String sql="SELECT authority FROM auth_security WHERE id LIKE ?";
+		   try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, id);
+				rs=psmt.executeQuery();
+				if(rs.next()) {
+					reason=rs.getString(1);
+				}
+			} catch (Exception e) {e.printStackTrace();}
+		  return reason;
+	   }
+	   
+	 //벤 여부 확인
+	   public void offband(String id) {
+		   String sql="DELETE FROM auth_security WHERE id LIKE ?";
+		   try {
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, id);
+				psmt.executeUpdate();	
+				
+			} catch (Exception e) {e.printStackTrace();}
+	   }
 	
 	
 }

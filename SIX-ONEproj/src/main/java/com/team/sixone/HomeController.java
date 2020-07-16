@@ -44,7 +44,6 @@ public class HomeController {
 		model.addAttribute("bestRoutine", list);
 		
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		System.out.println("네이버:" + naverAuthUrl);
 		session.setAttribute("url", naverAuthUrl);
 		return "home.tiles";
 	}//시작할때 네이버 인증 url생성
