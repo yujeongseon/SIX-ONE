@@ -7,7 +7,7 @@
 SELECT * FROM play_exe p JOIN exercise e 
 ON p.exercise_no = e.exercise_no
 WHERE PLAY_AT  BETWEEN (SELECT TRUNC(sysdate,'iw') dt_date FROM dual)
-AND (SELECT TRUNC(sysdate, 'iw') +6 dt_date FROM dual) AND ID = #{id}
+AND (SELECT TRUNC(sysdate, 'iw') +6 dt_date FROM dual) AND ID = #{id} order by p.play_at asc
 </select>
 
 <select id="exerciseonename" parameterType="java.util.Map" resultType="ExerciseNameDTO">

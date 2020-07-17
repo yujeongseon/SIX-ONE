@@ -77,11 +77,25 @@
 					</div>
 				</article>
 			</div>
-			<div>
-				<video src="https://www.youtube.com/a3dc68cd-1c0f-4df3-aaa9-92c0acea2bc1"></video>
+		
+		<iframe width="100%" height="430" src="https://www.youtube.com/embed/-_DUjHxgmWk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		
+		
+		<iframe width="100%" height="430" src="https://www.youtube.com/embed/aoH7qNedO8k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		
+		
+		
+			<iframe>
 			
 			
-			</div>
+				<div>
+					<video src="https://www.youtube.com/a3dc68cd-1c0f-4df3-aaa9-92c0acea2bc1"></video>
+				
+				</div>
+			
+			
+			</iframe>
+			
 			<div class="col-md-4 animate-box">
 				<article class="article-entry">
 					<a href="/watch?v=aoH7qNedO8k" class="blog-img" target="_blank"
