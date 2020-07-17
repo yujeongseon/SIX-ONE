@@ -91,7 +91,7 @@ public class TimelLineCont {
       MultipartFile upload = (MultipartFile)request.getFile("image");
       String phisicalPath = req.getServletContext().getRealPath("/resources/images/TLImg");
       String profile = upload.getOriginalFilename().toString();
-      String content = map.get("inscontent").toString();
+      String content = map.get("inscontent").toString().replace("\r\n", "</br>");
       String id = map.get("id").toString();
       String renameFile = FileUpDownUtils.getNewFileName(phisicalPath, upload.getOriginalFilename());
       File file = new File(phisicalPath+File.separator+renameFile);

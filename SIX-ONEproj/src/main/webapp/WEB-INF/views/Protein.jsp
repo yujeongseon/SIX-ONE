@@ -64,9 +64,8 @@
 
 			<div class="col-md-4 animate-box">
 				<article class="article-entry">
-					<a href="#;" class="blog-img"
-						style="background-image:url('${list[0].proteinImage}');"> <img
-						src="<c:url value='/resources/images/btn_rank1.png'/>" />
+					<a href="#;" class="blog-img"style="background-image:url('${list[0].proteinImage}');" onclick="youtubeClick()"> 
+					<img src="<c:url value='/resources/images/btn_rank1.png'/>" />
 					</a>
 					<div class="desc">
 						<p class="admin">
@@ -78,9 +77,14 @@
 					</div>
 				</article>
 			</div>
+			<div>
+				<video src="https://www.youtube.com/a3dc68cd-1c0f-4df3-aaa9-92c0acea2bc1"></video>
+			
+			
+			</div>
 			<div class="col-md-4 animate-box">
 				<article class="article-entry">
-					<a href="${list[1].proteinUrl }" class="blog-img" target="_blank"
+					<a href="/watch?v=aoH7qNedO8k" class="blog-img" target="_blank"
 						style="background-image:url('${list[1].proteinImage}');"> <img
 						src="<c:url value='/resources/images/btn_rank2.png'/>" />
 					</a>
@@ -286,8 +290,8 @@
 
 <!-- modal start -->
 
-<div class="modal fade" id="kcalmodal" tabindex="-1" role="dialog">
-	<div class="modal-dialog">
+<div class="modal fade" id="youtubeModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" style="width: 80%;">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">
@@ -295,8 +299,24 @@
 				</button>
 				<h4 class="modal-title" id="myModalLabel">운동 검색하기</h4>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body" style="min-height: 500px;">
 			
+				<form class="form-inline">
+				  	<div class="form-group">
+				    	<label for="searchExercise">운동</label>
+				    	<input type="text" class="form-control" id="searchExercise">
+				 	</div>
+				  
+				  	<button type="submit" class="btn btn-default">검색하기</button>
+				</form>
+				
+				<fieldset style="border: 1px solid black">
+					<legend style="border-bottom: none;text-align: center;width:auto;">검색하신 동영상</legend>
+					
+				
+				
+				
+				</fieldset>
 			
 			</div>
 			<div class="modal-footer">
@@ -309,7 +329,21 @@
 <!-- modal end -->
 
 
+<script>
+	function youtubeClick(){
+		console.log('유튜브 클릭');
+		$('#youtubeModal').modal('show');
+		
+		
+		
+	}
 
+
+
+
+
+
+</script>
 
 
 

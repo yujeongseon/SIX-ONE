@@ -48,6 +48,12 @@
 		border-bottom: 1px solid;
 		margin-bottom: 5px;
 	}
+	
+	.thumbnail{
+		display: flow-root;
+	}
+	
+	
 }
 
 
@@ -267,6 +273,7 @@ $(function(){
         },
         width: '100%',
         height: 400,
+        legend: {'position': 'bottom'},
         axes: {
           x: {
             0: {side: 'top'}
@@ -770,43 +777,70 @@ $(function(){
 <!-- 프로필사진 눌렀을때 나오는 모달 끝-->
 
 
-<!--그래프에 넣어줄 값 저장작업-->
-               
+ <c:forEach items="${graphs}" var="item" varStatus="status">
+                     <c:set var="day" value="${item.playat }" />
+                     <fmt:formatDate value="${day}" pattern="E" var="day" />
+                        <c:if test="${day eq '월' and item.exercisepartials != '유산소'}">
+                           <input type="hidden" value="${item.exercisename}" id="Msport${status.index}"/>
+                           <input type="hidden" value="${item.setcount}" id="Mset${status.index}"/>
+                           <input type="hidden" value="${item.count}" id="Mcount${status.index}"/>
+                        </c:if>
+                  </c:forEach>
                   
                   <c:forEach items="${graphs}" var="item2" varStatus="status2">
                      <c:set var="day" value="${item2.playat }" />
                      <fmt:formatDate value="${day}" pattern="E" var="day2" />
-                     <c:if test="${day eq '월' and item.exercisepartials != '유산소'}">
-                           <input type="hidden" value="${item2.exercisename}" id="Msport${status2.index}"/>
-                           <input type="hidden" value="${item2.setcount}" id="Mset${status2.index}"/>
-                           <input type="hidden" value="${item2.count}" id="Mcount${status2.index}"/>
-                        </c:if>
                         <c:if test="${day2 eq '화' and item.exercisepartials != '유산소'}"> 
                            <input type="hidden" value="${item2.exercisename}" id="Tsport${status2.index %3}"/>
                            <input type="hidden" value="${item2.setcount}" id="Tset${status2.index%3}"/>
                            <input type="hidden" value="${item2.count}" id="Tcount${status2.index%3}"/>
                         </c:if>
+                        
+                  </c:forEach>
+                  <c:forEach items="${graphs}" var="item2" varStatus="status2">
+                     <c:set var="day" value="${item2.playat }" />
+                     <fmt:formatDate value="${day}" pattern="E" var="day2" />
                         <c:if test="${day2 eq '수' and item.exercisepartials != '유산소'}"> 
                            <input type="hidden" value="${item2.exercisename}" id="Wsport${status2.index %3}"/>
                            <input type="hidden" value="${item2.setcount}" id="Wset${status2.index%3}"/>
                            <input type="hidden" value="${item2.count}" id="Wcount${status2.index%3}"/>
                         </c:if>
-                         <c:if test="${day2 eq '목' and item.exercisepartials != '유산소'}"> 
+                        
+                  </c:forEach>
+                  <c:forEach items="${graphs}" var="item2" varStatus="status2">
+                     <c:set var="day" value="${item2.playat }" />
+                     <fmt:formatDate value="${day}" pattern="E" var="day2" />
+                        <c:if test="${day2 eq '목' and item.exercisepartials != '유산소'}"> 
                            <input type="hidden" value="${item2.exercisename}" id="Thsport${status2.index %3}"/>
                            <input type="hidden" value="${item2.setcount}" id="Thset${status2.index%3}"/>
                            <input type="hidden" value="${item2.count}" id="Thcount${status2.index%3}"/>
                         </c:if>
-                         <c:if test="${day2 eq '금' and item.exercisepartials != '유산소'}"> 
+                        
+                  </c:forEach>
+                  <c:forEach items="${graphs}" var="item2" varStatus="status2">
+                     <c:set var="day" value="${item2.playat }" />
+                     <fmt:formatDate value="${day}" pattern="E" var="day2" />
+                        <c:if test="${day2 eq '금' and item.exercisepartials != '유산소'}"> 
                            <input type="hidden" value="${item2.exercisename}" id="Fsport${status2.index %3}"/>
                            <input type="hidden" value="${item2.setcount}" id="Fset${status2.index%3}"/>
                            <input type="hidden" value="${item2.count}" id="Fcount${status2.index%3}"/>
                         </c:if>
-                         <c:if test="${day2 eq '토' and item.exercisepartials != '유산소'}"> 
+                        
+                  </c:forEach>
+                  <c:forEach items="${graphs}" var="item2" varStatus="status2">
+                     <c:set var="day" value="${item2.playat }" />
+                     <fmt:formatDate value="${day}" pattern="E" var="day2" />
+                        <c:if test="${day2 eq '토' and item.exercisepartials != '유산소'}"> 
                            <input type="hidden" value="${item2.exercisename}" id="Ssport${status2.index %3}"/>
                            <input type="hidden" value="${item2.setcount}" id="Sset${status2.index%3}"/>
                            <input type="hidden" value="${item2.count}" id="Scount${status2.index%3}"/>
                         </c:if>
-                         <c:if test="${day2 eq '일' and item.exercisepartials != '유산소'}"> 
+                        
+                  </c:forEach>
+                  <c:forEach items="${graphs}" var="item2" varStatus="status2">
+                     <c:set var="day" value="${item2.playat }" />
+                     <fmt:formatDate value="${day}" pattern="E" var="day2" />
+                        <c:if test="${day2 eq '일' and item.exercisepartials != '유산소'}"> 
                            <input type="hidden" value="${item2.exercisename}" id="Sunsport${status2.index %3}"/>
                            <input type="hidden" value="${item2.setcount}" id="Sunset${status2.index%3}"/>
                            <input type="hidden" value="${item2.count}" id="Suncount${status2.index%3}"/>
@@ -819,6 +853,7 @@ $(function(){
                   </c:forEach>
                   <!-- 그래프 컬럼 이름 -->
 <!-- 그래프에 넣어줄 값 저장작업-->
+
                   
 <script>
    // 추천 루틴

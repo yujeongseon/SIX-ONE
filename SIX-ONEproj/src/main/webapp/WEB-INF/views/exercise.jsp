@@ -828,8 +828,8 @@
 		
 	});
 	$('#img1').click(function(){
-		openWin = window.open('https://sixone-flank.netlify.app', "namegym", "width=925, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes,  top=200, left=500" );  
-	
+		openWin = window.open('https://sixone-squrt-counter.netlify.app/', "namegym", "width=925, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes,  top=200, left=500" );  
+	//https://sixone-flank.netlify.app
 		
 
 	})
