@@ -203,7 +203,6 @@ public class AdminDAO {
 	   
 	   public List<AdminMemberDTO> selectmember(Map map){
 			List<AdminMemberDTO> list = new Vector<AdminMemberDTO>();
-			
 			String sql="SELECT id,name,profile,gender,TO_CHAR(create_at, 'YYYY-MM-DD') as create_at FROM member";
 			try {
 				psmt = conn.prepareStatement(sql);
@@ -211,10 +210,22 @@ public class AdminDAO {
 				while(rs.next()) {
 					AdminMemberDTO dto = new AdminMemberDTO();
 					dto.setId(rs.getString(1));
+					String id = rs.getString(1);
 					dto.setName(rs.getString(2));
 					dto.setCreate_at(rs.getString(5));
 					dto.setProfile(rs.getString(3));
-					dto.setGender(rs.getString(4));			
+					dto.setGender(rs.getString(4));		
+					String sql2="select id from auth_security where id like ?";
+					 try {
+							psmt = conn.prepareStatement(sql2);
+							psmt.setString(1, id);
+							rs2 = psmt.executeQuery();
+							if(rs2.next()) {
+								dto.setBan("ban");
+							}
+							else dto.setBan("free");
+						}
+						catch (Exception e) {e.printStackTrace();}
 					list.add(dto);
 				}
 			}
