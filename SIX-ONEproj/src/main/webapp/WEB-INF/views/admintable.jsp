@@ -135,7 +135,7 @@
                       <thead>
                         <tr>
                           <th>ID</th>
-                          <th>이름</th>
+                          <th>이름<i id="tagg"></i></th>
                           <th>성별</th>
                           <th>가입일</th>
                         </tr>
@@ -150,7 +150,12 @@
                       <c:if test="${not isEmpty}">
                       	<c:forEach items="${list}" var="item" varStatus="loop">
 		                    <tr class="aa" onclick="showdetail('${item.id}');">
-		                       <td><i class="fa fa-user">&nbsp;&nbsp;</i>${item.id}</td>
+		                    <c:if test="${item.ban eq 'free'}" var="isBan">
+		                       <td><i class="fa fa-user">&nbsp;&nbsp;</i>${item.id}<i class="red" id="${item.id}"></i></td>
+		                       </c:if>
+		                       <c:if test="${not isBan}">
+		                       <td><i class="fa fa-user">&nbsp;&nbsp;</i>${item.id}<i class="red" id="${item.id}"><i class="fa fa-ban"></i></i></td>
+		                       </c:if>
 		                       <td>${item.name}</td>
 		                       <c:if test="${item.gender eq '남'}">
 		                       <td><i class="fa fa-male">&nbsp;&nbsp;남</i></td>
@@ -265,12 +270,11 @@
 					</button>
 				</div>
 				<div class="form-group">
-						<input class="form-control" type="text" name="edit-reason" id="reason" />
+						<input onkeydown="if(event.keyCode == 13) {doban();}" class="form-control" type="text" id="reason"/>
 				</div>
-				<div class="modal-body" style="float: right">
-					<button type="button" class="btn btn-danger">취소</button>
-					<button type="button" class="btn btn-info" id="delbtn"
-						onclick="doban();">확인</button>
+				<div class="modal-body">
+					<button type="button" class="btn btn-info" id="delbtn" style="float: right" onclick="doban();">확인</button>
+					<button type="button" class="btn btn-danger" style="float: right" data-dismiss="modal">취소</button>
 				</div>
 
 			</div>
@@ -323,6 +327,16 @@
     <script src='<c:url value="/resources/build/js/custom.min.js"/>'></script>
     <script>
     
+    $('#sayagainModal').on('hidden.bs.modal', function () {
+
+  	  $('#reason').val("");
+    });
+    
+    $('#sayagainModal').on('shown.bs.modal', function () {
+    	$('#reason').focus();
+      });
+    
+    
     function showban(){
    		$('#sayagainModal').modal('show');
    	}
@@ -335,6 +349,8 @@
 		      data:{id:id},
 		      success:function(data){
 		    	  alert("해당 회원의 벤을 해제했습니다");
+		    	  document.getElementById(""+id+"").innerHTML="";
+		    	  $('#sayagainModal').modal('hide');
 		    	  $('#ShowdetailModal').modal('hide');
 		      },
 		      error:function(request,error){
@@ -347,6 +363,7 @@
     
 	   function	doban(){
   		var id = $('#id').text();
+  		console.log("아이디",id);
   		var reason = $('#reason').val();
   		$.ajax({//회원 벤 처리
 		      url:"<c:url value='/Ajax/Ban.do'/>",
@@ -354,7 +371,7 @@
 		      data:{id:id,reason:reason},
 		      success:function(data){
 		    	  alert("해당 회원을 벤하였습니다");
-		    	  $('#reason').val("");
+		    	  document.getElementById(""+id+"").innerHTML="<i class='fa fa-ban'></i>";
 		    	  $('#sayagainModal').modal('hide');
 		    	  $('#ShowdetailModal').modal('hide');
 		      },

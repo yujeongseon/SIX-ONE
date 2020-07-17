@@ -11,9 +11,17 @@ public class AdminMemberDTO {
 	private String timelinecount;
 	private String commentcount;
 	private String routinecount;
+	private String ban;
 	
 	public AdminMemberDTO() {};
 	
+	
+	public String getBan() {
+		return ban;
+	}
+	public void setBan(String ban) {
+		this.ban = ban;
+	}
 	public String getId() {
 		return id;
 	}

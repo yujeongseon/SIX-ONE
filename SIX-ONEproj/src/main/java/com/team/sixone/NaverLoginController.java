@@ -59,7 +59,7 @@ public class NaverLoginController {
 	  	rea=admin.band(email);
 	  	if(!(rea.equals("1"))) {//벤 여부 확인
 	  		session.setAttribute("ban", rea);
-	  		return "banpage";
+	  		return "banpage.tiles";
 	  	}
 		if(affected == 0) {
 			model.addAttribute("id",email);

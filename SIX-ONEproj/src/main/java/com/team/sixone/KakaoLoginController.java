@@ -49,7 +49,7 @@ public class KakaoLoginController {
 		  	rea=admin.band(kakaoid);
 		  	if(!(rea.equals("1"))) {//벤 여부 확인
 		  		session.setAttribute("ban", rea);
-		  		return "banpage";
+		  		return "banpage.tiles";
 		  	}
 	      if(flag != null) {
 	         session.setAttribute("LoginSuccess", kakaoid);
