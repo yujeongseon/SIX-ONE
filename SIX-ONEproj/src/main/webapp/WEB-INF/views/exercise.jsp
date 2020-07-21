@@ -37,6 +37,15 @@
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
   color: #fff;
 }
+.videoName {
+	display: block;
+	color: black;
+}
+.desc {
+	height:180px;
+}
+
+
 </style>
 <aside id="colorlib-hero">
 	<div class="flexslider">
@@ -82,14 +91,14 @@
 		</div>
 		<div class="row">
 			<!--실내운동 연결 -->
-			<div class="col-md-3 col-sm-3 animate-box" data-toggle="modal"data-target="#mapModal">
+			<div class="col-md-2 col-sm-2 col-md-offset-1 animate-box" data-toggle="modal"data-target="#mapModal">
 			
 				<div class="trainers-entry">
 					<div class="trainer-img"
 						style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)">
 					</div>
 					<div class="desc">
-						<h3>가까운 헬스장 찾기</h3>
+						<h3>헬스장 찾기</h3>
 						<span>현재 위치를 바탕으로<br/>
 						가까운 헬스장을 찾습니다</span>
 					</div>
@@ -98,7 +107,7 @@
 
 
 
-<div class="col-md-3 col-sm-3 animate-box">
+<div class="col-md-2 col-sm-2 animate-box">
 
 	<div class="trainers-entry" id="health"  >
 
@@ -142,14 +151,32 @@
 </div> -->
 
 
-<div class="col-md-3 col-sm-3 animate-box">
+<div class="col-md-2 col-sm-2 animate-box">
+   <a href="#;" onclick="youtubeClick()">
+      <div class="trainers-entry">
+         <div class="trainer-img"
+            style="background-image: url(resources/images/search_exercise.png)">
+         </div>
+         <div class="desc">
+            <h3>운동 검색하기</h3>
+            <span style="color:rgb(128,128,128);">운동 자세를 검색해보세요.</span>
+         </div>
+      </div>
+      
+   </a>
+
+</div>
+
+
+
+<div class="col-md-2 col-sm-2 animate-box">
    <a href="<c:url value='/food.do'/>">
       <div class="trainers-entry">
          <div class="trainer-img"
             style="background-image: url(https://cdn.pixabay.com/photo/2016/04/15/17/20/bread-and-butter-1331452_960_720.jpg)">
          </div>
          <div class="desc">
-            <h3>내가 먹은 칼로리 계산하기</h3>
+            <h3>내가 먹은 <br/>칼로리 계산하기</h3>
             <span>내가 오늘 먹은 음식의 칼로리를 간단하게 계산할 수 있습니다.</span>
          </div>
       </div>
@@ -537,13 +564,13 @@
 	</div>
 </div>
 <!-- 칼로리 계산 모달창  -->
-<div class="col-md-3 col-sm-3 animate-box">
+<div class="col-md-2 col-sm-2 animate-box">
 	<!--칼로리 계산기랑 연결-->
 		<div class="trainers-entry" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#kcalmodal">
 			<div class="trainer-img"
 				style="background-image: url(https://health.chosun.com/site/data/img_dir/2019/04/29/2019042900839_0.jpg)"></div>
 			<div class="desc">
-				<h3>운동 칼로리 계산하기</h3>
+				<h3>운동 칼로리 <br/>계산하기</h3>
 				<span>운동 후 칼로리를 얼마나 소비하는지 간단하게 계산할 수 있습니다.</span>
 			</div>
 		</div>
@@ -749,6 +776,50 @@
 		
 		
 	</div><!-- container -->
+	<!-- modal start -->
+	<div class="modal fade" id="youtubeModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" style="width: 80%;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span>×</span>
+					</button>
+					<h3 class="modal-title" id="myModalLabel" style="color:black;font-weight:bold;">Six<span style="color:white;background-color:red;border-radius: 20%">&nbsp;Tube&nbsp;</span></h3>
+				</div>
+				<div class="modal-body" style="min-height: 500px;">
+				
+					<div class="form-inline">
+					  	<div class="form-group">
+					    	<label for="searchExercise">운동</label>
+					    	<input type="text" class="form-control" id="searchExercise">
+					 	</div>
+					  
+					  	<button class="btn btn-default" onclick="searchYoutube();">검색하기</button>
+					</div>
+					
+					<fieldset style="border: 1px solid black">
+						<legend style="border-bottom: none;text-align: center;width:auto;">검색하신 동영상</legend>
+						<div class="col-md-12" id="searchResult">
+							<div class="col-md-2 text-center">
+								
+							</div>
+						</div>
+						<hr/>
+						<div class="col-md-12 text-center" id="selectVideo" style="margin-top: 30px;">
+						
+						</div>
+					
+					</fieldset>
+				
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- modal end -->
 </div>
 
 
@@ -872,6 +943,62 @@
 						
 						//healthimg.innerHTML = '<div class="trainer-img" id="healthimg" style="background-image: url(https://images.unsplash.com/photo-1578874691223-64558a3ca096?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80)"></div>';
 					});*/
+					
+	//유튜브
+	function youtubeClick(){
+		console.log('유튜브 클릭');
+		$('#youtubeModal').modal('show');
+		$('#searchExercise').val('');
+		
+	}
+	
+	// 유튜브 검색
+	function searchYoutube(){
+		console.log('유튜브 검색');
+		word = $('#searchExercise').val();
+		$('#selectVideo').html('');
+		
+		$.ajax({
+	        type: "get",
+	        url: "http://192.168.0.36:8282/searchYoutube",
+	        data: {
+            	'word': word,             
+            },
+	        success: function(response){
+	        	console.log(response);
+	        	console.log(response['videoName'])
+	        	var sql = '<img src="'+response['videoHref'][0]+'"/>'  
+	        	var sql = '';	        	
+	        	for(var i=0;i < response['videoName'].length;i++){	   
+	           		sql += '<a href="#;" onclick="showVideo(\''+response['videoHref'][i]+'\');">';
+	           		sql += '<div class="col-md-3 text-center">';     		
+	        		sql += '<img src="'+response['videoImg'][i]+'" alt="이미지입니다"/>'
+	        		sql += '<span class="videoName">'+response['videoName'][i]+'</span>'
+	        		sql += '</div></a>'
+	        		
+	        	}
+	        	$('#searchResult').html(sql);
+        	
+	        },
+	        error:function(request,error){
+					console.log('상태코드:',request.status);
+					console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
+					console.log('에러:',error);
+			}
+		});
+		
+	
+	}
+	
+	function showVideo(video){
+		console.log(video);
+		var sql = '<iframe width="60%" src="'+video+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="min-height:500px"></iframe>'		
+		$('#selectVideo').html(sql);
+	}
+					
+					
+					
+					
 </script>
 </html>
 

@@ -372,7 +372,7 @@ $(function(){
                </div>
 
 
-               <div class="thumbnail">
+               <div class="thumbnail" id="QRcode">
                 
                      <img 
                         src="https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=kosmo://intro?id=${qrcode }" alt="QR">
@@ -969,7 +969,16 @@ $(function(){
    
    $(function(){
 
-      $(document).ready(function () { $('head').append('<style type="text/css">.modal .modal-body {max-height: ' + ($('body').height() * .4) + 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>'); });
+      $(document).ready(function () {
+    	  
+    	
+         if($(window).width()<970){
+            $('#QRcode').hide();
+         }else if($(window).width()>970){
+            $('#QRcode').show();
+         }
+    	  
+    	  $('head').append('<style type="text/css">.modal .modal-body {max-height: ' + ($('body').height() * .4) + 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>'); });
 
       
       $("#myinformation").trigger("click");

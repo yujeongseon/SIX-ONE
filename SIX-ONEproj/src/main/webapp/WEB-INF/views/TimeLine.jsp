@@ -171,7 +171,7 @@ function isSaved(event){ //세이브 체크박스
 
 		</div>
 	</form>
-	<p style="color: gray;">실시간 인기 검색어 </p>
+	
 
 </div>
 

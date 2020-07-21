@@ -76,7 +76,7 @@ public class admincontroller {
 		map=dao.member_path();
 		int naver= (int) map.get("naver");
 		int kakao= (int) map.get("kakao");
-		int sixone= hap-naver+kakao;
+		int sixone= hap-naver-kakao;
 		int naverper = ((naver*100)/hap);// 네이버 %
 		int kakaoper = ((kakao*100)/hap);// 카카오%
 		int sixoneper = 100 - naverper - kakaoper;

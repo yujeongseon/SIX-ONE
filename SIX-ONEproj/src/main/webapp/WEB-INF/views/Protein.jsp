@@ -78,23 +78,6 @@
 				</article>
 			</div>
 		
-		<iframe width="100%" height="430" src="https://www.youtube.com/embed/-_DUjHxgmWk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-		
-		
-		<iframe width="100%" height="430" src="https://www.youtube.com/embed/aoH7qNedO8k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-		
-		
-		
-			<iframe>
-			
-			
-				<div>
-					<video src="https://www.youtube.com/a3dc68cd-1c0f-4df3-aaa9-92c0acea2bc1"></video>
-				
-				</div>
-			
-			
-			</iframe>
 			
 			<div class="col-md-4 animate-box">
 				<article class="article-entry">
@@ -182,6 +165,7 @@
 		<!-- row -->
 
 		<hr>
+		<img src="https://i.ytimg.com/vi/aoH7qNedO8k/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLD-ABOZtSnHKfVoZVZRqsbyMZABIw"/>
 
 		<!-- 다이어트 쉐이크 -->
 		<div class="row">
@@ -311,24 +295,30 @@
 				<button type="button" class="close" data-dismiss="modal">
 					<span>×</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">운동 검색하기</h4>
+				<h3 class="modal-title" id="myModalLabel" style="color:black;font-weight:bold;">Six<span style="color:white;background-color:red;border-radius: 20%">&nbsp;Tube&nbsp;</span></h3>
 			</div>
 			<div class="modal-body" style="min-height: 500px;">
 			
-				<form class="form-inline">
+				<div class="form-inline">
 				  	<div class="form-group">
 				    	<label for="searchExercise">운동</label>
 				    	<input type="text" class="form-control" id="searchExercise">
 				 	</div>
 				  
-				  	<button type="submit" class="btn btn-default">검색하기</button>
-				</form>
+				  	<button class="btn btn-default" onclick="searchYoutube();">검색하기</button>
+				</div>
 				
 				<fieldset style="border: 1px solid black">
 					<legend style="border-bottom: none;text-align: center;width:auto;">검색하신 동영상</legend>
+					<div class="col-md-12" id="searchResult">
+						<div class="col-md-2 text-center">
+							
+						</div>
+					</div>
+					<hr/>
+					<div class="col-md-12 text-center" id="selectVideo">
 					
-				
-				
+					</div>
 				
 				</fieldset>
 			
@@ -347,11 +337,58 @@
 	function youtubeClick(){
 		console.log('유튜브 클릭');
 		$('#youtubeModal').modal('show');
-		
-		
+		$('#searchExercise').val('');
 		
 	}
-
+	
+	// 유튜브 검색
+	function searchYoutube(){
+		console.log('유튜브 검색');
+		word = $('#searchExercise').val();
+		
+		$.ajax({
+	        type: "get",
+	        url: "http://192.168.0.36:8282/searchYoutube",
+	        data: {
+            	'word': word,             
+            },
+	        success: function(response){
+	        	console.log(response);
+	        	console.log(response['videoName'])
+	        	var sql = '<img src="'+response['videoHref'][0]+'"/>'  
+	        	
+	        	
+	        	
+	        	var sql = '';	        	
+	        	for(var i=0;i < response['videoName'].length;i++){	   
+	           		sql += '<a href="#;" onclick="showVideo(\''+response['videoHref'][i]+'\');">';
+	           		sql += '<div class="col-md-3">';     		
+	        		sql += '<img src="'+response['videoImg'][i]+'" alt="이미지입니다"/>'
+	        		sql += '<span>'+response['videoName'][i]+'</span>'
+	        		//sql += '<input type="hidden" value="'+response['videoHref'][i]+'"/>'
+	        		sql += '</div></a>'
+	        		
+	        	}
+	        	$('#searchResult').html(sql);
+        	
+	        },
+	        error:function(request,error){
+					console.log('상태코드:',request.status);
+					console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
+					console.log('에러:',error);
+			}
+		});
+		
+	
+	}
+	
+	function showVideo(video){
+		console.log(video);
+		/* 여기부터 하면 됨 */
+		var sql = '<iframe width="60%" src="'+video+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="min-height:500px"></iframe>'		
+		$('#selectVideo').html(sql);
+	}
+	
 
 
 
