@@ -315,7 +315,7 @@
 		//음식 불러오기
 		$.ajax({
 	        type: "get",
-	        url: "http://192.168.0.36:9090/restapi/foodGroup",
+	        url: "http://115.91.88.230:8082/restapi/foodGroup",
 	        dataType:'json',
 	        success: function(response){
 	        	var query;
@@ -335,7 +335,7 @@
 			var foodGroup = $(this).val()[0];
 			$.ajax({
 		        type: "get",
-		        url: "http://192.168.0.36:9090/restapi/foodBrand/"+foodGroup,
+		        url: "http://115.91.88.230:8082/restapi/foodBrand/"+foodGroup,
 		        data:{
 		        },
 		        dataType:'json',
@@ -361,7 +361,7 @@
 			if(foodBrand != ''){
 				$.ajax({
 			        type: "get",
-			        url: "http://192.168.0.36:9090/restapi/foodName/"+foodGroup+"/"+foodBrand,
+			        url: "http://115.91.88.230:8082/restapi/foodName/"+foodGroup+"/"+foodBrand,
 			        dataType:'json',
 			        success: function(response){
 			        	var query;
@@ -386,7 +386,7 @@
 			if(foodName != ''){
 				$.ajax({
 				        type: "get",
-				        url: "http://192.168.0.36:9090/restapi/food/"+foodBrand+'/'+foodName,
+				        url: "http://115.91.88.230:8082/restapi/food/"+foodBrand+'/'+foodName,
 				        dataType:'json',
 				        success: function(response){
 				        	var query = $('#food_table').html();
@@ -509,6 +509,8 @@
 			        success: function(response){
 			        	if(response == 1){
 			        		alert('저장 성공 했습니다');
+			        		$('#my_food_list').html('');
+			        		
 			        	}
 			        	else{
 			        		alert('저장 실패 했습니다');
@@ -552,7 +554,7 @@
         	
 			$.ajax({
 				type: "post",
-		        url: "http://192.168.0.36:8282/foodImage",
+		        url: "http://115.91.88.230:8282/foodImage",
 		        data: formData,
 	            contentType : false,
 	            processData : false,

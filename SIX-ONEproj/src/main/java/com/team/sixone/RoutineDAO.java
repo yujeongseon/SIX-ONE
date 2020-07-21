@@ -268,7 +268,6 @@ public class RoutineDAO {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, no);
 			psmt.executeUpdate();	
-			System.out.println("루틴삭제완료");
 		} catch (Exception e) {e.printStackTrace();}
 	  
    }
@@ -279,7 +278,6 @@ public class RoutineDAO {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, no);
 			psmt.executeUpdate();	
-			System.out.println("루틴에 구독된것 삭제완료");
 		} catch (Exception e) {e.printStackTrace();}
 	  
    }
@@ -291,7 +289,6 @@ public class RoutineDAO {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, no);
 			psmt.executeUpdate();	
-			System.out.println("루틴수정을 위한 삭제번호"+no);
 		} catch (Exception e) {e.printStackTrace();}
 	   
    }
@@ -303,7 +300,6 @@ public class RoutineDAO {
 			psmt.setString(1, title);
 			psmt.setString(2, id);
 			psmt.executeUpdate();	
-			System.out.println("루틴입력완료");
 		} catch (Exception e) {e.printStackTrace();}
 	   
    }
@@ -317,7 +313,6 @@ public class RoutineDAO {
 			psmt.setString(3, rouset);
 			psmt.setInt(4, days);
 			psmt.executeUpdate();
-			System.out.println("루틴상세정보입력완료");
 		} catch (Exception e) {e.printStackTrace();}
 	   
    }
@@ -331,7 +326,6 @@ public class RoutineDAO {
 			psmt.setString(4, rouset);
 			psmt.setInt(5, days);
 			psmt.executeUpdate();
-			System.out.println("루틴상세정보입력완료");
 		} catch (Exception e) {e.printStackTrace();}
 	   
    }
@@ -345,7 +339,6 @@ public class RoutineDAO {
 			psmt.setString(1, no);
 			psmt.setString(2, id);
 			affected=psmt.executeUpdate();	
-			System.out.println("구독완료");
 		} catch (Exception e) {e.printStackTrace();}
 	   
 		return affected;
@@ -359,7 +352,6 @@ public class RoutineDAO {
 			psmt.setString(1, no);
 			psmt.setString(2, id);
 			affected=psmt.executeUpdate();	
-			System.out.println("구독취소");
 		} catch (Exception e) {e.printStackTrace();}
 	  
 		return affected;

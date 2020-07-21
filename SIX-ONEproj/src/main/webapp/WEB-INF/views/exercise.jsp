@@ -44,7 +44,30 @@
 .desc {
 	height:180px;
 }
+#sixtube_loading div { /*로딩 이미지*/
+	position: fixed;
+	top:45%;
+	left:45%;
+	/*margin-left: -21px;
+	margin-top: -21px;*/
+	z-index: 9999;
+}
+.display_none{
+	display: none;
+}
 
+.hiddenImage{
+	visibility: hidden;
+}
+#sixtube_loading{
+	position: fixed;
+	top:0;
+	width:100%;
+	height:100%;
+	background-color:red;
+	z-index: 8888;
+	background-color: rgba(128, 128, 128,0.2);
+}
 
 </style>
 <aside id="colorlib-hero">
@@ -114,11 +137,11 @@
 		<div class="trainer-img" id="healthimg" style="background-image: url(https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBfc6b6/_h400_w284_m1_bwhite.jpg)">
 			<div id='img1' style="height: 50%; background-color: #F0F0F0;display:none" >
 				<span style="color: red;"> 스쿼트</span>
-				<img src="resources/images/sqart.png" >
+				<img src="resources/images/sqart.png" style="height:80%" >
 			</div>
 			<div id='img2' style="height: 50%; background-color: gray;display:none">
 				<span style="color: red;"> 런지</span>
-				<img src="resources/images/Lunge.png">
+				<img src="resources/images/Lunge.png" style="height:85%">
 			</div>
 			
 		</div>
@@ -231,7 +254,6 @@
 				
 					$("#mapModal").on('shown.bs.modal', function() {
 						// id 속성값이 myModal인 element 에 지도를 표시하는 로직
-						console.log('모달나옴');
 						setTimeout(function() {
 							map.relayout();
 						}, 1);
@@ -320,9 +342,7 @@
 						// 지도에 표시되고 있는 마커를 제거합니다
 						removeMarker();
 						for (var i = 0; i < places.length; i++) {
-								console.log(places[i]);
 							// 마커를 생성하고 지도에 표시합니다
-							console.log(places);
 							url = places[i].place_url;
 							
 							var placePosition = new kakao.maps.LatLng(
@@ -348,7 +368,6 @@
 										});
 								
 								//url받아오기 - 마지막거만됨 ㅇ
-								
 								
 
 								kakao.maps.event.addListener(marker,
@@ -506,7 +525,6 @@
 					}
 				</script>
 
-
 			</div>
 
 		</div>
@@ -579,14 +597,8 @@
 </div>
 </div><!-- row -->
 
-
-
-
-
 </div>
-
 </div>
-
 
 
 <!-- 보충제 시작 -->
@@ -766,25 +778,17 @@
 				</article>
 			</div>
 		</div> <!-- row -->
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	</div><!-- container -->
+	
 	<!-- modal start -->
-	<div class="modal fade" id="youtubeModal" tabindex="-1" role="dialog">
+	<div class="modal fade" id="youtubeModal" role="dialog">
 		<div class="modal-dialog" style="width: 80%;">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">
 						<span>×</span>
 					</button>
-					<h3 class="modal-title" id="myModalLabel" style="color:black;font-weight:bold;">Six<span style="color:white;background-color:red;border-radius: 20%">&nbsp;Tube&nbsp;</span></h3>
+					<h3 class="modal-title" id="myModalLabel" style="color:black;font-weight:bold;font-size:2em;">Six<span style="color:white;background-color:red;border-radius: 20%">&nbsp;Tube&nbsp;</span></h3>
 				</div>
 				<div class="modal-body" style="min-height: 500px;">
 				
@@ -818,17 +822,16 @@
 			</div>
 		</div>
 	</div>
-	
 	<!-- modal end -->
+	
+	<div id="sixtube_loading" class="display_none">
+		<div><img src="<c:url value='/resources/images/sixtube_loading.gif'/>"/></div>
+	</div>
+	
 </div>
 
 
 <!-- 보충제 끝 -->
-
-
-
-
-
 
 <input type="text" id="idsend" />
 <script>
@@ -873,8 +876,6 @@
 	      }
 	  
 	});*/
-	
-
 	var health = document.getElementById('health');
 	var healthimg = document.getElementById('healthimg');
 	var modal = document.getElementById('mapModal');
@@ -891,11 +892,9 @@
 		*/
 		$('#img1').css('display','')
 		$('#img2').css('display','')
-		console.log('마우스 오보')
 	}).on('mouseout',function(){
 		$('#img1').css('display','none')
 		$('#img2').css('display','none')
-		console.log('마우스 아웃')
 		
 	});
 	$('#img1').click(function(){
@@ -906,17 +905,12 @@
 	})
 	$('#img2').click(function(){
 		openWin = window.open('https://sixone-runge.netlify.app', "namegym", "width=925, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes,  top=200, left=500" );  
-		
-		
-		
 	})
 	/*
-
 	health
 			.addEventListener(
 					'mouseover',
 					function() {
-						
 						//healthimg.innerHTML = '<div onclick="console.log(\'마우스오버:innerhtml\');" style="height: 50%; background-color: #F0F0F0" ><span style="color: red;"> 해야하는나중에함</span><img src="resources/images/marker_.png" ></div><div style="height: 50%; background-color: gray;"><span style="color: red;"> 지도 검색</span><img src="resources/images/mapimg.png">'+'</div>';
 					
 						//healthimg.innerHTML = '<div style="height: 50%; background-color: #F0F0F0" >111111</div>'
@@ -926,10 +920,7 @@
 						$('#healthimg').append('<div id="aaa" style="height: 50%; background-color: #F0F0F0" ><span style="color: red;"> 해야하는나중에함</span><img src="resources/images/marker_.png" ></div><div style="height: 50%; background-color: gray;"><span style="color: red;"> 지도 검색</span><img src="resources/images/mapimg.png"></div>')
 						
 						$('#aaa').on('click',function(){console.log('aaaaaaaaaaaaaaaa')});
-
-					
 					});
-					
 	*/
 	/*
 	//  list.getElementsByClassName("child")[0].innerHTML = count;
@@ -946,27 +937,23 @@
 					
 	//유튜브
 	function youtubeClick(){
-		console.log('유튜브 클릭');
 		$('#youtubeModal').modal('show');
 		$('#searchExercise').val('');
-		
+		$('#selectVideo').html('');
 	}
 	
 	// 유튜브 검색
 	function searchYoutube(){
-		console.log('유튜브 검색');
 		word = $('#searchExercise').val();
 		$('#selectVideo').html('');
 		
 		$.ajax({
 	        type: "get",
-	        url: "http://192.168.0.36:8282/searchYoutube",
+	        url: "http://115.91.88.230:8282/searchYoutube",
 	        data: {
             	'word': word,             
             },
 	        success: function(response){
-	        	console.log(response);
-	        	console.log(response['videoName'])
 	        	var sql = '<img src="'+response['videoHref'][0]+'"/>'  
 	        	var sql = '';	        	
 	        	for(var i=0;i < response['videoName'].length;i++){	   
@@ -980,14 +967,18 @@
 	        	$('#searchResult').html(sql);
         	
 	        },
+	        beforeSend: function () {
+	        	$('#sixtube_loading').removeClass('display_none');
+	        },
+	        complete: function () {
+	        	$('#sixtube_loading').addClass('display_none');
+ 			},
 	        error:function(request,error){
 					console.log('상태코드:',request.status);
 					console.log('서버로 부터 받은 HTML 데이타:',request.responseText);
 					console.log('에러:',error);
 			}
 		});
-		
-	
 	}
 	
 	function showVideo(video){
@@ -995,9 +986,6 @@
 		var sql = '<iframe width="60%" src="'+video+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="min-height:500px"></iframe>'		
 		$('#selectVideo').html(sql);
 	}
-					
-					
-					
 					
 </script>
 </html>

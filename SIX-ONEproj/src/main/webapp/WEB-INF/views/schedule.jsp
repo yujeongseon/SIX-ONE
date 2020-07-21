@@ -215,39 +215,6 @@
           </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
-  
-	<div id="colorlib-subscribe" class="subs-img" style="background-image: url(resources/images/img_bg_1.jpg);" data-stellar-background-ratio="0.5">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center colorlib-heading animate-box">
-					<h2>구현 예정</h2>
-					<p>구현할꺼 생각중</p>
-				</div>
-			</div>
-			<div class="row animate-box">
-				<div class="col-md-6 col-md-offset-3">
-					<div class="row">
-						<div class="col-md-12">
-						<form class="form-inline qbstp-header-subscribe">
-							<div class="col-three-forth">
-								<div class="form-group">
-									<input type="text" class="form-control" id="email" placeholder="Enter your email">
-								</div>
-							</div>
-							<div class="col-one-third">
-								<div class="form-group">
-									<button type="submit" class="btn btn-primary">Subscribe Now</button>
-								</div>
-							</div>
-						</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
 	
 	<!-- 구독한 루틴 모달 -->
 	<div class="modal fade" tabindex="-1" role="dialog" id="eventModal2">

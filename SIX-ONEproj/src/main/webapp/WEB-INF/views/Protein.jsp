@@ -338,6 +338,8 @@
 		console.log('유튜브 클릭');
 		$('#youtubeModal').modal('show');
 		$('#searchExercise').val('');
+		$('#selectVideo').html(sql);
+		
 		
 	}
 	

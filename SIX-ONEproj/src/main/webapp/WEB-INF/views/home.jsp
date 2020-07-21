@@ -223,47 +223,56 @@
 				<div class="container member">
 					<div class="row">
 						<div class="col-md-8 col-md-offset-2 text-center colorlib-heading animate-box">
-							<h2>이달의 명예회원</h2>
-							<p>한달동안 가장 많이 달성한 회원</p>
+							<h1 style="margin-top: 20px">SIX-ONE</h1>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-3 col-sm-3 animate-box">
+						<div class="col-md-2 col-sm-2 animate-box">
 							<div class="trainers-entry">
 								<div class="trainer-img" style="background-image: url(resources/images/trainer-1.jpg)"></div>
 								<div class="desc">
-									<h3>회원 아이디</h3>
-									<span>Body Building Trainer</span>
+									<h3>김덕중</h3>
+									<span>팀원</span>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-md-2 col-sm-2 animate-box">
+							<div class="trainers-entry">
+								<div class="trainer-img" style="background-image: url(resources/images/trainer-1.jpg)"></div>
+								<div class="desc">
+									<h3>송지혁</h3>
+									<span>팀원</span>
 								</div>
 							</div>
 						</div>
 
-						<div class="col-md-3 col-sm-3 animate-box">
+						<div class="col-md-4 col-sm-4 animate-box">
 							<div class="trainers-entry">
 								<div class="trainer-img" style="background-image: url(resources/images/trainer-2.jpg)"></div>
 								<div class="desc">
-									<h3>회원 아이디</h3>
-									<span>Body Building Trainer</span>
+									<h3>박수빈</h3>
+									<span>팀장</span>
 								</div>
 							</div>
 						</div>
 
-						<div class="col-md-3 col-sm-3 animate-box">
+						<div class="col-md-2 col-sm-2 animate-box">
 							<div class="trainers-entry">
 								<div class="trainer-img" style="background-image: url(resources/images/trainer-3.jpg)"></div>
 								<div class="desc">
-									<h3>회원 아이디</h3>
-									<span>Body Building Trainer</span>
+									<h3>유정선</h3>
+									<span>팀원</span>
 								</div>
 							</div>
 						</div>
 
-						<div class="col-md-3 col-sm-3 animate-box">
+						<div class="col-md-2 col-sm-2 animate-box">
 							<div class="trainers-entry">
 								<div class="trainer-img" style="background-image: url(resources/images/trainer-4.jpg)"></div>
 								<div class="desc">
-									<h3>회원 아이디</h3>
-									<span>Body Building Trainer</span>
+									<h3>이선태</h3>
+									<span>팀원</span>
 								</div>
 							</div>
 						</div>

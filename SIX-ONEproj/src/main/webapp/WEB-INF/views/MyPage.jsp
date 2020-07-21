@@ -861,7 +861,7 @@ $(function(){
       
       $.ajax({
          type : "get",
-         url : "http://192.168.0.36:8282/ajax",
+         url : "http://115.91.88.230:8282/ajax",
          data : {
             "id" : "${list[0].id}",
             "height" : "${list[0].height}",
