@@ -369,7 +369,7 @@ a:link {
 							<br>
 							<div>
 							<button class="btn" id="gogudok" style="float:right;background-color:#0080FF; font-weight:blod; color:white;" >구독순</button>
-							<button class="btn" id="gochuashin" style="float:right;background-color:#0080FF; font-weight:blod; color:white;">최신순</button>
+							<button class="btn" id="gochuashin" style="float:right;background-color:#A4A4A4; font-weight:blod; color:white;">최신순</button>
 							</div>
 							<br>
 							<br>

@@ -568,7 +568,7 @@
 		<option value="7.5">등산</option>
 		<option value="7">실내자전거</option>
 	</select><br/>
-	<input type="text" placeholder="몸무게를 입력" id="kg" style="border: 1px solid #767676; width: 150px; height: 35px; margin-top: 15px;" />
+	<input type="text" placeholder="몸무게를 입력" id="kg" style="border: 1px solid #767676; width: 150px; height: 35px; margin-top: 15px;" />kg&nbsp;
 	<input type="text" placeholder="운동시간 입력(분)" id="m" style="border: 1px solid #767676; width: 150px; height: 35px;"/>분
 	<div class="wrap" style="display: inline;">
   <button class="button" id="btn"  style=" width: 70px; font-size: 15px;">확인</button>

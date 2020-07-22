@@ -510,6 +510,7 @@
 			        	if(response == 1){
 			        		alert('저장 성공 했습니다');
 			        		$('#my_food_list').html('');
+			        		$('#total_kcal').html('0');
 			        		
 			        	}
 			        	else{

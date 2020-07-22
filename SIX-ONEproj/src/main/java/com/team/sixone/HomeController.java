@@ -23,36 +23,43 @@ import com.team.sixone.service.impl.RoutineServiceImpl;
  */
 @Controller
 public class HomeController {
-	
-	private NaverLoginBO naverLoginBO; 
-	@Autowired
-	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
-		this.naverLoginBO = naverLoginBO;
-	}// 네이버 로그인
-	
-	
-	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	@Resource(name="routineService")
-	private RoutineServiceImpl routineDAO;
-	
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(@RequestParam Map map, Model model,HttpSession session) {
-		List<RoutineDTO> list = routineDAO.selectOne(map);
-		model.addAttribute("bestRoutine", list);
-		
-		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		session.setAttribute("url", naverAuthUrl);
-		return "home.tiles";
-	}//시작할때 네이버 인증 url생성
-	
-	@RequestMapping("/home.do")
-	public String moveHome() {
+   
+   private NaverLoginBO naverLoginBO; 
+   @Autowired
+   private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+      this.naverLoginBO = naverLoginBO;
+   }// 네이버 로그인
+   
+   
+   
+   private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+   
+   @Resource(name="routineService")
+   private RoutineServiceImpl routineDAO;
+   
+   
+   @RequestMapping(value = "/", method = RequestMethod.GET)
+   public String home(@RequestParam Map map, Model model,HttpSession session) {
+      List<RoutineDTO> list = routineDAO.selectOne(map);
+      model.addAttribute("bestRoutine", list);
+      String rouno="0";
+      if(list.get(0) != null) rouno=list.get(0).getRoutineNo();
+      if(session.getAttribute("LoginSuccess")!=null) {
+         String id = session.getAttribute("LoginSuccess").toString();
+         RoutineDAO dao = new RoutineDAO(null);
+         Boolean TF = dao.gudokok(rouno, id);
+         model.addAttribute("TF",TF);//가장 많이 구독된 루틴이 구독 되었는지 확인
+      }
+      String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+      session.setAttribute("url", naverAuthUrl);
+      return "home.tiles";
+   }//시작할때 네이버 인증 url생성
+   
+   @RequestMapping("/home.do")
+   public String moveHome() {
 
-		return"home.tiles";
-	}
-	
-	
+      return"home.tiles";
+   }
+   
+   
 }

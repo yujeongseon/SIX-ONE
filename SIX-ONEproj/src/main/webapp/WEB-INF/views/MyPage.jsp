@@ -279,13 +279,33 @@ $(function(){
         },
         width: '100%',
         height: 400,
-        legend: {'position': 'bottom'},
-        axes: {
-          x: {
+        legend: {'position': 'right'},
+        /* axes: {
+          y: {
             0: {side: 'top'}
           }
-        }
+        } */
       };
+      if($(window).width()<970){
+   	   options = {
+  		        chart: {
+  		          title: '',
+  		          subtitle: ''
+  		        },
+  		        width: '100%',
+  		        height: 400,
+  		        legend: {'position': 'none'},
+  		        /* axes: {
+  		          y: {
+  		            0: {side: 'top'}
+  		          }
+  		        } */
+		   };
+         
+      }
+      
+      
+      
       var chart = new google.charts.Line(document.getElementById('line_top_x'));
       chart.draw(data, google.charts.Line.convertOptions(options));
       $(window).resize(function(){
@@ -1423,6 +1443,12 @@ $(function(){
     });
    $( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");
    $( "#datepicker" ).datepicker('setDate', new Date());
+   
+   
+   
+   
+   
+   
 
 </script>      
 
