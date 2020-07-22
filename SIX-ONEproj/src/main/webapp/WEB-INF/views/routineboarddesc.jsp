@@ -570,7 +570,7 @@ a:link {
 					<div class="row">
 						<div class="text-center">
 							<form class="form-inline" method="post"
-								action="<c:url value='/routine.do'/>">
+								action="<c:url value='/routinedesc.do'/>">
 								<div class="form-group">
 									<select name="searchColumn" class="form-control">
 										<option value="routine_name">제목</option>

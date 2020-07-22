@@ -2,11 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
-	.entry-forth .icon img{
-		width:100px;
-	
-	
-	}
+.entry-forth .icon img{
+	width:100px;
+}
+.teamImg {
+	width:100%;
+	height:300px;
+}
 
 
 </style>
@@ -117,6 +119,12 @@
 				<div class="best-member">
 					<img src="<c:url value='/resources/images/trainer-4.jpg'/>"/>
 					<span>${bestRoutine[0].id } | ${bestRoutine[0].routineName }</span>
+					<button id="rRsub" onclick="subscribe();" style="float:right;">
+                       <span class="glyphicon glyphicon-thumbs-up" style="color: black;">구독하기</span>
+                    </button>
+                    <button id="rRsubC" onclick="subscribeCancel();" style="float:right;display: none;">
+                       <span class="glyphicon glyphicon-thumbs-down" style="color: black;">구독취소</span>
+                    </button>
 				</div>
 
 
@@ -229,7 +237,9 @@
 					<div class="row">
 						<div class="col-md-2 col-sm-2 animate-box">
 							<div class="trainers-entry">
-								<div class="trainer-img" style="background-image: url(resources/images/trainer-1.jpg)"></div>
+								<div class="text-center">
+									<img class="teamImg" src="resources/images/deokjung.png"/>
+								</div>
 								<div class="desc">
 									<h3>김덕중</h3>
 									<span>팀원</span>
@@ -239,7 +249,9 @@
 						
 						<div class="col-md-2 col-sm-2 animate-box">
 							<div class="trainers-entry">
-								<div class="trainer-img" style="background-image: url(resources/images/trainer-1.jpg)"></div>
+								<div class="text-center">
+									<img class="teamImg" src="resources/images/jihyuk.png"/>
+								</div>
 								<div class="desc">
 									<h3>송지혁</h3>
 									<span>팀원</span>
@@ -249,7 +261,9 @@
 
 						<div class="col-md-4 col-sm-4 animate-box">
 							<div class="trainers-entry">
-								<div class="trainer-img" style="background-image: url(resources/images/trainer-2.jpg)"></div>
+								<div class="text-center">
+									<img class="teamImg" src="resources/images/subin.png"/>
+								</div>
 								<div class="desc">
 									<h3>박수빈</h3>
 									<span>팀장</span>
@@ -259,7 +273,9 @@
 
 						<div class="col-md-2 col-sm-2 animate-box">
 							<div class="trainers-entry">
-								<div class="trainer-img" style="background-image: url(resources/images/trainer-3.jpg)"></div>
+								<div class="text-center">
+									<img class="teamImg" src="resources/images/jeongseon.png"/>
+								</div>
 								<div class="desc">
 									<h3>유정선</h3>
 									<span>팀원</span>
@@ -269,7 +285,9 @@
 
 						<div class="col-md-2 col-sm-2 animate-box">
 							<div class="trainers-entry">
-								<div class="trainer-img" style="background-image: url(resources/images/trainer-4.jpg)"></div>
+								<div class="text-center">
+									<img class="teamImg" src="resources/images/seontae.png"/>
+								</div>
 								<div class="desc">
 									<h3>이선태</h3>
 									<span>팀원</span>

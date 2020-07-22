@@ -795,13 +795,13 @@
 					<div class="form-inline">
 					  	<div class="form-group">
 					    	<label for="searchExercise">운동</label>
-					    	<input type="text" class="form-control" id="searchExercise">
+					    	<input type="text" class="form-control" id="searchExercise" onkeydown="javascript: if(event.keyCode == 13) {searchYoutube();}">
 					 	</div>
 					  
 					  	<button class="btn btn-default" onclick="searchYoutube();">검색하기</button>
 					</div>
 					
-					<fieldset style="border: 1px solid black">
+					<fieldset style="border: 1px solid black;padding-bottom:30px;">
 						<legend style="border-bottom: none;text-align: center;width:auto;">검색하신 동영상</legend>
 						<div class="col-md-12" id="searchResult">
 							<div class="col-md-2 text-center">

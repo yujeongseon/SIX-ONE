@@ -52,7 +52,13 @@
 	.thumbnail{
 		display: flow-root;
 	}
-	
+}
+
+#updateButton{
+	float:right;
+	background-color: #a9a8a8;
+	color: white;
+	border-radius: 10px;
 	
 }
 
@@ -410,6 +416,7 @@ $(function(){
                            <span style="color: black;" class="glyphicon glyphicon-user">
                               ${item.name}님의운동기록</span>
                         </c:forEach>
+                        <button id="updateButton">회원정보수정</button>
                      </div>
 
                      <div class="panel-footer">
