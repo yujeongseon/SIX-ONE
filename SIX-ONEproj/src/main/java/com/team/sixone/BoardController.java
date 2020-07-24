@@ -72,7 +72,7 @@ public class BoardController {
          map.put("end", end);
 
          List<BoardDTO> list= dao.selectList(map);
-         
+         dao.close();
          String pagingString= PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,req.getContextPath()+ "/freeboard.do?");
                
          //데이타 저장]
@@ -91,6 +91,7 @@ public class BoardController {
          String no = req.getParameter("no");
          BoardDAO dao = new BoardDAO(req.getServletContext());
          BoardDTO record = dao.selectone(no);
+         dao.close();
          model.addAttribute("record",record);
          model.addAttribute("nowPage",nowPage);
          return "/view.tiles";
@@ -107,6 +108,7 @@ public class BoardController {
          String no = req.getParameter("no");
          BoardDAO dao = new BoardDAO(req.getServletContext());
          int affected=dao.delete(no);
+         dao.close();
          //완료 등 뿌려주려다 실패 따로 응답뿌리는 컨트롤러 추가예정
 //         PrintWriter out = resp.getWriter();
 //         if(affected==0) {
@@ -129,6 +131,7 @@ public class BoardController {
     	  RoutineDAO dao= new RoutineDAO(null);
     	  dao.gudokin(no, id);
     	  num=dao.gudoknum(no);
+    	  dao.close();
     	  if(num==null) num="0";
     	  return num;
       }
@@ -143,6 +146,7 @@ public class BoardController {
     	  RoutineDAO dao= new RoutineDAO(null);
     	  and=dao.gudokout(no, id);
     	  num=dao.gudoknum(no);
+    	  dao.close();
     	  if(num==null) num="0";
     	  answer="구독완료";
     	  return num;
@@ -155,6 +159,7 @@ public class BoardController {
     	  String imagename;
     	  RoutineDAO dao= new RoutineDAO(null);
     	  imagename=dao.geticon(name);
+    	  dao.close();
     	  return imagename;
       }
       
@@ -172,6 +177,7 @@ public class BoardController {
     	  dao.deletesub(no);
     	  //루틴삭제
     	  dao.deleterou(no);
+    	  dao.close();
       }
       
     //ajax 루틴 제목 작성
@@ -180,6 +186,7 @@ public class BoardController {
       public void ajaxroutinewrite(String title,String id) {
     	  RoutineDAO dao= new RoutineDAO(null);
     	  dao.writerou(title, id);
+    	  dao.close();
       }
       
       //루틴 상세내용 작성
@@ -192,6 +199,7 @@ public class BoardController {
     	  }
     	  
     	  dao.writeroudetail(exename,roucount,rouset,days);
+    	  dao.close();
       }
       
     //ajax 루틴 삭제
@@ -201,6 +209,7 @@ public class BoardController {
     	  RoutineDAO dao= new RoutineDAO(null);
     	  System.out.println("rou딜리트 들어오냐"+no);
     	  dao.deleterouagain(no);
+    	  dao.close();
       }
       
       
@@ -226,8 +235,8 @@ public class BoardController {
     	  case 14 :  days=7; break;
     	  default :
     	  }
-    	  System.out.println("이거 적힌만큼만 들어와야 정상인데"+days+"날짜 확인 정상으로 들어오냐");
     	  dao.writerouagain(exename,roucount,rouset,days,no);
+    	  dao.close();
       }
       
   
@@ -256,7 +265,7 @@ public class BoardController {
       map.put("start", start);
       map.put("end", end);
       List<RoutineDTO> list=dao.selectList(map,id);
-
+      dao.close();
       String pagingString= PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,req.getContextPath()+ "/routine.do?");
       //데이타 저장]
       
@@ -290,6 +299,7 @@ public class BoardController {
       map.put("start", start);
       map.put("end", end);
       List<RoutineDTO> list=dao.gudokupList(map,id);
+      dao.close();
 
       String pagingString= PagingUtil.pagingBootStrapStyle(totalRecordCount, pageSize, blockPage, nowPage,req.getContextPath()+ "/routinedesc.do?");
       //데이타 저장]
@@ -339,6 +349,7 @@ public class BoardController {
       String no=req.getParameter("no");
       BoardDAO dao = new BoardDAO(req.getServletContext());
       BoardDTO record = dao.selectone(no);
+      dao.close();
       model.addAttribute("record",record);
       model.addAttribute("nowPage",nowPage);
       

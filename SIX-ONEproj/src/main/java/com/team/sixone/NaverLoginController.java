@@ -57,6 +57,7 @@ public class NaverLoginController {
 		String rea;
 	  	AdminDAO admin = new AdminDAO(null);
 	  	rea=admin.band(email);
+	  	admin.close();
 	  	if(!(rea.equals("1"))) {//벤 여부 확인
 	  		session.setAttribute("ban", rea);
 	  		return "banpage.tiles";
@@ -102,7 +103,7 @@ public class NaverLoginController {
 			session.setAttribute("LoginSuccess", map.get("id"));
 			session.setAttribute("Name", map.get("name"));
 		}
-
+		dao.close();
 		return "redirect:/";
 	}/////NewMember
 	

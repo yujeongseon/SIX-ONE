@@ -60,6 +60,7 @@ public class AdminDAO {
 				}
 			}
 			catch (Exception e) {e.printStackTrace();}
+		  
 		   
 		   return map;
 	   }
@@ -77,6 +78,7 @@ public class AdminDAO {
 			}
 			catch (Exception e) {e.printStackTrace();}
 		   
+		   
 		   return map;
 	   }
 	 //전체 루틴게시글
@@ -90,6 +92,7 @@ public class AdminDAO {
 				
 			}
 			catch (Exception e) {e.printStackTrace();}
+		   
 		   
 		   return hap;
 	   }
@@ -111,6 +114,7 @@ public class AdminDAO {
 		}
 		catch (Exception e) {e.printStackTrace();}
 	   
+	   
 	   return list;
    }
 	   
@@ -128,6 +132,7 @@ public class AdminDAO {
 			}
 			catch (Exception e) {e.printStackTrace();}
 		   
+		   
 		   return map;
 	   }
 	
@@ -143,6 +148,7 @@ public class AdminDAO {
 				}
 			}
 			catch (Exception e) {e.printStackTrace();}
+		   
 		   return map;
 	   }
 	   
@@ -158,6 +164,7 @@ public class AdminDAO {
 				}
 			}
 			catch (Exception e) {e.printStackTrace();}
+		   
 		   return map;
 	   }
 	   
@@ -173,6 +180,7 @@ public class AdminDAO {
 				}
 			}
 			catch (Exception e) {e.printStackTrace();}
+		   
 		   return map;
 	   }
 	   
@@ -198,6 +206,7 @@ public class AdminDAO {
 				}
 			}
 			catch (Exception e) {e.printStackTrace();}
+		   
 		   return map;
 	   }
 	   
@@ -230,6 +239,7 @@ public class AdminDAO {
 				}
 			}
 			catch (SQLException e) {e.printStackTrace();}
+			
 			return list;
 		}//////////selectmember()
 	   
@@ -283,6 +293,7 @@ public class AdminDAO {
 			}
 		}
 		catch (SQLException e) {e.printStackTrace();}
+		
 		return list;
 	}
 	
@@ -296,6 +307,7 @@ public class AdminDAO {
 				psmt.executeUpdate();	
 				System.out.println("회원 제제 완료");
 			} catch (Exception e) {e.printStackTrace();}
+		   
 		  
 	   }
 	   //벤 여부 확인
@@ -310,6 +322,7 @@ public class AdminDAO {
 					reason=rs.getString(1);
 				}
 			} catch (Exception e) {e.printStackTrace();}
+		   
 		  return reason;
 	   }
 	   
@@ -322,6 +335,7 @@ public class AdminDAO {
 				psmt.executeUpdate();	
 				
 			} catch (Exception e) {e.printStackTrace();}
+		   
 	   }
 	
 	

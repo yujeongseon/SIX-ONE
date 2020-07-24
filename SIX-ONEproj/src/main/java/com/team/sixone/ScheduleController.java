@@ -129,7 +129,9 @@ public class ScheduleController {
 		map.put("id",id);
 		int result = calendarDAO.insert(map);
 		
-		return String.valueOf(result);
+		return String.valueOf(result + "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script> <script> window.open('', '_self', '');\r\n" + 
+				"  window.close();\r\n" + 
+				"  </script>");
 	}
 	
 	@RequestMapping(value="/schedule.insertRoutine")

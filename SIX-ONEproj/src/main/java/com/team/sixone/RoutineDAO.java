@@ -103,6 +103,7 @@ public class RoutineDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		return list;
 	}////////// selectList()
    
@@ -160,6 +161,7 @@ public class RoutineDAO {
 	         }
 	      }
 	      catch (SQLException e) {e.printStackTrace();}
+	      
 	      return list;
 	   }//////////구독자 높은 순 정렬
    
@@ -183,6 +185,7 @@ public class RoutineDAO {
                 list.add(dto2);
              }
           } catch (Exception e) {e.printStackTrace();}
+          
         
 	      return list;
    }
@@ -202,7 +205,6 @@ public class RoutineDAO {
 			}
 		}
 		catch (Exception e) {e.printStackTrace();}
-	 
 	   
 	   return gudok;
    }
@@ -220,7 +222,7 @@ public class RoutineDAO {
 			}
 		}
 		catch (Exception e) {e.printStackTrace();}
-	  
+	   
 	   return num;
    }
    
@@ -256,7 +258,7 @@ public class RoutineDAO {
          totalRowCount = rs.getInt(1);
       } 
       catch (SQLException e) {e.printStackTrace();}
-   		
+   
       return totalRowCount;   
             
    }//getTotalRowCount   
@@ -279,7 +281,7 @@ public class RoutineDAO {
 			psmt.setInt(1, no);
 			psmt.executeUpdate();	
 		} catch (Exception e) {e.printStackTrace();}
-	  
+	   
    }
    
    //루틴_exe삭제
@@ -290,7 +292,7 @@ public class RoutineDAO {
 			psmt.setInt(1, no);
 			psmt.executeUpdate();	
 		} catch (Exception e) {e.printStackTrace();}
-	   
+	  
    }
    
    public void writerou(String title,String id) {
@@ -340,7 +342,7 @@ public class RoutineDAO {
 			psmt.setString(2, id);
 			affected=psmt.executeUpdate();	
 		} catch (Exception e) {e.printStackTrace();}
-	   
+	   	   
 		return affected;
    }
    
@@ -353,6 +355,7 @@ public class RoutineDAO {
 			psmt.setString(2, id);
 			affected=psmt.executeUpdate();	
 		} catch (Exception e) {e.printStackTrace();}
+	  
 	  
 		return affected;
    }

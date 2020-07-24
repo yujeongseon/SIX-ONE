@@ -52,7 +52,7 @@ h2{
 .goMain {
 	cursor: pointer;
 	border:10px #013775 solid;
-	margin-top:50px;
+	margin-top:10px;
 
 }
 

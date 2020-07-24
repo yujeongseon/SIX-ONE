@@ -41,7 +41,7 @@ public class BoardDAO {
 		}//////////DAO
 		
 		
-		private void close() {
+		public void close() {
 			try {
 				if(rs !=null) rs.close();
 				if(psmt !=null) psmt.close();
@@ -82,6 +82,7 @@ public class BoardDAO {
 			}
 			catch (SQLException e) {e.printStackTrace();}
 			
+			
 			return list;
 		}//////////selectList()
 		
@@ -98,6 +99,7 @@ public class BoardDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
 			
 			return affected;
 		}
@@ -126,6 +128,7 @@ public class BoardDAO {
 				}
 			} catch (Exception e) {e.printStackTrace();}
 			
+			
 			return dto;
 		}///////////selectOne
 		public BoardDTO updateone(String no) {
@@ -147,6 +150,7 @@ public class BoardDAO {
 				}
 			} catch (Exception e) {e.printStackTrace();}
 			
+			
 			return dto;
 		}///////////selectOne
 	
@@ -161,6 +165,7 @@ public class BoardDAO {
 					affected=1;
 				}
 			} catch (Exception e) {e.printStackTrace();}
+			
 			
 			return affected;
 		}///////////findid
@@ -182,6 +187,7 @@ public class BoardDAO {
 				affected=psmt.executeUpdate();
 				System.out.println("네이버 회원가입 완");
 			} catch (Exception e) {e.printStackTrace();}
+			
 			
 			return affected;
 		}//////////글쓰기

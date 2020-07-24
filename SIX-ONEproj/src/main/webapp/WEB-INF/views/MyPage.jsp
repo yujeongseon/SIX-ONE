@@ -278,7 +278,7 @@ $(function(){
           subtitle: ''
         },
         width: '100%',
-        height: 400,
+        height: 300,
         legend: {'position': 'right'},
         /* axes: {
           y: {

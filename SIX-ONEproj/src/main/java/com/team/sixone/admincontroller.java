@@ -95,9 +95,8 @@ public class admincontroller {
 			model.addAttribute("execount"+i,list.get(i+1));
 			int exeper = (((int)list.get(i+1))*100)/exehap;
 			model.addAttribute("exeper"+i,exeper);
-			
 		}
-		
+		dao.close();
 		
   		return "admin";
   	}
@@ -130,6 +129,7 @@ public class admincontroller {
   	public String gotable( @RequestParam Map map, Model model) {
 		AdminDAO dao = new AdminDAO(null);
 		List<AdminMemberDTO> list= dao.selectmember(map);
+		dao.close();
 		model.addAttribute("list",list);
   		return "admintable";
   	}
@@ -162,6 +162,7 @@ public class admincontroller {
 	   public String Ban(String reason,String id) {
 		 AdminDAO dao= new AdminDAO(null);
 			dao.Ban(reason,id);
+			dao.close();
 		 return "ban";
 	 }
 	 
@@ -170,6 +171,7 @@ public class admincontroller {
 	   public String isBan(String id) {
 		 AdminDAO dao= new AdminDAO(null);
 			String ban=dao.band(id);
+			dao.close();
 		 return ban;
 	 }
 	 
@@ -178,6 +180,7 @@ public class admincontroller {
 	   public String offBan(String id) {
 		 AdminDAO dao= new AdminDAO(null);
 			dao.offband(id);
+			dao.close();
 		 return "ban";
 	 }
 	 
