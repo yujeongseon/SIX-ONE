@@ -246,7 +246,7 @@
                         </div>
                         <div class="desc">
                            <h3>김덕중</h3>
-                           <span>팀원</span>
+                           <span>팀원, 여행을 <br> 좋아합니다</span>
                         </div>
                      </div>
                   </div>
@@ -258,7 +258,7 @@
                         </div>
                         <div class="desc">
                            <h3>송지혁</h3>
-                           <span>팀원</span>
+                           <span>팀원, 홈 트레이닝을 <br> 하고 있습니다</span>
                         </div>
                      </div>
                   </div>
@@ -270,7 +270,7 @@
                         </div>
                         <div class="desc">
                            <h3>박수빈</h3>
-                           <span>팀장</span>
+                           <span>팀장, 취미는 자전거입니다 <br>　</span>
                         </div>
                      </div>
                   </div>
@@ -282,7 +282,7 @@
                         </div>
                         <div class="desc">
                            <h3>유정선</h3>
-                           <span>팀원</span>
+                           <span>팀원, 취미는  <br>클라이밍 입니다</span>
                         </div>
                      </div>
                   </div>
@@ -294,7 +294,7 @@
                         </div>
                         <div class="desc">
                            <h3>이선태</h3>
-                           <span>팀원</span>
+                           <span>팀원, 무에타이를 <br> 배우고 있습니다</span>
                         </div>
                      </div>
                   </div>

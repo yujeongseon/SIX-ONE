@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
+  
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	
@@ -75,7 +76,6 @@
                 <ul class="nav side-menu">
                   <li><a href='<c:url value="/admin.do"/>'><i class="fa fa-home"></i> 관리 메인 </a></li>
                   <li><a href='<c:url value="/table.do"/>'><i class="fa fa-table"></i>회원정보</a></li>
-                  <li><a href='<c:url value="/icon.do"/>'><i class="fa fa-desktop"></i> UI 아이콘</a></li>
                   <li><a href='<c:url value="/Logout.do"/>'><i class="fa fa-power-off"></i>six-one 메인페이지로</a></li>
                 </ul>
               </div>

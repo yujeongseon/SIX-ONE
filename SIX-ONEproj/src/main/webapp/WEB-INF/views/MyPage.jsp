@@ -515,6 +515,7 @@ $(function(){
                            <span style="color: black;" class="glyphicon glyphicon-user">
                               ${item.name}님의최근정보현황</span>
                         </c:forEach>
+                        <button id="updateButton">회원정보수정</button>
                      </div>
 
                      <div class="panel-footer">

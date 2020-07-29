@@ -53,14 +53,16 @@ $(function(){
       switch (intexercise) {
       case 0.5: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
-         
-         
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;
       case 1: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
          if($('#kclavalue').html() === "" ){
-            console.log('zz');
             $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
          }
          else {
@@ -70,17 +72,16 @@ $(function(){
       case 1.5: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
          if($('#kclavalue').html() === "" ){
-            console.log('zz');
             $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
          }
          else {
             $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         
          }
          break;
       case 2: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
          if($('#kclavalue').html() === "" ){
-            console.log('zz');
             $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
          }
          else {
@@ -90,7 +91,6 @@ $(function(){
       case 2.5: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
          if($('#kclavalue').html() === "" ){
-            console.log('zz');
             $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
          }
          else {
@@ -99,12 +99,16 @@ $(function(){
          break;
       case 3:
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;
       case 3.5: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
          if($('#kclavalue').html() === "" ){
-            console.log('zz');
             $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
          }
          else {
@@ -114,7 +118,6 @@ $(function(){
       case 4: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
          if($('#kclavalue').html() === "" ){
-            console.log('zz');
             $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
          }
          else {
@@ -123,67 +126,147 @@ $(function(){
          break;
       case 4.5: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;
       case 5: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;   
       case 5.5: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;
       case 6: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;
       case 6.5: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;
       case 7: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;
       case 7.5: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;
       case 8: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;
       case 8.5: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;
       case 9: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;
       case 9.5: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;
       case 10: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;
       case 10.5: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;
       case 11: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;
       case 11.5: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;
       case 12: 
          kcal = Math.ceil(5*intexercise*3.5*intkg*intm/1000);
-         $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         if($('#kclavalue').html() === "" ){
+            $('#kclavalue').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
+         else {
+            $('#kclavalue2').html(exercisename+"의 "+m+"분 칼로리 소모량은 "+kcal+"kcal 입니다.");
+         }
          break;
       }
       
@@ -1125,13 +1208,13 @@ width:86px;
       
    });
    $('#img1').click(function(){
-      openWin = window.open('https://sixone-squrt-final.netlify.app', "namegym", "width=925, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes,  top=200, left=500" );  
+      openWin = window.open('https://sixone-squrt-final.netlify.app', "exer", "width=925, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes,  top=200, left=500" );  
    //https://sixone-flank.netlify.app
       
 
    })
    $('#img2').click(function(){
-      openWin = window.open('https://sixone-runge.netlify.app', "namegym", "width=925, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes,  top=200, left=500" );  
+      openWin = window.open('https://sixone-runge.netlify.app', "exer", "width=925, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes,  top=200, left=500" );  
    })
    /*
    health
@@ -1186,9 +1269,9 @@ width:86px;
               for(var i=0;i < response['videoName'].length;i++){      
                     sql += '<a href="#;" onclick="showVideo(\''+response['videoHref'][i]+'\');">';
                     sql += '<div class="col-md-3 text-center">';           
-                 sql += '<img src="'+response['videoImg'][i]+'" alt="이미지입니다"/>'
-                 sql += '<span class="videoName">'+response['videoName'][i]+'</span>'
-                 sql += '</div></a>'
+	                sql += '<img src="'+response['videoImg'][i]+'" alt="이미지입니다" style="width:246px;height:138px"/>'
+	                sql += '<span class="videoName">'+response['videoName'][i]+'</span>'
+	                sql += '</div></a>'
                  
               }
               $('#searchResult').html(sql);
